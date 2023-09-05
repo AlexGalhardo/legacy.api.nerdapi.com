@@ -3,7 +3,7 @@ import { Bcrypt } from "src/Utils/Bcrypt";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
 import Validator from "src/Utils/Validator";
-import jwt from 'jsonwebtoken'
+import * as jwt from 'jsonwebtoken'
 
 export interface AuthLoginUseCasePort {
 	execute(authLoginDTO: AuthLoginDTO): Promise<UserLoginUseCaseResponse>

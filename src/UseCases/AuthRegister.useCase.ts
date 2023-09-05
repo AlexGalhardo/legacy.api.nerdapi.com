@@ -29,8 +29,6 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
         let { password } = authRegisterDTO;
 		let hashedPassword = null
 
-		console.log('username, email, password => ', username, email, password)
-
         if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
 
         // if (!Validator.names.isValidFullName(username)) throw new ClientException(ErrorsMessages.NAME_IS_INVALID);
@@ -41,7 +39,7 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
 			
 			const userId = randomUUID()
 			
-			const token = jwt.sign({ id: userId }, "goK!pusp6ThEdURUtRenOwUhAsWUCLheBazl!uJLPlS8EbreWLdrupIwabRAsiBu")
+			const token = jwt.sign({ id: userId }, process.env.JWT_SECRET)
 			
 			this.userRepository.create({
 				id: userId,
@@ -53,7 +51,7 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
 				updated_at: null
 			});
 
-			return { success: true };
+			return { success: true, token };
 		}
 
         return { success: false };

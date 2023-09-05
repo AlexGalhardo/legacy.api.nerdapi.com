@@ -4,7 +4,7 @@
         "username": "alex",
         "email": "alex@gmail.com",
         "password": "$2b$12$Wgp.4J7meBPx42B89z6iAeRIjl6zNYmgFvNzIMLzlDFZV6ZoTnkJ2",
-        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI0N2U5MTI2LWIxZDAtNDY2NC05MDI3LTQ2NDJjN2Y0OTRmZCIsImlhdCI6MTY5Mzg5NTcxNn0.m09GZO40X7rGYjUEuN_sbpcjyljwumiy2c9IQNmBxQU",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI0N2U5MTI2LWIxZDAtNDY2NC05MDI3LTQ2NDJjN2Y0OTRmZCIsImlhdCI6MTY5MzkxODY0Nn0.-wiloZD6nNitBMygb9PIHFtdtaSy2ec0g0BvOfWSyis",
         "created_at": "2023-09-05T06:35:16.066Z",
         "updated_at": null
     }

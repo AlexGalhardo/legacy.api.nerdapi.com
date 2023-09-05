@@ -1,5 +1,4 @@
 import * as bcrypt from "bcrypt";
-// const bcrypt = require('bcrypt');
 
 export class Bcrypt {
     static async hash(password: string): Promise<string> {
