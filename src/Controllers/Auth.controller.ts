@@ -1,5 +1,6 @@
 import { Controller, Post, Req, Res, Body, Inject, HttpStatus } from "@nestjs/common";
 import { Request, Response } from 'express'
+import { AuthRegisterDTO } from "src/UseCases/AuthRegister.useCase";
 
 interface AuthUseCaseResponse {
 	success: boolean
@@ -29,16 +30,11 @@ interface AuthControllerPort {
 	resetPassword(authResetPasswordDTO: AuthResetPasswordDTO, response: Response): Promise<Response<AuthUseCaseResponse>>
 }
 
-
 interface AuthLoginDTO { 
 	email: string; 
 	password: string 
 }
-interface AuthRegisterDTO {
-	name: string
-	email: string; 
-	password: string
-}
+
 
 interface AuthForgetPasswordDTO {
 	email: string; 
@@ -103,7 +99,7 @@ export class AuthController implements AuthControllerPort {
         @Res() response: Response,
     ): Promise<Response<AuthUseCaseResponse>> {
         try {
-            const { success } = await this.authForgetPasswordUseCase.execute(authResetPasswordDTO);
+            const { success } = await this.authResetPasswordUseCase.execute(authResetPasswordDTO);
             if(success) return response.status(HttpStatus.OK).json({ success: true });
         } catch (error) {
             throw new Error(error);
