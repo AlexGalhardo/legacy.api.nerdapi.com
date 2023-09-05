@@ -1,30 +1,30 @@
 export default class DateTime {
     public secondsToMilliseconds(seconds: number): number {
-        return seconds * 1000
+        return seconds * 1000;
     }
 
     public minutesToMilliseconds(minutes: number): number {
-        return minutes * 60000
+        return minutes * 60000;
     }
 
     public hoursToMilliseconds(hours: number): number {
-        return hours * 3600000
+        return hours * 3600000;
     }
 
     public daysToMilliseconds(days: number): number {
-        return days * 86400000
+        return days * 86400000;
     }
 
     public get secondInMilliseconds() {
-        return 1000
+        return 1000;
     }
 
     public get minuteInMilliseconds() {
-        return 60000
+        return 60000;
     }
 
     public get hourInMilliseconds() {
-        return 3600000
+        return 3600000;
     }
 
     public get methods() {
@@ -36,6 +36,6 @@ export default class DateTime {
             secondInMilliseconds: this.secondInMilliseconds,
             minuteInMilliseconds: this.minuteInMilliseconds,
             hourInMilliseconds: this.hourInMilliseconds,
-        }
+        };
     }
 }

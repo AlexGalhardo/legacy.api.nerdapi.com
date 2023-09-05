@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { AuthModule } from './Modules/Auth.module'
+import { AuthModule } from "./Modules/Auth.module";
 import UserRepository from "./Repositories/Users.repository";
 import { ProfileModule } from "./Modules/Profile.module";
 import { ContactModule } from "./Modules/Contact.module";
@@ -9,21 +9,20 @@ import { ConfigModule } from "@nestjs/config";
 
 @Module({
     imports: [
-		HealthCheckModule,
-		AuthModule,
-		ProfileModule,
-		ContactModule,
-		StripeModule,
-		ConfigModule.forRoot({ isGlobal: true }),
-	],
+        HealthCheckModule,
+        AuthModule,
+        ProfileModule,
+        ContactModule,
+        StripeModule,
+        ConfigModule.forRoot({ isGlobal: true }),
+    ],
     controllers: [],
     providers: [
-		UserRepository,
+        UserRepository,
         {
-            provide: 'UserRepositoryPort',
+            provide: "UserRepositoryPort",
             useClass: UserRepository,
         },
-	],
+    ],
 })
-
 export class AppModule {}

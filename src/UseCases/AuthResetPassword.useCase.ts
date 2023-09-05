@@ -1,17 +1,17 @@
 import { UserRepositoryPort } from "src/Repositories/Users.repository";
 
 export interface AuthResetPasswordUseCasePort {
-	execute(authResetPasswordDTO: AuthResetPasswordDTO): Promise<AuthResetPasswordUseCaseResponse>
+    execute(authResetPasswordDTO: AuthResetPasswordDTO): Promise<AuthResetPasswordUseCaseResponse>;
 }
 
 export interface AuthResetPasswordDTO {
-	resetPasswordToken: string;
+    resetPasswordToken: string;
     password: string;
-	confirmPassword: string;
+    confirmPassword: string;
 }
 
 interface AuthResetPasswordUseCaseResponse {
-	success: boolean
+    success: boolean;
 }
 
 export default class AuthResetPasswordUseCase implements AuthResetPasswordUseCasePort {
@@ -19,14 +19,14 @@ export default class AuthResetPasswordUseCase implements AuthResetPasswordUseCas
 
     async execute(authResetPasswordDTO: AuthResetPasswordDTO): Promise<AuthResetPasswordUseCaseResponse> {
         const { resetPasswordToken, password, confirmPassword } = authResetPasswordDTO;
-			
-		// const { user, index } = this.usersRepository.getByResetPasswordToken(resetPasswordToken)
-		const user = true;
 
-		if(user){
-			return { success: true }
-		}
+        // const { user, index } = this.usersRepository.getByResetPasswordToken(resetPasswordToken)
+        const user = true;
+
+        if (user) {
+            return { success: true };
+        }
 
         return { success: false };
-	}
+    }
 }

@@ -3,10 +3,10 @@ import { Bcrypt } from "src/Utils/Bcrypt";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
 import Validator from "src/Utils/Validator";
-import * as jwt from 'jsonwebtoken'
+import * as jwt from "jsonwebtoken";
 
 export interface AuthLoginUseCasePort {
-	execute(authLoginDTO: AuthLoginDTO): Promise<UserLoginUseCaseResponse>
+    execute(authLoginDTO: AuthLoginDTO): Promise<UserLoginUseCaseResponse>;
 }
 
 export interface AuthLoginDTO {
@@ -15,8 +15,8 @@ export interface AuthLoginDTO {
 }
 
 interface UserLoginUseCaseResponse {
-	success: boolean
-	token?: string
+    success: boolean;
+    token?: string;
 }
 
 export default class AuthLoginUseCase implements AuthLoginUseCasePort {
@@ -27,23 +27,21 @@ export default class AuthLoginUseCase implements AuthLoginUseCasePort {
 
         if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
 
-		if(email && password){
-			
-			const { user, index } = this.usersRepository.getByEmail(email)
-			
-			if(user){
+        if (email && password) {
+            const { user, index } = this.usersRepository.getByEmail(email);
 
-				if(!await Bcrypt.compare(password, user.password)){
-					return { success: false }
-				}
+            if (user) {
+                if (!(await Bcrypt.compare(password, user.password))) {
+                    return { success: false };
+                }
 
-				const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET)
-				user.token = token
-				this.usersRepository.save(user, index)
+                const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+                user.token = token;
+                this.usersRepository.save(user, index);
 
-				return { success: true, token }
-			}
-		}
+                return { success: true, token };
+            }
+        }
 
         throw new ClientException(ErrorsMessages.EMAIL_OR_PASSWORD_INVALID);
     }

@@ -4,7 +4,7 @@ import { ClientException } from "src/Utils/Exception";
 import Validator from "src/Utils/Validator";
 
 export interface AuthForgetPasswordUseCasePort {
-	execute(authForgetPasswordDTO: AuthForgetPasswordDTO): Promise<AuthForgetPasswordUseCaseResponse>
+    execute(authForgetPasswordDTO: AuthForgetPasswordDTO): Promise<AuthForgetPasswordUseCaseResponse>;
 }
 
 export interface AuthForgetPasswordDTO {
@@ -12,8 +12,8 @@ export interface AuthForgetPasswordDTO {
 }
 
 interface AuthForgetPasswordUseCaseResponse {
-	success: boolean
-	token?: string
+    success: boolean;
+    token?: string;
 }
 
 export default class AuthForgetPasswordUseCase implements AuthForgetPasswordUseCasePort {
@@ -23,15 +23,14 @@ export default class AuthForgetPasswordUseCase implements AuthForgetPasswordUseC
         const { email } = authForgetPasswordDTO;
 
         if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
-			
-		const { user, index } = this.usersRepository.getByEmail(email)
-		
-		if(user){
 
-			// enviar email com link de recuperação pro usuário
+        const { user, index } = this.usersRepository.getByEmail(email);
 
-			return { success: true }
-		}
+        if (user) {
+            // enviar email com link de recuperação pro usuário
+
+            return { success: true };
+        }
 
         return { success: false };
     }

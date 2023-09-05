@@ -14,45 +14,45 @@ describe("AppController (e2e)", () => {
 
     beforeAll(async () => {
         const moduleFixture = await Test.createTestingModule({
-			controllers: [AuthController],
+            controllers: [AuthController],
             imports: [AppModule],
-			providers: [
-				{
-					inject: [],
-					provide: 'UserRepositoryPort',
-					useFactory: () => {
-						return new UserRepository()
-					},
-				},
-				{
-					provide: 'AuthRegisterUseCasePort',
-					inject: ['UserRepositoryPort'],
-					useFactory: (userRepository: UserRepositoryPort) => {
-						return new AuthRegisterUseCase(userRepository)
-					},
-				},
-				{
-					provide: 'AuthLoginUseCasePort',
-					inject: ['UserRepositoryPort'],
-					useFactory: (userRepository: UserRepositoryPort) => {
-						return new AuthLoginUseCase(userRepository)
-					},
-				},
-				{
-					provide: 'AuthForgetPasswordUseCasePort',
-					inject: ['UserRepositoryPort'],
-					useFactory: (userRepository: UserRepositoryPort) => {
-						return new AuthForgetPasswordUseCase(userRepository)
-					},
-				},
-				{
-					provide: 'AuthResetPasswordUseCasePort',
-					inject: ['UserRepositoryPort'],
-					useFactory: (userRepository: UserRepositoryPort) => {
-						return new AuthResetPasswordUseCase(userRepository)
-					},
-				},
-			]
+            providers: [
+                {
+                    inject: [],
+                    provide: "UserRepositoryPort",
+                    useFactory: () => {
+                        return new UserRepository();
+                    },
+                },
+                {
+                    provide: "AuthRegisterUseCasePort",
+                    inject: ["UserRepositoryPort"],
+                    useFactory: (userRepository: UserRepositoryPort) => {
+                        return new AuthRegisterUseCase(userRepository);
+                    },
+                },
+                {
+                    provide: "AuthLoginUseCasePort",
+                    inject: ["UserRepositoryPort"],
+                    useFactory: (userRepository: UserRepositoryPort) => {
+                        return new AuthLoginUseCase(userRepository);
+                    },
+                },
+                {
+                    provide: "AuthForgetPasswordUseCasePort",
+                    inject: ["UserRepositoryPort"],
+                    useFactory: (userRepository: UserRepositoryPort) => {
+                        return new AuthForgetPasswordUseCase(userRepository);
+                    },
+                },
+                {
+                    provide: "AuthResetPasswordUseCasePort",
+                    inject: ["UserRepositoryPort"],
+                    useFactory: (userRepository: UserRepositoryPort) => {
+                        return new AuthResetPasswordUseCase(userRepository);
+                    },
+                },
+            ],
         }).compile();
 
         app = moduleFixture.createNestApplication();
@@ -65,22 +65,23 @@ describe("AppController (e2e)", () => {
 
     it("GET healthCheck / endpoint should return HttpStatus.OK", () => {
         return request(app.getHttpServer()).get("/").expect(HttpStatus.OK).expect({
-			success: true,
-			message: 'Galhardo MicroSaaS API is on!'
-		});
+            success: true,
+            message: "Galhardo MicroSaaS API is on!",
+        });
     });
 
-	it("POST /contact endpoint should return HttpStatus.OK", () => {
+    it("POST /contact endpoint should return HttpStatus.OK", () => {
         return request(app.getHttpServer())
-			.post("/contact")
-			.send({
-				name: "Teste e2e",
-				email: "teste_e2e@gmail.com",
-				subject: "TESTE E2E",
-				message: "Test message e2e"
-			})
-			.expect(HttpStatus.OK).expect({
-				success: true
-			});
+            .post("/contact")
+            .send({
+                name: "Teste e2e",
+                email: "teste_e2e@gmail.com",
+                subject: "TESTE E2E",
+                message: "Test message e2e",
+            })
+            .expect(HttpStatus.OK)
+            .expect({
+                success: true,
+            });
     });
 });
