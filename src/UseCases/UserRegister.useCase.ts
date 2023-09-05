@@ -1,6 +1,3 @@
-import DataManager from "src/dataManager/DataManager";
-import Errors from "src/constants/Errors";
-import { ClientException } from "src/utils/exceptions/Exception";
 import { Bcrypt } from "src/Utils/Bcrypt";
 
 interface UserRegisterUseCasePort {}
