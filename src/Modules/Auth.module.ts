@@ -3,6 +3,7 @@ import { AuthController } from "src/Controllers/Auth.controller";
 import UserRepository, { UserRepositoryPort } from "src/Repositories/Users.repository";
 import AuthForgetPasswordUseCase from "src/UseCases/AuthForgetPassword.useCase";
 import AuthLoginUseCase from "src/UseCases/AuthLogin.useCase";
+import AuthLogoutUseCase from "src/UseCases/AuthLogout.useCase";
 import AuthRegisterUseCase from "src/UseCases/AuthRegister.useCase";
 import AuthResetPasswordUseCase from "src/UseCases/AuthResetPassword.useCase";
 
@@ -16,6 +17,13 @@ import AuthResetPasswordUseCase from "src/UseCases/AuthResetPassword.useCase";
                 return new UserRepository();
             },
         },
+		{
+            provide: "AuthLoginUseCasePort",
+            inject: ["UserRepositoryPort"],
+            useFactory: (userRepository: UserRepositoryPort) => {
+                return new AuthLoginUseCase(userRepository);
+            },
+        },
         {
             provide: "AuthRegisterUseCasePort",
             inject: ["UserRepositoryPort"],
@@ -23,11 +31,11 @@ import AuthResetPasswordUseCase from "src/UseCases/AuthResetPassword.useCase";
                 return new AuthRegisterUseCase(userRepository);
             },
         },
-        {
-            provide: "AuthLoginUseCasePort",
+		{
+            provide: "AuthLogoutUseCasePort",
             inject: ["UserRepositoryPort"],
             useFactory: (userRepository: UserRepositoryPort) => {
-                return new AuthLoginUseCase(userRepository);
+                return new AuthLogoutUseCase(userRepository);
             },
         },
         {

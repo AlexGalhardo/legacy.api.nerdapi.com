@@ -8,6 +8,7 @@ export interface UserRepositoryPort {
     getByEmail(email: string): any;
     create(user: any): void;
     deleteByEmail(email: string): void;
+	logout(userId: string): void;
 }
 
 interface UserRepositoryResponse {
@@ -58,5 +59,15 @@ export default class UserRepository implements UserRepositoryPort {
     public deleteByEmail(email: string) {
         this.users = this.users.filter((user) => user.email !== email);
         this.save();
+    }
+
+	public logout(userId: string) {
+        for(const user of this.users){
+			if(user.id === userId){
+				user.token = null
+				this.save();
+				break
+			}
+		}
     }
 }
