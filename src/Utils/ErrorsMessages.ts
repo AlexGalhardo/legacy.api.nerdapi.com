@@ -17,5 +17,6 @@ export enum ErrorsMessages {
 	EMAIL_IS_INVALID = 'Email is invalid',
 	EMAIL_ALREADY_REGISTRED = 'Email already registred',
 
-	EMAIL_OR_PASSWORD_INVALID = 'Email or password invalid'
+	EMAIL_OR_PASSWORD_INVALID = 'Email or password invalid',
+	EMAIL_NOT_REGISTRED = 'Email not registred'
 }

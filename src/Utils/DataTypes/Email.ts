@@ -6,7 +6,7 @@ class Email {
     }
 
     public generate(): string {
-        return `teste.pvl.${Math.random().toString().split('.')[1]}@teste.com.br`
+        return `teste.${Math.random().toString().split('.')[1]}@teste.com.br`
     }
 
     public get methods() {

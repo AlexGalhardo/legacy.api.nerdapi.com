@@ -7,14 +7,13 @@ export interface UserRepositoryPort {
 	findByEmail(email: string): boolean
 	getByEmail(email: string): any
     create(user: any): void
+	deleteByEmail(email: string): void
 }
 
 interface UserRepositoryResponse {
 	success: boolean
 	token?: string
 }
-
-
 
 export default class UserRepository implements UserRepositoryPort {
     constructor(private users = usersDatabase) {}
@@ -54,4 +53,9 @@ export default class UserRepository implements UserRepositoryPort {
 		this.users.push(user)
 		this.save()
     }
+
+	public deleteByEmail(email: string) {
+		this.users = this.users.filter(user => user.email !== email)
+		this.save()
+	}
 }

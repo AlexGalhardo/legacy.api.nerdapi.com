@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common'
-import { AuthController } from 'src/Controllers/Auth.controller';
-import UserRepository, { UserRepositoryPort } from 'src/Repositories/Users.repository';
-import AuthForgetPasswordUseCase from 'src/UseCases/AuthForgetPassword.useCase';
-import AuthLoginUseCase from 'src/UseCases/AuthLogin.useCase';
-import AuthRegisterUseCase from 'src/UseCases/AuthRegister.useCase';
-import AuthResetPasswordUseCase from 'src/UseCases/AuthResetPassword.useCase';
+import { AuthController } from "src/Controllers/Auth.controller";
+import UserRepository, { UserRepositoryPort } from "src/Repositories/Users.repository";
+import AuthForgetPasswordUseCase from "src/UseCases/AuthForgetPassword.useCase";
+import AuthLoginUseCase from "src/UseCases/AuthLogin.useCase";
+import AuthRegisterUseCase from "src/UseCases/AuthRegister.useCase";
+import AuthResetPasswordUseCase from "src/UseCases/AuthResetPassword.useCase";
 
 @Module({
     controllers: [AuthController],
