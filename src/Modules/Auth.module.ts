@@ -6,6 +6,7 @@ import AuthLoginUseCase from "src/UseCases/AuthLogin.useCase";
 import AuthLogoutUseCase from "src/UseCases/AuthLogout.useCase";
 import AuthRegisterUseCase from "src/UseCases/AuthRegister.useCase";
 import AuthResetPasswordUseCase from "src/UseCases/AuthResetPassword.useCase";
+import AuthTokenUserUseCase from "src/UseCases/AuthTokenUser.useCase";
 
 @Module({
     controllers: [AuthController],
@@ -36,6 +37,13 @@ import AuthResetPasswordUseCase from "src/UseCases/AuthResetPassword.useCase";
             inject: ["UserRepositoryPort"],
             useFactory: (userRepository: UserRepositoryPort) => {
                 return new AuthLogoutUseCase(userRepository);
+            },
+        },
+		{
+            provide: "AuthTokenUserUseCasePort",
+            inject: ["UserRepositoryPort"],
+            useFactory: (userRepository: UserRepositoryPort) => {
+                return new AuthTokenUserUseCase(userRepository);
             },
         },
         {

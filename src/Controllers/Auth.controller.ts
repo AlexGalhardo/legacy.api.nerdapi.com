@@ -1,10 +1,11 @@
-import { Controller, Post, Res, Req, Body, Inject, HttpStatus } from "@nestjs/common";
-import { Request, Response } from "express";
+import { Controller, Post, Res, Body, Inject, HttpStatus, Get } from "@nestjs/common";
+import { Response } from "express";
 import { AuthForgetPasswordDTO, AuthForgetPasswordUseCasePort } from "src/UseCases/AuthForgetPassword.useCase";
 import { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCases/AuthLogin.useCase";
 import { AuthLogoutUseCasePort } from "src/UseCases/AuthLogout.useCase";
 import { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import { AuthResetPasswordDTO, AuthResetPasswordUseCasePort } from "src/UseCases/AuthResetPassword.useCase";
+import { AuthTokenUserUseCasePort } from "src/UseCases/AuthTokenUser.useCase";
 
 interface AuthUseCaseResponse {
     success: boolean;
@@ -15,7 +16,8 @@ interface AuthUseCaseResponse {
 interface AuthControllerPort {
     login(authLoginDTO: AuthLoginDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
     register(authRegisterDTO: AuthRegisterDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
-	logout(request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>
+	logout(response: Response): Promise<Response<AuthUseCaseResponse>>
+	tokenUser(response: Response): Promise<Response<AuthUseCaseResponse>>
     forgetPassword(
         authForgetPasswordDTO: AuthForgetPasswordDTO,
         response: Response,
@@ -32,6 +34,7 @@ export class AuthController implements AuthControllerPort {
         @Inject("AuthLoginUseCasePort") private readonly authLoginUseCase: AuthLoginUseCasePort,
         @Inject("AuthRegisterUseCasePort") private readonly authRegisterUseCase: AuthRegisterUseCasePort,
 		@Inject("AuthLogoutUseCasePort") private readonly authLogoutUseCase: AuthLogoutUseCasePort,
+		@Inject("AuthTokenUserUseCasePort") private readonly authTokenUserUseCase: AuthTokenUserUseCasePort,
         @Inject("AuthForgetPasswordUseCasePort")
         private readonly authForgetPasswordUseCase: AuthForgetPasswordUseCasePort,
         @Inject("AuthResetPasswordUseCasePort") private readonly authResetPasswordUseCase: AuthResetPasswordUseCasePort,
@@ -65,12 +68,23 @@ export class AuthController implements AuthControllerPort {
 
 	@Post("/logout")
     async logout(
-		@Req() request: Request,
         @Res() response: Response,
     ): Promise<Response<AuthUseCaseResponse>> {
         try {
             const { success } = await this.authLogoutUseCase.execute(response.locals.token);
             if (success) return response.status(HttpStatus.OK).json({ success: true });
+        } catch (error) {
+            return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
+        }
+    }
+
+	@Get("/tokenUser")
+    async tokenUser(
+        @Res() response: Response,
+    ): Promise<Response<AuthUseCaseResponse>> {
+        try {
+            const { success, data } = await this.authTokenUserUseCase.execute(response.locals.token);
+            if (success) return response.status(HttpStatus.OK).json({ success: true, data });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }

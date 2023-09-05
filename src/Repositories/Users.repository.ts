@@ -1,31 +1,46 @@
 import * as fs from "fs";
 import * as usersDatabase from "./Jsons/users.json";
+import { ErrorsMessages } from "src/Utils/ErrorsMessages";
+
+export interface User {
+	id: string;
+	username: string;
+	email: string;
+	password: string;
+	token: string;
+	created_at: string;
+	updated_at: string;
+}
+
+export interface UserResponse {
+	user: User
+	index: number
+}
 
 export interface UserRepositoryPort {
     save(user?: any, index?: number): void;
     findById(userId: string): boolean;
     findByEmail(email: string): boolean;
-    getByEmail(email: string): any;
+    getByEmail(email: string): UserResponse;
+	getById(userId: string): UserResponse;
     create(user: any): void;
     deleteByEmail(email: string): void;
 	logout(userId: string): void;
-}
-
-interface UserRepositoryResponse {
-    success: boolean;
-    token?: string;
 }
 
 export default class UserRepository implements UserRepositoryPort {
     constructor(private users = usersDatabase) {}
 
     public save(user?: any, index?: number): void {
-        if (user && index) {
-            this.users.splice(index, 1, user);
-        }
+		try {
+			if (user && index) {
+            	this.users.splice(index, 1, user);
+        	}
 
-        fs.writeFileSync("./src/Repositories/Jsons/users.json", JSON.stringify(this.users, null, 4), "utf-8");
-        this.users = JSON.parse(fs.readFileSync("./src/Repositories/Jsons/users.json", "utf-8"));
+			fs.writeFileSync("./src/Repositories/Jsons/users.json", JSON.stringify(this.users, null, 4), "utf-8");
+		} catch (error) {
+			throw new Error(error)
+		}
     }
 
     public findById(userId: string): boolean {
@@ -36,19 +51,24 @@ export default class UserRepository implements UserRepositoryPort {
         return this.users.some((user: any) => user.email === email);
     }
 
-    public getByEmail(email: string) {
-        let user = null,
-            index = null;
-
+    public getByEmail(email: string): UserResponse {
         for (let i = 0; i < this.users.length; i++) {
             if (this.users[i].email === email) {
-                user = this.users[i];
-                index = i;
-                break;
+				return { user: this.users[i], index: i };
             }
         }
 
-        return { user, index };
+		throw new Error(ErrorsMessages.USER_NOT_FOUND)
+    }
+
+	public getById(userId: string): UserResponse {
+        for (let i = 0; i < this.users.length; i++) {
+            if (this.users[i].id === userId) {
+				return { user: this.users[i], index: i };
+            }
+        }
+
+		throw new Error(ErrorsMessages.USER_NOT_FOUND)
     }
 
     public create(user: any): void {

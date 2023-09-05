@@ -13,7 +13,6 @@ interface AuthLogoutUseCaseResponse {
 
 export default class AuthLogoutUseCase implements AuthLogoutUseCasePort {
     constructor(private readonly usersRepository: UserRepositoryPort) {}
-	success: boolean;
 
     async execute(token: string): Promise<AuthLogoutUseCaseResponse> {
 		const { id } = jwt.verify(token, process.env.JWT_SECRET) as jwt.JwtPayload;
