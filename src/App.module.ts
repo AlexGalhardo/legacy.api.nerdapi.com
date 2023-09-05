@@ -5,6 +5,7 @@ import { ProfileModule } from "./Modules/Profile.module";
 import { ContactModule } from "./Modules/Contact.module";
 import { StripeModule } from "./Modules/Stripe.module";
 import { HealthCheckModule } from "./Modules/HealthCheck.module";
+import { ConfigModule } from "@nestjs/config";
 
 @Module({
     imports: [
@@ -13,6 +14,7 @@ import { HealthCheckModule } from "./Modules/HealthCheck.module";
 		ProfileModule,
 		ContactModule,
 		StripeModule,
+		ConfigModule.forRoot({ isGlobal: true }),
 	],
     controllers: [],
     providers: [
