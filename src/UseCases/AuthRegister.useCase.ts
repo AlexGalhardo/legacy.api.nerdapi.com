@@ -4,7 +4,7 @@ import { Bcrypt } from "src/Utils/Bcrypt";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
 import Validator from "src/Utils/Validator";
-import jwt from 'jsonwebtoken'
+import * as jwt from 'jsonwebtoken'
 
 interface AuthRegisterUseCaseResponse {
 	success: boolean
@@ -12,7 +12,7 @@ interface AuthRegisterUseCaseResponse {
 }
 
 export interface AuthRegisterDTO {
-	name: string
+	username: string
 	email: string; 
 	password: string
 }
@@ -25,13 +25,15 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
     constructor(private readonly userRepository: UserRepositoryPort) {}
 
     async execute(authRegisterDTO: AuthRegisterDTO): Promise<AuthRegisterUseCaseResponse> {
-        const { name, email } = authRegisterDTO;
+        const { username, email } = authRegisterDTO;
         let { password } = authRegisterDTO;
 		let hashedPassword = null
 
+		console.log('username, email, password => ', username, email, password)
+
         if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
 
-        if (!Validator.names.isValidFullName(name)) throw new ClientException(ErrorsMessages.NAME_IS_INVALID);
+        // if (!Validator.names.isValidFullName(username)) throw new ClientException(ErrorsMessages.NAME_IS_INVALID);
 
         if (password) hashedPassword = await Bcrypt.hash(password);
 
@@ -39,11 +41,11 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
 			
 			const userId = randomUUID()
 			
-			const token = jwt.sign({ id: userId }, process.env.JWT_SECRET)
+			const token = jwt.sign({ id: userId }, "goK!pusp6ThEdURUtRenOwUhAsWUCLheBazl!uJLPlS8EbreWLdrupIwabRAsiBu")
 			
 			this.userRepository.create({
 				id: userId,
-				username: name,
+				username,
 				email,
 				password: hashedPassword,
 				token,

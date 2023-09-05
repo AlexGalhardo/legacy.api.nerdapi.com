@@ -1,7 +1,5 @@
-import { Injectable } from '@nestjs/common'
-// import {readFileSync, writeFileSync} from 'fs'
-import fs = require('fs');
-
+import * as fs from 'fs'
+import * as usersDatabase from './Jsons/users.json'
 
 export interface UserRepositoryPort {
 	save(user?: any, index?: number): void
@@ -9,7 +7,6 @@ export interface UserRepositoryPort {
 	findByEmail(email: string): boolean
 	getByEmail(email: string): any
     create(user: any): void
-	login(email: string, password: string): Promise<UserRepositoryResponse>
 }
 
 interface UserRepositoryResponse {
@@ -17,23 +14,18 @@ interface UserRepositoryResponse {
 	token?: string
 }
 
-// const usersDatabase = JSON.parse(fs.readFileSync('../../users.json', 'utf-8'))
 
-import * as usersDatabase from './Jsons/blog.json'
 
 export default class UserRepository implements UserRepositoryPort {
-    constructor(private readonly users = usersDatabase) {}
-	
-	login(email: string, password: string): Promise<UserRepositoryResponse> {
-		throw new Error('Method not implemented.')
-	}
+    constructor(private users = usersDatabase) {}
 
 	public save(user?: any, index?: number): void {
 		if(user && index){
 			this.users.splice(index, 1, user)
 		}
 
-		fs.writeFileSync('./users.json', JSON.stringify(this.users, null, 4), 'utf-8')
+		fs.writeFileSync('./src/Repositories/Jsons/users.json', JSON.stringify(this.users, null, 4), 'utf-8')
+		this.users = JSON.parse(fs.readFileSync('./src/Repositories/Jsons/users.json', 'utf-8'))
 	}
 
 	public findById(userId: string): boolean {
