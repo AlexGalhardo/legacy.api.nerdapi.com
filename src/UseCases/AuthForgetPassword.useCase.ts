@@ -3,14 +3,12 @@ import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
 import Validator from "src/Utils/Validator";
 
-interface AuthForgetPasswordUseCasePort {
+export interface AuthForgetPasswordUseCasePort {
 	execute(authForgetPasswordDTO: AuthForgetPasswordDTO): Promise<AuthForgetPasswordUseCaseResponse>
 }
 
-interface AuthForgetPasswordDTO {
-    name: string;
+export interface AuthForgetPasswordDTO {
     email: string;
-    password: string;
 }
 
 interface AuthForgetPasswordUseCaseResponse {

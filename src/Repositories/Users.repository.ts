@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common'
-import fs from 'fs'
+// import {readFileSync, writeFileSync} from 'fs'
+import fs = require('fs');
+
 
 export interface UserRepositoryPort {
 	save(user?: any, index?: number): void
@@ -15,9 +17,13 @@ interface UserRepositoryResponse {
 	token?: string
 }
 
-@Injectable()
+// const usersDatabase = JSON.parse(fs.readFileSync('../../users.json', 'utf-8'))
+
+import * as usersDatabase from './Jsons/blog.json'
+
 export default class UserRepository implements UserRepositoryPort {
-    constructor(private readonly users = JSON.parse(fs.readFileSync('./Jsons/users.json', 'utf-8'))) {}
+    constructor(private readonly users = usersDatabase) {}
+	
 	login(email: string, password: string): Promise<UserRepositoryResponse> {
 		throw new Error('Method not implemented.')
 	}
@@ -27,7 +33,7 @@ export default class UserRepository implements UserRepositoryPort {
 			this.users.splice(index, 1, user)
 		}
 
-		fs.writeFileSync('./Jsons/users.json', JSON.stringify(this.users, null, 4), 'utf-8')
+		fs.writeFileSync('./users.json', JSON.stringify(this.users, null, 4), 'utf-8')
 	}
 
 	public findById(userId: string): boolean {
@@ -53,6 +59,7 @@ export default class UserRepository implements UserRepositoryPort {
 	}
 
     public create(user: any): void {
-		this.users.push(user).save()
+		this.users.push(user)
+		this.save()
     }
 }

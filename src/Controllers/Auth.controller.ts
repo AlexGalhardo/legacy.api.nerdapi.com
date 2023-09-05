@@ -1,26 +1,14 @@
-import { Controller, Post, Req, Res, Body, Inject, HttpStatus } from "@nestjs/common";
-import { Request, Response } from 'express'
-import { AuthRegisterDTO } from "src/UseCases/AuthRegister.useCase";
+import { Controller, Post, Res, Body, Inject, HttpStatus } from "@nestjs/common";
+import { Response } from 'express'
+import { AuthForgetPasswordDTO, AuthForgetPasswordUseCasePort } from "src/UseCases/AuthForgetPassword.useCase";
+import { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCases/AuthLogin.useCase";
+import { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
+import { AuthResetPasswordDTO, AuthResetPasswordUseCasePort } from "src/UseCases/AuthResetPassword.useCase";
 
 interface AuthUseCaseResponse {
 	success: boolean
 	token?: string
 	message?: string
-}
-interface AuthLoginUseCasePort {
-	execute(authLoginDTO: AuthLoginDTO): Promise<AuthUseCaseResponse>
-}
-
-interface AuthRegisterUseCasePort {
-	execute(authRegisterDTO: AuthRegisterDTO): Promise<AuthUseCaseResponse>
-}
-
-interface AuthForgetPasswordUseCasePort {
-	execute(authForgetPasswordDTO: AuthForgetPasswordDTO): Promise<AuthUseCaseResponse>
-}
-
-interface AuthResetPasswordUseCasePort {
-	execute(authResetPasswordDTO: AuthResetPasswordDTO): Promise<AuthUseCaseResponse>
 }
 
 interface AuthControllerPort {
@@ -28,21 +16,6 @@ interface AuthControllerPort {
 	register(authRegisterDTO: AuthRegisterDTO, response: Response): Promise<Response<AuthUseCaseResponse>>
 	forgetPassword(authForgetPasswordDTO: AuthForgetPasswordDTO, response: Response): Promise<Response<AuthUseCaseResponse>>
 	resetPassword(authResetPasswordDTO: AuthResetPasswordDTO, response: Response): Promise<Response<AuthUseCaseResponse>>
-}
-
-interface AuthLoginDTO { 
-	email: string; 
-	password: string 
-}
-
-
-interface AuthForgetPasswordDTO {
-	email: string; 
-}
-interface AuthResetPasswordDTO {
-	email: string;
-	password: string;
-	confirmPassword: string;
 }
 
 @Controller()

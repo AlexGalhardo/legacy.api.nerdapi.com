@@ -5,12 +5,11 @@ import { ClientException } from "src/Utils/Exception";
 import Validator from "src/Utils/Validator";
 import jwt from 'jsonwebtoken'
 
-interface AuthLoginUseCasePort {
+export interface AuthLoginUseCasePort {
 	execute(authLoginDTO: AuthLoginDTO): Promise<UserLoginUseCaseResponse>
 }
 
-interface AuthLoginDTO {
-    name: string;
+export interface AuthLoginDTO {
     email: string;
     password: string;
 }

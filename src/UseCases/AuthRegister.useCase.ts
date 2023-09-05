@@ -6,11 +6,7 @@ import { ClientException } from "src/Utils/Exception";
 import Validator from "src/Utils/Validator";
 import jwt from 'jsonwebtoken'
 
-interface UserRegisterUseCasePort {
-	execute(authRegisterDTO: AuthRegisterDTO): Promise<UserRegisterUseCaseResponse>
-}
-
-interface UserRegisterUseCaseResponse {
+interface AuthRegisterUseCaseResponse {
 	success: boolean
 	token?: string
 }
@@ -21,10 +17,14 @@ export interface AuthRegisterDTO {
 	password: string
 }
 
-export default class AuthRegisterUseCase implements UserRegisterUseCasePort {
+export interface AuthRegisterUseCasePort {
+	execute(authRegisterDTO: AuthRegisterDTO): Promise<AuthRegisterUseCaseResponse>
+}
+
+export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
     constructor(private readonly userRepository: UserRepositoryPort) {}
 
-    async execute(authRegisterDTO: AuthRegisterDTO): Promise<UserRegisterUseCaseResponse> {
+    async execute(authRegisterDTO: AuthRegisterDTO): Promise<AuthRegisterUseCaseResponse> {
         const { name, email } = authRegisterDTO;
         let { password } = authRegisterDTO;
 		let hashedPassword = null

@@ -1,10 +1,10 @@
 import { UserRepositoryPort } from "src/Repositories/Users.repository";
 
-interface AuthResetPasswordUseCasePort {
+export interface AuthResetPasswordUseCasePort {
 	execute(authResetPasswordDTO: AuthResetPasswordDTO): Promise<AuthResetPasswordUseCaseResponse>
 }
 
-interface AuthResetPasswordDTO {
+export interface AuthResetPasswordDTO {
 	resetPasswordToken: string;
     password: string;
 	confirmPassword: string;
