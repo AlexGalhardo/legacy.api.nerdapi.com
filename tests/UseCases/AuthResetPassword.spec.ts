@@ -1,15 +1,15 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import UserRepository, { UserRepositoryPort } from "src/Repositories/Users.repository";
-import Validator from "src/Utils/Validator";
-import AuthLoginUseCase, { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCases/AuthLogin.useCase";
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
+import Validator from "src/Utils/Validator";
 import DeleteUserUseCase, { DeleteUserUseCasePort } from "src/UseCases/DeleteUserUseCase.useCase";
-import AuthLogoutUseCase, { AuthLogoutUseCasePort } from "src/UseCases/AuthLogout.useCase";
+import AuthForgetPasswordUseCase, { AuthForgetPasswordDTO, AuthForgetPasswordUseCasePort } from "src/UseCases/AuthForgetPassword.useCase";
+import AuthResetPasswordUseCase, { AuthResetPasswordDTO, AuthResetPasswordUseCasePort } from "src/UseCases/AuthResetPassword.useCase";
 
-describe("Test AuthLogoutUseCase", () => {
+describe("Test AuthForgetPasswordUseCase", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;
-    let authLoginUseCase: AuthLoginUseCasePort;
-    let authLogoutUseCase: AuthLogoutUseCasePort;
+	let authForgetPasswordUseCase: AuthForgetPasswordUseCasePort;
+	let authResetPasswordUseCase: AuthResetPasswordUseCasePort;
     let deleteUserByEmail: DeleteUserUseCasePort;
 
     beforeAll(async () => {
@@ -17,17 +17,10 @@ describe("Test AuthLogoutUseCase", () => {
             controllers: [],
             providers: [
                 {
-                    inject: [],
                     provide: "UserRepositoryPort",
+                    inject: [],
                     useFactory: () => {
                         return new UserRepository();
-                    },
-                },
-                {
-                    provide: "AuthLoginUseCasePort",
-                    inject: ["UserRepositoryPort"],
-                    useFactory: (userRepository: UserRepositoryPort) => {
-                        return new AuthLoginUseCase(userRepository);
                     },
                 },
                 {
@@ -37,14 +30,21 @@ describe("Test AuthLogoutUseCase", () => {
                         return new AuthRegisterUseCase(userRepository);
                     },
                 },
-                {
-                    provide: "AuthLogoutUseCasePort",
+				{
+                    provide: "AuthForgetPasswordUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
-                        return new AuthLogoutUseCase(userRepository);
+                        return new AuthForgetPasswordUseCase(userRepository);
                     },
                 },
-                {
+				{
+                    provide: "AuthResetPasswordUseCasePort",
+                    inject: ["UserRepositoryPort"],
+                    useFactory: (userRepository: UserRepositoryPort) => {
+                        return new AuthResetPasswordUseCase(userRepository);
+                    },
+                },
+				{
                     provide: "DeleteUserUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
@@ -54,20 +54,19 @@ describe("Test AuthLogoutUseCase", () => {
             ],
         }).compile();
         authRegisterUseCase = module.get<AuthRegisterUseCasePort>("AuthRegisterUseCasePort");
-        authLoginUseCase = module.get<AuthLoginUseCasePort>("AuthLoginUseCasePort");
-        authLogoutUseCase = module.get<AuthLogoutUseCasePort>("AuthLogoutUseCasePort");
+		authForgetPasswordUseCase = module.get<AuthForgetPasswordUseCasePort>("AuthForgetPasswordUseCasePort");
+		authResetPasswordUseCase = module.get<AuthResetPasswordUseCasePort>("AuthResetPasswordUseCasePort");
         deleteUserByEmail = module.get<DeleteUserUseCasePort>("DeleteUserUseCasePort");
     });
 
     const userEmail = Validator.email.generate();
-    const userPassword = Validator.password.generate();
-    let loginToken = null;
+	let resetPasswordToken = null;
 
     it("should register a user", async () => {
         const authRegisterDTO: AuthRegisterDTO = {
-            username: "Testing Logout Test",
+            username: "Testing ResetPassword Test",
             email: userEmail,
-            password: userPassword,
+            password: Validator.password.generate()
         };
         const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);
 
@@ -75,20 +74,24 @@ describe("Test AuthLogoutUseCase", () => {
         expect(jwt_token).toBeDefined();
     });
 
-    it("should login a user", async () => {
-        const authLoginDTO: AuthLoginDTO = {
-            email: userEmail,
-            password: userPassword,
-        };
-        let { success, jwt_token } = await authLoginUseCase.execute(authLoginDTO);
-        loginToken = jwt_token;
+	it("should send a email with reset_password_token to user reset password", async () => {
+        const authForgetPasswordDTO: AuthForgetPasswordDTO = { email: userEmail };
+        const { success, reset_password_token } = await authForgetPasswordUseCase.execute(authForgetPasswordDTO);
+
+		resetPasswordToken = reset_password_token
 
         expect(success).toBeTruthy();
-        expect(jwt_token).toBeDefined();
+        expect(reset_password_token).toBeDefined();
     });
 
-    it("should logout a user", async () => {
-        const { success } = await authLogoutUseCase.execute(loginToken);
+	it("should get reset_password_token in url params and reset user password", async () => {
+		const newPassword = Validator.password.generate()
+        
+		const authResetPasswordDTO: AuthResetPasswordDTO = { 
+			newPassword,
+			confirmNewPassword: newPassword
+		};
+        const { success } = await authResetPasswordUseCase.execute(resetPasswordToken, authResetPasswordDTO);
 
         expect(success).toBeTruthy();
     });

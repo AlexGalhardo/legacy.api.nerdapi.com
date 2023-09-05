@@ -6,6 +6,7 @@ import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
 import Validator from "src/Utils/Validator";
 import * as jwt from "jsonwebtoken";
+import DateTime from "src/Utils/DataTypes/DateTime";
 
 interface AuthRegisterUseCaseResponse {
     success: boolean;
@@ -41,12 +42,26 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
 
             this.userRepository.create({
                 id: userId,
-                username,
-                email,
-                password: hashedPassword,
-                jwt_token,
-                created_at: new Date(),
-                updated_at: null,
+				username,
+				email,
+				password: hashedPassword,
+				jwt_token,
+				api_token: null,
+				reset_password_token: null,
+				reset_password_token_expires_at: null,
+				stripe: {
+					customer_id: null,
+					subscription: {
+						active: false,
+						starts_at: null,
+						ends_at: null,
+						transaction_id: null,
+					},
+				},
+				created_at: String(new Date()),
+				updated_at: null,
+				created_at_pt_br: DateTime.getNow(),
+				updated_at_pt_br: null,
             });
 
             return { success: true, jwt_token };

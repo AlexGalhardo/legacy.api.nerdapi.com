@@ -43,9 +43,9 @@ describe("Test AuthRegisterUseCase", () => {
 
     it("should register a user", async () => {
         const authRegisterDTO: AuthRegisterDTO = {
-            username: "Test Register User",
+            username: "Testing Register Test",
             email: userEmail,
-            password: "randomPassword",
+            password: Validator.password.generate()
         };
         const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);
 

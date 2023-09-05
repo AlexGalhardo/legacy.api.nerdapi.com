@@ -1,4 +1,4 @@
-import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common";
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from "@nestjs/common";
 import { AuthModule } from "./Modules/Auth.module";
 import UserRepository from "./Repositories/Users.repository";
 import { ProfileModule } from "./Modules/Profile.module";
@@ -7,7 +7,6 @@ import { StripeModule } from "./Modules/Stripe.module";
 import { HealthCheckModule } from "./Modules/HealthCheck.module";
 import { ConfigModule } from "@nestjs/config";
 import { ValidateToken } from "./MIddlewares/ValidateToken.middleware";
-import { AuthController } from "./Controllers/Auth.controller";
 
 @Module({
     imports: [
@@ -29,6 +28,9 @@ import { AuthController } from "./Controllers/Auth.controller";
 })
 export class AppModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {
-        consumer.apply(ValidateToken).forRoutes(AuthController);
+        consumer.apply(ValidateToken).forRoutes(
+			{ path: '/tokenUser', method: RequestMethod.GET },
+			{ path: '/logout', method: RequestMethod.POST }
+		);
     }
 }

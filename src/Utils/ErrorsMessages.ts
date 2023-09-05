@@ -13,6 +13,9 @@ export enum ErrorsMessages {
 
     PASSWORD_IS_INVALID = "Password is invalid",
     PASSWORD_IS_REQUIRED = "Password is required",
+	PASSWORDS_NOT_EQUAL = "Passwords not equal",
+
+	RESET_PASSWORD_TOKEN_EXPIRED = "Reset password token expired",
 
     EMAIL_IS_INVALID = "Email is invalid",
     EMAIL_ALREADY_REGISTRED = "Email already registred",

@@ -50,11 +50,11 @@ describe("Test AuthLoginUseCase", () => {
     });
 
     const userEmail = Validator.email.generate();
-    const userPassword = "randomPassword";
+    const userPassword = Validator.password.generate();
 
     it("should register a user", async () => {
         const authRegisterDTO: AuthRegisterDTO = {
-            username: "Test Register User",
+            username: "Testing Login Test",
             email: userEmail,
             password: userPassword,
         };
