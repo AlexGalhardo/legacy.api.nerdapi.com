@@ -8,6 +8,8 @@ import AuthLoginUseCase from "../../src/UseCases/AuthLogin.useCase";
 import AuthRegisterUseCase from "../../src/UseCases/AuthRegister.useCase";
 import AuthForgetPasswordUseCase from "../../src/UseCases/AuthForgetPassword.useCase";
 import AuthResetPasswordUseCase from "../../src/UseCases/AuthResetPassword.useCase";
+import AuthLogoutUseCase from "src/UseCases/AuthLogout.useCase";
+import AuthTokenUserUseCase from "src/UseCases/AuthTokenUser.useCase";
 
 describe("AppController (e2e)", () => {
     let app: INestApplication;
@@ -36,6 +38,20 @@ describe("AppController (e2e)", () => {
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
                         return new AuthLoginUseCase(userRepository);
+                    },
+                },
+                {
+                    provide: "AuthLogoutUseCasePort",
+                    inject: ["UserRepositoryPort"],
+                    useFactory: (userRepository: UserRepositoryPort) => {
+                        return new AuthLogoutUseCase(userRepository);
+                    },
+                },
+                {
+                    provide: "AuthTokenUserUseCasePort",
+                    inject: ["UserRepositoryPort"],
+                    useFactory: (userRepository: UserRepositoryPort) => {
+                        return new AuthTokenUserUseCase(userRepository);
                     },
                 },
                 {

@@ -47,10 +47,10 @@ describe("Test AuthRegisterUseCase", () => {
             email: userEmail,
             password: "randomPassword",
         };
-        const { success, token } = await authRegisterUseCase.execute(authRegisterDTO);
+        const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);
 
         expect(success).toBeTruthy();
-        expect(token).toBeDefined();
+        expect(jwt_token).toBeDefined();
     });
 
     afterAll(async () => {

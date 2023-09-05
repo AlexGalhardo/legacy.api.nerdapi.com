@@ -9,7 +9,7 @@ import * as jwt from "jsonwebtoken";
 
 interface AuthRegisterUseCaseResponse {
     success: boolean;
-    token?: string;
+    jwt_token?: string;
 }
 
 export interface AuthRegisterDTO {
@@ -37,19 +37,19 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
         if (!this.userRepository.findByEmail(email)) {
             const userId = randomUUID();
 
-            const token = jwt.sign({ id: userId }, process.env.JWT_SECRET);
+            const jwt_token = jwt.sign({ id: userId }, process.env.JWT_SECRET);
 
             this.userRepository.create({
                 id: userId,
                 username,
                 email,
                 password: hashedPassword,
-                token,
+                jwt_token,
                 created_at: new Date(),
                 updated_at: null,
             });
 
-            return { success: true, token };
+            return { success: true, jwt_token };
         }
 
         throw new ClientException(ErrorsMessages.EMAIL_ALREADY_REGISTRED);

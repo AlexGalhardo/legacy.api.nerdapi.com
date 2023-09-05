@@ -16,7 +16,7 @@ export interface AuthLoginDTO {
 
 interface UserLoginUseCaseResponse {
     success: boolean;
-    token?: string;
+    jwt_token?: string;
 }
 
 export default class AuthLoginUseCase implements AuthLoginUseCasePort {
@@ -35,11 +35,11 @@ export default class AuthLoginUseCase implements AuthLoginUseCasePort {
                     return { success: false };
                 }
 
-                const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
-                user.token = token;
+                const jwt_token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
+                user.jwt_token = jwt_token;
                 this.usersRepository.save(user, index);
 
-                return { success: true, token };
+                return { success: true, jwt_token };
             }
         }
 

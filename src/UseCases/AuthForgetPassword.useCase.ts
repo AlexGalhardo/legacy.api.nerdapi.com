@@ -13,7 +13,7 @@ export interface AuthForgetPasswordDTO {
 
 interface AuthForgetPasswordUseCaseResponse {
     success: boolean;
-    token?: string;
+    jwt_token?: string;
 }
 
 export default class AuthForgetPasswordUseCase implements AuthForgetPasswordUseCasePort {

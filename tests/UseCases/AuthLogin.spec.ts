@@ -58,10 +58,10 @@ describe("Test AuthLoginUseCase", () => {
             email: userEmail,
             password: userPassword,
         };
-        const { success, token } = await authRegisterUseCase.execute(authRegisterDTO);
+        const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);
 
         expect(success).toBeTruthy();
-        expect(token).toBeDefined();
+        expect(jwt_token).toBeDefined();
     });
 
     it("should login a user", async () => {
@@ -69,10 +69,10 @@ describe("Test AuthLoginUseCase", () => {
             email: userEmail,
             password: userPassword,
         };
-        const { success, token } = await authLoginUseCase.execute(authLoginDTO);
+        const { success, jwt_token } = await authLoginUseCase.execute(authLoginDTO);
 
         expect(success).toBeTruthy();
-        expect(token).toBeDefined();
+        expect(jwt_token).toBeDefined();
     });
 
     afterAll(async () => {

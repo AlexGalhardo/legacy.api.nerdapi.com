@@ -15,12 +15,12 @@ export default class AuthLogoutUseCase implements AuthLogoutUseCasePort {
     constructor(private readonly usersRepository: UserRepositoryPort) {}
 
     async execute(token: string): Promise<AuthLogoutUseCaseResponse> {
-		const { id } = jwt.verify(token, process.env.JWT_SECRET) as jwt.JwtPayload;
+        const { id } = jwt.verify(token, process.env.JWT_SECRET) as jwt.JwtPayload;
 
-		if(id && this.usersRepository.findById(id)) {
-			this.usersRepository.logout(id)
-			return { success: true }
-		}
+        if (id && this.usersRepository.findById(id)) {
+            this.usersRepository.logout(id);
+            return { success: true };
+        }
 
         throw new ClientException(ErrorsMessages.TOKEN_EXPIRED_OR_INVALID);
     }

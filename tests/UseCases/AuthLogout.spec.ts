@@ -9,7 +9,7 @@ import AuthLogoutUseCase, { AuthLogoutUseCasePort } from "src/UseCases/AuthLogou
 describe("Test AuthLogoutUseCase", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;
     let authLoginUseCase: AuthLoginUseCasePort;
-	let authLogoutUseCase: AuthLogoutUseCasePort;
+    let authLogoutUseCase: AuthLogoutUseCasePort;
     let deleteUserByEmail: DeleteUserUseCasePort;
 
     beforeAll(async () => {
@@ -23,7 +23,7 @@ describe("Test AuthLogoutUseCase", () => {
                         return new UserRepository();
                     },
                 },
-				{
+                {
                     provide: "AuthLoginUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
@@ -37,7 +37,7 @@ describe("Test AuthLogoutUseCase", () => {
                         return new AuthRegisterUseCase(userRepository);
                     },
                 },
-				{
+                {
                     provide: "AuthLogoutUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
@@ -55,13 +55,13 @@ describe("Test AuthLogoutUseCase", () => {
         }).compile();
         authRegisterUseCase = module.get<AuthRegisterUseCasePort>("AuthRegisterUseCasePort");
         authLoginUseCase = module.get<AuthLoginUseCasePort>("AuthLoginUseCasePort");
-		authLogoutUseCase = module.get<AuthLogoutUseCasePort>("AuthLogoutUseCasePort");
+        authLogoutUseCase = module.get<AuthLogoutUseCasePort>("AuthLogoutUseCasePort");
         deleteUserByEmail = module.get<DeleteUserUseCasePort>("DeleteUserUseCasePort");
     });
 
     const userEmail = Validator.email.generate();
     const userPassword = "randomPassword";
-	let loginToken = null
+    let loginToken = null;
 
     it("should register a user", async () => {
         const authRegisterDTO: AuthRegisterDTO = {
@@ -69,10 +69,10 @@ describe("Test AuthLogoutUseCase", () => {
             email: userEmail,
             password: userPassword,
         };
-        const { success, token } = await authRegisterUseCase.execute(authRegisterDTO);
+        const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);
 
         expect(success).toBeTruthy();
-        expect(token).toBeDefined();
+        expect(jwt_token).toBeDefined();
     });
 
     it("should login a user", async () => {
@@ -80,14 +80,14 @@ describe("Test AuthLogoutUseCase", () => {
             email: userEmail,
             password: userPassword,
         };
-        let { success, token } = await authLoginUseCase.execute(authLoginDTO);
-		loginToken = token
+        let { success, jwt_token } = await authLoginUseCase.execute(authLoginDTO);
+        loginToken = jwt_token;
 
         expect(success).toBeTruthy();
-        expect(token).toBeDefined();
+        expect(jwt_token).toBeDefined();
     });
 
-	it("should logout a user", async () => {
+    it("should logout a user", async () => {
         const { success } = await authLogoutUseCase.execute(loginToken);
 
         expect(success).toBeTruthy();

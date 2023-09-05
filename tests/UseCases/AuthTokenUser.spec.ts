@@ -51,8 +51,8 @@ describe("Test AuthLoginUseCase", () => {
 
     const userEmail = Validator.email.generate();
     const userPassword = "randomPassword";
-	const username = "Test TokenUser";
-	let loginToken = null
+    const username = "Test TokenUser";
+    let loginToken = null;
 
     it("should register a user", async () => {
         const authRegisterDTO: AuthRegisterDTO = {
@@ -60,20 +60,20 @@ describe("Test AuthLoginUseCase", () => {
             email: userEmail,
             password: userPassword,
         };
-        const { success, token } = await authRegisterUseCase.execute(authRegisterDTO);
-		loginToken = token
+        const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);
+        loginToken = jwt_token;
 
         expect(success).toBeTruthy();
-        expect(token).toBeDefined();
+        expect(jwt_token).toBeDefined();
     });
 
     it("should check token and return user", async () => {
         const { success, data } = await authTokenUserUseCase.execute(loginToken);
 
         expect(success).toBeTruthy();
-		expect(data.username).toBe(username);
+        expect(data.username).toBe(username);
         expect(data.email).toBe(userEmail);
-		expect(data.token).toBe(loginToken);
+        expect(data.jwt_token).toBe(loginToken);
     });
 
     afterAll(async () => {

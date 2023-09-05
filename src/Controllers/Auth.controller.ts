@@ -9,15 +9,15 @@ import { AuthTokenUserUseCasePort } from "src/UseCases/AuthTokenUser.useCase";
 
 interface AuthUseCaseResponse {
     success: boolean;
-    token?: string;
+    jwt_token?: string;
     message?: string;
 }
 
 interface AuthControllerPort {
     login(authLoginDTO: AuthLoginDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
     register(authRegisterDTO: AuthRegisterDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
-	logout(response: Response): Promise<Response<AuthUseCaseResponse>>
-	tokenUser(response: Response): Promise<Response<AuthUseCaseResponse>>
+    logout(response: Response): Promise<Response<AuthUseCaseResponse>>;
+    tokenUser(response: Response): Promise<Response<AuthUseCaseResponse>>;
     forgetPassword(
         authForgetPasswordDTO: AuthForgetPasswordDTO,
         response: Response,
@@ -33,8 +33,8 @@ export class AuthController implements AuthControllerPort {
     constructor(
         @Inject("AuthLoginUseCasePort") private readonly authLoginUseCase: AuthLoginUseCasePort,
         @Inject("AuthRegisterUseCasePort") private readonly authRegisterUseCase: AuthRegisterUseCasePort,
-		@Inject("AuthLogoutUseCasePort") private readonly authLogoutUseCase: AuthLogoutUseCasePort,
-		@Inject("AuthTokenUserUseCasePort") private readonly authTokenUserUseCase: AuthTokenUserUseCasePort,
+        @Inject("AuthLogoutUseCasePort") private readonly authLogoutUseCase: AuthLogoutUseCasePort,
+        @Inject("AuthTokenUserUseCasePort") private readonly authTokenUserUseCase: AuthTokenUserUseCasePort,
         @Inject("AuthForgetPasswordUseCasePort")
         private readonly authForgetPasswordUseCase: AuthForgetPasswordUseCasePort,
         @Inject("AuthResetPasswordUseCasePort") private readonly authResetPasswordUseCase: AuthResetPasswordUseCasePort,
@@ -44,10 +44,10 @@ export class AuthController implements AuthControllerPort {
     async login(
         @Body() authLoginDTO: AuthLoginDTO,
         @Res() response: Response,
-    ): Promise<Response<{ success: boolean; token?: string; message?: string }>> {
+    ): Promise<Response<{ success: boolean; jwt_token?: string; message?: string }>> {
         try {
-            const { success, token } = await this.authLoginUseCase.execute(authLoginDTO);
-            if (success) return response.status(HttpStatus.OK).json({ success: true, token });
+            const { success, jwt_token } = await this.authLoginUseCase.execute(authLoginDTO);
+            if (success) return response.status(HttpStatus.OK).json({ success: true, jwt_token });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
@@ -59,17 +59,15 @@ export class AuthController implements AuthControllerPort {
         @Res() response: Response,
     ): Promise<Response<AuthUseCaseResponse>> {
         try {
-            const { success, token } = await this.authRegisterUseCase.execute(authRegisterDTO);
-            if (success) return response.status(HttpStatus.OK).json({ success: true, token });
+            const { success, jwt_token } = await this.authRegisterUseCase.execute(authRegisterDTO);
+            if (success) return response.status(HttpStatus.OK).json({ success: true, jwt_token });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
 
-	@Post("/logout")
-    async logout(
-        @Res() response: Response,
-    ): Promise<Response<AuthUseCaseResponse>> {
+    @Post("/logout")
+    async logout(@Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
             const { success } = await this.authLogoutUseCase.execute(response.locals.token);
             if (success) return response.status(HttpStatus.OK).json({ success: true });
@@ -78,10 +76,8 @@ export class AuthController implements AuthControllerPort {
         }
     }
 
-	@Get("/tokenUser")
-    async tokenUser(
-        @Res() response: Response,
-    ): Promise<Response<AuthUseCaseResponse>> {
+    @Get("/tokenUser")
+    async tokenUser(@Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
             const { success, data } = await this.authTokenUserUseCase.execute(response.locals.token);
             if (success) return response.status(HttpStatus.OK).json({ success: true, data });

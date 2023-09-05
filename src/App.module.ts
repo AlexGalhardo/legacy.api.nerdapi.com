@@ -28,9 +28,7 @@ import { AuthController } from "./Controllers/Auth.controller";
     ],
 })
 export class AppModule implements NestModule {
-  	configure(consumer: MiddlewareConsumer) {
-    	consumer
-      		.apply(ValidateToken)
-      		.forRoutes(AuthController);
-  	}
+    configure(consumer: MiddlewareConsumer) {
+        consumer.apply(ValidateToken).forRoutes(AuthController);
+    }
 }

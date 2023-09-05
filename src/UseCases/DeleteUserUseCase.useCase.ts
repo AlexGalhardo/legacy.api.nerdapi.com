@@ -4,7 +4,7 @@ import { ClientException } from "src/Utils/Exception";
 
 interface DeleteUserUseCaseResponse {
     success: boolean;
-    token?: string;
+    jwt_token?: string;
 }
 
 export interface DeleteUserUseCasePort {

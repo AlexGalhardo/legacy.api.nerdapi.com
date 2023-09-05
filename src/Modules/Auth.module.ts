@@ -18,7 +18,7 @@ import AuthTokenUserUseCase from "src/UseCases/AuthTokenUser.useCase";
                 return new UserRepository();
             },
         },
-		{
+        {
             provide: "AuthLoginUseCasePort",
             inject: ["UserRepositoryPort"],
             useFactory: (userRepository: UserRepositoryPort) => {
@@ -32,14 +32,14 @@ import AuthTokenUserUseCase from "src/UseCases/AuthTokenUser.useCase";
                 return new AuthRegisterUseCase(userRepository);
             },
         },
-		{
+        {
             provide: "AuthLogoutUseCasePort",
             inject: ["UserRepositoryPort"],
             useFactory: (userRepository: UserRepositoryPort) => {
                 return new AuthLogoutUseCase(userRepository);
             },
         },
-		{
+        {
             provide: "AuthTokenUserUseCasePort",
             inject: ["UserRepositoryPort"],
             useFactory: (userRepository: UserRepositoryPort) => {

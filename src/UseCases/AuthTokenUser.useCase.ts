@@ -9,19 +9,19 @@ export interface AuthTokenUserUseCasePort {
 
 interface AuthTokenUserUseCaseResponse {
     success: boolean;
-	data: User
+    data: User;
 }
 
 export default class AuthTokenUserUseCase implements AuthTokenUserUseCasePort {
     constructor(private readonly usersRepository: UserRepositoryPort) {}
 
     async execute(token: string): Promise<AuthTokenUserUseCaseResponse> {
-		const { id } = jwt.verify(token, process.env.JWT_SECRET) as jwt.JwtPayload;
+        const { id } = jwt.verify(token, process.env.JWT_SECRET) as jwt.JwtPayload;
 
-		if(id && this.usersRepository.findById(id)) {
-			const { user } = this.usersRepository.getById(id)
-			return { success: true, data: user }
-		}
+        if (id && this.usersRepository.findById(id)) {
+            const { user } = this.usersRepository.getById(id);
+            return { success: true, data: user };
+        }
 
         throw new ClientException(ErrorsMessages.USER_NOT_FOUND);
     }
