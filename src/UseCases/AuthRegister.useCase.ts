@@ -31,8 +31,6 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
 
         if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
 
-        // if (!Validator.names.isValidFullName(username)) throw new ClientException(ErrorsMessages.NAME_IS_INVALID);
-
         if (password) hashedPassword = await Bcrypt.hash(password);
 
 		if(!this.userRepository.findByEmail(email)){
@@ -54,6 +52,6 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
 			return { success: true, token };
 		}
 
-        return { success: false };
+        throw new ClientException(ErrorsMessages.EMAIL_ALREADY_REGISTRED);
     }
 }

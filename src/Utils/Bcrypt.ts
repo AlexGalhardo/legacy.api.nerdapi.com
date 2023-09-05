@@ -2,7 +2,6 @@ import * as bcrypt from "bcrypt";
 
 export class Bcrypt {
     static async hash(password: string): Promise<string> {
-		console.log('bcrypt => ', bcrypt)
         return bcrypt
             .genSalt(12)
             .then((salt) => bcrypt.hash(password, salt))

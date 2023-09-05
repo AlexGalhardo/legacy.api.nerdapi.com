@@ -36,7 +36,7 @@ export class AuthController implements AuthControllerPort {
             const { success, token } = await this.authLoginUseCase.execute(authLoginDTO);
             if(success) return response.status(HttpStatus.OK).json({ success: true, token });
         } catch (error) {
-            throw new Error(error);
+            return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
 
@@ -49,7 +49,7 @@ export class AuthController implements AuthControllerPort {
             const { success, token } = await this.authRegisterUseCase.execute(authRegisterDTO);
             if(success) return response.status(HttpStatus.OK).json({ success: true, token });
         } catch (error) {
-            throw new Error(error);
+            return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
 

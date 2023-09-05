@@ -45,6 +45,6 @@ export default class AuthLoginUseCase implements AuthLoginUseCasePort {
 			}
 		}
 
-        return { success: false };
+        throw new ClientException(ErrorsMessages.EMAIL_OR_PASSWORD_INVALID);
     }
 }
