@@ -3,13 +3,19 @@ import UserRepository, { UserRepositoryPort } from "src/Repositories/Users.repos
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import Validator from "src/Utils/Validator";
 import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDeleteUseCase.useCase";
-import AuthForgetPasswordUseCase, { AuthForgetPasswordDTO, AuthForgetPasswordUseCasePort } from "src/UseCases/AuthForgetPassword.useCase";
-import AuthResetPasswordUseCase, { AuthResetPasswordDTO, AuthResetPasswordUseCasePort } from "src/UseCases/AuthResetPassword.useCase";
+import AuthForgetPasswordUseCase, {
+    AuthForgetPasswordDTO,
+    AuthForgetPasswordUseCasePort,
+} from "src/UseCases/AuthForgetPassword.useCase";
+import AuthResetPasswordUseCase, {
+    AuthResetPasswordDTO,
+    AuthResetPasswordUseCasePort,
+} from "src/UseCases/AuthResetPassword.useCase";
 
 describe("Test AuthForgetPasswordUseCase", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;
-	let authForgetPasswordUseCase: AuthForgetPasswordUseCasePort;
-	let authResetPasswordUseCase: AuthResetPasswordUseCasePort;
+    let authForgetPasswordUseCase: AuthForgetPasswordUseCasePort;
+    let authResetPasswordUseCase: AuthResetPasswordUseCasePort;
     let deleteUserByEmail: UserDeleteUseCasePort;
 
     beforeAll(async () => {
@@ -30,21 +36,21 @@ describe("Test AuthForgetPasswordUseCase", () => {
                         return new AuthRegisterUseCase(userRepository);
                     },
                 },
-				{
+                {
                     provide: "AuthForgetPasswordUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
                         return new AuthForgetPasswordUseCase(userRepository);
                     },
                 },
-				{
+                {
                     provide: "AuthResetPasswordUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
                         return new AuthResetPasswordUseCase(userRepository);
                     },
                 },
-				{
+                {
                     provide: "UserDeleteUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
@@ -54,20 +60,20 @@ describe("Test AuthForgetPasswordUseCase", () => {
             ],
         }).compile();
         authRegisterUseCase = module.get<AuthRegisterUseCasePort>("AuthRegisterUseCasePort");
-		authForgetPasswordUseCase = module.get<AuthForgetPasswordUseCasePort>("AuthForgetPasswordUseCasePort");
-		authResetPasswordUseCase = module.get<AuthResetPasswordUseCasePort>("AuthResetPasswordUseCasePort");
+        authForgetPasswordUseCase = module.get<AuthForgetPasswordUseCasePort>("AuthForgetPasswordUseCasePort");
+        authResetPasswordUseCase = module.get<AuthResetPasswordUseCasePort>("AuthResetPasswordUseCasePort");
         deleteUserByEmail = module.get<UserDeleteUseCasePort>("UserDeleteUseCasePort");
     });
 
     const userEmail = Validator.email.generate();
-	let resetPasswordToken = null;
+    let resetPasswordToken = null;
 
     it("should register a user", async () => {
         const authRegisterDTO: AuthRegisterDTO = {
             username: "Testing ResetPassword Test",
             email: userEmail,
-			telegramNumber: Validator.phone.generate(),
-            password: Validator.password.generate()
+            telegramNumber: Validator.phone.generate(),
+            password: Validator.password.generate(),
         };
         const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);
 
@@ -75,23 +81,23 @@ describe("Test AuthForgetPasswordUseCase", () => {
         expect(jwt_token).toBeDefined();
     });
 
-	it("should send a email with reset_password_token to user reset password", async () => {
+    it("should send a email with reset_password_token to user reset password", async () => {
         const authForgetPasswordDTO: AuthForgetPasswordDTO = { email: userEmail };
         const { success, reset_password_token } = await authForgetPasswordUseCase.execute(authForgetPasswordDTO);
 
-		resetPasswordToken = reset_password_token
+        resetPasswordToken = reset_password_token;
 
         expect(success).toBeTruthy();
         expect(reset_password_token).toBeDefined();
     });
 
-	it("should get reset_password_token in url params and reset user password", async () => {
-		const newPassword = Validator.password.generate()
-        
-		const authResetPasswordDTO: AuthResetPasswordDTO = { 
-			newPassword,
-			confirmNewPassword: newPassword
-		};
+    it("should get reset_password_token in url params and reset user password", async () => {
+        const newPassword = Validator.password.generate();
+
+        const authResetPasswordDTO: AuthResetPasswordDTO = {
+            newPassword,
+            confirmNewPassword: newPassword,
+        };
         const { success } = await authResetPasswordUseCase.execute(resetPasswordToken, authResetPasswordDTO);
 
         expect(success).toBeTruthy();

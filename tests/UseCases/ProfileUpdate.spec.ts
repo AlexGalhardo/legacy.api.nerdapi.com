@@ -21,7 +21,7 @@ describe("Test ProfileUpdateUseCase", () => {
                         return new UserRepository();
                     },
                 },
-				{
+                {
                     provide: "AuthRegisterUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
@@ -35,7 +35,7 @@ describe("Test ProfileUpdateUseCase", () => {
                         return new ProfileUpdateUseCase(userRepository);
                     },
                 },
-				{
+                {
                     provide: "UserDeleteUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
@@ -51,39 +51,39 @@ describe("Test ProfileUpdateUseCase", () => {
 
     const userEmail = Validator.email.generate();
     const userPassword = Validator.password.generate();
-	let jwtToken = null
+    let jwtToken = null;
 
     it("should register a user", async () => {
         const authRegisterDTO: AuthRegisterDTO = {
             username: "Testing Login Test",
             email: userEmail,
-			telegramNumber: Validator.phone.generate(),
+            telegramNumber: Validator.phone.generate(),
             password: userPassword,
         };
         const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);
-		jwtToken = jwt_token
+        jwtToken = jwt_token;
 
         expect(success).toBeTruthy();
         expect(jwt_token).toBeDefined();
     });
 
-	const newUserName = 'Testing Profile Updat';
-	const newTelegramNumber = Validator.phone.generate();
-	const newPassword = Validator.password.generate();
+    const newUserName = "Testing Profile Updat";
+    const newTelegramNumber = Validator.phone.generate();
+    const newPassword = Validator.password.generate();
 
     it("should update profile", async () => {
         const profileUpdateDTO: ProfileUpdateDTO = {
             username: newUserName,
-			telegramNumber: newTelegramNumber,
+            telegramNumber: newTelegramNumber,
             olderPassword: userPassword,
-			newPassword: newPassword
+            newPassword: newPassword,
         };
         const { success, data } = await profileUpdateUseCase.execute(jwtToken, profileUpdateDTO);
 
         expect(success).toBeTruthy();
         expect(data.username).toBe(newUserName);
-		expect(data.telegramNumber).toBe(newTelegramNumber);
-		expect(data.password).toBe(newPassword);
+        expect(data.telegramNumber).toBe(newTelegramNumber);
+        expect(data.password).toBe(newPassword);
     });
 
     afterAll(async () => {

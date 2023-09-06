@@ -6,11 +6,11 @@ import DateTime from "src/Utils/DataTypes/DateTime";
 import { stripe } from "src/Utils/Stripe";
 
 interface StripeWebhookDTO {
-	id: string;
-	type: string;
+    id: string;
+    type: string;
     event: any;
-	data: any;
-	created: number;
+    data: any;
+    created: number;
 }
 
 interface StripeCreateCheckoutSessionDTO {
@@ -25,7 +25,7 @@ interface StripeControllerPort {}
 
 @Controller("stripe")
 export class StripeController implements StripeControllerPort {
-    constructor(@Inject("StripeRepositoryPort") private readonly stripeRepository: StripeRepositoryPort,) {}
+    constructor(@Inject("StripeRepositoryPort") private readonly stripeRepository: StripeRepositoryPort) {}
 
     @Post("/create-checkout-session")
     async createCheckoutSession(
@@ -88,86 +88,83 @@ export class StripeController implements StripeControllerPort {
 
     @Post("/webhook")
     async login(@Body() event: StripeWebhookDTO, @Res() response: Response) {
-        
-		try {
-            
-			switch (event.type) {
-                
-				case "payment_intent.succeeded":
-                    this.stripeRepository.savePaymentWebhookEventLog(event)
+        try {
+            switch (event.type) {
+                case "payment_intent.succeeded":
+                    this.stripeRepository.savePaymentWebhookEventLog(event);
                     break;
-                
-				case "invoice.paid":
-                    this.stripeRepository.saveInvoiceWebhookEventLog(event)
+
+                case "invoice.paid":
+                    this.stripeRepository.saveInvoiceWebhookEventLog(event);
                     break;
-                
-				case "charge.succeeded":
-					const chargeSucceededResume = {
-						event_id: event.id,
-						charge_id: event.data.object.id,
-						amount: event.data.object.amount,
-						customer_email: event.data.object.billing_details.email,
-						customer_name: event.data.object.billing_details.name,
-						stripe_customer_id: event.data.object.customer,
-						paid: event.data.object.paid,
-						receipt_url: event.data.object.receipt_url,
-						created_at: DateTime.timestampToGetNow(event.created),
-					}
-					this.stripeRepository.saveChargeWebhookEventLog(event)
+
+                case "charge.succeeded":
+                    const chargeSucceededResume = {
+                        event_id: event.id,
+                        charge_id: event.data.object.id,
+                        amount: event.data.object.amount,
+                        customer_email: event.data.object.billing_details.email,
+                        customer_name: event.data.object.billing_details.name,
+                        stripe_customer_id: event.data.object.customer,
+                        paid: event.data.object.paid,
+                        receipt_url: event.data.object.receipt_url,
+                        created_at: DateTime.timestampToGetNow(event.created),
+                    };
+                    this.stripeRepository.saveChargeWebhookEventLog(event);
                     break;
-                
-				case "invoice.finalized":
-					const invoiceFinalizedResume = {
-						event_id: event.id,
-						hosted_invoice_url: event.data.object.hosted_invoice_url,
-						period_start: DateTime.timestampToGetNow(event.data.object.period_start),
-						period_end: DateTime.timestampToGetNow(event.data.object.period_end),
-						created_at: DateTime.timestampToGetNow(event.created),
-					}
-					this.stripeRepository.saveInvoiceWebhookEventLog(event)
+
+                case "invoice.finalized":
+                    const invoiceFinalizedResume = {
+                        event_id: event.id,
+                        hosted_invoice_url: event.data.object.hosted_invoice_url,
+                        period_start: DateTime.timestampToGetNow(event.data.object.period_start),
+                        period_end: DateTime.timestampToGetNow(event.data.object.period_end),
+                        created_at: DateTime.timestampToGetNow(event.created),
+                    };
+                    this.stripeRepository.saveInvoiceWebhookEventLog(event);
                     break;
-                
-				case "customer.created":
-                    this.stripeRepository.saveCustomerWebhookEventLog(event)
+
+                case "customer.created":
+                    this.stripeRepository.saveCustomerWebhookEventLog(event);
                     break;
-                
-				case "customer.subscription.updated":
-                    this.stripeRepository.saveCustomerWebhookEventLog(event)
+
+                case "customer.subscription.updated":
+                    this.stripeRepository.saveCustomerWebhookEventLog(event);
                     break;
-                    
+
                 case "invoice.updated":
-                    this.stripeRepository.saveInvoiceWebhookEventLog(event)
+                    this.stripeRepository.saveInvoiceWebhookEventLog(event);
                     break;
-                
-				case "customer.updated":
-                    this.stripeRepository.saveCustomerWebhookEventLog(event)
+
+                case "customer.updated":
+                    this.stripeRepository.saveCustomerWebhookEventLog(event);
                     break;
-                
-				case "invoice.payment_succeeded":
-                    this.stripeRepository.saveInvoiceWebhookEventLog(event)
+
+                case "invoice.payment_succeeded":
+                    this.stripeRepository.saveInvoiceWebhookEventLog(event);
                     break;
-                
-				case "customer.subscription.created":
-                    this.stripeRepository.saveCustomerWebhookEventLog(event)
+
+                case "customer.subscription.created":
+                    this.stripeRepository.saveCustomerWebhookEventLog(event);
                     break;
-                
-				case "invoice.created":
-                    this.stripeRepository.saveInvoiceWebhookEventLog(event)
+
+                case "invoice.created":
+                    this.stripeRepository.saveInvoiceWebhookEventLog(event);
                     break;
-                
-				case "payment_method.attached":
-                    this.stripeRepository.savePaymentWebhookEventLog(event)
+
+                case "payment_method.attached":
+                    this.stripeRepository.savePaymentWebhookEventLog(event);
                     break;
-                
-				case "checkout.session.completed":
-                    this.stripeRepository.saveCheckoutSessionWebhookEventLog(event)
+
+                case "checkout.session.completed":
+                    this.stripeRepository.saveCheckoutSessionWebhookEventLog(event);
                     break;
-                
-				case "billing_portal.session.created":
-                    this.stripeRepository.saveBillingPortalSessionWebhookEventLog(event)
+
+                case "billing_portal.session.created":
+                    this.stripeRepository.saveBillingPortalSessionWebhookEventLog(event);
                     break;
-                
-				default:
+
+                default:
                     console.log(`Unhandled event type ${event.type}`);
             }
 

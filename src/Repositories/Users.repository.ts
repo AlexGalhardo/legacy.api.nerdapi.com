@@ -9,12 +9,12 @@ export interface User {
     id: string;
     username: string;
     email: string;
-	telegram_number: string | null;
+    telegram_number: string | null;
     password: string;
     jwt_token: string;
     api_token: string | null;
     reset_password_token: string | null;
-	reset_password_token_expires_at: string | null;
+    reset_password_token_expires_at: string | null;
     stripe: {
         customer_id: string | null;
         subscription: {
@@ -31,10 +31,10 @@ export interface User {
 }
 
 export interface UserUpdated {
-	username: string;
+    username: string;
     email: string;
-	telegramNumber: string;
-	password: string;
+    telegramNumber: string;
+    password: string;
 }
 
 export interface UserResponse {
@@ -48,13 +48,13 @@ export interface UserRepositoryPort {
     findByEmail(email: string): boolean;
     getByEmail(email: string): UserResponse;
     getById(userId: string): UserResponse;
-	getByResetPasswordToken(resetPasswordToken: string): UserResponse;
+    getByResetPasswordToken(resetPasswordToken: string): UserResponse;
     create(user: User): void;
-	update(userId: string, profileUpdateDTO: ProfileUpdateDTO): Promise<UserUpdated>;
+    update(userId: string, profileUpdateDTO: ProfileUpdateDTO): Promise<UserUpdated>;
     deleteByEmail(email: string): void;
     logout(userId: string): void;
-	saveResetPasswordToken(userId: string, resetPasswordToken: string): void;
-	resetPassword(userId: string, newPassword: string): void;
+    saveResetPasswordToken(userId: string, resetPasswordToken: string): void;
+    resetPassword(userId: string, newPassword: string): void;
 }
 
 export default class UserRepository implements UserRepositoryPort {
@@ -67,7 +67,7 @@ export default class UserRepository implements UserRepositoryPort {
             }
 
             fs.writeFileSync("./src/Repositories/Jsons/users.json", JSON.stringify(this.users, null, 4), "utf-8");
-			this.users = JSON.parse(fs.readFileSync("./src/Repositories/Jsons/users.json", "utf-8"));
+            this.users = JSON.parse(fs.readFileSync("./src/Repositories/Jsons/users.json", "utf-8"));
         } catch (error) {
             throw new Error(error);
         }
@@ -101,40 +101,38 @@ export default class UserRepository implements UserRepositoryPort {
         throw new Error(ErrorsMessages.USER_NOT_FOUND);
     }
 
-	public getByResetPasswordToken(resetPasswordToken: string): UserResponse {
-		for (let i = 0; i < this.users.length; i++) {
+    public getByResetPasswordToken(resetPasswordToken: string): UserResponse {
+        for (let i = 0; i < this.users.length; i++) {
             if (this.users[i].reset_password_token === resetPasswordToken) {
                 return { user: this.users[i], index: i };
             }
         }
 
         throw new Error(ErrorsMessages.USER_NOT_FOUND);
-	}
+    }
 
     public create(user: User): void {
         this.users.push(user);
         this.save();
     }
 
-	public async update(userId: string, profileUpdateDTO: ProfileUpdateDTO): Promise<UserUpdated> {
-		for(let i = 0; i < this.users.length; i++){
-            
-			if (this.users[i].id === userId) {
-                
-				this.users[i].username = profileUpdateDTO.username ?? this.users[i].username;
-				
-				this.users[i].telegram_number = profileUpdateDTO.telegramNumber ?? this.users[i].telegram_number;
-				
-				this.users[i].password = await Bcrypt.hash(profileUpdateDTO.newPassword) ?? this.users[i].password
-				
+    public async update(userId: string, profileUpdateDTO: ProfileUpdateDTO): Promise<UserUpdated> {
+        for (let i = 0; i < this.users.length; i++) {
+            if (this.users[i].id === userId) {
+                this.users[i].username = profileUpdateDTO.username ?? this.users[i].username;
+
+                this.users[i].telegram_number = profileUpdateDTO.telegramNumber ?? this.users[i].telegram_number;
+
+                this.users[i].password = (await Bcrypt.hash(profileUpdateDTO.newPassword)) ?? this.users[i].password;
+
                 this.save();
 
-				return {
-					username: this.users[i].username,
-					email: this.users[i].email, 
-					telegramNumber: this.users[i].telegram_number, 
-					password: profileUpdateDTO.newPassword ?? this.users[i].password 
-				}
+                return {
+                    username: this.users[i].username,
+                    email: this.users[i].email,
+                    telegramNumber: this.users[i].telegram_number,
+                    password: profileUpdateDTO.newPassword ?? this.users[i].password,
+                };
             }
         }
     }
@@ -145,7 +143,7 @@ export default class UserRepository implements UserRepositoryPort {
     }
 
     public logout(userId: string) {
-		for(let i = 0; i < this.users.length; i++){
+        for (let i = 0; i < this.users.length; i++) {
             if (this.users[i].id === userId) {
                 this.users[i].jwt_token = null;
                 this.save();
@@ -154,31 +152,30 @@ export default class UserRepository implements UserRepositoryPort {
         }
     }
 
-	public saveResetPasswordToken(userId: string, resetPasswordToken: string){
-		for(let i = 0; i < this.users.length; i++){
+    public saveResetPasswordToken(userId: string, resetPasswordToken: string) {
+        for (let i = 0; i < this.users.length; i++) {
             if (this.users[i].id === userId) {
                 this.users[i].reset_password_token = resetPasswordToken;
-				this.users[i].reset_password_token_expires_at = String(new Date(new Date().getTime() + (60 * 60 * 1000)));
+                this.users[i].reset_password_token_expires_at = String(new Date(new Date().getTime() + 60 * 60 * 1000));
                 this.save();
                 break;
             }
         }
-	}
+    }
 
-	public resetPassword(userId: string, newPassword: string){
-		for(let i = 0; i < this.users.length; i++){
+    public resetPassword(userId: string, newPassword: string) {
+        for (let i = 0; i < this.users.length; i++) {
             if (this.users[i].id === userId) {
-                if(!DateTime.isExpired(new Date(this.users[i].reset_password_token_expires_at))){
-					this.users[i].password = newPassword;
-					this.users[i].reset_password_token = null
-					this.users[i].reset_password_token_expires_at = null
-                	this.save();
-                	break;
-				}
-				else {
-					throw new Error(ErrorsMessages.RESET_PASSWORD_TOKEN_EXPIRED);
-				}
+                if (!DateTime.isExpired(new Date(this.users[i].reset_password_token_expires_at))) {
+                    this.users[i].password = newPassword;
+                    this.users[i].reset_password_token = null;
+                    this.users[i].reset_password_token_expires_at = null;
+                    this.save();
+                    break;
+                } else {
+                    throw new Error(ErrorsMessages.RESET_PASSWORD_TOKEN_EXPIRED);
+                }
             }
         }
-	}
+    }
 }

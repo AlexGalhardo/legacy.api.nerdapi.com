@@ -28,10 +28,12 @@ import { ValidateToken } from "./MIddlewares/ValidateToken.middleware";
 })
 export class AppModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {
-        consumer.apply(ValidateToken).forRoutes(
-			{ path: '/tokenUser', method: RequestMethod.GET },
-			{ path: '/logout', method: RequestMethod.POST },
-			{ path: '/profile', method: RequestMethod.PUT }
-		);
+        consumer
+            .apply(ValidateToken)
+            .forRoutes(
+                { path: "/tokenUser", method: RequestMethod.GET },
+                { path: "/logout", method: RequestMethod.POST },
+                { path: "/profile", method: RequestMethod.PUT },
+            );
     }
 }

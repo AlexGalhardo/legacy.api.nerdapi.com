@@ -3,11 +3,14 @@ import UserRepository, { UserRepositoryPort } from "src/Repositories/Users.repos
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import Validator from "src/Utils/Validator";
 import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDeleteUseCase.useCase";
-import AuthForgetPasswordUseCase, { AuthForgetPasswordDTO, AuthForgetPasswordUseCasePort } from "src/UseCases/AuthForgetPassword.useCase";
+import AuthForgetPasswordUseCase, {
+    AuthForgetPasswordDTO,
+    AuthForgetPasswordUseCasePort,
+} from "src/UseCases/AuthForgetPassword.useCase";
 
 describe("Test AuthForgetPasswordUseCase", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;
-	let authForgetPasswordUseCase: AuthForgetPasswordUseCasePort;
+    let authForgetPasswordUseCase: AuthForgetPasswordUseCasePort;
     let deleteUserByEmail: UserDeleteUseCasePort;
 
     beforeAll(async () => {
@@ -28,14 +31,14 @@ describe("Test AuthForgetPasswordUseCase", () => {
                         return new AuthRegisterUseCase(userRepository);
                     },
                 },
-				{
+                {
                     provide: "AuthForgetPasswordUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
                         return new AuthForgetPasswordUseCase(userRepository);
                     },
                 },
-				{
+                {
                     provide: "UserDeleteUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
@@ -45,7 +48,7 @@ describe("Test AuthForgetPasswordUseCase", () => {
             ],
         }).compile();
         authRegisterUseCase = module.get<AuthRegisterUseCasePort>("AuthRegisterUseCasePort");
-		authForgetPasswordUseCase = module.get<AuthForgetPasswordUseCasePort>("AuthForgetPasswordUseCasePort");
+        authForgetPasswordUseCase = module.get<AuthForgetPasswordUseCasePort>("AuthForgetPasswordUseCasePort");
         deleteUserByEmail = module.get<UserDeleteUseCasePort>("UserDeleteUseCasePort");
     });
 
@@ -55,8 +58,8 @@ describe("Test AuthForgetPasswordUseCase", () => {
         const authRegisterDTO: AuthRegisterDTO = {
             username: "Testing ForgetPassword Test",
             email: userEmail,
-			telegramNumber: Validator.phone.generate(),
-            password: Validator.password.generate()
+            telegramNumber: Validator.phone.generate(),
+            password: Validator.password.generate(),
         };
         const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);
 
@@ -64,7 +67,7 @@ describe("Test AuthForgetPasswordUseCase", () => {
         expect(jwt_token).toBeDefined();
     });
 
-	it("should send a email with reset_password_token to user reset password", async () => {
+    it("should send a email with reset_password_token to user reset password", async () => {
         const authForgetPasswordDTO: AuthForgetPasswordDTO = { email: userEmail };
         const { success, reset_password_token } = await authForgetPasswordUseCase.execute(authForgetPasswordDTO);
 

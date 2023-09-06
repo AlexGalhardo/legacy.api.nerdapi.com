@@ -67,7 +67,7 @@ describe("Test AuthLogoutUseCase", () => {
         const authRegisterDTO: AuthRegisterDTO = {
             username: "Testing Logout Test",
             email: userEmail,
-			telegramNumber: Validator.phone.generate(),
+            telegramNumber: Validator.phone.generate(),
             password: userPassword,
         };
         const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);

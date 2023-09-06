@@ -57,7 +57,7 @@ describe("Test AuthLoginUseCase", () => {
         const authRegisterDTO: AuthRegisterDTO = {
             username: "Testing Login Test",
             email: userEmail,
-			telegramNumber: Validator.phone.generate(),
+            telegramNumber: Validator.phone.generate(),
             password: userPassword,
         };
         const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);

@@ -16,7 +16,7 @@ interface AuthRegisterUseCaseResponse {
 export interface AuthRegisterDTO {
     username: string;
     email: string;
-	telegramNumber: string | null;
+    telegramNumber: string | null;
     password: string;
 }
 
@@ -43,27 +43,27 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
 
             this.userRepository.create({
                 id: userId,
-				username,
-				email,
-				telegram_number: telegramNumber,
-				password: hashedPassword,
-				jwt_token,
-				api_token: null,
-				reset_password_token: null,
-				reset_password_token_expires_at: null,
-				stripe: {
-					customer_id: null,
-					subscription: {
-						active: false,
-						starts_at: null,
-						ends_at: null,
-						transaction_id: null,
-					},
-				},
-				created_at: String(new Date()),
-				updated_at: null,
-				created_at_pt_br: DateTime.getNow(),
-				updated_at_pt_br: null,
+                username,
+                email,
+                telegram_number: telegramNumber,
+                password: hashedPassword,
+                jwt_token,
+                api_token: null,
+                reset_password_token: null,
+                reset_password_token_expires_at: null,
+                stripe: {
+                    customer_id: null,
+                    subscription: {
+                        active: false,
+                        starts_at: null,
+                        ends_at: null,
+                        transaction_id: null,
+                    },
+                },
+                created_at: String(new Date()),
+                updated_at: null,
+                created_at_pt_br: DateTime.getNow(),
+                updated_at_pt_br: null,
             });
 
             return { success: true, jwt_token };

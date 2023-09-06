@@ -11,9 +11,9 @@ export default class DateTime {
         return `${date} ${time}`;
     }
 
-	static isExpired(dateToCheck: Date): boolean {
-		return dateToCheck <= new Date();
-	}
+    static isExpired(dateToCheck: Date): boolean {
+        return dateToCheck <= new Date();
+    }
 
     public secondsToMilliseconds(seconds: number): number {
         return seconds * 1000;

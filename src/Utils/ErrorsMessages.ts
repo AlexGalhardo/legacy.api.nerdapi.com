@@ -7,19 +7,19 @@ export enum ErrorsMessages {
 
     INVALID_LOGIN_TOKEN = "Invalid session token",
 
-	INVALID_PHONE_NUMBER = "Invalid phone number",
+    INVALID_PHONE_NUMBER = "Invalid phone number",
 
     TOKEN_EXPIRED_OR_INVALID = "Token expired or invalid",
 
     NAME_IS_INVALID = "Name is invalid",
 
     INVALID_PASSWORD = "Invalid password",
-	INVALID_OLDER_PASSWORD = "Invalid older password",
+    INVALID_OLDER_PASSWORD = "Invalid older password",
     PASSWORD_IS_REQUIRED = "Password is required",
-	PASSWORDS_NOT_EQUAL = "Passwords not equal",
-	NEW_PASSWORD_IS_INSECURE = "New password is insecure",
+    PASSWORDS_NOT_EQUAL = "Passwords not equal",
+    NEW_PASSWORD_IS_INSECURE = "New password is insecure",
 
-	RESET_PASSWORD_TOKEN_EXPIRED = "Reset password token expired",
+    RESET_PASSWORD_TOKEN_EXPIRED = "Reset password token expired",
 
     EMAIL_IS_INVALID = "Email is invalid",
     EMAIL_ALREADY_REGISTRED = "Email already registred",

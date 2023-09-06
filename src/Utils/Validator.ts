@@ -10,7 +10,7 @@ import Phone from "./DataTypes/Phone";
 export default class Validator {
     private static readonly NAME = new Name();
     private static readonly EMAIL = new Email();
-	private static readonly PHONE = new Phone()
+    private static readonly PHONE = new Phone();
     private static readonly PASSWORD = new Password();
     private static readonly PRIMITIVES = new Primitives();
     private static readonly OBJECTS = new Objects();
@@ -41,8 +41,8 @@ export default class Validator {
         return this.EMAIL;
     }
 
-	static get phone() {
-        return this.PHONE
+    static get phone() {
+        return this.PHONE;
     }
 
     static get password() {
@@ -53,7 +53,7 @@ export default class Validator {
         return {
             ...this.NAME.methods,
             ...this.EMAIL.methods,
-			...this.PHONE.methods,
+            ...this.PHONE.methods,
             ...this.PASSWORD.methods,
             ...this.OBJECTS.methods,
             ...this.PRIMITIVES.methods,

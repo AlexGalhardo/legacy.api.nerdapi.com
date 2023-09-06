@@ -24,7 +24,7 @@ interface AuthControllerPort {
     ): Promise<Response<AuthUseCaseResponse>>;
     resetPassword(
         authResetPasswordDTO: AuthResetPasswordDTO,
-		request: Request,
+        request: Request,
         response: Response,
     ): Promise<Response<AuthUseCaseResponse>>;
 }
@@ -42,10 +42,7 @@ export class AuthController implements AuthControllerPort {
     ) {}
 
     @Post("/login")
-    async login(
-        @Body() authLoginDTO: AuthLoginDTO,
-        @Res() response: Response,
-    ): Promise<Response<AuthUseCaseResponse>> {
+    async login(@Body() authLoginDTO: AuthLoginDTO, @Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
             const { success, jwt_token } = await this.authLoginUseCase.execute(authLoginDTO);
             if (success) return response.status(HttpStatus.OK).json({ success: true, jwt_token });
@@ -103,11 +100,11 @@ export class AuthController implements AuthControllerPort {
     @Post("/reset-password/:reset_password_token")
     async resetPassword(
         @Body() authResetPasswordDTO: AuthResetPasswordDTO,
-		@Req() request: Request,
+        @Req() request: Request,
         @Res() response: Response,
     ): Promise<Response<AuthUseCaseResponse>> {
         try {
-			const { reset_password_token } = request.params;
+            const { reset_password_token } = request.params;
             const { success } = await this.authResetPasswordUseCase.execute(reset_password_token, authResetPasswordDTO);
             if (success) return response.status(HttpStatus.OK).json({ success: true });
         } catch (error) {

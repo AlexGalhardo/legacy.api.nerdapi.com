@@ -8,23 +8,27 @@ interface ProfileUseCaseResponse {
 }
 
 interface ProfileControllerPort {
-	login(profileUpdateDTO: ProfileUpdateDTO, response: Response): Promise<Response<ProfileUseCaseResponse>>;
+    login(profileUpdateDTO: ProfileUpdateDTO, response: Response): Promise<Response<ProfileUseCaseResponse>>;
 }
 
 @Controller()
 export class ProfileController implements ProfileControllerPort {
-    constructor(
-		@Inject("ProfileUpdateUseCasePort") private readonly profileUpdateUseCase: ProfileUpdateUseCasePort,
-	) {}
+    constructor(@Inject("ProfileUpdateUseCasePort") private readonly profileUpdateUseCase: ProfileUpdateUseCasePort) {}
 
     @Put("/profile")
-    async login(@Body() profileUpdateDTO: ProfileUpdateDTO, @Res() response: Response): Promise<Response<ProfileUseCaseResponse>> {
-		try {
-			console.log('response.locals.jwt_token => ', response.locals.jwt_token)
-            const { success, data } = await this.profileUpdateUseCase.execute(response.locals.jwt_token, profileUpdateDTO);
+    async login(
+        @Body() profileUpdateDTO: ProfileUpdateDTO,
+        @Res() response: Response,
+    ): Promise<Response<ProfileUseCaseResponse>> {
+        try {
+            console.log("response.locals.jwt_token => ", response.locals.jwt_token);
+            const { success, data } = await this.profileUpdateUseCase.execute(
+                response.locals.jwt_token,
+                profileUpdateDTO,
+            );
             if (success) return response.status(HttpStatus.OK).json({ success: true, data });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
-	}
+    }
 }

@@ -6,20 +6,20 @@ import ProfileUpdateUseCase from "src/UseCases/ProfileUpdate.useCase";
 @Module({
     controllers: [ProfileController],
     providers: [
-		{
+        {
             inject: [],
             provide: "UserRepositoryPort",
             useFactory: () => {
                 return new UserRepository();
             },
         },
-		{
-			provide: "ProfileUpdateUseCasePort",
+        {
+            provide: "ProfileUpdateUseCasePort",
             inject: ["UserRepositoryPort"],
             useFactory: (userRepository: UserRepositoryPort) => {
                 return new ProfileUpdateUseCase(userRepository);
             },
         },
-	],
+    ],
 })
 export class ProfileModule {}

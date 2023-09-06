@@ -12,6 +12,6 @@ import StripeRepository from "src/Repositories/Stripe.repository";
                 return new StripeRepository();
             },
         },
-	]
+    ],
 })
 export class StripeModule {}
