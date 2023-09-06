@@ -28,13 +28,16 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
     constructor(private readonly usersRepository: UsersRepositoryPort) {}
 
     async execute(authRegisterDTO: AuthRegisterDTO): Promise<AuthRegisterUseCaseResponse> {
-        const { username, email, telegramNumber } = authRegisterDTO;
-        const { password } = authRegisterDTO;
-        let hashedPassword = null;
+        const { username, email, telegramNumber, password } = authRegisterDTO;
 
-        if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
+        if (email && !Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
+        if (telegramNumber && !Validator.phone.isValid(telegramNumber))
+            throw new ClientException(ErrorsMessages.INVALID_PHONE_NUMBER);
 
-        if (password) hashedPassword = await Bcrypt.hash(password);
+        if (password && !Validator.password.isSecure(password))
+            throw new ClientException(ErrorsMessages.PASSWORD_INSECURE);
+
+        const hashedPassword = await Bcrypt.hash(password);
 
         if (!this.usersRepository.findByEmail(email)) {
             const userId = randomUUID();
@@ -55,10 +58,15 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
                     customer_id: null,
                     subscription: {
                         active: false,
+                        name: null,
                         starts_at: null,
                         ends_at: null,
-                        transaction_id: null,
+                        charge_id: null,
+                        receipt_url: null,
+                        hosted_invoice_url: null,
                     },
+                    updated_at: null,
+                    updated_at_pt_br: null,
                 },
                 created_at: String(new Date()),
                 updated_at: null,

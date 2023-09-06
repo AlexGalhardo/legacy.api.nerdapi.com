@@ -6,7 +6,8 @@ import {
     StripeCreateCheckoutSessionUseCasePort,
 } from "src/UseCases/StripeCreateCheckoutSession.useCase";
 import { StripeCreatePortalSessionUseCasePort } from "src/UseCases/StripeCreatePortalSession.useCase";
-import DateTime from "src/Utils/DataTypes/DateTime";
+import { StripeWebhookChargeSucceededUseCasePort } from "src/UseCases/StripeWebhookChargeSucceeded.useCase";
+import { StripeWebhookInvoiceFinalizedUseCasePort } from "src/UseCases/StripeWebhookInvoiceFinalized.useCase";
 
 interface StripeUseCaseResponse {
     success: boolean;
@@ -46,6 +47,10 @@ export class StripeController implements StripeControllerPort {
         private readonly stripeCreateCheckoutSessionUseCase: StripeCreateCheckoutSessionUseCasePort,
         @Inject("StripeCreatePortalSessionUseCasePort")
         private readonly stripeCreatePortalSessionUseCase: StripeCreatePortalSessionUseCasePort,
+        @Inject("StripeWebhookChargeSucceededUseCasePort")
+        private readonly stripeWebhookChargeSucceededUseCase: StripeWebhookChargeSucceededUseCasePort,
+        @Inject("StripeWebhookInvoiceFinalizedUseCasePort")
+        private readonly stripeWebhookInvoiceFinalizedUseCase: StripeWebhookInvoiceFinalizedUseCasePort,
     ) {}
 
     @Post("/create-checkout-session")
@@ -96,29 +101,11 @@ export class StripeController implements StripeControllerPort {
                     break;
 
                 case "charge.succeeded":
-                    const chargeSucceededResume = {
-                        event_id: event.id,
-                        charge_id: event.data.object.id,
-                        amount: event.data.object.amount,
-                        customer_email: event.data.object.billing_details.email,
-                        customer_name: event.data.object.billing_details.name,
-                        stripe_customer_id: event.data.object.customer,
-                        paid: event.data.object.paid,
-                        receipt_url: event.data.object.receipt_url,
-                        created_at: DateTime.timestampToGetNow(event.created),
-                    };
-                    this.stripeRepository.saveChargeWebhookEventLog(event);
+                    this.stripeWebhookChargeSucceededUseCase.execute(event);
                     break;
 
                 case "invoice.finalized":
-                    const invoiceFinalizedResume = {
-                        event_id: event.id,
-                        hosted_invoice_url: event.data.object.hosted_invoice_url,
-                        period_start: DateTime.timestampToGetNow(event.data.object.period_start),
-                        period_end: DateTime.timestampToGetNow(event.data.object.period_end),
-                        created_at: DateTime.timestampToGetNow(event.created),
-                    };
-                    this.stripeRepository.saveInvoiceWebhookEventLog(event);
+                    this.stripeWebhookInvoiceFinalizedUseCase.execute(event);
                     break;
 
                 case "customer.created":

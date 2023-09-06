@@ -1,5 +1,5 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import usersRepository, { UsersRepositoryPort } from "src/Repositories/Users.repository";
+import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import Validator from "src/Utils/Validator";
 import AuthLoginUseCase, { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCases/AuthLogin.useCase";
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";

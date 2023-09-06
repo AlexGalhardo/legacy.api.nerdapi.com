@@ -10,18 +10,18 @@ export default class Password {
     }
 
     public isSecure(plainTextPasswordToCheck: string): boolean {
-        const lengthRegex = /^.{8,}$/;
-        const lowercaseRegex = /[a-z]/;
+        if (plainTextPasswordToCheck.length < 12) {
+            return false;
+        }
+
+        const specialCharRegex = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
         const uppercaseRegex = /[A-Z]/;
-        const digitRegex = /\d/;
-        const specialCharRegex = /[!@#$%^&*]/;
+        const numberRegex = /[0-9]/;
 
         return (
-            lengthRegex.test(plainTextPasswordToCheck) &&
-            lowercaseRegex.test(plainTextPasswordToCheck) &&
+            specialCharRegex.test(plainTextPasswordToCheck) &&
             uppercaseRegex.test(plainTextPasswordToCheck) &&
-            digitRegex.test(plainTextPasswordToCheck) &&
-            specialCharRegex.test(plainTextPasswordToCheck)
+            numberRegex.test(plainTextPasswordToCheck)
         );
     }
 

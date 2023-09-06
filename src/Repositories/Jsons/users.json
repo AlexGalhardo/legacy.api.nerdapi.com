@@ -1,50 +1,31 @@
 [
     {
-        "id": "787a3e1a-238e-49be-9b34-add5e32f0eec",
-        "username": "admin",
-        "email": "admin@gmail.com",
-        "telegram_number": null,
-        "password": "$2b$12$NqW.72YcxxSQL9z78sysSeBimBo3tkkWiHZ/H4.qUSEunsy8bzD4K",
-        "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc4N2EzZTFhLTIzOGUtNDliZS05YjM0LWFkZDVlMzJmMGVlYyIsImlhdCI6MTY5Mzk0OTQ1MX0.KOjx0-72d6l5a9h62IKiJG-wLDN0-ctZZgC_jWxzNhU",
-        "api_token": null,
-        "reset_password_token": null,
-        "reset_password_token_expires_at": null,
-        "stripe": {
-            "customer_id": null,
-            "subscription": {
-                "active": false,
-                "starts_at": null,
-                "ends_at": null,
-                "transaction_id": null
-            }
-        },
-        "created_at": "Tue Sep 05 2023 18:30:51 GMT-0300 (Brasilia Standard Time)",
-        "updated_at": null,
-        "created_at_pt_br": "05/09/2023 18:30:51",
-        "updated_at_pt_br": null
-    },
-    {
-        "id": "8b81e3ce-0c1a-423e-99a6-9f4e7520d520",
-        "username": "Vieira Alex",
-        "email": "alex@gmail.com",
+        "id": "18192de8-54c3-4bba-a046-244a71cc4719",
+        "username": "Alex Galhardo",
+        "email": "aleexgvieira@gmail.com",
         "telegram_number": "5518996971459",
-        "password": "$2b$12$qKyf/EY2P.14B.zmtCE12.VNT/s239G/oD2U8jxOYvJnniSOJZy.q",
-        "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI4YjgxZTNjZS0wYzFhLTQyM2UtOTlhNi05ZjRlNzUyMGQ1MjAiLCJpYXQiOjE2OTQwMjExODh9.L_2VaQjpFi1f0TCMI5UqL-PoxnOdZs2Kvdn4BjCsQXE",
+        "password": "$2b$12$LC/lP79I6xIARspnmKwWA.SabEpcI4tT9j0QoTkMfYVjUTjulc6y6",
+        "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIxODE5MmRlOC01NGMzLTRiYmEtYTA0Ni0yNDRhNzFjYzQ3MTkiLCJpYXQiOjE2OTQwMjU5Mzd9.YShejc_tdjqlfzScOVUEJggt-D_sHOCBlE0nrfJVvkY",
         "api_token": null,
         "reset_password_token": null,
         "reset_password_token_expires_at": null,
         "stripe": {
-            "customer_id": null,
+            "customer_id": "cus_OZrXWOVtDiSJlB",
             "subscription": {
                 "active": false,
-                "starts_at": null,
-                "ends_at": null,
-                "transaction_id": null
-            }
+                "name": "CASUAL",
+                "starts_at": "04/09/2023 15:48:14",
+                "ends_at": "04/10/2023 15:48:14",
+                "charge_id": "in_1NmhooAo7yQpmqlhatjDLodW",
+                "receipt_url": "https://pay.stripe.com/receipts/invoices/CAcaFwoVYWNjdF8xTm1kczdBbzd5UXBtcWxoKPDM2KcGMgY2p6jFFf86LBYdBMsKey3GnyTq8Sv2gGYXWMA1qpzd1GNvoVih23hUB2O-9TOsjRviIB7u?s=ap",
+                "hosted_invoice_url": "https://invoice.stripe.com/i/acct_1Nmds7Ao7yQpmqlh/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PWnJYendtY0g2WXphMlhhY3dlTXZYczlxcGlYR1hyLDg0Mzk0MDk302001RX9KJRP?s=ap"
+            },
+            "updated_at": "Tue Jan 20 1970 11:30:53 GMT-0300 (Brasilia Standard Time)",
+            "updated_at_pt_br": "04/09/2023 15:48:14"
         },
-        "created_at": "Tue Sep 05 2023 18:31:08 GMT-0300 (Brasilia Standard Time)",
+        "created_at": "Wed Sep 06 2023 15:45:37 GMT-0300 (Brasilia Standard Time)",
         "updated_at": null,
-        "created_at_pt_br": "05/09/2023 18:31:08",
+        "created_at_pt_br": "06/09/2023 15:45:37",
         "updated_at_pt_br": null
     }
 ]

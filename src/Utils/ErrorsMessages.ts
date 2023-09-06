@@ -18,6 +18,7 @@ export enum ErrorsMessages {
     PASSWORD_IS_REQUIRED = "Password is required",
     PASSWORDS_NOT_EQUAL = "Passwords not equal",
     NEW_PASSWORD_IS_INSECURE = "New password is insecure",
+    PASSWORD_INSECURE = "Password is insecure",
 
     RESET_PASSWORD_TOKEN_EXPIRED = "Reset password token expired",
 

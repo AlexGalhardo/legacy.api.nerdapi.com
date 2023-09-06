@@ -19,10 +19,15 @@ export interface User {
         customer_id: string | null;
         subscription: {
             active: boolean;
+            name: string | null;
             starts_at: string | null;
             ends_at: string | null;
-            transaction_id: string | null;
+            charge_id: string | null;
+            receipt_url: string | null;
+            hosted_invoice_url: string | null;
         };
+        updated_at: string | null;
+        updated_at_pt_br: string | null;
     };
     created_at: string;
     updated_at: string | null;
@@ -42,6 +47,18 @@ export interface UserResponse {
     index: number;
 }
 
+export interface StripeSubscriptionInfo {
+    customerId: string | null;
+    paid: boolean | null;
+    chargeId: string | null;
+    amount: number | null;
+    receiptUrl: string | null;
+    hostedInvoiceUrl: string | null;
+    startAt: string | null;
+    endsAt: string | null;
+    createdAt: string | null;
+    createdAtBrazil: string | null;
+}
 export interface UsersRepositoryPort {
     save(user?: any, index?: number): void;
     findById(userId: string): boolean;
@@ -55,6 +72,7 @@ export interface UsersRepositoryPort {
     logout(userId: string): void;
     saveResetPasswordToken(userId: string, resetPasswordToken: string): void;
     resetPassword(userId: string, newPassword: string): void;
+    updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): void;
 }
 
 export default class UsersRepository implements UsersRepositoryPort {
@@ -177,5 +195,35 @@ export default class UsersRepository implements UsersRepositoryPort {
                 }
             }
         }
+    }
+
+    public updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo) {
+        for (let i = 0; i < this.users.length; i++) {
+            if (this.users[i].id === user.id) {
+                this.users[i].stripe.customer_id =
+                    stripeSubscriptionInfo.customerId ?? this.users[i].stripe.customer_id;
+                this.users[i].stripe.subscription.active =
+                    stripeSubscriptionInfo.paid ?? this.users[i].stripe.subscription.active;
+                this.users[i].stripe.subscription.charge_id =
+                    stripeSubscriptionInfo.chargeId ?? this.users[i].stripe.subscription.charge_id;
+                this.users[i].stripe.subscription.name = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
+                this.users[i].stripe.subscription.receipt_url =
+                    stripeSubscriptionInfo.receiptUrl ?? this.users[i].stripe.subscription.receipt_url;
+                this.users[i].stripe.subscription.hosted_invoice_url =
+                    stripeSubscriptionInfo.hostedInvoiceUrl ?? this.users[i].stripe.subscription.hosted_invoice_url;
+                this.users[i].stripe.subscription.starts_at =
+                    stripeSubscriptionInfo.startAt ?? this.users[i].stripe.subscription.starts_at;
+                this.users[i].stripe.subscription.ends_at =
+                    stripeSubscriptionInfo.endsAt ?? this.users[i].stripe.subscription.ends_at;
+                this.users[i].stripe.updated_at = stripeSubscriptionInfo.createdAt ?? this.users[i].stripe.updated_at;
+                this.users[i].stripe.updated_at_pt_br =
+                    stripeSubscriptionInfo.createdAtBrazil ?? this.users[i].stripe.updated_at_pt_br;
+
+                this.save();
+                return;
+            }
+        }
+
+        throw new Error(ErrorsMessages.USER_NOT_FOUND);
     }
 }
