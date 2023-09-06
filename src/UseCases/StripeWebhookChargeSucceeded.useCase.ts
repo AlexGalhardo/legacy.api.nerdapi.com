@@ -20,7 +20,7 @@ export default class StripeWebhookChargeSucceededUseCase implements StripeWebhoo
 
         if (user) {
             this.usersRepository.updateStripeSubscriptionInfo(user, {
-				apiToken: event.data.object.paid ? generateRandomToken() : null,
+                apiToken: event.data.object.paid ? generateRandomToken() : null,
                 customerId: event.data.object.customer ?? null,
                 paid: event.data.object.paid ?? null,
                 chargeId: event.data.object.id ?? null,

@@ -26,7 +26,7 @@ import AuthTokenUserUseCase from "src/UseCases/AuthTokenUser.useCase";
                 return new AuthLoginUseCase(usersRepository);
             },
         },
-		{
+        {
             provide: "AuthLoginGoogleUseCasePort",
             inject: ["UsersRepositoryPort"],
             useFactory: (usersRepository: UsersRepositoryPort) => {

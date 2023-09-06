@@ -31,17 +31,14 @@ interface AuthControllerPort {
         request: Request,
         response: Response,
     ): Promise<Response<AuthUseCaseResponse>>;
-	loginGoogle(
-        request: Request,
-        response: Response
-    ): void;
+    loginGoogle(request: Request, response: Response): void;
 }
 
 @Controller()
 export class AuthController implements AuthControllerPort {
     constructor(
         @Inject("AuthLoginUseCasePort") private readonly authLoginUseCase: AuthLoginUseCasePort,
-		@Inject("AuthLoginGoogleUseCasePort") private readonly authLoginGoogleUseCase: AuthLoginGoogleUseCasePort,
+        @Inject("AuthLoginGoogleUseCasePort") private readonly authLoginGoogleUseCase: AuthLoginGoogleUseCasePort,
         @Inject("AuthRegisterUseCasePort") private readonly authRegisterUseCase: AuthRegisterUseCasePort,
         @Inject("AuthLogoutUseCasePort") private readonly authLogoutUseCase: AuthLogoutUseCasePort,
         @Inject("AuthTokenUserUseCasePort") private readonly authTokenUserUseCase: AuthTokenUserUseCasePort,
@@ -49,9 +46,12 @@ export class AuthController implements AuthControllerPort {
         private readonly authForgetPasswordUseCase: AuthForgetPasswordUseCasePort,
         @Inject("AuthResetPasswordUseCasePort") private readonly authResetPasswordUseCase: AuthResetPasswordUseCasePort,
     ) {}
-	googleLogin(request: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, response: Response<any, Record<string, any>>): void {
-		throw new Error("Method not implemented.");
-	}
+    googleLogin(
+        request: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
+        response: Response<any, Record<string, any>>,
+    ): void {
+        throw new Error("Method not implemented.");
+    }
 
     @Post("/login")
     async login(@Body() authLoginDTO: AuthLoginDTO, @Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
@@ -124,16 +124,15 @@ export class AuthController implements AuthControllerPort {
         }
     }
 
-	@Post("/callback/google/login")
-    async loginGoogle(
-        @Req() request: Request,
-        @Res() response: Response,
-    ) {
+    @Post("/callback/google/login")
+    async loginGoogle(@Req() request: Request, @Res() response: Response) {
         try {
             const { success, jwt_token, user_registred } = await this.authLoginGoogleUseCase.execute(request);
             if (success) {
-				return response.redirect(`http://localhost:5173/profile?token=${jwt_token}&registred=${user_registred}`);
-			}
+                return response.redirect(
+                    `http://localhost:5173/profile?token=${jwt_token}&registred=${user_registred}`,
+                );
+            }
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }

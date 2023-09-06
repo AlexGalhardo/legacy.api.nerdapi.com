@@ -5,7 +5,7 @@ import { ClientException } from "src/Utils/Exception";
 import Validator from "src/Utils/Validator";
 import * as jwt from "jsonwebtoken";
 import { Request } from "express";
-import { OAuth2Client } from 'google-auth-library';
+import { OAuth2Client } from "google-auth-library";
 import { randomUUID } from "node:crypto";
 import DateTime from "src/Utils/DataTypes/DateTime";
 
@@ -21,38 +21,37 @@ export interface AuthLoginDTO {
 interface AuthLoginGoogleUseCaseResponse {
     success: boolean;
     jwt_token?: string;
-	user_registred?: boolean;
+    user_registred?: boolean;
 }
 
 export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePort {
     constructor(private readonly usersRepository: UsersRepositoryPort) {}
 
     async execute(request: Request): Promise<AuthLoginGoogleUseCaseResponse> {
-		const { credential } = request.body;
+        const { credential } = request.body;
 
-		console.log('\n\n request.body => ', request.body)
+        console.log("\n\n request.body => ", request.body);
 
-		const googleResponse = await new OAuth2Client().verifyIdToken({
-			idToken: credential,
-			audience: process.env.GOOGLE_CLIENT_ID, 
-		})
-		const payload = googleResponse.getPayload();
-		const { email, name } = payload;
+        const googleResponse = await new OAuth2Client().verifyIdToken({
+            idToken: credential,
+            audience: process.env.GOOGLE_CLIENT_ID,
+        });
+        const payload = googleResponse.getPayload();
+        const { email, name } = payload;
 
-		if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
+        if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
 
-		const userExists = this.usersRepository.findByEmail(email)
+        const userExists = this.usersRepository.findByEmail(email);
 
         if (userExists) {
-			const {user, index} = this.usersRepository.getByEmail(email)
-			const jwt_token = jwt.sign({ userID: user.id }, process.env.JWT_SECRET);
-			user.jwt_token = jwt_token;
-			this.usersRepository.save(user, index);
+            const { user, index } = this.usersRepository.getByEmail(email);
+            const jwt_token = jwt.sign({ userID: user.id }, process.env.JWT_SECRET);
+            user.jwt_token = jwt_token;
+            this.usersRepository.save(user, index);
 
-			return { success: true, jwt_token, user_registred: false };
-        }
-		else {
-			const userId = randomUUID();
+            return { success: true, jwt_token, user_registred: false };
+        } else {
+            const userId = randomUUID();
 
             const jwt_token = jwt.sign({ userID: userId }, process.env.JWT_SECRET);
 
@@ -87,7 +86,6 @@ export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePor
             });
 
             return { success: true, jwt_token, user_registred: true };
-		}
-
+        }
     }
 }
