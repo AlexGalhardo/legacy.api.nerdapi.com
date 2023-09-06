@@ -26,4 +26,6 @@ export enum ErrorsMessages {
 
     EMAIL_OR_PASSWORD_INVALID = "Email or password invalid",
     EMAIL_NOT_REGISTRED = "Email not registred",
+
+    USER_HAS_ACTIVE_PLAN = "User has active plan",
 }

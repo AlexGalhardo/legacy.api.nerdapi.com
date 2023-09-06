@@ -1,5 +1,5 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import UserRepository, { UserRepositoryPort } from "src/Repositories/Users.repository";
+import usersRepository, { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import Validator from "src/Utils/Validator";
 import AuthLoginUseCase, { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCases/AuthLogin.useCase";
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
@@ -17,30 +17,30 @@ describe("Test AuthLoginUseCase", () => {
             providers: [
                 {
                     inject: [],
-                    provide: "UserRepositoryPort",
+                    provide: "UsersRepositoryPort",
                     useFactory: () => {
-                        return new UserRepository();
+                        return new UsersRepository();
                     },
                 },
                 {
                     provide: "UserDeleteUseCasePort",
-                    inject: ["UserRepositoryPort"],
-                    useFactory: (userRepository: UserRepositoryPort) => {
-                        return new UserDeleteUseCase(userRepository);
+                    inject: ["UsersRepositoryPort"],
+                    useFactory: (usersRepository: UsersRepositoryPort) => {
+                        return new UserDeleteUseCase(usersRepository);
                     },
                 },
                 {
                     provide: "AuthLoginUseCasePort",
-                    inject: ["UserRepositoryPort"],
-                    useFactory: (userRepository: UserRepositoryPort) => {
-                        return new AuthLoginUseCase(userRepository);
+                    inject: ["UsersRepositoryPort"],
+                    useFactory: (usersRepository: UsersRepositoryPort) => {
+                        return new AuthLoginUseCase(usersRepository);
                     },
                 },
                 {
                     provide: "AuthRegisterUseCasePort",
-                    inject: ["UserRepositoryPort"],
-                    useFactory: (userRepository: UserRepositoryPort) => {
-                        return new AuthRegisterUseCase(userRepository);
+                    inject: ["UsersRepositoryPort"],
+                    useFactory: (usersRepository: UsersRepositoryPort) => {
+                        return new AuthRegisterUseCase(usersRepository);
                     },
                 },
             ],

@@ -21,7 +21,6 @@ export class ProfileController implements ProfileControllerPort {
         @Res() response: Response,
     ): Promise<Response<ProfileUseCaseResponse>> {
         try {
-            console.log("response.locals.jwt_token => ", response.locals.jwt_token);
             const { success, data } = await this.profileUpdateUseCase.execute(
                 response.locals.jwt_token,
                 profileUpdateDTO,

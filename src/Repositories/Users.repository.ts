@@ -42,7 +42,7 @@ export interface UserResponse {
     index: number;
 }
 
-export interface UserRepositoryPort {
+export interface UsersRepositoryPort {
     save(user?: any, index?: number): void;
     findById(userId: string): boolean;
     findByEmail(email: string): boolean;
@@ -57,7 +57,7 @@ export interface UserRepositoryPort {
     resetPassword(userId: string, newPassword: string): void;
 }
 
-export default class UserRepository implements UserRepositoryPort {
+export default class UsersRepository implements UsersRepositoryPort {
     constructor(private users: User[] = usersDatabase) {}
 
     public save(user?: any, index?: number): void {

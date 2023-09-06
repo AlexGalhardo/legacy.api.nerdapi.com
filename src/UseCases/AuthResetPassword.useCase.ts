@@ -1,4 +1,4 @@
-import { UserRepositoryPort } from "src/Repositories/Users.repository";
+import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import { Bcrypt } from "src/Utils/Bcrypt";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
@@ -21,7 +21,7 @@ interface AuthResetPasswordUseCaseResponse {
 }
 
 export default class AuthResetPasswordUseCase implements AuthResetPasswordUseCasePort {
-    constructor(private readonly usersRepository: UserRepositoryPort) {}
+    constructor(private readonly usersRepository: UsersRepositoryPort) {}
 
     async execute(
         resetPasswordToken: string,

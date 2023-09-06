@@ -1,4 +1,4 @@
-import { User, UserRepositoryPort } from "src/Repositories/Users.repository";
+import { User, UsersRepositoryPort } from "src/Repositories/Users.repository";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
 import * as jwt from "jsonwebtoken";
@@ -13,7 +13,7 @@ interface AuthTokenUserUseCaseResponse {
 }
 
 export default class AuthTokenUserUseCase implements AuthTokenUserUseCasePort {
-    constructor(private readonly usersRepository: UserRepositoryPort) {}
+    constructor(private readonly usersRepository: UsersRepositoryPort) {}
 
     async execute(token: string): Promise<AuthTokenUserUseCaseResponse> {
         const { userID } = jwt.verify(token, process.env.JWT_SECRET) as jwt.JwtPayload;

@@ -1,6 +1,6 @@
 import { SMTP } from "src/Utils/SMTP";
 
-export interface ContactDTO {
+export interface ContactSendMessageDTO {
     name: string;
     email: string;
     subject: string;
@@ -12,14 +12,14 @@ interface ContactSendMessageUseCaseResponse {
 }
 
 export interface ContactSendMessageUseCasePort {
-    execute(contactDTO: ContactDTO): Promise<ContactSendMessageUseCaseResponse>;
+    execute(contactSendMessageDTO: ContactSendMessageDTO): Promise<ContactSendMessageUseCaseResponse>;
 }
 
 export default class ContactSendMessageUseCase implements ContactSendMessageUseCasePort {
     constructor(private readonly smtp = SMTP) {}
 
-    async execute(contactDTO: ContactDTO): Promise<ContactSendMessageUseCaseResponse> {
-        const { name, email, subject, message } = contactDTO;
+    async execute(contactSendMessageDTO: ContactSendMessageDTO): Promise<ContactSendMessageUseCaseResponse> {
+        const { name, email, subject, message } = contactSendMessageDTO;
 
         if (name && email && subject && message) {
             await this.smtp.sendMail({

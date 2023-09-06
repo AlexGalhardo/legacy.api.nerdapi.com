@@ -67,7 +67,7 @@ export class AuthController implements AuthControllerPort {
     @Post("/logout")
     async logout(@Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
-            const { success } = await this.authLogoutUseCase.execute(response.locals.token);
+            const { success } = await this.authLogoutUseCase.execute(response.locals.jwt_token);
             if (success) return response.status(HttpStatus.OK).json({ success: true });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
@@ -77,7 +77,7 @@ export class AuthController implements AuthControllerPort {
     @Get("/tokenUser")
     async tokenUser(@Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
-            const { success, data } = await this.authTokenUserUseCase.execute(response.locals.token);
+            const { success, data } = await this.authTokenUserUseCase.execute(response.locals.jwt_token);
             if (success) return response.status(HttpStatus.OK).json({ success: true, data });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });

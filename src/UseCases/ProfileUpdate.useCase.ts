@@ -1,4 +1,4 @@
-import { UserRepositoryPort, UserUpdated } from "src/Repositories/Users.repository";
+import { UsersRepositoryPort, UserUpdated } from "src/Repositories/Users.repository";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
 import * as jwt from "jsonwebtoken";
@@ -22,7 +22,7 @@ export interface ProfileUpdateDTO {
 }
 
 export default class ProfileUpdateUseCase implements ProfileUpdateUseCasePort {
-    constructor(private readonly usersRepository: UserRepositoryPort) {}
+    constructor(private readonly usersRepository: UsersRepositoryPort) {}
 
     async execute(jwtToken: string, profileUpdateDTO: ProfileUpdateDTO): Promise<ProfileUpdateUseCaseResponse> {
         const { userID } = jwt.verify(jwtToken, process.env.JWT_SECRET) as jwt.JwtPayload;

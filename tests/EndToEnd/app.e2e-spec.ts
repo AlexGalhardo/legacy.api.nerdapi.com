@@ -3,7 +3,7 @@ import { Test } from "@nestjs/testing";
 import { AppModule } from "../../src/App.module";
 import { HttpStatus, INestApplication } from "@nestjs/common";
 import { AuthController } from "../../src/Controllers/Auth.controller";
-import UserRepository, { UserRepositoryPort } from "../../src/Repositories/Users.repository";
+import usersRepository, { UsersRepositoryPort } from "../../src/Repositories/Users.repository";
 import AuthLoginUseCase from "../../src/UseCases/AuthLogin.useCase";
 import AuthRegisterUseCase from "../../src/UseCases/AuthRegister.useCase";
 import AuthForgetPasswordUseCase from "../../src/UseCases/AuthForgetPassword.useCase";
@@ -21,51 +21,51 @@ describe("AppController (e2e)", () => {
             providers: [
                 {
                     inject: [],
-                    provide: "UserRepositoryPort",
+                    provide: "UsersRepositoryPort",
                     useFactory: () => {
-                        return new UserRepository();
+                        return new UsersRepository();
                     },
                 },
                 {
                     provide: "AuthRegisterUseCasePort",
-                    inject: ["UserRepositoryPort"],
-                    useFactory: (userRepository: UserRepositoryPort) => {
-                        return new AuthRegisterUseCase(userRepository);
+                    inject: ["UsersRepositoryPort"],
+                    useFactory: (usersRepository: UsersRepositoryPort) => {
+                        return new AuthRegisterUseCase(usersRepository);
                     },
                 },
                 {
                     provide: "AuthLoginUseCasePort",
-                    inject: ["UserRepositoryPort"],
-                    useFactory: (userRepository: UserRepositoryPort) => {
-                        return new AuthLoginUseCase(userRepository);
+                    inject: ["UsersRepositoryPort"],
+                    useFactory: (usersRepository: UsersRepositoryPort) => {
+                        return new AuthLoginUseCase(usersRepository);
                     },
                 },
                 {
                     provide: "AuthLogoutUseCasePort",
-                    inject: ["UserRepositoryPort"],
-                    useFactory: (userRepository: UserRepositoryPort) => {
-                        return new AuthLogoutUseCase(userRepository);
+                    inject: ["UsersRepositoryPort"],
+                    useFactory: (usersRepository: UsersRepositoryPort) => {
+                        return new AuthLogoutUseCase(usersRepository);
                     },
                 },
                 {
                     provide: "AuthTokenUserUseCasePort",
-                    inject: ["UserRepositoryPort"],
-                    useFactory: (userRepository: UserRepositoryPort) => {
-                        return new AuthTokenUserUseCase(userRepository);
+                    inject: ["UsersRepositoryPort"],
+                    useFactory: (usersRepository: UsersRepositoryPort) => {
+                        return new AuthTokenUserUseCase(usersRepository);
                     },
                 },
                 {
                     provide: "AuthForgetPasswordUseCasePort",
-                    inject: ["UserRepositoryPort"],
-                    useFactory: (userRepository: UserRepositoryPort) => {
-                        return new AuthForgetPasswordUseCase(userRepository);
+                    inject: ["UsersRepositoryPort"],
+                    useFactory: (usersRepository: UsersRepositoryPort) => {
+                        return new AuthForgetPasswordUseCase(usersRepository);
                     },
                 },
                 {
                     provide: "AuthResetPasswordUseCasePort",
-                    inject: ["UserRepositoryPort"],
-                    useFactory: (userRepository: UserRepositoryPort) => {
-                        return new AuthResetPasswordUseCase(userRepository);
+                    inject: ["UsersRepositoryPort"],
+                    useFactory: (usersRepository: UsersRepositoryPort) => {
+                        return new AuthResetPasswordUseCase(usersRepository);
                     },
                 },
             ],

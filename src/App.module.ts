@@ -1,6 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from "@nestjs/common";
 import { AuthModule } from "./Modules/Auth.module";
-import UserRepository from "./Repositories/Users.repository";
+import usersRepository from "./Repositories/Users.repository";
 import { ProfileModule } from "./Modules/Profile.module";
 import { ContactModule } from "./Modules/Contact.module";
 import { StripeModule } from "./Modules/Stripe.module";
@@ -19,10 +19,10 @@ import { ValidateToken } from "./MIddlewares/ValidateToken.middleware";
     ],
     controllers: [],
     providers: [
-        UserRepository,
+        usersRepository,
         {
-            provide: "UserRepositoryPort",
-            useClass: UserRepository,
+            provide: "UsersRepositoryPort",
+            useClass: usersRepository,
         },
     ],
 })
@@ -34,6 +34,8 @@ export class AppModule implements NestModule {
                 { path: "/tokenUser", method: RequestMethod.GET },
                 { path: "/logout", method: RequestMethod.POST },
                 { path: "/profile", method: RequestMethod.PUT },
+                { path: "/stripe/create-checkout-session", method: RequestMethod.POST },
+                { path: "/stripe/create-portal-session", method: RequestMethod.POST },
             );
     }
 }

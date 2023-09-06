@@ -1,4 +1,4 @@
-import { UserRepositoryPort } from "src/Repositories/Users.repository";
+import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import { Bcrypt } from "src/Utils/Bcrypt";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
@@ -20,7 +20,7 @@ interface UserLoginUseCaseResponse {
 }
 
 export default class AuthLoginUseCase implements AuthLoginUseCasePort {
-    constructor(private readonly usersRepository: UserRepositoryPort) {}
+    constructor(private readonly usersRepository: UsersRepositoryPort) {}
 
     async execute(authLoginDTO: AuthLoginDTO): Promise<UserLoginUseCaseResponse> {
         const { email, password } = authLoginDTO;

@@ -1,4 +1,4 @@
-import { UserRepositoryPort } from "src/Repositories/Users.repository";
+import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
 
@@ -12,11 +12,11 @@ export interface UserDeleteUseCasePort {
 }
 
 export default class UserDeleteUseCase implements UserDeleteUseCasePort {
-    constructor(private readonly userRepository: UserRepositoryPort) {}
+    constructor(private readonly usersRepository: UsersRepositoryPort) {}
 
     async execute(email: string): Promise<UserDeleteUseCaseResponse> {
-        if (this.userRepository.findByEmail(email)) {
-            this.userRepository.deleteByEmail(email);
+        if (this.usersRepository.findByEmail(email)) {
+            this.usersRepository.deleteByEmail(email);
             return { success: true };
         }
 

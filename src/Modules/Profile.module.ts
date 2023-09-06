@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { ProfileController } from "src/Controllers/Profile.controller";
-import UserRepository, { UserRepositoryPort } from "src/Repositories/Users.repository";
+import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import ProfileUpdateUseCase from "src/UseCases/ProfileUpdate.useCase";
 
 @Module({
@@ -8,16 +8,16 @@ import ProfileUpdateUseCase from "src/UseCases/ProfileUpdate.useCase";
     providers: [
         {
             inject: [],
-            provide: "UserRepositoryPort",
+            provide: "UsersRepositoryPort",
             useFactory: () => {
-                return new UserRepository();
+                return new UsersRepository();
             },
         },
         {
             provide: "ProfileUpdateUseCasePort",
-            inject: ["UserRepositoryPort"],
-            useFactory: (userRepository: UserRepositoryPort) => {
-                return new ProfileUpdateUseCase(userRepository);
+            inject: ["UsersRepositoryPort"],
+            useFactory: (usersRepository: UsersRepositoryPort) => {
+                return new ProfileUpdateUseCase(usersRepository);
             },
         },
     ],

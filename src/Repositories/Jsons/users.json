@@ -29,7 +29,7 @@
         "email": "alex@gmail.com",
         "telegram_number": "5518996971459",
         "password": "$2b$12$qKyf/EY2P.14B.zmtCE12.VNT/s239G/oD2U8jxOYvJnniSOJZy.q",
-        "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI4YjgxZTNjZS0wYzFhLTQyM2UtOTlhNi05ZjRlNzUyMGQ1MjAiLCJpYXQiOjE2OTQwMTY1MDZ9.1GS_yDqu8Ib_b1WRKJBA_B8zSZETIfuCRFpafcgRfvU",
+        "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI4YjgxZTNjZS0wYzFhLTQyM2UtOTlhNi05ZjRlNzUyMGQ1MjAiLCJpYXQiOjE2OTQwMjExODh9.L_2VaQjpFi1f0TCMI5UqL-PoxnOdZs2Kvdn4BjCsQXE",
         "api_token": null,
         "reset_password_token": null,
         "reset_password_token_expires_at": null,

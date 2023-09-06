@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { UserRepositoryPort } from "src/Repositories/Users.repository";
+import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
 import { generateRandomToken } from "src/Utils/RandomToken";
@@ -21,7 +21,7 @@ interface AuthForgetPasswordUseCaseResponse {
 
 export default class AuthForgetPasswordUseCase implements AuthForgetPasswordUseCasePort {
     constructor(
-        private readonly usersRepository: UserRepositoryPort,
+        private readonly usersRepository: UsersRepositoryPort,
         private readonly smtp = SMTP,
     ) {}
 

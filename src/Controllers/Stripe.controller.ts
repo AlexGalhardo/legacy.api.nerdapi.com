@@ -1,11 +1,20 @@
 import { Controller, Post, Res, Body, Inject, HttpStatus } from "@nestjs/common";
 import { Response } from "express";
 import { StripeRepositoryPort } from "src/Repositories/Stripe.repository";
-import { APP_URL } from "src/Utils/Constants";
+import {
+    StripeCreateCheckoutSessionDTO,
+    StripeCreateCheckoutSessionUseCasePort,
+} from "src/UseCases/StripeCreateCheckoutSession.useCase";
+import { StripeCreatePortalSessionUseCasePort } from "src/UseCases/StripeCreatePortalSession.useCase";
 import DateTime from "src/Utils/DataTypes/DateTime";
-import { stripe } from "src/Utils/Stripe";
 
-interface StripeWebhookDTO {
+interface StripeUseCaseResponse {
+    success: boolean;
+    redirect?: string;
+    message?: string;
+}
+
+interface StripeWebhookEventDTO {
     id: string;
     type: string;
     event: any;
@@ -13,53 +22,45 @@ interface StripeWebhookDTO {
     created: number;
 }
 
-interface StripeCreateCheckoutSessionDTO {
-    lookup_key: string;
-}
-
 interface StripeCreatePortalSessionDTO {
     session_id: string;
 }
 
-interface StripeControllerPort {}
+interface StripeControllerPort {
+    createCheckoutSession(
+        stripeCreateCheckoutSessionDTO: StripeCreateCheckoutSessionDTO,
+        response: Response,
+    ): Promise<Response<StripeUseCaseResponse>>;
+    createPortalSession(
+        stripeCreatePortalSessionDTO: StripeCreatePortalSessionDTO,
+        response: Response,
+    ): Promise<Response<StripeUseCaseResponse>>;
+    webhook(event: StripeWebhookEventDTO, response: Response): Promise<Response<{ received: boolean }>>;
+}
 
 @Controller("stripe")
 export class StripeController implements StripeControllerPort {
-    constructor(@Inject("StripeRepositoryPort") private readonly stripeRepository: StripeRepositoryPort) {}
+    constructor(
+        @Inject("StripeRepositoryPort") private readonly stripeRepository: StripeRepositoryPort,
+        @Inject("StripeCreateCheckoutSessionUseCasePort")
+        private readonly stripeCreateCheckoutSessionUseCase: StripeCreateCheckoutSessionUseCasePort,
+        @Inject("StripeCreatePortalSessionUseCasePort")
+        private readonly stripeCreatePortalSessionUseCase: StripeCreatePortalSessionUseCasePort,
+    ) {}
 
     @Post("/create-checkout-session")
     async createCheckoutSession(
         @Body() stripeCreateCheckoutSessionDTO: StripeCreateCheckoutSessionDTO,
         @Res() response: Response,
-    ) {
+    ): Promise<Response<StripeUseCaseResponse>> {
         try {
-            const { lookup_key } = stripeCreateCheckoutSessionDTO;
-            const prices = await stripe.prices.list({
-                lookup_keys: [lookup_key],
-                expand: ["data.product"],
-            });
-            const session = await stripe.checkout.sessions.create({
-                billing_address_collection: "auto",
-                line_items: [
-                    {
-                        price: prices.data[0].id,
-                        quantity: 1,
-                    },
-                ],
-                mode: "subscription",
-                success_url: `${APP_URL}/checkout/success?session_id={CHECKOUT_SESSION_ID}&plan=${lookup_key.replace(
-                    "plan_",
-                    "",
-                )}`,
-                cancel_url: `${APP_URL}/pricing`,
-            });
-
-            return response.status(HttpStatus.OK).json({
-                success: true,
-                redirect: session.url,
-            });
+            const { success, redirect } = await this.stripeCreateCheckoutSessionUseCase.execute(
+                response.locals.jwt_token,
+                stripeCreateCheckoutSessionDTO,
+            );
+            if (success) return response.status(HttpStatus.OK).json({ success: true, redirect });
         } catch (error) {
-            throw new Error(error);
+            return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
 
@@ -67,27 +68,23 @@ export class StripeController implements StripeControllerPort {
     async createPortalSession(
         @Body() stripeCreatePortalSessionDTO: StripeCreatePortalSessionDTO,
         @Res() response: Response,
-    ) {
+    ): Promise<Response<StripeUseCaseResponse>> {
         try {
-            const { session_id } = stripeCreatePortalSessionDTO;
-            const checkoutSession = await stripe.checkout.sessions.retrieve(session_id);
-
-            const portalSession = await stripe.billingPortal.sessions.create({
-                customer: checkoutSession.customer as string,
-                return_url: `${APP_URL}/profile`,
-            });
-
-            return response.status(200).json({
-                success: true,
-                redirect: portalSession.url,
-            });
+            const { success, redirect } = await this.stripeCreatePortalSessionUseCase.execute(
+                response.locals.jwt_token,
+                stripeCreatePortalSessionDTO,
+            );
+            if (success) return response.status(HttpStatus.OK).json({ success: true, redirect });
         } catch (error) {
-            throw new Error(error);
+            return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
 
     @Post("/webhook")
-    async login(@Body() event: StripeWebhookDTO, @Res() response: Response) {
+    async webhook(
+        @Body() event: StripeWebhookEventDTO,
+        @Res() response: Response,
+    ): Promise<Response<{ received: boolean }>> {
         try {
             switch (event.type) {
                 case "payment_intent.succeeded":
@@ -170,7 +167,7 @@ export class StripeController implements StripeControllerPort {
 
             return response.json({ received: true });
         } catch (error) {
-            throw new Error(error);
+            return response.json({ received: false });
         }
     }
 }
