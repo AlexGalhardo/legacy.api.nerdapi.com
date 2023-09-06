@@ -45,7 +45,7 @@ export class AuthController implements AuthControllerPort {
     async login(
         @Body() authLoginDTO: AuthLoginDTO,
         @Res() response: Response,
-    ): Promise<Response<{ success: boolean; jwt_token?: string; message?: string }>> {
+    ): Promise<Response<AuthUseCaseResponse>> {
         try {
             const { success, jwt_token } = await this.authLoginUseCase.execute(authLoginDTO);
             if (success) return response.status(HttpStatus.OK).json({ success: true, jwt_token });

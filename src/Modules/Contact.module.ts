@@ -1,15 +1,15 @@
 import { Module } from "@nestjs/common";
 import { ContactController } from "src/Controllers/Contact.controller";
-import SendContactMessageUseCase from "src/UseCases/SendContactMessage.useCase";
+import ContactSendMessageUseCase from "src/UseCases/ContactSendMessage.useCase";
 
 @Module({
     controllers: [ContactController],
     providers: [
         {
-            provide: "SendContactMessageUseCasePort",
+            provide: "ContactSendMessageUseCasePort",
             inject: [],
             useFactory: () => {
-                return new SendContactMessageUseCase();
+                return new ContactSendMessageUseCase();
             },
         },
     ],

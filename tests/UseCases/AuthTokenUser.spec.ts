@@ -2,13 +2,13 @@ import { Test, TestingModule } from "@nestjs/testing";
 import UserRepository, { UserRepositoryPort } from "src/Repositories/Users.repository";
 import Validator from "src/Utils/Validator";
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
-import DeleteUserUseCase, { DeleteUserUseCasePort } from "src/UseCases/DeleteUserUseCase.useCase";
+import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDeleteUseCase.useCase";
 import AuthTokenUserUseCase, { AuthTokenUserUseCasePort } from "src/UseCases/AuthTokenUser.useCase";
 
 describe("Test AuthLoginUseCase", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;
     let authTokenUserUseCase: AuthTokenUserUseCasePort;
-    let deleteUserByEmail: DeleteUserUseCasePort;
+    let deleteUserByEmail: UserDeleteUseCasePort;
 
     beforeAll(async () => {
         const module: TestingModule = await Test.createTestingModule({
@@ -22,10 +22,10 @@ describe("Test AuthLoginUseCase", () => {
                     },
                 },
                 {
-                    provide: "DeleteUserUseCasePort",
+                    provide: "UserDeleteUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
-                        return new DeleteUserUseCase(userRepository);
+                        return new UserDeleteUseCase(userRepository);
                     },
                 },
                 {
@@ -46,7 +46,7 @@ describe("Test AuthLoginUseCase", () => {
         }).compile();
         authRegisterUseCase = module.get<AuthRegisterUseCasePort>("AuthRegisterUseCasePort");
         authTokenUserUseCase = module.get<AuthTokenUserUseCasePort>("AuthTokenUserUseCasePort");
-        deleteUserByEmail = module.get<DeleteUserUseCasePort>("DeleteUserUseCasePort");
+        deleteUserByEmail = module.get<UserDeleteUseCasePort>("UserDeleteUseCasePort");
     });
 
     const userEmail = Validator.email.generate();
@@ -58,6 +58,7 @@ describe("Test AuthLoginUseCase", () => {
         const authRegisterDTO: AuthRegisterDTO = {
             username,
             email: userEmail,
+			telegramNumber: Validator.phone.generate(),
             password: userPassword,
         };
         const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);

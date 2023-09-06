@@ -2,11 +2,11 @@ import { Test, TestingModule } from "@nestjs/testing";
 import UserRepository, { UserRepositoryPort } from "src/Repositories/Users.repository";
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import Validator from "src/Utils/Validator";
-import DeleteUserUseCase, { DeleteUserUseCasePort } from "src/UseCases/DeleteUserUseCase.useCase";
+import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDeleteUseCase.useCase";
 
 describe("Test AuthRegisterUseCase", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;
-    let deleteUserByEmail: DeleteUserUseCasePort;
+    let deleteUserByEmail: UserDeleteUseCasePort;
 
     beforeAll(async () => {
         const module: TestingModule = await Test.createTestingModule({
@@ -20,10 +20,10 @@ describe("Test AuthRegisterUseCase", () => {
                     },
                 },
                 {
-                    provide: "DeleteUserUseCasePort",
+                    provide: "UserDeleteUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
-                        return new DeleteUserUseCase(userRepository);
+                        return new UserDeleteUseCase(userRepository);
                     },
                 },
                 {
@@ -36,7 +36,7 @@ describe("Test AuthRegisterUseCase", () => {
             ],
         }).compile();
         authRegisterUseCase = module.get<AuthRegisterUseCasePort>("AuthRegisterUseCasePort");
-        deleteUserByEmail = module.get<DeleteUserUseCasePort>("DeleteUserUseCasePort");
+        deleteUserByEmail = module.get<UserDeleteUseCasePort>("UserDeleteUseCasePort");
     });
 
     const userEmail = Validator.email.generate();
@@ -45,6 +45,7 @@ describe("Test AuthRegisterUseCase", () => {
         const authRegisterDTO: AuthRegisterDTO = {
             username: "Testing Register Test",
             email: userEmail,
+			telegramNumber: Validator.phone.generate(),
             password: Validator.password.generate()
         };
         const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);

@@ -16,6 +16,7 @@ interface AuthRegisterUseCaseResponse {
 export interface AuthRegisterDTO {
     username: string;
     email: string;
+	telegramNumber: string | null;
     password: string;
 }
 
@@ -27,7 +28,7 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
     constructor(private readonly userRepository: UserRepositoryPort) {}
 
     async execute(authRegisterDTO: AuthRegisterDTO): Promise<AuthRegisterUseCaseResponse> {
-        const { username, email } = authRegisterDTO;
+        const { username, email, telegramNumber } = authRegisterDTO;
         const { password } = authRegisterDTO;
         let hashedPassword = null;
 
@@ -38,12 +39,13 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
         if (!this.userRepository.findByEmail(email)) {
             const userId = randomUUID();
 
-            const jwt_token = jwt.sign({ id: userId }, process.env.JWT_SECRET);
+            const jwt_token = jwt.sign({ userID: userId }, process.env.JWT_SECRET);
 
             this.userRepository.create({
                 id: userId,
 				username,
 				email,
+				telegram_number: telegramNumber,
 				password: hashedPassword,
 				jwt_token,
 				api_token: null,

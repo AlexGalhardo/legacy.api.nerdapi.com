@@ -2,11 +2,14 @@ import * as fs from "fs";
 import * as usersDatabase from "./Jsons/users.json";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import DateTime from "src/Utils/DataTypes/DateTime";
+import { ProfileUpdateDTO } from "src/UseCases/ProfileUpdate.useCase";
+import { Bcrypt } from "src/Utils/Bcrypt";
 
 export interface User {
     id: string;
     username: string;
     email: string;
+	telegram_number: string | null;
     password: string;
     jwt_token: string;
     api_token: string | null;
@@ -27,6 +30,13 @@ export interface User {
     updated_at_pt_br: string | null;
 }
 
+export interface UserUpdated {
+	username: string;
+    email: string;
+	telegramNumber: string;
+	password: string;
+}
+
 export interface UserResponse {
     user: User;
     index: number;
@@ -40,6 +50,7 @@ export interface UserRepositoryPort {
     getById(userId: string): UserResponse;
 	getByResetPasswordToken(resetPasswordToken: string): UserResponse;
     create(user: User): void;
+	update(userId: string, profileUpdateDTO: ProfileUpdateDTO): Promise<UserUpdated>;
     deleteByEmail(email: string): void;
     logout(userId: string): void;
 	saveResetPasswordToken(userId: string, resetPasswordToken: string): void;
@@ -103,6 +114,29 @@ export default class UserRepository implements UserRepositoryPort {
     public create(user: User): void {
         this.users.push(user);
         this.save();
+    }
+
+	public async update(userId: string, profileUpdateDTO: ProfileUpdateDTO): Promise<UserUpdated> {
+		for(let i = 0; i < this.users.length; i++){
+            
+			if (this.users[i].id === userId) {
+                
+				this.users[i].username = profileUpdateDTO.username ?? this.users[i].username;
+				
+				this.users[i].telegram_number = profileUpdateDTO.telegramNumber ?? this.users[i].telegram_number;
+				
+				this.users[i].password = await Bcrypt.hash(profileUpdateDTO.newPassword) ?? this.users[i].password
+				
+                this.save();
+
+				return {
+					username: this.users[i].username,
+					email: this.users[i].email, 
+					telegramNumber: this.users[i].telegram_number, 
+					password: profileUpdateDTO.newPassword ?? this.users[i].password 
+				}
+            }
+        }
     }
 
     public deleteByEmail(email: string) {

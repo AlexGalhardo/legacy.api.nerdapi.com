@@ -4,7 +4,7 @@ import { ClientException } from "src/Utils/Exception";
 import * as jwt from "jsonwebtoken";
 
 export interface AuthLogoutUseCasePort {
-    execute(token: string): Promise<AuthLogoutUseCaseResponse>;
+    execute(jwtToken: string): Promise<AuthLogoutUseCaseResponse>;
 }
 
 interface AuthLogoutUseCaseResponse {
@@ -14,11 +14,11 @@ interface AuthLogoutUseCaseResponse {
 export default class AuthLogoutUseCase implements AuthLogoutUseCasePort {
     constructor(private readonly usersRepository: UserRepositoryPort) {}
 
-    async execute(token: string): Promise<AuthLogoutUseCaseResponse> {
-        const { id } = jwt.verify(token, process.env.JWT_SECRET) as jwt.JwtPayload;
+    async execute(jwtToken: string): Promise<AuthLogoutUseCaseResponse> {
+        const { userID } = jwt.verify(jwtToken, process.env.JWT_SECRET) as jwt.JwtPayload;
 
-        if (id && this.usersRepository.findById(id)) {
-            this.usersRepository.logout(id);
+        if (userID && this.usersRepository.findById(userID)) {
+            this.usersRepository.logout(userID);
             return { success: true };
         }
 

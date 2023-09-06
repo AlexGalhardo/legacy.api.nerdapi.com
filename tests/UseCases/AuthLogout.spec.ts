@@ -3,14 +3,14 @@ import UserRepository, { UserRepositoryPort } from "src/Repositories/Users.repos
 import Validator from "src/Utils/Validator";
 import AuthLoginUseCase, { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCases/AuthLogin.useCase";
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
-import DeleteUserUseCase, { DeleteUserUseCasePort } from "src/UseCases/DeleteUserUseCase.useCase";
+import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDeleteUseCase.useCase";
 import AuthLogoutUseCase, { AuthLogoutUseCasePort } from "src/UseCases/AuthLogout.useCase";
 
 describe("Test AuthLogoutUseCase", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;
     let authLoginUseCase: AuthLoginUseCasePort;
     let authLogoutUseCase: AuthLogoutUseCasePort;
-    let deleteUserByEmail: DeleteUserUseCasePort;
+    let deleteUserByEmail: UserDeleteUseCasePort;
 
     beforeAll(async () => {
         const module: TestingModule = await Test.createTestingModule({
@@ -45,10 +45,10 @@ describe("Test AuthLogoutUseCase", () => {
                     },
                 },
                 {
-                    provide: "DeleteUserUseCasePort",
+                    provide: "UserDeleteUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
-                        return new DeleteUserUseCase(userRepository);
+                        return new UserDeleteUseCase(userRepository);
                     },
                 },
             ],
@@ -56,7 +56,7 @@ describe("Test AuthLogoutUseCase", () => {
         authRegisterUseCase = module.get<AuthRegisterUseCasePort>("AuthRegisterUseCasePort");
         authLoginUseCase = module.get<AuthLoginUseCasePort>("AuthLoginUseCasePort");
         authLogoutUseCase = module.get<AuthLogoutUseCasePort>("AuthLogoutUseCasePort");
-        deleteUserByEmail = module.get<DeleteUserUseCasePort>("DeleteUserUseCasePort");
+        deleteUserByEmail = module.get<UserDeleteUseCasePort>("UserDeleteUseCasePort");
     });
 
     const userEmail = Validator.email.generate();
@@ -67,6 +67,7 @@ describe("Test AuthLogoutUseCase", () => {
         const authRegisterDTO: AuthRegisterDTO = {
             username: "Testing Logout Test",
             email: userEmail,
+			telegramNumber: Validator.phone.generate(),
             password: userPassword,
         };
         const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);

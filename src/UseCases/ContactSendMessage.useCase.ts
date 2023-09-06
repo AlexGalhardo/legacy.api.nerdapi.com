@@ -7,18 +7,18 @@ export interface ContactDTO {
     message: string;
 }
 
-interface SendContactMessageUseCaseResponse {
+interface ContactSendMessageUseCaseResponse {
     success: boolean;
 }
 
-export interface SendContactMessageUseCasePort {
-    execute(contactDTO: ContactDTO): Promise<SendContactMessageUseCaseResponse>;
+export interface ContactSendMessageUseCasePort {
+    execute(contactDTO: ContactDTO): Promise<ContactSendMessageUseCaseResponse>;
 }
 
-export default class SendContactMessageUseCase implements SendContactMessageUseCasePort {
+export default class ContactSendMessageUseCase implements ContactSendMessageUseCasePort {
     constructor(private readonly smtp = SMTP) {}
 
-    async execute(contactDTO: ContactDTO): Promise<SendContactMessageUseCaseResponse> {
+    async execute(contactDTO: ContactDTO): Promise<ContactSendMessageUseCaseResponse> {
         const { name, email, subject, message } = contactDTO;
 
         if (name && email && subject && message) {

@@ -14,9 +14,9 @@ export class ValidateToken implements NestMiddleware {
             throw new ClientException(ErrorsMessages.TOKEN_EXPIRED_OR_INVALID);
         }
 
-        const token = request.headers.authorization.split(" ")[1];
+        const jwt_token = request.headers.authorization.split(" ")[1];
 
-        response.locals.token = token;
+        response.locals.jwt_token = jwt_token;
 
         next();
     }

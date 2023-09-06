@@ -1,8 +1,30 @@
-import { Controller } from "@nestjs/common";
+import { Body, Controller, HttpStatus, Inject, Put, Res } from "@nestjs/common";
+import { Response } from "express";
+import { ProfileUpdateDTO, ProfileUpdateUseCasePort } from "src/UseCases/ProfileUpdate.useCase";
 
-interface ProfileControllerPort {}
+interface ProfileUseCaseResponse {
+    success: boolean;
+    data?: any;
+}
+
+interface ProfileControllerPort {
+	login(profileUpdateDTO: ProfileUpdateDTO, response: Response): Promise<Response<ProfileUseCaseResponse>>;
+}
 
 @Controller()
 export class ProfileController implements ProfileControllerPort {
-    constructor() {}
+    constructor(
+		@Inject("ProfileUpdateUseCasePort") private readonly profileUpdateUseCase: ProfileUpdateUseCasePort,
+	) {}
+
+    @Put("/profile")
+    async login(@Body() profileUpdateDTO: ProfileUpdateDTO, @Res() response: Response): Promise<Response<ProfileUseCaseResponse>> {
+		try {
+			console.log('response.locals.jwt_token => ', response.locals.jwt_token)
+            const { success, data } = await this.profileUpdateUseCase.execute(response.locals.jwt_token, profileUpdateDTO);
+            if (success) return response.status(HttpStatus.OK).json({ success: true, data });
+        } catch (error) {
+            return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
+        }
+	}
 }

@@ -1,15 +1,13 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import UserRepository, { UserRepositoryPort } from "src/Repositories/Users.repository";
-import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import Validator from "src/Utils/Validator";
+import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDeleteUseCase.useCase";
-import AuthForgetPasswordUseCase, { AuthForgetPasswordDTO, AuthForgetPasswordUseCasePort } from "src/UseCases/AuthForgetPassword.useCase";
-import AuthResetPasswordUseCase, { AuthResetPasswordDTO, AuthResetPasswordUseCasePort } from "src/UseCases/AuthResetPassword.useCase";
+import ProfileUpdateUseCase, { ProfileUpdateDTO, ProfileUpdateUseCasePort } from "src/UseCases/ProfileUpdate.useCase";
 
-describe("Test AuthForgetPasswordUseCase", () => {
+describe("Test ProfileUpdateUseCase", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;
-	let authForgetPasswordUseCase: AuthForgetPasswordUseCasePort;
-	let authResetPasswordUseCase: AuthResetPasswordUseCasePort;
+    let profileUpdateUseCase: ProfileUpdateUseCasePort;
     let deleteUserByEmail: UserDeleteUseCasePort;
 
     beforeAll(async () => {
@@ -17,31 +15,24 @@ describe("Test AuthForgetPasswordUseCase", () => {
             controllers: [],
             providers: [
                 {
-                    provide: "UserRepositoryPort",
                     inject: [],
+                    provide: "UserRepositoryPort",
                     useFactory: () => {
                         return new UserRepository();
                     },
                 },
-                {
+				{
                     provide: "AuthRegisterUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
                         return new AuthRegisterUseCase(userRepository);
                     },
                 },
-				{
-                    provide: "AuthForgetPasswordUseCasePort",
+                {
+                    provide: "ProfileUpdateUseCasePort",
                     inject: ["UserRepositoryPort"],
                     useFactory: (userRepository: UserRepositoryPort) => {
-                        return new AuthForgetPasswordUseCase(userRepository);
-                    },
-                },
-				{
-                    provide: "AuthResetPasswordUseCasePort",
-                    inject: ["UserRepositoryPort"],
-                    useFactory: (userRepository: UserRepositoryPort) => {
-                        return new AuthResetPasswordUseCase(userRepository);
+                        return new ProfileUpdateUseCase(userRepository);
                     },
                 },
 				{
@@ -54,47 +45,45 @@ describe("Test AuthForgetPasswordUseCase", () => {
             ],
         }).compile();
         authRegisterUseCase = module.get<AuthRegisterUseCasePort>("AuthRegisterUseCasePort");
-		authForgetPasswordUseCase = module.get<AuthForgetPasswordUseCasePort>("AuthForgetPasswordUseCasePort");
-		authResetPasswordUseCase = module.get<AuthResetPasswordUseCasePort>("AuthResetPasswordUseCasePort");
+        profileUpdateUseCase = module.get<ProfileUpdateUseCasePort>("ProfileUpdateUseCasePort");
         deleteUserByEmail = module.get<UserDeleteUseCasePort>("UserDeleteUseCasePort");
     });
 
     const userEmail = Validator.email.generate();
-	let resetPasswordToken = null;
+    const userPassword = Validator.password.generate();
+	let jwtToken = null
 
     it("should register a user", async () => {
         const authRegisterDTO: AuthRegisterDTO = {
-            username: "Testing ResetPassword Test",
+            username: "Testing Login Test",
             email: userEmail,
 			telegramNumber: Validator.phone.generate(),
-            password: Validator.password.generate()
+            password: userPassword,
         };
         const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);
+		jwtToken = jwt_token
 
         expect(success).toBeTruthy();
         expect(jwt_token).toBeDefined();
     });
 
-	it("should send a email with reset_password_token to user reset password", async () => {
-        const authForgetPasswordDTO: AuthForgetPasswordDTO = { email: userEmail };
-        const { success, reset_password_token } = await authForgetPasswordUseCase.execute(authForgetPasswordDTO);
+	const newUserName = 'Testing Profile Updat';
+	const newTelegramNumber = Validator.phone.generate();
+	const newPassword = Validator.password.generate();
 
-		resetPasswordToken = reset_password_token
-
-        expect(success).toBeTruthy();
-        expect(reset_password_token).toBeDefined();
-    });
-
-	it("should get reset_password_token in url params and reset user password", async () => {
-		const newPassword = Validator.password.generate()
-        
-		const authResetPasswordDTO: AuthResetPasswordDTO = { 
-			newPassword,
-			confirmNewPassword: newPassword
-		};
-        const { success } = await authResetPasswordUseCase.execute(resetPasswordToken, authResetPasswordDTO);
+    it("should update profile", async () => {
+        const profileUpdateDTO: ProfileUpdateDTO = {
+            username: newUserName,
+			telegramNumber: newTelegramNumber,
+            olderPassword: userPassword,
+			newPassword: newPassword
+        };
+        const { success, data } = await profileUpdateUseCase.execute(jwtToken, profileUpdateDTO);
 
         expect(success).toBeTruthy();
+        expect(data.username).toBe(newUserName);
+		expect(data.telegramNumber).toBe(newTelegramNumber);
+		expect(data.password).toBe(newPassword);
     });
 
     afterAll(async () => {

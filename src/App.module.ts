@@ -30,7 +30,8 @@ export class AppModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {
         consumer.apply(ValidateToken).forRoutes(
 			{ path: '/tokenUser', method: RequestMethod.GET },
-			{ path: '/logout', method: RequestMethod.POST }
+			{ path: '/logout', method: RequestMethod.POST },
+			{ path: '/profile', method: RequestMethod.PUT }
 		);
     }
 }
