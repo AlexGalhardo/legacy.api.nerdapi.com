@@ -46,15 +46,6 @@ export interface UserRepositoryPort {
 	resetPassword(userId: string, newPassword: string): void;
 }
 
-export function sleepSync(milliseconds) {
-	const start = new Date().getTime();
-	while (true) {
-		if (new Date().getTime() - start >= milliseconds) {
-		break;
-		}
-	}
-}
-
 export default class UserRepository implements UserRepositoryPort {
     constructor(private users: User[] = usersDatabase) {}
 

@@ -1,1 +1,757 @@
-[]
+{
+	"games": [
+		{
+			"id": "bfa24684-5832-4800-87e9-a796303bcc64",
+			"title": "Portal 2",
+			"igdb_rating": 92,
+			"release_year": 2011,
+			"release_date": "2011-04-18T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rs4.jpg",
+			"igdb_url": "https://www.igdb.com/games/portal-2",
+			"developer": "Valve",
+			"publisher": "Valve",
+			"platforms": [
+				"PC",
+				"Switch",
+				"PS3",
+				"Mac",
+				"Linux",
+				"X360"
+			],
+			"genres": [
+				"Shooter",
+				"Platform",
+				"Puzzle",
+				"Adventure"
+			],
+			"summary": "Sequel to the acclaimed Portal (2007), Portal 2 pits the protagonist of the original game, Chell, and her new robot friend, Wheatley, against more puzzles conceived by GLaDOS, an A.I. with the sole purpose of testing the Portal Gun's mechanics and taking revenge on Chell for the events of Portal. As a result of several interactions and revelations, Chell once again pushes to escape Aperture Science Labs."
+		},
+		{
+			"id": "493d3b15-dcb1-400f-9b79-2bef9a8dd9c3",
+			"title": "Left 4 Dead 2",
+			"igdb_rating": 85,
+			"release_year": 2009,
+			"release_date": "2009-11-17T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1y2f.jpg",
+			"igdb_url": "https://www.igdb.com/games/left-4-dead-2",
+			"developer": "Valve",
+			"publisher": "Valve",
+			"platforms": [
+				"PC",
+				"Mac",
+				"Linux",
+				"X360"
+			],
+			"genres": [
+				"Shooter"
+			],
+			"summary": "Left 4 Dead 2 is a cooperative first-person shooter video game, the sequel to Valve Corporation's Left 4 Dead. The Game builds upon cooperatively focused gameplay and Valve's proprietary Source engine, the same game engine used in the original Left 4 Dead. Set during the aftermath of an apocalyptic pandemic, Left 4 Dead 2 focuses on four new Survivors, fighting against hordes of the Infected, who develop severe psychosis and exhibit zombie-like tendencies. The Survivors must fight their way through five campaigns, interspersed with safe houses that act as checkpoints, with the goal of escape at each campaign's finale."
+		},
+		{
+			"id": "13ad6cac-949c-4b57-bf95-825fa806b868",
+			"title": "Counter-Strike 2",
+			"igdb_rating": null,
+			"release_year": null,
+			"release_date": null,
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6ab2.jpg",
+			"igdb_url": "https://www.igdb.com/games/counter-strike-2",
+			"developer": "Valve Software",
+			"publisher": "Valve Software",
+			"platforms": [
+				"PC",
+				"Mac",
+				"Linux"
+			],
+			"genres": [
+				"Shooter",
+				"Tactical"
+			]
+		},
+		{
+			"id": "4bf9e027-c88c-4be9-a995-ae3d43cf5711",
+			"title": "Counter-Strike",
+			"igdb_rating": 76,
+			"release_year": 2000,
+			"release_date": "2000-11-09T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3dav.jpg",
+			"igdb_url": "https://www.igdb.com/games/counter-strike",
+			"developer": "Valve",
+			"publisher": "Vivendi Universal",
+			"platforms": [
+				"PC",
+				"XBOX",
+				"Mac",
+				"Linux"
+			],
+			"genres": [
+				"Shooter"
+			],
+			"summary": "Play the world's number 1 online action game. Engage in an incredibly realistic brand of terrorist warfare in this wildly popular team-based game. Ally with teammates to complete strategic missions. Take out enemy sites. Rescue hostages. Your role affects your team's success. Your team's success affects your role."
+		},
+		{
+			"id": "d4b7eaea-295e-4d84-be48-5373ddccc308",
+			"title": "Half-Life 2",
+			"igdb_rating": 90,
+			"release_year": 2004,
+			"release_date": "2004-11-16T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1nmw.jpg",
+			"igdb_url": "https://www.igdb.com/games/half-life-2",
+			"developer": "Valve",
+			"publisher": "Sierra Entertainment",
+			"platforms": [
+				"PC",
+				"XBOX",
+				"PS3",
+				"Mac",
+				"Android",
+				"Linux",
+				"X360"
+			],
+			"genres": [
+				"Shooter"
+			],
+			"summary": "1998. HALF-LIFE sends a shock through the game industry with its combination of pounding action and continuous, immersive storytelling.\n\nNOW. By taking the suspense, challenge and visceral charge of the original, and adding startling new realism and responsiveness, Half-Life 2 opens the door to a world where the player's presence affects everything around them, from the physical environment to the behaviors even the emotions of both friends and enemies."
+		},
+		{
+			"id": "cff88160-618d-4cfa-b0cb-da03eeae4404",
+			"title": "BioShock",
+			"igdb_rating": 89,
+			"release_year": 2007,
+			"release_date": "2007-08-21T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2mli.jpg",
+			"igdb_url": "https://www.igdb.com/games/bioshock",
+			"developer": "2K Boston",
+			"publisher": "2K Games",
+			"platforms": [
+				"PC",
+				"PS3",
+				"Mac",
+				"X360"
+			],
+			"genres": [
+				"Shooter",
+				"Puzzle",
+				"Role-playing (RPG)",
+				"Adventure"
+			],
+			"summary": "BioShock is a horror-themed first-person shooter set in a steampunk underwater dystopia. The player is urged to turn everything into a weapon: biologically modifying their own body with Plasmids, hacking devices and systems, upgrading their weapons, crafting new ammo variants, and experimenting with different battle techniques are all possible. The game is described by the developers as a spiritual successor to their previous PC title System Shock 2. BioShock received high praise in critical reviews for its atmospheric audio and visual quality, absorbing and original plot and its unique gaming experience."
+		},
+		{
+			"id": "e477dde0-bff7-4b9e-a9ba-ab13356c277b",
+			"title": "BioShock 2",
+			"igdb_rating": 84,
+			"release_year": 2010,
+			"release_date": "2010-02-09T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2mlj.jpg",
+			"igdb_url": "https://www.igdb.com/games/bioshock-2",
+			"developer": "2K Australia",
+			"publisher": "2K Games",
+			"platforms": [
+				"PC",
+				"PS3",
+				"Mac",
+				"X360"
+			],
+			"genres": [
+				"Shooter",
+				"Puzzle",
+				"Role-playing (RPG)",
+				"Adventure"
+			],
+			"summary": "BioShock 2 is the second game of the BioShock series and the sequel to BioShock. It continues the grand storyline of the underwater metropolis Rapture. BioShock 2 capitalizes and improves upon the high-quality effects, unique gameplay elements, and immersive atmosphere that defined the first game. It explores more brutal gameplay than its predecessor, with new enemies, weapons, Plasmids, and Gene Tonics."
+		},
+		{
+			"id": "9f921eb2-c757-41e8-9409-381a2a1e3de7",
+			"title": "BioShock Infinite",
+			"igdb_rating": 89,
+			"release_year": 2013,
+			"release_date": "2013-02-26T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2n12.jpg",
+			"igdb_url": "https://www.igdb.com/games/bioshock-infinite",
+			"developer": "Irrational Games",
+			"publisher": "2K Games",
+			"platforms": [
+				"PC",
+				"Switch",
+				"PS3",
+				"Mac",
+				"PS4",
+				"Linux",
+				"X360",
+				"XONE"
+			],
+			"genres": [
+				"Shooter",
+				"Adventure"
+			],
+			"summary": "BioShock Infinite is the third game in the BioShock series. It is not a direct sequel/prequel to any of the previous BioShock games but takes place in an entirely different setting, although it shares similar features, gameplay and concepts with the previous games. BioShock Infinite features a range of environments that force the player to adapt, with different weapons and strategies for each situation. Interior spaces feature close combat with enemies, but unlike previous games set in Rapture, the setting of Infinite contains open spaces with emphasis on sniping and ranged combat against as many as fifteen enemies at once."
+		},
+		{
+			"id": "8de1b64b-7e56-4a13-b366-8067d350eb99",
+			"title": "BioShock",
+			"igdb_rating": null,
+			"release_year": 2014,
+			"release_date": "2014-08-27T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co54xh.jpg",
+			"igdb_url": "https://www.igdb.com/games/bioshock--3",
+			"developer": "2K Australia",
+			"publisher": "2K Games",
+			"platforms": [
+				"iOS"
+			],
+			"genres": [
+				"Shooter",
+				"Role-playing (RPG)",
+				"Adventure"
+			],
+			"summary": "The iOS port of BioShock is a completely functional version of the original game with a graphics engine optimized for iOS devices. The mechanics are identical to the original game with all the same Plasmids, Gene Tonics and Weapons. One noteworthy function this version lacks is jumping and the Research Camera feature. The game can additionally be played with a separate Bluetooth-enabled controller."
+		},
+		{
+			"id": "09adc09d-0dd1-408e-bdc0-e34dbd4212ed",
+			"title": "To the Moon",
+			"igdb_rating": 82,
+			"release_year": 2011,
+			"release_date": "2011-11-01T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co25yv.jpg",
+			"igdb_url": "https://www.igdb.com/games/to-the-moon",
+			"developer": "Freebird Games",
+			"publisher": "Freebird Games",
+			"platforms": [
+				"iOS",
+				"PC",
+				"Switch",
+				"Mac",
+				"Android",
+				"Linux"
+			],
+			"genres": [
+				"Puzzle",
+				"Role-playing (RPG)",
+				"Adventure",
+				"Indie",
+				"Point-and-click"
+			],
+			"summary": "Join Dr. Rosalene and Dr. Watts as they enter a patient named Johnny's mind on his death bed to grant his final request. Watch, interact, and change the past as Johnny's life unfolds before you and takes you on a magical journey inside one's head that asks the greatest question of all: \"What if...?\"\nIf you had the chance to relive your life, would you change things? Would you try to achieve some grand goal? Could you find love? Fame? Fortune? Or would you realize that sometimes the past is meant to stay the same. Join Dr. Rosalene and Watts on their journey and travel To The Moon."
+		},
+		{
+			"id": "6bcc09a6-23a3-4a3b-832b-4e9e21953710",
+			"title": "Tibia",
+			"igdb_rating": 79,
+			"release_year": 1996,
+			"release_date": "1997-01-01T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co255g.jpg",
+			"igdb_url": "https://www.igdb.com/games/tibia",
+			"developer": "CipSoft",
+			"publisher": "CipSoft",
+			"platforms": [
+				"PC",
+				"Mac",
+				"Linux"
+			],
+			"genres": [
+				"Role-playing (RPG)",
+				"Adventure"
+			],
+			"summary": "Tibia is one of the oldest and most successful massively multiplayer online role-playing games (MMORPG) created in Europe. In an MMORPG people from all over the world meet on a virtual playground to explore areas, solve tricky riddles and undertake heroic exploits."
+		},
+		{
+			"id": "e33ba5bf-0dda-4c44-927e-47fa02e93162",
+			"title": "The Legend of Zelda: Tears of the Kingdom",
+			"igdb_rating": 96,
+			"release_year": 2023,
+			"release_date": "2023-05-12T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5vmg.jpg",
+			"igdb_url": "https://www.igdb.com/games/the-legend-of-zelda-tears-of-the-kingdom",
+			"developer": "Nintendo EPD Production Group No. 3",
+			"publisher": "Nintendo",
+			"platforms": [
+				"Switch"
+			],
+			"genres": [
+				"Role-playing (RPG)",
+				"Adventure"
+			],
+			"summary": "The Legend of Zelda: Tears of the Kingdom is the sequel to The Legend of Zelda: Breath of the Wild. The setting for Link’s adventure has been expanded to include the skies above the vast lands of Hyrule."
+		},
+		{
+			"id": "eb34b197-ac51-4512-a20b-ad2e394c8043",
+			"title": "Disco Elysium",
+			"igdb_rating": 92,
+			"release_year": 2019,
+			"release_date": "2019-10-15T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1sfj.jpg",
+			"igdb_url": "https://www.igdb.com/games/disco-elysium",
+			"developer": "ZA/UM",
+			"publisher": "ZA/UM",
+			"platforms": [
+				"PC",
+				"Mac"
+			],
+			"genres": [
+				"Role-playing (RPG)",
+				"Adventure"
+			],
+			"summary": "A CRPG in which, waking up in a hotel room a total amnesiac with highly opinionated voices in his head, a middle-aged detective on a murder case inadvertently ends up playing a part in the political dispute between a local labour union and a larger international body, all while struggling to piece together his past, diagnose the nature of the reality around him and come to terms with said reality."
+		},
+		{
+			"id": "776a5255-75dc-4819-8103-8297d85d05b2",
+			"title": "The Witcher 3: Wild Hunt",
+			"igdb_rating": 93,
+			"release_year": 2015,
+			"release_date": "2015-05-19T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1wyy.jpg",
+			"igdb_url": "https://www.igdb.com/games/the-witcher-3-wild-hunt",
+			"developer": "CD Projekt RED",
+			"publisher": "cdp.pl",
+			"platforms": [
+				"PC",
+				"Switch",
+				"PS4",
+				"PS5",
+				"Series X",
+				"XONE"
+			],
+			"genres": [
+				"Role-playing (RPG)",
+				"Adventure"
+			],
+			"summary": "RPG and sequel to The Witcher 2 (2011), The Witcher 3 follows witcher Geralt of Rivia as he seeks out his former lover and his young subject while intermingling with the political workings of the wartorn Northern Kingdoms. Geralt has to fight monsters and deal with people of all sorts in order to solve complex problems and settle contentious disputes, each ranging from the personal to the world-changing."
+		},
+		{
+			"id": "319e34f5-a81f-4ed1-a34f-ea680551121b",
+			"title": "Elden Ring",
+			"igdb_rating": 96,
+			"release_year": 2022,
+			"release_date": "2022-02-25T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co4jni.jpg",
+			"igdb_url": "https://www.igdb.com/games/elden-ring",
+			"developer": "FromSoftware",
+			"publisher": "FromSoftware",
+			"platforms": [
+				"PC",
+				"PS4",
+				"PS5",
+				"Series X",
+				"XONE"
+			],
+			"genres": [
+				"Role-playing (RPG)",
+				"Adventure"
+			],
+			"summary": "Elden Ring is a fantasy, action and open world game with RPG elements such as stats, weapons and spells. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord in the Lands Between."
+		},
+		{
+			"id": "be358b0b-8bcb-4778-963d-efcd98e990f6",
+			"title": "Chrono Trigger",
+			"igdb_rating": 92,
+			"release_year": 1995,
+			"release_date": "1995-03-11T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co3plw.jpg",
+			"igdb_url": "https://www.igdb.com/games/chrono-trigger",
+			"developer": "Square",
+			"publisher": "Square",
+			"platforms": [
+				"PS3",
+				null,
+				"SNES",
+				"SFAM",
+				"Wii"
+			],
+			"genres": [
+				"Role-playing (RPG)",
+				"Adventure"
+			],
+			"summary": "In this turn-based Japanese RPG, young Crono must travel through time through a misfunctioning teleporter to rescue his misfortunate companion and take part in an intricate web of past and present perils. The adventure that ensues soon unveils an evil force set to destroy the world, triggering Crono's race against time to change the course of history and bring about a brighter future."
+		},
+		{
+			"id": "1269ed7a-5535-40dd-9ec0-8400fa54d5ab",
+			"title": "Sea of Stars",
+			"igdb_rating": 89,
+			"release_year": 2023,
+			"release_date": "2023-08-29T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co215b.jpg",
+			"igdb_url": "https://www.igdb.com/games/sea-of-stars",
+			"developer": "Sabotage",
+			"publisher": "Sabotage",
+			"platforms": [
+				"PC",
+				"Switch",
+				"PS4",
+				"PS5",
+				"Series X",
+				"XONE"
+			],
+			"genres": [
+				"Role-playing (RPG)",
+				"Turn-based strategy (TBS)",
+				"Adventure",
+				"Indie"
+			],
+			"summary": "Sea of Stars is a turn-based RPG inspired by the classics. Promising the Sabotage touch in every system, Sea of Stars aims to modernize the classic RPG in terms of turn-based combat, storytelling, exploration and interactions with the environment, while still offering a hearty slice of nostalgia and good old, simple fun."
+		},
+		{
+			"id": "a9a07134-416e-4c11-a66e-b409cbe6655f",
+			"title": "God of War Ragnarök",
+			"igdb_rating": 94,
+			"release_year": 2022,
+			"release_date": "2022-11-09T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5s5v.jpg",
+			"igdb_url": "https://www.igdb.com/games/god-of-war-ragnarok",
+			"developer": "SIE Santa Monica Studio",
+			"publisher": "Sony Interactive Entertainment",
+			"platforms": [
+				"PS4",
+				"PS5"
+			],
+			"genres": [
+				"Hack and slash/Beat 'em up",
+				"Adventure"
+			],
+			"summary": "God of War: Ragnarök is the ninth installment in the God of War series and the sequel to 2018's God of War. Continuing with the Norse mythology theme, the game is set in ancient Norway and feature series protagonists Kratos, the former Greek God of War, and his young son Atreus. The game is expected to kick off the events of Ragnarök, where Kratos and Atreus must journey to each of the Nine Realms in search of answers as they prepare for the prophesied battle that will end the world."
+		},
+		{
+			"id": "c64ee7da-3418-4c4d-a3d5-2847a43135ff",
+			"title": "God of War",
+			"igdb_rating": 94,
+			"release_year": 2018,
+			"release_date": "2018-04-20T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1tmu.jpg",
+			"igdb_url": "https://www.igdb.com/games/god-of-war--1",
+			"developer": "SIE Santa Monica Studio",
+			"publisher": "Sony Interactive Entertainment",
+			"platforms": [
+				"PC",
+				"PS4"
+			],
+			"genres": [
+				"Role-playing (RPG)",
+				"Hack and slash/Beat 'em up",
+				"Adventure"
+			],
+			"summary": "God of War is the sequel to God of War III as well as a continuation of the canon God of War chronology. Unlike previous installments, this game focuses on Norse mythology and follows an older and more seasoned Kratos and his son Atreus in the years since the third game. It is in this harsh, unforgiving world that he must fight to survive… and teach his son to do the same."
+		},
+		{
+			"id": "e42ca4f1-062d-4e14-b9e9-d3e427c999e8",
+			"title": "Red Dead Redemption 2",
+			"igdb_rating": 93,
+			"release_year": 2018,
+			"release_date": "2018-10-26T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1q1f.jpg",
+			"igdb_url": "https://www.igdb.com/games/red-dead-redemption-2",
+			"developer": "Rockstar Games",
+			"publisher": "Take-Two Interactive",
+			"platforms": [
+				"PC",
+				"PS4",
+				"Stadia",
+				"XONE"
+			],
+			"genres": [
+				"Shooter",
+				"Role-playing (RPG)",
+				"Adventure"
+			],
+			"summary": "Red Dead Redemption 2 is the epic tale of outlaw Arthur Morgan and the infamous Van der Linde gang, on the run across America at the dawn of the modern age."
+		},
+		{
+			"id": "f74ccc4b-a584-4913-8a33-03f14bd7e482",
+			"title": "Red Dead Redemption",
+			"igdb_rating": 90,
+			"release_year": 2010,
+			"release_date": "2010-05-18T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2lcv.jpg",
+			"igdb_url": "https://www.igdb.com/games/red-dead-redemption",
+			"developer": "Rockstar San Diego",
+			"publisher": "Take-Two Interactive",
+			"platforms": [
+				"PS3",
+				"X360"
+			],
+			"genres": [
+				"Shooter",
+				"Role-playing (RPG)",
+				"Adventure"
+			],
+			"summary": "A modern-day Western epic, Red Dead Redemption takes John Marston, a relic from the fast-closing time of the gunslinger, through an open-world filled with wildlife, mini games and shootouts. Marston sets out to hunt down his old gang mates for the government, who have taken away his family, and meets many characters emblematic of the Wild West, heroism and the new civilization along his journey."
+		},
+		{
+			"id": "68cbaa5f-223e-4892-b1e8-105c98d7dc4d",
+			"title": "The Last of Us",
+			"igdb_rating": 92,
+			"release_year": 2013,
+			"release_date": "2013-06-14T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1r7f.jpg",
+			"igdb_url": "https://www.igdb.com/games/the-last-of-us",
+			"developer": "Naughty Dog",
+			"publisher": "Sony Computer Entertainment",
+			"platforms": [
+				"PS3"
+			],
+			"genres": [
+				"Shooter",
+				"Adventure"
+			],
+			"summary": "A third person shooter/stealth/survival hybrid, in which twenty years after the outbreak of a parasitic fungus which takes over the neural functions of humans, Joel, a Texan with a tragic familial past, finds himself responsible with smuggling a fourteen year old girl named Ellie to a militia group called the Fireflies, while avoiding strict and deadly authorities, infected fungal hosts and other violent survivors."
+		},
+		{
+			"id": "2f4cae98-a8ce-45ed-afdf-3950063445ae",
+			"title": "The Last of Us Part II",
+			"igdb_rating": 93,
+			"release_year": 2020,
+			"release_date": "2020-06-19T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5ziw.jpg",
+			"igdb_url": "https://www.igdb.com/games/the-last-of-us-part-ii",
+			"developer": "Naughty Dog",
+			"publisher": "Sony Interactive Entertainment",
+			"platforms": [
+				"PS4"
+			],
+			"genres": [
+				"Shooter",
+				"Adventure"
+			],
+			"summary": "The Last of Us Part II is an action-adventure game set five years after the events of The Last of Us. The player traverses post-apocalyptic environments such as buildings and forests to advance the story. He can use firearms, improvised weapons, and stealth to defend against hostile humans and cannibalistic creatures infected by a mutated strain of the Cordyceps fungus. The game intermittently switches control between Ellie and Abby, and also briefly Joel in the opening sequence. The nimble nature of the player character introduces platforming elements, allowing the player to jump and climb to traverse environments and gain advantages during combat."
+		},
+		{
+			"id": "9adef962-8e28-45c5-92b3-c8e5197fea88",
+			"title": "Marvel's Spider-Man",
+			"igdb_rating": 88,
+			"release_year": 2018,
+			"release_date": "2018-09-07T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1r77.jpg",
+			"igdb_url": "https://www.igdb.com/games/marvels-spider-man",
+			"developer": "Insomniac Games",
+			"publisher": "Sony Interactive Entertainment",
+			"platforms": [
+				"PS4"
+			],
+			"genres": [
+				"Hack and slash/Beat 'em up",
+				"Adventure"
+			],
+			"summary": "Starring the world’s most iconic Super Hero, Spider-Man features the acrobatic abilities, improvisation and web-slinging that the wall-crawler is famous for, while also introducing elements never-before-seen in a Spider-Man game. From traversing with parkour and utilizing the environment, to new combat and blockbuster set pieces, it’s Spider-Man unlike any you’ve played before."
+		},
+		{
+			"id": "b359a783-18f5-4156-81c6-1c5615f6898d",
+			"title": "Monster Hunter: World",
+			"igdb_rating": 88,
+			"release_year": 2018,
+			"release_date": "2018-01-26T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rst.jpg",
+			"igdb_url": "https://www.igdb.com/games/monster-hunter-world",
+			"developer": "Capcom",
+			"publisher": "Capcom",
+			"platforms": [
+				"PC",
+				"PS4",
+				"XONE"
+			],
+			"genres": [
+				"Role-playing (RPG)",
+				"Adventure"
+			],
+			"summary": "Welcome to a new world! Take on the role of a hunter and slay ferocious monsters in a living, breathing ecosystem where you can use the landscape and its diverse inhabitants to get the upper hand. Hunt alone or in co-op with up to three other players, and use materials collected from fallen foes to craft new gear and take on even bigger, badder beasts!"
+		},
+		{
+			"id": "5da03cce-8db4-4c5a-9938-249f63289c28",
+			"title": "Death Stranding",
+			"igdb_rating": 85,
+			"release_year": 2019,
+			"release_date": "2019-11-08T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co5vq8.jpg",
+			"igdb_url": "https://www.igdb.com/games/death-stranding",
+			"developer": "Kojima Productions",
+			"publisher": "505 Games",
+			"platforms": [
+				"PC",
+				"PS4"
+			],
+			"genres": [
+				"Shooter",
+				"Role-playing (RPG)",
+				"Adventure"
+			],
+			"summary": "From legendary game creator Hideo Kojima comes an all-new, genre-defying open world action adventure, starring Norman Reedus, Mads Mikkelsen, Léa Seydoux and Lindsay Wagner.\n\nIn the near future, mysterious explosions have rocked the globe, setting off a series of supernatural events known as the Death Stranding. With otherworldly creatures plaguing the landscape, and mass extinction imminent, it’s up to Sam Porter Bridges to travel across the ravaged wasteland and save humanity from impending annihilation."
+		},
+		{
+			"id": "b70d1330-bd23-440e-9120-fcf20018affe",
+			"title": "Children of Morta",
+			"igdb_rating": 76,
+			"release_year": 2019,
+			"release_date": "2019-09-03T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2iw2.jpg",
+			"igdb_url": "https://www.igdb.com/games/children-of-morta",
+			"developer": "Dead Mage",
+			"publisher": "11 bit studios",
+			"platforms": [
+				"PC",
+				"Switch",
+				"Mac",
+				"PS4",
+				"Linux",
+				"XONE"
+			],
+			"genres": [
+				"Role-playing (RPG)",
+				"Adventure",
+				"Indie"
+			],
+			"summary": "Children of Morta is a narrative driven hack and slash roguelike. Take on the role of a member of the Bergson family, the Guardians of Mount Morta, as you fight desperately against the Corruption. Experience not only what it means to be a hero, but to be part of a family that bears the weight of the mountain together."
+		},
+		{
+			"id": "2fd68e7c-81ea-4d67-88b7-56d7363ab9e4",
+			"title": "A Plague Tale: Innocence",
+			"igdb_rating": 81,
+			"release_year": 2019,
+			"release_date": "2019-05-14T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1lat.jpg",
+			"igdb_url": "https://www.igdb.com/games/a-plague-tale-innocence",
+			"developer": "Asobo Studio",
+			"publisher": "Focus Entertainment",
+			"platforms": [
+				"PC",
+				"PS4",
+				"PS5",
+				"Series X",
+				"XONE"
+			],
+			"genres": [
+				"Role-playing (RPG)",
+				"Adventure"
+			],
+			"summary": "A Plague Tale: Innocence, on PlayStation 4, Xbox One and PC, tells the grim story of two siblings fighting together for survival in the darkest hours of History. This new video game from Asobo Studio sends you on an emotional journey through the 14th century France, with gameplay combining adventure, action and stealth, supported by a compelling story. Follow the young Amicia and her little brother Hugo, who face the brutality of a ravaged world as they discover their purpose to expose a dark secret. On the run from the Inquisition's soldiers, surrounded by unstoppable swarms of rats incarnating the Black Death, Amicia and Hugo will learn to know and trust each other as they struggle for their lives against all odds."
+		},
+		{
+			"id": "7a43db01-cbea-4ca5-ba46-75df130d0ba4",
+			"title": "Diablo IV",
+			"igdb_rating": 88,
+			"release_year": 2023,
+			"release_date": "2023-06-02T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co69sm.jpg",
+			"igdb_url": "https://www.igdb.com/games/diablo-iv",
+			"developer": "Blizzard Entertainment",
+			"publisher": "Blizzard Entertainment",
+			"platforms": [
+				"PC",
+				"PS4",
+				"PS5",
+				"Series X",
+				"XONE"
+			],
+			"genres": [
+				"Role-playing (RPG)",
+				"Hack and slash/Beat 'em up"
+			],
+			"summary": "Endless demons to slaughter. Deep customization through Talents, Skill Points, Runes, and Legendary loot. Randomized dungeons contained in a dynamic open world. Survive and conquer darkness—or succumb to the shadows."
+		},
+		{
+			"id": "784f63a1-6594-4f03-a7fd-1e339f787df0",
+			"title": "Overwatch 2",
+			"igdb_rating": 76,
+			"release_year": 2022,
+			"release_date": "2022-10-04T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6srp.jpg",
+			"igdb_url": "https://www.igdb.com/games/overwatch-2",
+			"developer": "Blizzard Entertainment",
+			"publisher": "Blizzard Entertainment",
+			"platforms": [
+				"PC",
+				"Switch",
+				"PS4",
+				"PS5",
+				"Series X",
+				"XONE"
+			],
+			"genres": [
+				"Shooter"
+			],
+			"summary": "Reunite and stand together in a new age of heroes. Overwatch 2 builds on an award-winning foundation of epic competitive play, and challenges the world’s heroes to team up, power up, and take on an overwhelming outbreak of threats around the globe."
+		},
+		{
+			"id": "7fb9b5f8-0eb0-4902-ab11-9499dd9a8cc2",
+			"title": "Bloons TD 6",
+			"igdb_rating": 81,
+			"release_year": 2018,
+			"release_date": "2018-06-14T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1n4k.jpg",
+			"igdb_url": "https://www.igdb.com/games/bloons-td-6",
+			"developer": "Ninja Kiwi",
+			"publisher": "Ninja Kiwi",
+			"platforms": [
+				"iOS",
+				"PC",
+				"Mac",
+				"Android"
+			],
+			"genres": [
+				"Strategy",
+				"Tactical"
+			],
+			"summary": "The Bloons are back and better than ever! Craft your perfect defense from a combination of awesome monkey towers, upgrades, Heroes, and activated abilities, then pop every last Bloon that comes your way!"
+		},
+		{
+			"id": "3f2a50f0-f793-4948-9e43-23941ec10187",
+			"title": "Call of Duty: Modern Warfare",
+			"igdb_rating": 79,
+			"release_year": 2019,
+			"release_date": "2019-10-25T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1rsg.jpg",
+			"igdb_url": "https://www.igdb.com/games/call-of-duty-modern-warfare",
+			"developer": "Infinity Ward",
+			"publisher": "Activision",
+			"platforms": [
+				"PC",
+				"PS4",
+				"XONE"
+			],
+			"genres": [
+				"Shooter"
+			],
+			"summary": "Prepare to go dark, Modern Warfare is back!\n\nThe stakes have never been higher as players take on the role of lethal Tier One operators in a heart-racing saga that will affect the global balance of power. Call of Duty: Modern Warfare engulfs fans in an incredibly raw, gritty, provocative narrative that brings unrivaled intensity and shines a light on the changing nature of modern war.\n\nPlayers will be thrust into an immersive narrative spanning the entire game. Experience the ultimate online playground with classic multiplayer or squad-up and play cooperatively in a collection of elite operations, accessible to all skill levels."
+		},
+		{
+			"id": "c5bbeac4-ac24-4087-840b-0f683ac9a18d",
+			"title": "Call of Duty: Warzone",
+			"igdb_rating": 79,
+			"release_year": 2020,
+			"release_date": "2020-03-10T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co20o8.jpg",
+			"igdb_url": "https://www.igdb.com/games/call-of-duty-warzone",
+			"developer": "Infinity Ward",
+			"publisher": "Activision",
+			"platforms": [
+				"PC",
+				"PS4",
+				"XONE"
+			],
+			"genres": [
+				"Shooter"
+			],
+			"summary": "Welcome to Warzone, the new massive free-to-play combat arena from the world of Modern Warfare. Drop in, armor up, loot for rewards, and battle your way to the top."
+		},
+		{
+			"id": "17e53d1d-72f2-4097-b47d-027a5dc52591",
+			"title": "Call of Duty: Black Ops III",
+			"igdb_rating": 71,
+			"release_year": 2015,
+			"release_date": "2015-11-06T00:00:00.000Z",
+			"cover": "https://images.igdb.com/igdb/image/upload/t_cover_big/co20yw.jpg",
+			"igdb_url": "https://www.igdb.com/games/call-of-duty-black-ops-iii",
+			"developer": "Treyarch",
+			"publisher": "Activision",
+			"platforms": [
+				"PC",
+				"PS3",
+				"Mac",
+				"PS4",
+				"X360",
+				"XONE"
+			],
+			"genres": [
+				"Shooter",
+				"Adventure"
+			],
+			"summary": "Call of Duty: Black Ops 3 deploys players into a dark, twisted future where a new breed of Black Ops soldier emerges and the lines are blurred between our own humanity and the technology we created to stay ahead, in a world where cutting-edge military robotics define warfare. With three unique game modes: Campaign, Multiplayer and Zombies, providing fans with the deepest and most ambitious Call of Duty ever."
+		}
+	]
+}
