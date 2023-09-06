@@ -1,12 +1,12 @@
 [
     {
-        "id": "18192de8-54c3-4bba-a046-244a71cc4719",
+        "id": "22a71315-2da0-4676-bcd4-c34f24e1c895",
         "username": "Alex Galhardo",
         "email": "aleexgvieira@gmail.com",
-        "telegram_number": "5518996971459",
-        "password": "$2b$12$LC/lP79I6xIARspnmKwWA.SabEpcI4tT9j0QoTkMfYVjUTjulc6y6",
-        "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIxODE5MmRlOC01NGMzLTRiYmEtYTA0Ni0yNDRhNzFjYzQ3MTkiLCJpYXQiOjE2OTQwMjU5Mzd9.YShejc_tdjqlfzScOVUEJggt-D_sHOCBlE0nrfJVvkY",
-        "api_token": null,
+        "telegram_number": null,
+        "password": "$2b$12$UQSWfbOwepgBVxdOzHG8xOt.RwxNYhEMWzrE7WbGwOg6TZJFw7LSq",
+        "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIyMmE3MTMxNS0yZGEwLTQ2NzYtYmNkNC1jMzRmMjRlMWM4OTUiLCJpYXQiOjE2OTQwNDA0OTJ9.49Ete23XPe0MKkyhFEGRmFlCqe5NddxUojYhKbx_d1A",
+        "api_token": "24fe93f1d18879bb95497cd2cd26c4a9",
         "reset_password_token": null,
         "reset_password_token_expires_at": null,
         "stripe": {
@@ -23,9 +23,38 @@
             "updated_at": "Tue Jan 20 1970 11:30:53 GMT-0300 (Brasilia Standard Time)",
             "updated_at_pt_br": "04/09/2023 15:48:14"
         },
-        "created_at": "Wed Sep 06 2023 15:45:37 GMT-0300 (Brasilia Standard Time)",
+        "created_at": "Wed Sep 06 2023 17:51:32 GMT-0300 (Brasilia Standard Time)",
         "updated_at": null,
-        "created_at_pt_br": "06/09/2023 15:45:37",
+        "created_at_pt_br": "06/09/2023 17:51:32",
+        "updated_at_pt_br": null
+    },
+    {
+        "id": "00199ffe-4afa-4a33-b08d-cf11317b8bcf",
+        "username": "Boby Jack",
+        "email": "aleexgalhardoo@gmail.com",
+        "telegram_number": null,
+        "password": "$2b$12$z15zeukhUAl4nOkf6Zj/FO8fIj4.IS2w4Nse4ubtL/Te84e1LLXn6",
+        "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIwMDE5OWZmZS00YWZhLTRhMzMtYjA4ZC1jZjExMzE3YjhiY2YiLCJpYXQiOjE2OTQwNDA0ODB9.DHVsDmsZK7yXqYQc1xoXzD3i8VfRG3ixH-FfvOYAFZc",
+        "api_token": null,
+        "reset_password_token": null,
+        "reset_password_token_expires_at": null,
+        "stripe": {
+            "customer_id": null,
+            "subscription": {
+                "active": false,
+                "name": null,
+                "starts_at": null,
+                "ends_at": null,
+                "charge_id": null,
+                "receipt_url": null,
+                "hosted_invoice_url": null
+            },
+            "updated_at": null,
+            "updated_at_pt_br": null
+        },
+        "created_at": "Wed Sep 06 2023 19:05:37 GMT-0300 (Brasilia Standard Time)",
+        "updated_at": null,
+        "created_at_pt_br": "06/09/2023 19:05:37",
         "updated_at_pt_br": null
     }
 ]

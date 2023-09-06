@@ -48,6 +48,7 @@ export interface UserResponse {
 }
 
 export interface StripeSubscriptionInfo {
+	apiToken: string | null;
     customerId: string | null;
     paid: boolean | null;
     chargeId: string | null;
@@ -200,6 +201,8 @@ export default class UsersRepository implements UsersRepositoryPort {
     public updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo) {
         for (let i = 0; i < this.users.length; i++) {
             if (this.users[i].id === user.id) {
+				this.users[i].api_token =
+                    stripeSubscriptionInfo.apiToken ?? this.users[i].api_token;
                 this.users[i].stripe.customer_id =
                     stripeSubscriptionInfo.customerId ?? this.users[i].stripe.customer_id;
                 this.users[i].stripe.subscription.active =

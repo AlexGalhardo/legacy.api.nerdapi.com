@@ -1,11 +1,15 @@
 import { Controller, Post, Res, Body, Inject, HttpStatus, Get, Req } from "@nestjs/common";
 import { Request, Response } from "express";
+import { ParamsDictionary } from "express-serve-static-core";
+import { ParsedQs } from "qs";
 import { AuthForgetPasswordDTO, AuthForgetPasswordUseCasePort } from "src/UseCases/AuthForgetPassword.useCase";
 import { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCases/AuthLogin.useCase";
+import { AuthLoginGoogleUseCasePort } from "src/UseCases/AuthLoginGoogle.useCase";
 import { AuthLogoutUseCasePort } from "src/UseCases/AuthLogout.useCase";
 import { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import { AuthResetPasswordDTO, AuthResetPasswordUseCasePort } from "src/UseCases/AuthResetPassword.useCase";
 import { AuthTokenUserUseCasePort } from "src/UseCases/AuthTokenUser.useCase";
+import { APP_URL } from "src/Utils/Constants";
 
 interface AuthUseCaseResponse {
     success: boolean;
@@ -27,12 +31,17 @@ interface AuthControllerPort {
         request: Request,
         response: Response,
     ): Promise<Response<AuthUseCaseResponse>>;
+	loginGoogle(
+        request: Request,
+        response: Response
+    ): void;
 }
 
 @Controller()
 export class AuthController implements AuthControllerPort {
     constructor(
         @Inject("AuthLoginUseCasePort") private readonly authLoginUseCase: AuthLoginUseCasePort,
+		@Inject("AuthLoginGoogleUseCasePort") private readonly authLoginGoogleUseCase: AuthLoginGoogleUseCasePort,
         @Inject("AuthRegisterUseCasePort") private readonly authRegisterUseCase: AuthRegisterUseCasePort,
         @Inject("AuthLogoutUseCasePort") private readonly authLogoutUseCase: AuthLogoutUseCasePort,
         @Inject("AuthTokenUserUseCasePort") private readonly authTokenUserUseCase: AuthTokenUserUseCasePort,
@@ -40,6 +49,9 @@ export class AuthController implements AuthControllerPort {
         private readonly authForgetPasswordUseCase: AuthForgetPasswordUseCasePort,
         @Inject("AuthResetPasswordUseCasePort") private readonly authResetPasswordUseCase: AuthResetPasswordUseCasePort,
     ) {}
+	googleLogin(request: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, response: Response<any, Record<string, any>>): void {
+		throw new Error("Method not implemented.");
+	}
 
     @Post("/login")
     async login(@Body() authLoginDTO: AuthLoginDTO, @Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
@@ -74,7 +86,7 @@ export class AuthController implements AuthControllerPort {
         }
     }
 
-    @Get("/tokenUser")
+    @Post("/tokenUser")
     async tokenUser(@Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
             const { success, data } = await this.authTokenUserUseCase.execute(response.locals.jwt_token);
@@ -107,6 +119,21 @@ export class AuthController implements AuthControllerPort {
             const { reset_password_token } = request.params;
             const { success } = await this.authResetPasswordUseCase.execute(reset_password_token, authResetPasswordDTO);
             if (success) return response.status(HttpStatus.OK).json({ success: true });
+        } catch (error) {
+            return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
+        }
+    }
+
+	@Post("/callback/google/login")
+    async loginGoogle(
+        @Req() request: Request,
+        @Res() response: Response,
+    ) {
+        try {
+            const { success, jwt_token, user_registred } = await this.authLoginGoogleUseCase.execute(request);
+            if (success) {
+				return response.redirect(`http://localhost:5173/profile?token=${jwt_token}&registred=${user_registred}`);
+			}
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
