@@ -2,7 +2,13 @@ import { Controller, Post, Res, Body, Inject, HttpStatus } from "@nestjs/common"
 import { Response } from "express";
 import { ContactDTO, ContactSendMessageUseCasePort } from "src/UseCases/ContactSendMessage.useCase";
 
-interface ContactControllerPort {}
+interface ContactUseCaseResponse {
+    success: boolean;
+    message?: string;
+}
+interface ContactControllerPort {
+    contactSendMessage(contactDTO: ContactDTO, response: Response): Promise<Response<ContactUseCaseResponse>>;
+}
 
 @Controller()
 export class ContactController implements ContactControllerPort {
@@ -12,12 +18,15 @@ export class ContactController implements ContactControllerPort {
     ) {}
 
     @Post("/contact")
-    async login(@Body() contactDTO: ContactDTO, @Res() response: Response) {
+    async contactSendMessage(
+        @Body() contactDTO: ContactDTO,
+        @Res() response: Response,
+    ): Promise<Response<ContactUseCaseResponse>> {
         try {
             const { success } = await this.contactSendMessageUseCase.execute(contactDTO);
             if (success) return response.status(HttpStatus.OK).json({ success: true });
         } catch (error) {
-            throw new Error(error.message);
+            return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
 }
