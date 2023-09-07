@@ -27,6 +27,12 @@ export interface Genre {
 	name: string;
 }
 
+export interface WhereToBuy {
+	id: string;
+	name: string;
+	url: string;
+}
+
 export interface Game {
     id: string;
     title: string;
@@ -44,17 +50,7 @@ export interface Game {
 		url: string | null;
 		rating: number | null;
 	}
-	where_to_buy?: {
-		amazon_url?: string;
-		steam_url?: string;
-		gog_url?: string;
-		epic_games?: string;
-		playstation_store?: string;
-		nitendo_store?: string;
-		xbox_store?: string;
-		google_play?: string;
-		apple_app_store?: string;
-	}
+	where_to_buy: WhereToBuy[] 
 	developer: Developer
 	publisher: Publisher
 	platforms_available: PlatformAvailable[]

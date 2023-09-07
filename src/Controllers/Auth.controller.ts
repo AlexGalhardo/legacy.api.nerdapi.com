@@ -129,8 +129,9 @@ export class AuthController implements AuthControllerPort {
         try {
             const { success, jwt_token, user_registred } = await this.authLoginGoogleUseCase.execute(request);
             if (success) {
+				console.log('\n\n APP_URL É => ', APP_URL)
                 return response.redirect(
-                    `http://localhost:5173/profile?token=${jwt_token}&registred=${user_registred}`,
+                    `${APP_URL}/profile?token=${jwt_token}&registred=${user_registred}`,
                 );
             }
         } catch (error) {
