@@ -1,0 +1,46 @@
+[
+	{
+		"id": "15d6e978-d4b9-42d5-8981-536d2c81f632",
+		"name": "Shooter"
+	},
+	{
+		"id": "bd2bd04e-6f69-43f9-a5ae-d44104ed3494",
+		"name": "Platform"
+	},
+	{
+		"id": "99dc6e2a-7a82-4d1e-8cd4-279d0b07df3c",
+		"name": "Puzzle"
+	},
+	{
+		"id": "67f64a9d-91d9-4665-a64f-18feced5e7c8",
+		"name": "Adventure"
+	},
+	{
+		"id": "a2ea39ce-d0eb-45cb-a4e9-88f5892555e8",
+		"name": "Tactical"
+	},
+	{
+		"id": "b2f388a3-b9f9-4426-8b18-0138563d5344",
+		"name": "Role-playing (RPG)"
+	},
+	{
+		"id": "7004e294-e74c-4297-96b9-4ce77e8ec8c4",
+		"name": "Indie"
+	},
+	{
+		"id": "01347d23-7c89-4e16-a1de-f26218e6add4",
+		"name": "Point-and-click"
+	},
+	{
+		"id": "e32e2294-08ce-4fca-a7c4-b16d031a1803",
+		"name": "Turn-based strategy (TBS)"
+	},
+	{
+		"id": "a81f8608-8618-46be-bf8e-f5ee544e8bd4",
+		"name": "Hack and slash/Beat 'em up"
+	},
+	{
+		"id": "65ad1549-5293-4d17-93d8-02e42d42693a",
+		"name": "Strategy"
+	}
+]

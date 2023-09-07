@@ -7,6 +7,7 @@ import { StripeModule } from "./Modules/Stripe.module";
 import { HealthCheckModule } from "./Modules/HealthCheck.module";
 import { ConfigModule } from "@nestjs/config";
 import { ValidateToken } from "./MIddlewares/ValidateToken.middleware";
+import { GamesModule } from "./Modules/Games.module";
 
 @Module({
     imports: [
@@ -15,6 +16,7 @@ import { ValidateToken } from "./MIddlewares/ValidateToken.middleware";
         ProfileModule,
         ContactModule,
         StripeModule,
+		GamesModule,
         ConfigModule.forRoot({ isGlobal: true }),
     ],
     controllers: [],

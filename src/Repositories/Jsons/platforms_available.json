@@ -1,0 +1,74 @@
+[
+	{
+		"id": "b372d0f0-f17e-438e-97fb-3f32a1c54727",
+		"name": "PC (Microsoft Windows)"
+	},
+	{
+		"id": "6a7cad25-cfa6-42b5-beda-33c704d3c728",
+		"name": "Nintendo Switch"
+	},
+	{
+		"id": "89d80441-b003-49ce-a277-a12a5bf24a35",
+		"name": "PlayStation 3"
+	},
+	{
+		"id": "7abaaa4a-c0f1-4750-ae12-fdf47ad1df6a",
+		"name": "Mac"
+	},
+	{
+		"id": "e1a7d147-27ee-4006-9ff8-f866969ab8f1",
+		"name": "Linux"
+	},
+	{
+		"id": "0b1a907a-adfb-4ced-a6cb-d1e0bebf6026",
+		"name": "Xbox 360"
+	},
+	{
+		"id": "e7ad0aa7-9c31-4da2-b33b-f6100ff4c140",
+		"name": "Xbox"
+	},
+	{
+		"id": "3ed31f3f-966a-40d7-afc9-7c8b027b9e5c",
+		"name": "Android"
+	},
+	{
+		"id": "7a4244b3-a20f-44cc-9cc4-e1a2e86b6d6e",
+		"name": "PlayStation 4"
+	},
+	{
+		"id": "f435ed97-2f05-4030-9609-863678c8dbfd",
+		"name": "Xbox One"
+	},
+	{
+		"id": "1b4195d3-2168-4658-98ce-1b3be2a52f05",
+		"name": "iOS"
+	},
+	{
+		"id": "3881d2a2-b23a-499c-a8a4-83f4699fe0d4",
+		"name": "PlayStation 5"
+	},
+	{
+		"id": "41f1fb71-b92a-4357-bfd1-7868b48f2ee9",
+		"name": "Xbox Series X|S"
+	},
+	{
+		"id": "f1a77b04-bd97-48fe-8eb3-65a956e16beb",
+		"name": "Satellaview"
+	},
+	{
+		"id": "4c49b50e-b676-4acd-9c83-a2bb7cfa7094",
+		"name": "Super Nintendo Entertainment System"
+	},
+	{
+		"id": "1aaf07c7-7ef3-4a93-aaa3-5e1d60cc3772",
+		"name": "Super Famicom"
+	},
+	{
+		"id": "ca5c408b-0901-40f6-bc2c-04e0dabdb863",
+		"name": "Wii"
+	},
+	{
+		"id": "a22bf828-1f3f-4be2-aba9-12c0b0a34e08",
+		"name": "Google Stadia"
+	}
+]

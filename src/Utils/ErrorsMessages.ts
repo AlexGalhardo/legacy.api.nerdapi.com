@@ -29,4 +29,8 @@ export enum ErrorsMessages {
     EMAIL_NOT_REGISTRED = "Email not registred",
 
     USER_HAS_ACTIVE_PLAN = "User has active plan",
+
+	GET_RANDOM_GAME_ERROR = "Get random game error",
+	GET_GAME_BY_TITLE_ERROR = "Get game by title error",
+	GET_GAME_BY_ID_ERROR = "Get game by id error",
 }
