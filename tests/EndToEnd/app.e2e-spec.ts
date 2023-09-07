@@ -83,7 +83,7 @@ describe("AppController (e2e)", () => {
     it("GET healthCheck / endpoint should return HttpStatus.OK", () => {
         return request(app.getHttpServer()).get("/").expect(HttpStatus.OK).expect({
             success: true,
-            message: "Galhardo MicroSaaS API is on!",
+            message: "Nerd API is on, lets goo!",
         });
     });
 
