@@ -128,7 +128,9 @@ export class AuthController implements AuthControllerPort {
     async loginGoogle(@Req() request: Request, @Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
             const { success, redirect } = await this.authLoginGoogleUseCase.execute(request);
-            if (success) return response.status(HttpStatus.OK).json({ success: true, redirect });
+            if (success) {
+                response.redirect(redirect);
+            }
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }

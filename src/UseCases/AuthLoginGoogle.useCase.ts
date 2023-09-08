@@ -22,6 +22,7 @@ export interface AuthLoginDTO {
 interface AuthLoginGoogleUseCaseResponse {
     success: boolean;
     redirect: string;
+    jwt_token?: string;
 }
 
 export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePort {
@@ -48,7 +49,11 @@ export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePor
                 user.jwt_token = jwt_token;
                 this.usersRepository.save(user, index);
 
-                return { success: true, redirect: `${APP_URL}/profile?token=${jwt_token}&registred=${false}` };
+                return {
+                    success: true,
+                    jwt_token,
+                    redirect: `${APP_URL}/profile?token=${jwt_token}&registred=${false}`,
+                };
             } else {
                 const userId = randomUUID();
 
@@ -84,7 +89,11 @@ export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePor
                     updated_at_pt_br: null,
                 });
 
-                return { success: true, redirect: `${APP_URL}/profile?token=${jwt_token}&registred=${false}` };
+                return {
+                    success: true,
+                    jwt_token,
+                    redirect: `${APP_URL}/profile?token=${jwt_token}&registred=${false}`,
+                };
             }
         } catch (error) {
             throw new ClientException(error);
