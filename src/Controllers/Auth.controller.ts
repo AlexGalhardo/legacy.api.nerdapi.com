@@ -1,7 +1,5 @@
 import { Controller, Post, Res, Body, Inject, HttpStatus, Req } from "@nestjs/common";
 import { Request, Response } from "express";
-import { ParamsDictionary } from "express-serve-static-core";
-import { ParsedQs } from "qs";
 import { AuthForgetPasswordDTO, AuthForgetPasswordUseCasePort } from "src/UseCases/AuthForgetPassword.useCase";
 import { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCases/AuthLogin.useCase";
 import { AuthLoginGoogleUseCasePort } from "src/UseCases/AuthLoginGoogle.useCase";
@@ -46,12 +44,6 @@ export class AuthController implements AuthControllerPort {
         private readonly authForgetPasswordUseCase: AuthForgetPasswordUseCasePort,
         @Inject("AuthResetPasswordUseCasePort") private readonly authResetPasswordUseCase: AuthResetPasswordUseCasePort,
     ) {}
-    googleLogin(
-        request: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>,
-        response: Response<any, Record<string, any>>,
-    ): void {
-        throw new Error("Method not implemented.");
-    }
 
     @Post("/login")
     async login(@Body() authLoginDTO: AuthLoginDTO, @Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
