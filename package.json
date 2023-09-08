@@ -4,10 +4,10 @@
 		"node": ">=20"
 	},
 	"scripts": {
-		"build": "nest build",
-		"start": "nest start",
-		"dev": "nest start --watch",
-		"start:debug": "nest start --debug --watch",
+		"build": "npx nest build",
+		"start": "npx nest start",
+		"dev": "npx nest start --watch",
+		"start:debug": "npx nest start --debug --watch",
 		"start:prod": "node dist/main",
 		"test": "jest",
 		"test:watch": "jest --watch",
