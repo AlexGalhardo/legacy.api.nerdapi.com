@@ -22,20 +22,20 @@ import GameGetRandomUseCase from "src/UseCases/GameGetRandom.useCase";
                 return new GameGetRandomUseCase(gamesRepository);
             },
         },
-		{
+        {
             provide: "GameGetByIdUseCasePort",
             inject: ["GamesRepositoryPort"],
             useFactory: (gamesRepository: GamesRepositoryPort) => {
                 return new GameGetByIdUseCase(gamesRepository);
             },
         },
-		{
+        {
             provide: "GameGetByTitleUseCasePort",
             inject: ["GamesRepositoryPort"],
             useFactory: (gamesRepository: GamesRepositoryPort) => {
                 return new GameGetByTitleUseCase(gamesRepository);
             },
-        }
+        },
     ],
 })
 export class GamesModule {}

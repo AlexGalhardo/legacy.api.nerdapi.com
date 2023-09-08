@@ -30,7 +30,7 @@ export enum ErrorsMessages {
 
     USER_HAS_ACTIVE_PLAN = "User has active plan",
 
-	GET_RANDOM_GAME_ERROR = "Get random game error",
-	GET_GAME_BY_TITLE_ERROR = "Get game by title error",
-	GET_GAME_BY_ID_ERROR = "Get game by id error",
+    GET_RANDOM_GAME_ERROR = "Get random game error",
+    GET_GAME_BY_TITLE_ERROR = "Get game by title error",
+    GET_GAME_BY_ID_ERROR = "Get game by id error",
 }

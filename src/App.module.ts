@@ -16,7 +16,7 @@ import { GamesModule } from "./Modules/Games.module";
         ProfileModule,
         ContactModule,
         StripeModule,
-		GamesModule,
+        GamesModule,
         ConfigModule.forRoot({ isGlobal: true }),
     ],
     controllers: [],

@@ -13,14 +13,12 @@ interface GameGetRandomUseCaseResponse {
 }
 
 export default class GameGetRandomUseCase implements GameGetRandomUseCasePort {
-    constructor(
-        private readonly gamesRepository: GamesRepositoryPort,
-    ) {}
+    constructor(private readonly gamesRepository: GamesRepositoryPort) {}
 
     async execute(): Promise<GameGetRandomUseCaseResponse> {
-		const randomGame = this.gamesRepository.getRandom()
+        const randomGame = this.gamesRepository.getRandom();
 
-		if(randomGame) return { success: true, data: randomGame }
+        if (randomGame) return { success: true, data: randomGame };
 
         throw new ClientException(ErrorsMessages.GET_RANDOM_GAME_ERROR);
     }

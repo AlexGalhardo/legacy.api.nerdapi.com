@@ -4,39 +4,39 @@
 
 ## Introduction
 
-* Welcome to [https://api.nerdapi.com](https://api.nerdapi.com) Source Code!
+*   Welcome to <https://api.nerdapi.com> Source Code!
 
 ## Development Setup Local
 
-* Clone repository
+*   Clone repository
 
 <!---->
 
     git clone git@github.com:AlexGalhardo/api.nerdapi.com.git
 
-* Enter repository
+*   Enter repository
 
 <!---->
 
     cd api.nerdapi.com/
 
-* Install dependencies
+*   Install dependencies
 
 <!---->
 
     npm install
 
-* Start local server
+*   Start local server
 
 <!---->
 
     npm run dev
 
-* Go to: <http://localhost:3000/>
+*   Go to: <http://localhost:3000/>
 
 ## Before Submit Commits & PRs
 
-* Run command:
+*   Run command:
 
 <!---->
 

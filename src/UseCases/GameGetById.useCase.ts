@@ -13,14 +13,12 @@ interface GameGetByIdUseCaseResponse {
 }
 
 export default class GameGetByIdUseCase implements GameGetByIdUseCasePort {
-    constructor(
-        private readonly gamesRepository: GamesRepositoryPort,
-    ) {}
+    constructor(private readonly gamesRepository: GamesRepositoryPort) {}
 
     async execute(gameId: string): Promise<GameGetByIdUseCaseResponse> {
-		const gameById = this.gamesRepository.getById(gameId)
+        const gameById = this.gamesRepository.getById(gameId);
 
-		if(gameById) return { success: true, data: gameById }
+        if (gameById) return { success: true, data: gameById };
 
         throw new ClientException(ErrorsMessages.GET_GAME_BY_ID_ERROR);
     }

@@ -1,4 +1,4 @@
-import { Controller, Post, Res, Body, Inject, HttpStatus, Get, Req } from "@nestjs/common";
+import { Controller, Post, Res, Body, Inject, HttpStatus, Req } from "@nestjs/common";
 import { Request, Response } from "express";
 import { ParamsDictionary } from "express-serve-static-core";
 import { ParsedQs } from "qs";
@@ -9,12 +9,12 @@ import { AuthLogoutUseCasePort } from "src/UseCases/AuthLogout.useCase";
 import { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import { AuthResetPasswordDTO, AuthResetPasswordUseCasePort } from "src/UseCases/AuthResetPassword.useCase";
 import { AuthTokenUserUseCasePort } from "src/UseCases/AuthTokenUser.useCase";
-import { APP_URL } from "src/Utils/Constants";
 
 interface AuthUseCaseResponse {
     success: boolean;
     jwt_token?: string;
     message?: string;
+    redirect?: string;
 }
 
 interface AuthControllerPort {
@@ -31,7 +31,7 @@ interface AuthControllerPort {
         request: Request,
         response: Response,
     ): Promise<Response<AuthUseCaseResponse>>;
-    loginGoogle(request: Request, response: Response): void;
+    loginGoogle(request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
 }
 
 @Controller()
@@ -125,15 +125,10 @@ export class AuthController implements AuthControllerPort {
     }
 
     @Post("/callback/google/login")
-    async loginGoogle(@Req() request: Request, @Res() response: Response) {
+    async loginGoogle(@Req() request: Request, @Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
-            const { success, jwt_token, user_registred } = await this.authLoginGoogleUseCase.execute(request);
-            if (success) {
-				console.log('\n\n APP_URL É => ', APP_URL)
-                return response.redirect(
-                    `${APP_URL}/profile?token=${jwt_token}&registred=${user_registred}`,
-                );
-            }
+            const { success, redirect } = await this.authLoginGoogleUseCase.execute(request);
+            if (success) return response.status(HttpStatus.OK).json({ success: true, redirect });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
