@@ -1,0 +1,30 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ErrorsMessages = void 0;
+var ErrorsMessages;
+(function (ErrorsMessages) {
+    ErrorsMessages["PROCESSING_ERROR"] = "PROCESSING_ERROR";
+    ErrorsMessages["USER_ALREADY_EXISTS"] = "User already exists";
+    ErrorsMessages["USER_NOT_FOUND"] = "User not found";
+    ErrorsMessages["USER_CANNOT_AUTHENTICATE"] = "Cannot authenticate user";
+    ErrorsMessages["INVALID_LOGIN_TOKEN"] = "Invalid session token";
+    ErrorsMessages["INVALID_PHONE_NUMBER"] = "Invalid phone number";
+    ErrorsMessages["TOKEN_EXPIRED_OR_INVALID"] = "Token expired or invalid";
+    ErrorsMessages["NAME_IS_INVALID"] = "Name is invalid";
+    ErrorsMessages["INVALID_PASSWORD"] = "Invalid password";
+    ErrorsMessages["INVALID_OLDER_PASSWORD"] = "Invalid older password";
+    ErrorsMessages["PASSWORD_IS_REQUIRED"] = "Password is required";
+    ErrorsMessages["PASSWORDS_NOT_EQUAL"] = "Passwords not equal";
+    ErrorsMessages["NEW_PASSWORD_IS_INSECURE"] = "New password is insecure";
+    ErrorsMessages["PASSWORD_INSECURE"] = "Password is insecure";
+    ErrorsMessages["RESET_PASSWORD_TOKEN_EXPIRED"] = "Reset password token expired";
+    ErrorsMessages["EMAIL_IS_INVALID"] = "Email is invalid";
+    ErrorsMessages["EMAIL_ALREADY_REGISTRED"] = "Email already registred";
+    ErrorsMessages["EMAIL_OR_PASSWORD_INVALID"] = "Email or password invalid";
+    ErrorsMessages["EMAIL_NOT_REGISTRED"] = "Email not registred";
+    ErrorsMessages["USER_HAS_ACTIVE_PLAN"] = "User has active plan";
+    ErrorsMessages["GET_RANDOM_GAME_ERROR"] = "Get random game error";
+    ErrorsMessages["GET_GAME_BY_TITLE_ERROR"] = "Get game by title error";
+    ErrorsMessages["GET_GAME_BY_ID_ERROR"] = "Get game by id error";
+})(ErrorsMessages || (exports.ErrorsMessages = ErrorsMessages = {}));
+//# sourceMappingURL=ErrorsMessages.js.map
