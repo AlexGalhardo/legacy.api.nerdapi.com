@@ -4,7 +4,7 @@
 		"node": ">=20"
 	},
 	"scripts": {
-		"build": "npx nest build",
+		"build": "npx @nestjs/cli build",
 		"start": "npx nest start",
 		"dev": "npx nest start --watch",
 		"start:debug": "npx nest start --debug --watch",
