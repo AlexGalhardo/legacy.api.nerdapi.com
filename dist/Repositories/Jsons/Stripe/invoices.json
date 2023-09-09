@@ -688,16 +688,126 @@
         "type": "charge.succeeded"
     },
     {
-        "id": "evt_1NmhorAo7yQpmqlh6zpO1D8q",
+        "id": "evt_3NoY0fAo7yQpmqlh144CLvFG",
         "object": "event",
         "api_version": "2023-08-16",
-        "created": 1693853294,
+        "created": 1694292246,
         "data": {
             "object": {
-                "id": "in_1NmhooAo7yQpmqlhatjDLodW",
+                "id": "ch_3NoY0fAo7yQpmqlh1pzhzwUN",
+                "object": "charge",
+                "amount": 499,
+                "amount_captured": 499,
+                "amount_refunded": 0,
+                "application": null,
+                "application_fee": null,
+                "application_fee_amount": null,
+                "balance_transaction": "txn_3NoY0fAo7yQpmqlh1se720EW",
+                "billing_details": {
+                    "address": {
+                        "city": "Araçatuba",
+                        "country": "BR",
+                        "line1": "Rua Anselmo Manarelli",
+                        "line2": null,
+                        "postal_code": "13560-290",
+                        "state": "SP"
+                    },
+                    "email": "alexnerdapi@gmail.com",
+                    "name": "ALEX GALHARDO VIEIRA",
+                    "phone": null
+                },
+                "calculated_statement_descriptor": "Stripe",
+                "captured": true,
+                "created": 1694292245,
+                "currency": "usd",
+                "customer": "cus_OblXq4uW4OXIuk",
+                "description": "Subscription creation",
+                "destination": null,
+                "dispute": null,
+                "disputed": false,
+                "failure_balance_transaction": null,
+                "failure_code": null,
+                "failure_message": null,
+                "fraud_details": {},
+                "invoice": "in_1NoY0eAo7yQpmqlhFwgmjKpa",
+                "livemode": false,
+                "metadata": {},
+                "on_behalf_of": null,
+                "order": null,
+                "outcome": {
+                    "network_status": "approved_by_network",
+                    "reason": null,
+                    "risk_level": "normal",
+                    "risk_score": 41,
+                    "seller_message": "Payment complete.",
+                    "type": "authorized"
+                },
+                "paid": true,
+                "payment_intent": "pi_3NoY0fAo7yQpmqlh1ugMqTAM",
+                "payment_method": "pm_1NoY0dAo7yQpmqlhAF8KqAfk",
+                "payment_method_details": {
+                    "card": {
+                        "brand": "mastercard",
+                        "checks": {
+                            "address_line1_check": "pass",
+                            "address_postal_code_check": "pass",
+                            "cvc_check": null
+                        },
+                        "country": "US",
+                        "exp_month": 12,
+                        "exp_year": 2030,
+                        "fingerprint": "WlRvMcVDE4jlJUPi",
+                        "funding": "credit",
+                        "installments": null,
+                        "last4": "4320",
+                        "mandate": null,
+                        "network": "mastercard",
+                        "network_token": {
+                            "used": false
+                        },
+                        "three_d_secure": null,
+                        "wallet": {
+                            "dynamic_last4": "4444",
+                            "google_pay": {},
+                            "type": "google_pay"
+                        }
+                    },
+                    "type": "card"
+                },
+                "receipt_email": null,
+                "receipt_number": null,
+                "receipt_url": "https://pay.stripe.com/receipts/invoices/CAcaFwoVYWNjdF8xTm1kczdBbzd5UXBtcWxoKJey86cGMgazX87WMgA6LBbVFRTO3UWewLQcubojsm0idQxQ3uIxB_Tzex45RdN3CIBGAs8qBdvxuQ0t?s=ap",
+                "refunded": false,
+                "review": null,
+                "shipping": null,
+                "source": null,
+                "source_transfer": null,
+                "statement_descriptor": null,
+                "statement_descriptor_suffix": null,
+                "status": "succeeded",
+                "transfer_data": null,
+                "transfer_group": null
+            }
+        },
+        "livemode": false,
+        "pending_webhooks": 2,
+        "request": {
+            "id": "req_Tiqd9BvW58QWiD",
+            "idempotency_key": "48ae403d-21d9-4792-805b-1a30480ba66a"
+        },
+        "type": "charge.succeeded"
+    },
+    {
+        "id": "evt_1NoY0hAo7yQpmqlhTm46C31u",
+        "object": "event",
+        "api_version": "2023-08-16",
+        "created": 1694292245,
+        "data": {
+            "object": {
+                "id": "in_1NoY0eAo7yQpmqlhFwgmjKpa",
                 "object": "invoice",
                 "account_country": "BR",
-                "account_name": "NerdAPI",
+                "account_name": "Galhardo MicroSaaS",
                 "account_tax_ids": null,
                 "amount_due": 499,
                 "amount_paid": 0,
@@ -715,10 +825,10 @@
                 "billing_reason": "subscription_create",
                 "charge": null,
                 "collection_method": "charge_automatically",
-                "created": 1693853294,
+                "created": 1694292244,
                 "currency": "usd",
                 "custom_fields": null,
-                "customer": "cus_OZrXWOVtDiSJlB",
+                "customer": "cus_OblXq4uW4OXIuk",
                 "customer_address": {
                     "city": "Araçatuba",
                     "country": "BR",
@@ -727,7 +837,7 @@
                     "postal_code": "13560-290",
                     "state": "SP"
                 },
-                "customer_email": "aleexgvieira@gmail.com",
+                "customer_email": "alexnerdapi@gmail.com",
                 "customer_name": "ALEX GALHARDO VIEIRA",
                 "customer_phone": null,
                 "customer_shipping": null,
@@ -740,32 +850,32 @@
                 "discount": null,
                 "discounts": [],
                 "due_date": null,
-                "effective_at": 1693853294,
+                "effective_at": 1694292244,
                 "ending_balance": 0,
                 "footer": null,
                 "from_invoice": null,
-                "hosted_invoice_url": "https://invoice.stripe.com/i/acct_1Nmds7Ao7yQpmqlh/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PWnJYendtY0g2WXphMlhhY3dlTXZYczlxcGlYR1hyLDg0Mzk0MDk302001RX9KJRP?s=ap",
-                "invoice_pdf": "https://pay.stripe.com/invoice/acct_1Nmds7Ao7yQpmqlh/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PWnJYendtY0g2WXphMlhhY3dlTXZYczlxcGlYR1hyLDg0Mzk0MDk302001RX9KJRP/pdf?s=ap",
+                "hosted_invoice_url": "https://invoice.stripe.com/i/acct_1Nmds7Ao7yQpmqlh/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PYmxYcklJYXMwVTNiaTVNVTM3VHlsUmllaWxFYzk2LDg0ODMzMDQ30200Q7Et8r3X?s=ap",
+                "invoice_pdf": "https://pay.stripe.com/invoice/acct_1Nmds7Ao7yQpmqlh/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PYmxYcklJYXMwVTNiaTVNVTM3VHlsUmllaWxFYzk2LDg0ODMzMDQ30200Q7Et8r3X/pdf?s=ap",
                 "last_finalization_error": null,
                 "latest_revision": null,
                 "lines": {
                     "object": "list",
                     "data": [
                         {
-                            "id": "il_1NmhooAo7yQpmqlh3MCjCQxu",
+                            "id": "il_1NoY0eAo7yQpmqlhs0TRF9qA",
                             "object": "line_item",
                             "amount": 499,
                             "amount_excluding_tax": 499,
                             "currency": "usd",
-                            "description": "1 × NerdAPI PRO (at $4.99 / month)",
+                            "description": "1 × NerdAPI PRO Player (at $4.99 / month)",
                             "discount_amounts": [],
                             "discountable": true,
                             "discounts": [],
                             "livemode": false,
                             "metadata": {},
                             "period": {
-                                "end": 1696445294,
-                                "start": 1693853294
+                                "end": 1696884244,
+                                "start": 1694292244
                             },
                             "plan": {
                                 "id": "price_1NmdsYAo7yQpmqlhxWQxMFfW",
@@ -820,8 +930,8 @@
                                 "credited_items": null
                             },
                             "quantity": 1,
-                            "subscription": "sub_1NmhooAo7yQpmqlhss4xAptq",
-                            "subscription_item": "si_OZrXif3a77JQ2O",
+                            "subscription": "sub_1NoY0eAo7yQpmqlhnH6RJjco",
+                            "subscription_item": "si_OblXz6aLY1RWz6",
                             "tax_amounts": [],
                             "tax_rates": [],
                             "type": "subscription",
@@ -830,23 +940,23 @@
                     ],
                     "has_more": false,
                     "total_count": 1,
-                    "url": "/v1/invoices/in_1NmhooAo7yQpmqlhatjDLodW/lines"
+                    "url": "/v1/invoices/in_1NoY0eAo7yQpmqlhFwgmjKpa/lines"
                 },
                 "livemode": false,
                 "metadata": {},
                 "next_payment_attempt": null,
-                "number": "C2A80321-0001",
+                "number": "572F2985-0001",
                 "on_behalf_of": null,
                 "paid": false,
                 "paid_out_of_band": false,
-                "payment_intent": "pi_3NmhooAo7yQpmqlh09wd7m9y",
+                "payment_intent": "pi_3NoY0fAo7yQpmqlh1ugMqTAM",
                 "payment_settings": {
                     "default_mandate": null,
                     "payment_method_options": null,
                     "payment_method_types": null
                 },
-                "period_end": 1693853294,
-                "period_start": 1693853294,
+                "period_end": 1694292244,
+                "period_start": 1694292244,
                 "post_payment_credit_notes_amount": 0,
                 "pre_payment_credit_notes_amount": 0,
                 "quote": null,
@@ -858,12 +968,12 @@
                 "statement_descriptor": null,
                 "status": "open",
                 "status_transitions": {
-                    "finalized_at": 1693853294,
+                    "finalized_at": 1694292244,
                     "marked_uncollectible_at": null,
                     "paid_at": null,
                     "voided_at": null
                 },
-                "subscription": "sub_1NmhooAo7yQpmqlhss4xAptq",
+                "subscription": "sub_1NoY0eAo7yQpmqlhnH6RJjco",
                 "subscription_details": {
                     "metadata": {}
                 },
@@ -882,8 +992,8 @@
         "livemode": false,
         "pending_webhooks": 1,
         "request": {
-            "id": "req_Jbb170Xmu9aDgG",
-            "idempotency_key": "2e819bc9-a3e9-44c4-9d54-3e338c40cc18"
+            "id": "req_Tiqd9BvW58QWiD",
+            "idempotency_key": "48ae403d-21d9-4792-805b-1a30480ba66a"
         },
         "type": "invoice.finalized"
     }

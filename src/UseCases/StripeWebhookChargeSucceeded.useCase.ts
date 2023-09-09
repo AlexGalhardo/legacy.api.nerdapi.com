@@ -24,7 +24,7 @@ export default class StripeWebhookChargeSucceededUseCase implements StripeWebhoo
                 customerId: event.data.object.customer ?? null,
                 paid: event.data.object.paid ?? null,
                 chargeId: event.data.object.id ?? null,
-                amount: (event.data.object.amount as number) ?? null,
+                amount: (event.data.object.amount_due as number) ?? null,
                 receiptUrl: event.data.object.receipt_url ?? null,
                 hostedInvoiceUrl: event.data.object.hosted_invoice_url ?? null,
                 startAt: undefined,

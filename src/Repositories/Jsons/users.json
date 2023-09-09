@@ -6,22 +6,22 @@
         "telegram_number": null,
         "password": "$2b$12$UCpxwUk7rlB85T64qvp08eosA31cawFNoQKwEkygEnZ8ZetAB0zDC",
         "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJkOTE5YWZkZC05ZWFjLTQ3OTAtYWNlYy0wOTBlMjcwYzI4OGIiLCJpYXQiOjE2OTQyOTEyNDl9.x4jBox5kdSDtqdXspubhp0QQ1OQ2O0UjU_NECKJEpFU",
-        "api_token": null,
+        "api_token": "a5ef5042ad8a3c4a7126d3c6e1e49374",
         "reset_password_token": null,
         "reset_password_token_expires_at": null,
         "stripe": {
-            "customer_id": null,
+            "customer_id": "cus_OblXq4uW4OXIuk",
             "subscription": {
                 "active": false,
-                "name": null,
-                "starts_at": null,
-                "ends_at": null,
-                "charge_id": null,
-                "receipt_url": null,
-                "hosted_invoice_url": null
+                "name": "CASUAL",
+                "starts_at": "09/09/2023 17:44:04",
+                "ends_at": "09/10/2023 17:44:04",
+                "charge_id": "in_1NoY0eAo7yQpmqlhFwgmjKpa",
+                "receipt_url": "https://pay.stripe.com/receipts/invoices/CAcaFwoVYWNjdF8xTm1kczdBbzd5UXBtcWxoKJey86cGMgazX87WMgA6LBbVFRTO3UWewLQcubojsm0idQxQ3uIxB_Tzex45RdN3CIBGAs8qBdvxuQ0t?s=ap",
+                "hosted_invoice_url": "https://invoice.stripe.com/i/acct_1Nmds7Ao7yQpmqlh/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PYmxYcklJYXMwVTNiaTVNVTM3VHlsUmllaWxFYzk2LDg0ODMzMDQ30200Q7Et8r3X?s=ap"
             },
-            "updated_at": null,
-            "updated_at_pt_br": null
+            "updated_at": "Tue Jan 20 1970 11:38:12 GMT-0300 (Brasilia Standard Time)",
+            "updated_at_pt_br": "09/09/2023 17:44:05"
         },
         "created_at": "Sat Sep 09 2023 17:27:29 GMT-0300 (Brasilia Standard Time)",
         "updated_at": null,
