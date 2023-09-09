@@ -5,7 +5,7 @@ declare class Name {
     capitalize(fullName: string): string;
     get methods(): {
         isValidFullName: (fullName: string) => boolean;
-        isValidName: (name: string) => boolean;
+        isValid: (name: string) => boolean;
         capitalizeNames: (fullName: string) => string;
     };
 }

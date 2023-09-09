@@ -1,3 +1,4 @@
+import DateTime from "src/Utils/DataTypes/DateTime";
 import { SMTP } from "src/Utils/SMTP";
 
 export interface ContactSendMessageDTO {
@@ -25,9 +26,10 @@ export default class ContactSendMessageUseCase implements ContactSendMessageUseC
             await this.smtp.sendMail({
                 from: process.env.SMTP_EMAIL_FROM,
                 to: "aleexgvieira@gmail.com", // email
-                subject: `Galhardo MicroSaaS: Message from ${email}: ${subject}`,
+                subject: `NerdAPI: Message from ${email}: ${subject}`,
                 html: `
 					<p><strong>DATE:</strong> ${new Date()}</p>
+					<p><strong>DateTime PT-BR:</strong> ${DateTime.getNow()}</p>
 					<p><strong>NAME:</strong> ${name}</p>
 					<p><strong>EMAIL:</strong> ${email}</p>
 					<p><strong>SUBJECT:</strong> ${subject}</p>

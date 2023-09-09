@@ -15,7 +15,7 @@ export default class Validator {
     private static readonly OBJECTS;
     private static readonly STRINGS;
     private static readonly DATE_TIME;
-    static get names(): Name;
+    static get username(): Name;
     static get dateTime(): DateTime;
     static get strings(): Strings;
     static get objects(): Objects;
@@ -83,7 +83,7 @@ export default class Validator {
         isValidEmail: (email: string) => boolean;
         generateEmail: () => string;
         isValidFullName: (fullName: string) => boolean;
-        isValidName: (name: string) => boolean;
+        isValid: (name: string) => boolean;
         capitalizeNames: (fullName: string) => string;
     };
 }

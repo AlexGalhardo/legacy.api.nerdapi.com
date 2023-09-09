@@ -33,6 +33,7 @@ export interface UserUpdated {
     email: string;
     telegramNumber: string;
     password: string;
+    plain_password: string | null;
 }
 export interface UserResponse {
     user: User;

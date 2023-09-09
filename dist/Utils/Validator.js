@@ -9,7 +9,7 @@ const Password_1 = require("./DataTypes/Password");
 const DateTime_1 = require("./DataTypes/DateTime");
 const Phone_1 = require("./DataTypes/Phone");
 class Validator {
-    static get names() {
+    static get username() {
         return this.NAME;
     }
     static get dateTime() {

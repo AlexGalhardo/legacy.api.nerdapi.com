@@ -15,7 +15,7 @@
                 "livemode": false,
                 "locale": null,
                 "on_behalf_of": null,
-                "return_url": "https://microsaas.alexgalhardo.com/profile",
+                "return_url": "https://nerdapi.com/profile",
                 "url": "https://billing.stripe.com/p/session/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PWnNFd2t6VnQ3YzVGeGk5UmVUejRSOTlZVXdvT28w0100INz9Hub8"
             }
         },

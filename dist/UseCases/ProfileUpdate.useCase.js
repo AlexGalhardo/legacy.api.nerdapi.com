@@ -13,6 +13,11 @@ class ProfileUpdateUseCase {
         const { userID } = jwt.verify(jwtToken, process.env.JWT_SECRET);
         const { user } = this.usersRepository.getById(userID);
         if (user) {
+            if (profileUpdateDTO.username) {
+                if (!Validator_1.default.username.isValid(profileUpdateDTO.username)) {
+                    throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.INVALID_USERNAME);
+                }
+            }
             if (profileUpdateDTO.telegramNumber) {
                 if (!Validator_1.default.phone.isValid(profileUpdateDTO.telegramNumber)) {
                     throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.INVALID_PHONE_NUMBER);

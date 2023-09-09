@@ -7,10 +7,10 @@ export interface ProfileUpdateUseCasePort {
     execute(jwtToken: string, profileUpdateDTO: ProfileUpdateDTO): Promise<ProfileUpdateUseCaseResponse>;
 }
 export interface ProfileUpdateDTO {
-    username: string | null;
-    telegramNumber: string | null;
-    olderPassword: string | null;
-    newPassword: string | null;
+    username?: string | null;
+    telegramNumber?: string | null;
+    olderPassword?: string | null;
+    newPassword?: string | null;
 }
 export default class ProfileUpdateUseCase implements ProfileUpdateUseCasePort {
     private readonly usersRepository;

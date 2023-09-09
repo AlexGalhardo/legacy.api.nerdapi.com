@@ -4,6 +4,7 @@ exports.ErrorsMessages = void 0;
 var ErrorsMessages;
 (function (ErrorsMessages) {
     ErrorsMessages["PROCESSING_ERROR"] = "PROCESSING_ERROR";
+    ErrorsMessages["INVALID_USERNAME"] = "Invalid username";
     ErrorsMessages["USER_ALREADY_EXISTS"] = "User already exists";
     ErrorsMessages["USER_NOT_FOUND"] = "User not found";
     ErrorsMessages["USER_CANNOT_AUTHENTICATE"] = "Cannot authenticate user";

@@ -40,6 +40,7 @@ export interface UserUpdated {
     email: string;
     telegramNumber: string;
     password: string;
+	plain_password: string | null;
 }
 
 export interface UserResponse {
@@ -150,7 +151,8 @@ export default class UsersRepository implements UsersRepositoryPort {
                     username: this.users[i].username,
                     email: this.users[i].email,
                     telegramNumber: this.users[i].telegram_number,
-                    password: profileUpdateDTO.newPassword ?? this.users[i].password,
+                    password: this.users[i].password,
+					plain_password: profileUpdateDTO.newPassword ?? null,
                 };
             }
         }

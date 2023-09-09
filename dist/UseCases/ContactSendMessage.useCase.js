@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const DateTime_1 = require("../Utils/DataTypes/DateTime");
 const SMTP_1 = require("../Utils/SMTP");
 class ContactSendMessageUseCase {
     constructor(smtp = SMTP_1.SMTP) {
@@ -11,9 +12,10 @@ class ContactSendMessageUseCase {
             await this.smtp.sendMail({
                 from: process.env.SMTP_EMAIL_FROM,
                 to: "aleexgvieira@gmail.com",
-                subject: `Galhardo MicroSaaS: Message from ${email}: ${subject}`,
+                subject: `NerdAPI: Message from ${email}: ${subject}`,
                 html: `
 					<p><strong>DATE:</strong> ${new Date()}</p>
+					<p><strong>DateTime PT-BR:</strong> ${DateTime_1.default.getNow()}</p>
 					<p><strong>NAME:</strong> ${name}</p>
 					<p><strong>EMAIL:</strong> ${email}</p>
 					<p><strong>SUBJECT:</strong> ${subject}</p>

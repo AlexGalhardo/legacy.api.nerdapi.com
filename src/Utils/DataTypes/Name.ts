@@ -5,7 +5,7 @@ class Name {
     }
 
     public isValid(name: string): boolean {
-        if (!name || name.length <= 1) return false;
+        if (!name || name.length <= 3) return false;
         const regexOfValidNamesWithAcents = /^[a-zA-ZÀ-ú]+$/g;
         return regexOfValidNamesWithAcents.test(name);
     }
@@ -35,7 +35,7 @@ class Name {
     public get methods() {
         return {
             isValidFullName: this.isValidFullName,
-            isValidName: this.isValid,
+            isValid: this.isValid,
             capitalizeNames: this.capitalize,
         };
     }

@@ -8,7 +8,7 @@ export class Bcrypt {
             .then((hash) => hash);
     }
 
-    static async compare(password: string, hashPassword): Promise<boolean> {
+    static async compare(password: string, hashPassword: string): Promise<boolean> {
         return bcrypt.compare(password, hashPassword).then((resp) => resp);
     }
 }

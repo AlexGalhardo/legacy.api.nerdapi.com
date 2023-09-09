@@ -67,7 +67,8 @@ class UsersRepository {
                     username: this.users[i].username,
                     email: this.users[i].email,
                     telegramNumber: this.users[i].telegram_number,
-                    password: (_d = profileUpdateDTO.newPassword) !== null && _d !== void 0 ? _d : this.users[i].password,
+                    password: this.users[i].password,
+                    plain_password: (_d = profileUpdateDTO.newPassword) !== null && _d !== void 0 ? _d : null,
                 };
             }
         }

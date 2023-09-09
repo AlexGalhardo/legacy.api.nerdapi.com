@@ -15,10 +15,10 @@ export interface ProfileUpdateUseCasePort {
 }
 
 export interface ProfileUpdateDTO {
-    username: string | null;
-    telegramNumber: string | null;
-    olderPassword: string | null;
-    newPassword: string | null;
+    username?: string | null;
+    telegramNumber?: string | null;
+    olderPassword?: string | null;
+    newPassword?: string | null;
 }
 
 export default class ProfileUpdateUseCase implements ProfileUpdateUseCasePort {
@@ -30,6 +30,12 @@ export default class ProfileUpdateUseCase implements ProfileUpdateUseCasePort {
         const { user } = this.usersRepository.getById(userID);
 
         if (user) {
+			if(profileUpdateDTO.username){
+				if (!Validator.username.isValid(profileUpdateDTO.username)) {
+                    throw new ClientException(ErrorsMessages.INVALID_USERNAME);
+                }
+			}
+
             if (profileUpdateDTO.telegramNumber) {
                 if (!Validator.phone.isValid(profileUpdateDTO.telegramNumber)) {
                     throw new ClientException(ErrorsMessages.INVALID_PHONE_NUMBER);

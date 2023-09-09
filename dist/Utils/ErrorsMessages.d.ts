@@ -1,5 +1,6 @@
 export declare enum ErrorsMessages {
     PROCESSING_ERROR = "PROCESSING_ERROR",
+    INVALID_USERNAME = "Invalid username",
     USER_ALREADY_EXISTS = "User already exists",
     USER_NOT_FOUND = "User not found",
     USER_CANNOT_AUTHENTICATE = "Cannot authenticate user",

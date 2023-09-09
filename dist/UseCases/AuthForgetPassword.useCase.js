@@ -24,13 +24,13 @@ class AuthForgetPasswordUseCase {
             const sendEmailForgetPasswordResponse = await this.smtp.sendMail({
                 from: process.env.SMTP_EMAIL_FROM,
                 to: "aleexgvieira@gmail.com",
-                subject: `Galhardo MicroSaaS: Forget Password Link To ${email}`,
+                subject: `NerdAPI: Forget Password Link To ${email}`,
                 html: `
 					<p>Hello ${user.username},</p>
 					<p>To recover your password, click on this link do reset your password: </p>
 					<p><strong>${resetPasswordLink}</strong></p>
 					<hr>
-					<p>Galhardo MicroSaaS</p>
+					<p>NerdAPI</p>
 				`,
             });
             if (sendEmailForgetPasswordResponse) {

@@ -2,10 +2,6 @@ import * as stringSimilarity from "string-similarity";
 import * as fs from "fs";
 
 import * as gamesDatabase from "./Jsons/games.json";
-// import * as developersDatabase from "./Jsons/developers.json";
-// import * as genres from "./Jsons/genres.json";
-// import * as platforms_available from "./Jsons/platforms_available.json";
-// import * as publishers from "./Jsons/publishers.json";
 
 export interface PlatformAvailable {
     id: string;

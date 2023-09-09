@@ -15,7 +15,7 @@
                 "livemode": false,
                 "locale": null,
                 "on_behalf_of": null,
-                "return_url": "https://microsaas.alexgalhardo.com/profile",
+                "return_url": "https://nerdapi.com/profile",
                 "url": "https://billing.stripe.com/p/session/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PWnNFd2t6VnQ3YzVGeGk5UmVUejRSOTlZVXdvT28w0100INz9Hub8"
             }
         },
@@ -697,7 +697,7 @@
                 "id": "in_1NmhooAo7yQpmqlhatjDLodW",
                 "object": "invoice",
                 "account_country": "BR",
-                "account_name": "Galhardo MicroSaaS",
+                "account_name": "NerdAPI",
                 "account_tax_ids": null,
                 "amount_due": 499,
                 "amount_paid": 0,
@@ -757,7 +757,7 @@
                             "amount": 499,
                             "amount_excluding_tax": 499,
                             "currency": "usd",
-                            "description": "1 × Galhardo MicroSaaS PRO (at $4.99 / month)",
+                            "description": "1 × NerdAPI PRO (at $4.99 / month)",
                             "discount_amounts": [],
                             "discountable": true,
                             "discounts": [],

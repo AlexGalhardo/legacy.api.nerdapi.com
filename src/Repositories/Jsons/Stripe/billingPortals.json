@@ -1,30 +1,30 @@
 [
-    {
-        "id": "evt_1NmiTYAo7yQpmqlhjinnlLzZ",
-        "object": "event",
-        "api_version": "2023-08-16",
-        "created": 1693855820,
-        "data": {
-            "object": {
-                "id": "bps_1NmiTYAo7yQpmqlhTBMQmqb2",
-                "object": "billing_portal.session",
-                "configuration": "bpc_1NmfFuAo7yQpmqlheIlNMZBM",
-                "created": 1693855820,
-                "customer": "cus_OZsD9Mfc3sZu4C",
-                "flow": null,
-                "livemode": false,
-                "locale": null,
-                "on_behalf_of": null,
-                "return_url": "https://microsaas.alexgalhardo.com/profile",
-                "url": "https://billing.stripe.com/p/session/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PWnNFd2t6VnQ3YzVGeGk5UmVUejRSOTlZVXdvT28w0100INz9Hub8"
-            }
-        },
-        "livemode": false,
-        "pending_webhooks": 1,
-        "request": {
-            "id": "req_0Jm4LZaoGhbCUR",
-            "idempotency_key": "stripe-node-retry-fd03ed63-938b-4057-af29-3d106c292397"
-        },
-        "type": "billing_portal.session.created"
-    }
+	{
+		"id": "evt_1NmiTYAo7yQpmqlhjinnlLzZ",
+		"object": "event",
+		"api_version": "2023-08-16",
+		"created": 1693855820,
+		"data": {
+			"object": {
+				"id": "bps_1NmiTYAo7yQpmqlhTBMQmqb2",
+				"object": "billing_portal.session",
+				"configuration": "bpc_1NmfFuAo7yQpmqlheIlNMZBM",
+				"created": 1693855820,
+				"customer": "cus_OZsD9Mfc3sZu4C",
+				"flow": null,
+				"livemode": false,
+				"locale": null,
+				"on_behalf_of": null,
+				"return_url": "https://nerdapi.com/profile",
+				"url": "https://billing.stripe.com/p/session/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PWnNFd2t6VnQ3YzVGeGk5UmVUejRSOTlZVXdvT28w0100INz9Hub8"
+			}
+		},
+		"livemode": false,
+		"pending_webhooks": 1,
+		"request": {
+			"id": "req_0Jm4LZaoGhbCUR",
+			"idempotency_key": "stripe-node-retry-fd03ed63-938b-4057-af29-3d106c292397"
+		},
+		"type": "billing_portal.session.created"
+	}
 ]

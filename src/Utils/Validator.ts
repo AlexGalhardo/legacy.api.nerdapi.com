@@ -17,7 +17,7 @@ export default class Validator {
     private static readonly STRINGS = new Strings();
     private static readonly DATE_TIME = new DateTime();
 
-    static get names() {
+    static get username() {
         return this.NAME;
     }
 
