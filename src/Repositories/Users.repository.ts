@@ -75,6 +75,7 @@ export interface UsersRepositoryPort {
     saveResetPasswordToken(userId: string, resetPasswordToken: string): void;
     resetPassword(userId: string, newPassword: string): void;
     updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): void;
+	phoneAlreadyRegistred(userId: string, phoneNumber: string): boolean;
 }
 
 export default class UsersRepository implements UsersRepositoryPort {
@@ -143,7 +144,7 @@ export default class UsersRepository implements UsersRepositoryPort {
 
                 this.users[i].telegram_number = profileUpdateDTO.telegramNumber ?? this.users[i].telegram_number;
 
-                this.users[i].password = (await Bcrypt.hash(profileUpdateDTO.newPassword)) ?? this.users[i].password;
+				if(profileUpdateDTO.newPassword) this.users[i].password = await Bcrypt.hash(profileUpdateDTO.newPassword)
 
                 this.save();
 
@@ -172,6 +173,12 @@ export default class UsersRepository implements UsersRepositoryPort {
             }
         }
     }
+
+	public phoneAlreadyRegistred(userId: string, phoneNumber: string): boolean {
+		return this.users.some(user => {
+			if(user.id !== userId && user.telegram_number === phoneNumber) return true 
+		})
+	}
 
     public saveResetPasswordToken(userId: string, resetPasswordToken: string) {
         for (let i = 0; i < this.users.length; i++) {

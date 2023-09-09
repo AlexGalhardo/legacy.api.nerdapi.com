@@ -1,11 +1,11 @@
 declare class Name {
     constructor();
-    isValid(name: string): boolean;
-    isValidFullName(fullName: string): boolean;
+    isValidSingleName(name: string): boolean;
+    isValid(fullName: string): boolean;
     capitalize(fullName: string): string;
     get methods(): {
         isValidFullName: (fullName: string) => boolean;
-        isValid: (name: string) => boolean;
+        isValid: (fullName: string) => boolean;
         capitalizeNames: (fullName: string) => string;
     };
 }

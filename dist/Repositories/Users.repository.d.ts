@@ -66,6 +66,7 @@ export interface UsersRepositoryPort {
     saveResetPasswordToken(userId: string, resetPasswordToken: string): void;
     resetPassword(userId: string, newPassword: string): void;
     updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): void;
+    phoneAlreadyRegistred(userId: string, phoneNumber: string): boolean;
 }
 export default class UsersRepository implements UsersRepositoryPort {
     private users;
@@ -80,6 +81,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     update(userId: string, profileUpdateDTO: ProfileUpdateDTO): Promise<UserUpdated>;
     deleteByEmail(email: string): void;
     logout(userId: string): void;
+    phoneAlreadyRegistred(userId: string, phoneNumber: string): boolean;
     saveResetPasswordToken(userId: string, resetPasswordToken: string): void;
     resetPassword(userId: string, newPassword: string): void;
     updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): void;

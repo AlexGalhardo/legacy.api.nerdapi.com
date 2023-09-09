@@ -83,7 +83,7 @@ export default class Validator {
         isValidEmail: (email: string) => boolean;
         generateEmail: () => string;
         isValidFullName: (fullName: string) => boolean;
-        isValid: (name: string) => boolean;
+        isValid: (fullName: string) => boolean;
         capitalizeNames: (fullName: string) => string;
     };
 }

@@ -1,26 +1,31 @@
 class Name {
     constructor() {
+        this.isValidSingleName = this.isValidSingleName.bind(this);
         this.isValid = this.isValid.bind(this);
-        this.isValidFullName = this.isValidFullName.bind(this);
     }
 
-    public isValid(name: string): boolean {
+    public isValidSingleName(name: string): boolean {
         if (!name || name.length <= 3) return false;
         const regexOfValidNamesWithAcents = /^[a-zA-ZÀ-ú]+$/g;
         return regexOfValidNamesWithAcents.test(name);
     }
 
-    public isValidFullName(fullName: string): boolean {
+    public isValid(fullName: string): boolean {
         const names = fullName.split(" ");
-        if (names.length < 2) return false;
-        for (const name of names) {
-            if (!this.isValid(name)) return false;
-        }
-        return true;
+		if (names.length > 1){
+			for (const name of names) {
+				if (!this.isValidSingleName(name)) return false;
+			}
+		}
+		else {
+			if (!this.isValidSingleName(fullName)) return false;
+			return true
+		}
+		return true;
     }
 
     public capitalize(fullName: string): string {
-        if (!this.isValidFullName(fullName)) throw new Error("Invalid person name");
+        if (!this.isValid(fullName)) throw new Error("Invalid person name");
 
         const arr = fullName.toLowerCase().split(" "),
             prepositions = ["da", "de", "do", "das", "dos", "e"];
@@ -34,7 +39,7 @@ class Name {
 
     public get methods() {
         return {
-            isValidFullName: this.isValidFullName,
+            isValidFullName: this.isValid,
             isValid: this.isValid,
             capitalizeNames: this.capitalize,
         };

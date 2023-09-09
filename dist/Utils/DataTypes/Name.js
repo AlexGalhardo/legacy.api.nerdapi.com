@@ -2,27 +2,32 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class Name {
     constructor() {
+        this.isValidSingleName = this.isValidSingleName.bind(this);
         this.isValid = this.isValid.bind(this);
-        this.isValidFullName = this.isValidFullName.bind(this);
     }
-    isValid(name) {
+    isValidSingleName(name) {
         if (!name || name.length <= 3)
             return false;
         const regexOfValidNamesWithAcents = /^[a-zA-ZÀ-ú]+$/g;
         return regexOfValidNamesWithAcents.test(name);
     }
-    isValidFullName(fullName) {
+    isValid(fullName) {
         const names = fullName.split(" ");
-        if (names.length < 2)
-            return false;
-        for (const name of names) {
-            if (!this.isValid(name))
+        if (names.length > 1) {
+            for (const name of names) {
+                if (!this.isValidSingleName(name))
+                    return false;
+            }
+        }
+        else {
+            if (!this.isValidSingleName(fullName))
                 return false;
+            return true;
         }
         return true;
     }
     capitalize(fullName) {
-        if (!this.isValidFullName(fullName))
+        if (!this.isValid(fullName))
             throw new Error("Invalid person name");
         const arr = fullName.toLowerCase().split(" "), prepositions = ["da", "de", "do", "das", "dos", "e"];
         for (let i = 0; i < arr.length; i++) {
@@ -32,7 +37,7 @@ class Name {
     }
     get methods() {
         return {
-            isValidFullName: this.isValidFullName,
+            isValidFullName: this.isValid,
             isValid: this.isValid,
             capitalizeNames: this.capitalize,
         };

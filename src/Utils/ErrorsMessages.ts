@@ -9,7 +9,7 @@ export enum ErrorsMessages {
 
     INVALID_LOGIN_TOKEN = "Invalid session token",
 
-    INVALID_PHONE_NUMBER = "Invalid phone number",
+    INVALID_PHONE_NUMBER = "Invalid telegram number",
 
     TOKEN_EXPIRED_OR_INVALID = "Token expired or invalid",
 
@@ -21,6 +21,8 @@ export enum ErrorsMessages {
     PASSWORDS_NOT_EQUAL = "Passwords not equal",
     NEW_PASSWORD_IS_INSECURE = "New password is insecure",
     PASSWORD_INSECURE = "Password is insecure",
+
+	PHONE_NUMBER_ALREADY_REGISTRED = "Phone number already registred",
 
     RESET_PASSWORD_TOKEN_EXPIRED = "Reset password token expired",
 

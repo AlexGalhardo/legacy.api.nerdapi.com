@@ -40,9 +40,14 @@ export default class ProfileUpdateUseCase implements ProfileUpdateUseCasePort {
                 if (!Validator.phone.isValid(profileUpdateDTO.telegramNumber)) {
                     throw new ClientException(ErrorsMessages.INVALID_PHONE_NUMBER);
                 }
+
+				if(this.usersRepository.phoneAlreadyRegistred(user.id, profileUpdateDTO.telegramNumber)){
+					throw new ClientException(ErrorsMessages.PHONE_NUMBER_ALREADY_REGISTRED);
+				}
             }
 
             if (profileUpdateDTO.olderPassword && profileUpdateDTO.newPassword) {
+				console.log('entrou no hash...')
                 if (!(await Bcrypt.compare(profileUpdateDTO.olderPassword, user.password))) {
                     throw new ClientException(ErrorsMessages.INVALID_OLDER_PASSWORD);
                 }

@@ -56,19 +56,20 @@ class UsersRepository {
         this.save();
     }
     async update(userId, profileUpdateDTO) {
-        var _a, _b, _c, _d;
+        var _a, _b, _c;
         for (let i = 0; i < this.users.length; i++) {
             if (this.users[i].id === userId) {
                 this.users[i].username = (_a = profileUpdateDTO.username) !== null && _a !== void 0 ? _a : this.users[i].username;
                 this.users[i].telegram_number = (_b = profileUpdateDTO.telegramNumber) !== null && _b !== void 0 ? _b : this.users[i].telegram_number;
-                this.users[i].password = (_c = (await Bcrypt_1.Bcrypt.hash(profileUpdateDTO.newPassword))) !== null && _c !== void 0 ? _c : this.users[i].password;
+                if (profileUpdateDTO.newPassword)
+                    this.users[i].password = await Bcrypt_1.Bcrypt.hash(profileUpdateDTO.newPassword);
                 this.save();
                 return {
                     username: this.users[i].username,
                     email: this.users[i].email,
                     telegramNumber: this.users[i].telegram_number,
                     password: this.users[i].password,
-                    plain_password: (_d = profileUpdateDTO.newPassword) !== null && _d !== void 0 ? _d : null,
+                    plain_password: (_c = profileUpdateDTO.newPassword) !== null && _c !== void 0 ? _c : null,
                 };
             }
         }
@@ -85,6 +86,12 @@ class UsersRepository {
                 break;
             }
         }
+    }
+    phoneAlreadyRegistred(userId, phoneNumber) {
+        return this.users.some(user => {
+            if (user.id !== userId && user.telegram_number === phoneNumber)
+                return true;
+        });
     }
     saveResetPasswordToken(userId, resetPasswordToken) {
         for (let i = 0; i < this.users.length; i++) {
