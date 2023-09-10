@@ -72,6 +72,8 @@
 
     npm run test:e2e
 
+![print-tests-api-nerdapi](https://github.com/AlexGalhardo/api.nerdapi.com/assets/19540357/579da8f3-572c-4042-96f5-fb7a7469ca7b)
+
 ## Before Submit Commits & PRs
 
 *   Run command:
@@ -81,6 +83,11 @@
     npm run format
 
 <!---->
+
+## Insomnia HTTP Requests
+
+*   You can import file: <b>INSOMNIA-API-NERDAPI-HTTP-REQUESTS.json</b>
+*   To your [https://insomnia.rest/](Insomnia) Http Client
 
 ## License
 
