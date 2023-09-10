@@ -88,7 +88,7 @@ class UsersRepository {
         }
     }
     phoneAlreadyRegistred(userId, phoneNumber) {
-        return this.users.some(user => {
+        return this.users.some((user) => {
             if (user.id !== userId && user.telegram_number === phoneNumber)
                 return true;
         });
@@ -120,9 +120,9 @@ class UsersRepository {
         }
     }
     findResetPasswordToken(resetPasswordToken) {
-        return this.users.some(user => {
-            if (user.reset_password_token === resetPasswordToken
-                && !DateTime_1.default.isExpired(new Date(user.reset_password_token_expires_at))) {
+        return this.users.some((user) => {
+            if (user.reset_password_token === resetPasswordToken &&
+                !DateTime_1.default.isExpired(new Date(user.reset_password_token_expires_at))) {
                 return true;
             }
         });

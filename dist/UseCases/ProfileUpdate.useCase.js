@@ -27,7 +27,6 @@ class ProfileUpdateUseCase {
                 }
             }
             if (profileUpdateDTO.olderPassword && profileUpdateDTO.newPassword) {
-                console.log('entrou no hash...');
                 if (!(await Bcrypt_1.Bcrypt.compare(profileUpdateDTO.olderPassword, user.password))) {
                     throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.INVALID_OLDER_PASSWORD);
                 }
