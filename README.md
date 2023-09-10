@@ -77,7 +77,10 @@
 
     npm run test:e2e
 
-![print-tests-api-nerdapi](https://github.com/AlexGalhardo/api.nerdapi.com/assets/19540357/579da8f3-572c-4042-96f5-fb7a7469ca7b)
+
+![print-tests-api-nerdapi](https://github.com/AlexGalhardo/api.nerdapi.com/assets/19540357/c9fe9b9a-2a17-4612-bb85-3ab06d1467bc)
+
+
 
 ## Before Submit Commits & PRs
 
