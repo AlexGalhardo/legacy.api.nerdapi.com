@@ -47,7 +47,6 @@ export default class ProfileUpdateUseCase implements ProfileUpdateUseCasePort {
             }
 
             if (profileUpdateDTO.olderPassword && profileUpdateDTO.newPassword) {
-                console.log("entrou no hash...");
                 if (!(await Bcrypt.compare(profileUpdateDTO.olderPassword, user.password))) {
                     throw new ClientException(ErrorsMessages.INVALID_OLDER_PASSWORD);
                 }

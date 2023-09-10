@@ -4,7 +4,11 @@
 
 ## Introduction
 
-*   Welcome to <https://api.nerdapi.com> Source Code!
+*   A personal project I created to learn [NestJS](https://nestjs.com/) with Typescript, Clean/Hexagonal Architecture Principles (ports, useCases, repositories, etc) and Stateless Authentication using JWT and localStorage, as also improve my skills in product development, API development and documentation, SEO, tests, and so on.
+*   This project saves data to JSONs files for simplicity and fast development.
+*   This API is hosted in: <https://render.com/>
+*   Payment API: <https://stripe.com/en-br>
+*   Emails API: <https://resend.com/>
 
 ## Development Setup Local
 
@@ -26,6 +30,12 @@
 
     npm install
 
+*   Setup your enviroment variables
+
+<!---->
+
+    cp .env-example .env
+
 *   Start local server
 
 <!---->
@@ -33,6 +43,34 @@
     npm run dev
 
 *   Go to: <http://localhost:3000/>
+
+## Build for deploy
+
+*   To created build to deploy run:
+
+<!---->
+
+    npm run build
+
+*   To test build production locally run:
+
+<!---->
+
+    npm run start
+
+## Tests
+
+*   Verify useCases tests:
+
+<!---->
+
+    npm run test
+
+*   Verify End to End tests:
+
+<!---->
+
+    npm run test:e2e
 
 ## Before Submit Commits & PRs
 
