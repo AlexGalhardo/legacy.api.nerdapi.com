@@ -28,5 +28,6 @@ var ErrorsMessages;
     ErrorsMessages["GET_RANDOM_GAME_ERROR"] = "Get random game error";
     ErrorsMessages["GET_GAME_BY_TITLE_ERROR"] = "Get game by title error";
     ErrorsMessages["GET_GAME_BY_ID_ERROR"] = "Get game by id error";
+    ErrorsMessages["RESET_PASSWORD_TOKEN_INVALID"] = "Reset password token invalid";
 })(ErrorsMessages || (exports.ErrorsMessages = ErrorsMessages = {}));
 //# sourceMappingURL=ErrorsMessages.js.map

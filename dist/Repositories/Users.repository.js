@@ -119,6 +119,14 @@ class UsersRepository {
             }
         }
     }
+    findResetPasswordToken(resetPasswordToken) {
+        return this.users.some(user => {
+            if (user.reset_password_token === resetPasswordToken
+                && !DateTime_1.default.isExpired(new Date(user.reset_password_token_expires_at))) {
+                return true;
+            }
+        });
+    }
     updateStripeSubscriptionInfo(user, stripeSubscriptionInfo) {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
         for (let i = 0; i < this.users.length; i++) {

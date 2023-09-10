@@ -1,7 +1,7 @@
 export enum ErrorsMessages {
     PROCESSING_ERROR = "PROCESSING_ERROR",
 
-	INVALID_USERNAME = "Invalid username",
+    INVALID_USERNAME = "Invalid username",
 
     USER_ALREADY_EXISTS = "User already exists",
     USER_NOT_FOUND = "User not found",
@@ -22,7 +22,7 @@ export enum ErrorsMessages {
     NEW_PASSWORD_IS_INSECURE = "New password is insecure",
     PASSWORD_INSECURE = "Password is insecure",
 
-	PHONE_NUMBER_ALREADY_REGISTRED = "Phone number already registred",
+    PHONE_NUMBER_ALREADY_REGISTRED = "Phone number already registred",
 
     RESET_PASSWORD_TOKEN_EXPIRED = "Reset password token expired",
 
@@ -37,4 +37,6 @@ export enum ErrorsMessages {
     GET_RANDOM_GAME_ERROR = "Get random game error",
     GET_GAME_BY_TITLE_ERROR = "Get game by title error",
     GET_GAME_BY_ID_ERROR = "Get game by id error",
+
+    RESET_PASSWORD_TOKEN_INVALID = "Reset password token invalid",
 }

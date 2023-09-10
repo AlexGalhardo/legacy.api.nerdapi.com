@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { AuthController } from "src/Controllers/Auth.controller";
 import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.repository";
+import AuthCheckResetPasswordTokenUseCase from "src/UseCases/AuthCheckResetPasswordToken.useCase";
 import AuthForgetPasswordUseCase from "src/UseCases/AuthForgetPassword.useCase";
 import AuthLoginUseCase from "src/UseCases/AuthLogin.useCase";
 import AuthLoginGoogleUseCase from "src/UseCases/AuthLoginGoogle.useCase";
@@ -66,6 +67,13 @@ import AuthTokenUserUseCase from "src/UseCases/AuthTokenUser.useCase";
             inject: ["UsersRepositoryPort"],
             useFactory: (usersRepository: UsersRepositoryPort) => {
                 return new AuthResetPasswordUseCase(usersRepository);
+            },
+        },
+        {
+            provide: "AuthCheckResetPasswordTokenUseCasePort",
+            inject: ["UsersRepositoryPort"],
+            useFactory: (usersRepository: UsersRepositoryPort) => {
+                return new AuthCheckResetPasswordTokenUseCase(usersRepository);
             },
         },
     ],

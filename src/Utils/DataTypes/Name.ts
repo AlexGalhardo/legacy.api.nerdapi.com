@@ -12,16 +12,15 @@ class Name {
 
     public isValid(fullName: string): boolean {
         const names = fullName.split(" ");
-		if (names.length > 1){
-			for (const name of names) {
-				if (!this.isValidSingleName(name)) return false;
-			}
-		}
-		else {
-			if (!this.isValidSingleName(fullName)) return false;
-			return true
-		}
-		return true;
+        if (names.length > 1) {
+            for (const name of names) {
+                if (!this.isValidSingleName(name)) return false;
+            }
+        } else {
+            if (!this.isValidSingleName(fullName)) return false;
+            return true;
+        }
+        return true;
     }
 
     public capitalize(fullName: string): string {

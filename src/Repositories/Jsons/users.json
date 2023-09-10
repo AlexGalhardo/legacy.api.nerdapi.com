@@ -2,13 +2,13 @@
     {
         "id": "d919afdd-9eac-4790-acec-090e270c288b",
         "username": "kavee",
-        "email": "alexnerdapi@gmail.com",
+        "email": "aleexgvieira@gmail.com",
         "telegram_number": null,
-        "password": "$2b$12$UCpxwUk7rlB85T64qvp08eosA31cawFNoQKwEkygEnZ8ZetAB0zDC",
+        "password": "$2b$12$IaJXxXptmhWOWQic1hwmHuRZ8L5CW3.tQHpnC2wvsDHzEjK2Vkiee",
         "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJkOTE5YWZkZC05ZWFjLTQ3OTAtYWNlYy0wOTBlMjcwYzI4OGIiLCJpYXQiOjE2OTQyOTEyNDl9.x4jBox5kdSDtqdXspubhp0QQ1OQ2O0UjU_NECKJEpFU",
         "api_token": "a5ef5042ad8a3c4a7126d3c6e1e49374",
-        "reset_password_token": null,
-        "reset_password_token_expires_at": null,
+        "reset_password_token": "dcd284f3c216e9a27597e4ba0e983a5a",
+        "reset_password_token_expires_at": "Sun Sep 10 2023 16:21:36 GMT-0300 (Brasilia Standard Time)",
         "stripe": {
             "customer_id": "cus_OblXq4uW4OXIuk",
             "subscription": {

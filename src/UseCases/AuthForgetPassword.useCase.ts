@@ -40,7 +40,7 @@ export default class AuthForgetPasswordUseCase implements AuthForgetPasswordUseC
             const APP_FRONT_URL =
                 process.env.NODE_ENV === "development" ? process.env.APP_FRONT_URL_DEV : process.env.APP_FRONT_URL_PROD;
 
-            const resetPasswordLink = `${APP_FRONT_URL}/reset-password/${reset_password_token}`;
+            const resetPasswordLink = `${APP_FRONT_URL}/auth/reset-password/${reset_password_token}`;
 
             const sendEmailForgetPasswordResponse = await this.smtp.sendMail({
                 from: process.env.SMTP_EMAIL_FROM,
@@ -57,9 +57,9 @@ export default class AuthForgetPasswordUseCase implements AuthForgetPasswordUseC
 
             if (sendEmailForgetPasswordResponse) {
                 return { success: true, reset_password_token };
+            } else {
+                throw new ClientException(ErrorsMessages.PROCESSING_ERROR);
             }
-
-            throw new ClientException(ErrorsMessages.PROCESSING_ERROR);
         }
 
         throw new ClientException(ErrorsMessages.USER_NOT_FOUND);

@@ -1,5 +1,9 @@
 import { Controller, Post, Res, Body, Inject, HttpStatus, Req } from "@nestjs/common";
 import { Request, Response } from "express";
+import {
+    AuthCheckResetPasswordTokenUseCasePort,
+    CheckResetPasswordTokenDTO,
+} from "src/UseCases/AuthCheckResetPasswordToken.useCase";
 import { AuthForgetPasswordDTO, AuthForgetPasswordUseCasePort } from "src/UseCases/AuthForgetPassword.useCase";
 import { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCases/AuthLogin.useCase";
 import { AuthLoginGoogleUseCasePort } from "src/UseCases/AuthLoginGoogle.useCase";
@@ -43,6 +47,8 @@ export class AuthController implements AuthControllerPort {
         @Inject("AuthForgetPasswordUseCasePort")
         private readonly authForgetPasswordUseCase: AuthForgetPasswordUseCasePort,
         @Inject("AuthResetPasswordUseCasePort") private readonly authResetPasswordUseCase: AuthResetPasswordUseCasePort,
+        @Inject("AuthCheckResetPasswordTokenUseCasePort")
+        private readonly authCheckResetPasswordTokenUseCase: AuthCheckResetPasswordTokenUseCasePort,
     ) {}
 
     @Post("/login")
@@ -110,6 +116,19 @@ export class AuthController implements AuthControllerPort {
         try {
             const { reset_password_token } = request.params;
             const { success } = await this.authResetPasswordUseCase.execute(reset_password_token, authResetPasswordDTO);
+            if (success) return response.status(HttpStatus.OK).json({ success: true });
+        } catch (error) {
+            return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
+        }
+    }
+
+    @Post("/check-reset-password-token")
+    async checkResetPasswordToken(
+        @Body() { resetPasswordToken }: CheckResetPasswordTokenDTO,
+        @Res() response: Response,
+    ): Promise<Response<AuthUseCaseResponse>> {
+        try {
+            const { success } = await this.authCheckResetPasswordTokenUseCase.execute(resetPasswordToken);
             if (success) return response.status(HttpStatus.OK).json({ success: true });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });

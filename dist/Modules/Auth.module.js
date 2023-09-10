@@ -10,6 +10,7 @@ exports.AuthModule = void 0;
 const common_1 = require("@nestjs/common");
 const Auth_controller_1 = require("../Controllers/Auth.controller");
 const Users_repository_1 = require("../Repositories/Users.repository");
+const AuthCheckResetPasswordToken_useCase_1 = require("../UseCases/AuthCheckResetPasswordToken.useCase");
 const AuthForgetPassword_useCase_1 = require("../UseCases/AuthForgetPassword.useCase");
 const AuthLogin_useCase_1 = require("../UseCases/AuthLogin.useCase");
 const AuthLoginGoogle_useCase_1 = require("../UseCases/AuthLoginGoogle.useCase");
@@ -78,6 +79,13 @@ exports.AuthModule = AuthModule = __decorate([
                 inject: ["UsersRepositoryPort"],
                 useFactory: (usersRepository) => {
                     return new AuthResetPassword_useCase_1.default(usersRepository);
+                },
+            },
+            {
+                provide: "AuthCheckResetPasswordTokenUseCasePort",
+                inject: ["UsersRepositoryPort"],
+                useFactory: (usersRepository) => {
+                    return new AuthCheckResetPasswordToken_useCase_1.default(usersRepository);
                 },
             },
         ],

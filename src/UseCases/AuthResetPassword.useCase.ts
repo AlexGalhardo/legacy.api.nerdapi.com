@@ -42,6 +42,6 @@ export default class AuthResetPasswordUseCase implements AuthResetPasswordUseCas
             return { success: true };
         }
 
-        throw new ClientException(ErrorsMessages.USER_NOT_FOUND);
+        throw new ClientException(ErrorsMessages.RESET_PASSWORD_TOKEN_INVALID);
     }
 }

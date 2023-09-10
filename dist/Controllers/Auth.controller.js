@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
 let AuthController = class AuthController {
-    constructor(authLoginUseCase, authLoginGoogleUseCase, authRegisterUseCase, authLogoutUseCase, authTokenUserUseCase, authForgetPasswordUseCase, authResetPasswordUseCase) {
+    constructor(authLoginUseCase, authLoginGoogleUseCase, authRegisterUseCase, authLogoutUseCase, authTokenUserUseCase, authForgetPasswordUseCase, authResetPasswordUseCase, authCheckResetPasswordTokenUseCase) {
         this.authLoginUseCase = authLoginUseCase;
         this.authLoginGoogleUseCase = authLoginGoogleUseCase;
         this.authRegisterUseCase = authRegisterUseCase;
@@ -23,6 +23,7 @@ let AuthController = class AuthController {
         this.authTokenUserUseCase = authTokenUserUseCase;
         this.authForgetPasswordUseCase = authForgetPasswordUseCase;
         this.authResetPasswordUseCase = authResetPasswordUseCase;
+        this.authCheckResetPasswordTokenUseCase = authCheckResetPasswordTokenUseCase;
     }
     async login(authLoginDTO, response) {
         try {
@@ -78,6 +79,16 @@ let AuthController = class AuthController {
         try {
             const { reset_password_token } = request.params;
             const { success } = await this.authResetPasswordUseCase.execute(reset_password_token, authResetPasswordDTO);
+            if (success)
+                return response.status(common_1.HttpStatus.OK).json({ success: true });
+        }
+        catch (error) {
+            return response.status(common_1.HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
+        }
+    }
+    async checkResetPasswordToken({ resetPasswordToken }, response) {
+        try {
+            const { success } = await this.authCheckResetPasswordTokenUseCase.execute(resetPasswordToken);
             if (success)
                 return response.status(common_1.HttpStatus.OK).json({ success: true });
         }
@@ -146,6 +157,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "resetPassword", null);
 __decorate([
+    (0, common_1.Post)("/check-reset-password-token"),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "checkResetPasswordToken", null);
+__decorate([
     (0, common_1.Post)("/callback/google/login"),
     __param(0, (0, common_1.Req)()),
     __param(1, (0, common_1.Res)()),
@@ -162,6 +181,7 @@ exports.AuthController = AuthController = __decorate([
     __param(4, (0, common_1.Inject)("AuthTokenUserUseCasePort")),
     __param(5, (0, common_1.Inject)("AuthForgetPasswordUseCasePort")),
     __param(6, (0, common_1.Inject)("AuthResetPasswordUseCasePort")),
-    __metadata("design:paramtypes", [Object, Object, Object, Object, Object, Object, Object])
+    __param(7, (0, common_1.Inject)("AuthCheckResetPasswordTokenUseCasePort")),
+    __metadata("design:paramtypes", [Object, Object, Object, Object, Object, Object, Object, Object])
 ], AuthController);
 //# sourceMappingURL=Auth.controller.js.map

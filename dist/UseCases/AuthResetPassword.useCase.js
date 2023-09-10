@@ -18,7 +18,7 @@ class AuthResetPasswordUseCase {
             this.usersRepository.resetPassword(user.id, hashedPassword);
             return { success: true };
         }
-        throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
+        throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.RESET_PASSWORD_TOKEN_INVALID);
     }
 }
 exports.default = AuthResetPasswordUseCase;

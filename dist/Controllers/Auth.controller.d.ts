@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { AuthCheckResetPasswordTokenUseCasePort, CheckResetPasswordTokenDTO } from "src/UseCases/AuthCheckResetPasswordToken.useCase";
 import { AuthForgetPasswordDTO, AuthForgetPasswordUseCasePort } from "src/UseCases/AuthForgetPassword.useCase";
 import { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCases/AuthLogin.useCase";
 import { AuthLoginGoogleUseCasePort } from "src/UseCases/AuthLoginGoogle.useCase";
@@ -29,13 +30,15 @@ export declare class AuthController implements AuthControllerPort {
     private readonly authTokenUserUseCase;
     private readonly authForgetPasswordUseCase;
     private readonly authResetPasswordUseCase;
-    constructor(authLoginUseCase: AuthLoginUseCasePort, authLoginGoogleUseCase: AuthLoginGoogleUseCasePort, authRegisterUseCase: AuthRegisterUseCasePort, authLogoutUseCase: AuthLogoutUseCasePort, authTokenUserUseCase: AuthTokenUserUseCasePort, authForgetPasswordUseCase: AuthForgetPasswordUseCasePort, authResetPasswordUseCase: AuthResetPasswordUseCasePort);
+    private readonly authCheckResetPasswordTokenUseCase;
+    constructor(authLoginUseCase: AuthLoginUseCasePort, authLoginGoogleUseCase: AuthLoginGoogleUseCasePort, authRegisterUseCase: AuthRegisterUseCasePort, authLogoutUseCase: AuthLogoutUseCasePort, authTokenUserUseCase: AuthTokenUserUseCasePort, authForgetPasswordUseCase: AuthForgetPasswordUseCasePort, authResetPasswordUseCase: AuthResetPasswordUseCasePort, authCheckResetPasswordTokenUseCase: AuthCheckResetPasswordTokenUseCasePort);
     login(authLoginDTO: AuthLoginDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
     register(authRegisterDTO: AuthRegisterDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
     logout(response: Response): Promise<Response<AuthUseCaseResponse>>;
     tokenUser(response: Response): Promise<Response<AuthUseCaseResponse>>;
     forgetPassword(authForgetPasswordDTO: AuthForgetPasswordDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
     resetPassword(authResetPasswordDTO: AuthResetPasswordDTO, request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
+    checkResetPasswordToken({ resetPasswordToken }: CheckResetPasswordTokenDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
     loginGoogle(request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
 }
 export {};

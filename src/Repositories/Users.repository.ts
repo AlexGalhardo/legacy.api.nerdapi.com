@@ -40,7 +40,7 @@ export interface UserUpdated {
     email: string;
     telegramNumber: string;
     password: string;
-	plain_password: string | null;
+    plain_password: string | null;
 }
 
 export interface UserResponse {
@@ -74,8 +74,9 @@ export interface UsersRepositoryPort {
     logout(userId: string): void;
     saveResetPasswordToken(userId: string, resetPasswordToken: string): void;
     resetPassword(userId: string, newPassword: string): void;
+    findResetPasswordToken(resetPasswordToken: string): boolean;
     updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): void;
-	phoneAlreadyRegistred(userId: string, phoneNumber: string): boolean;
+    phoneAlreadyRegistred(userId: string, phoneNumber: string): boolean;
 }
 
 export default class UsersRepository implements UsersRepositoryPort {
@@ -144,7 +145,8 @@ export default class UsersRepository implements UsersRepositoryPort {
 
                 this.users[i].telegram_number = profileUpdateDTO.telegramNumber ?? this.users[i].telegram_number;
 
-				if(profileUpdateDTO.newPassword) this.users[i].password = await Bcrypt.hash(profileUpdateDTO.newPassword)
+                if (profileUpdateDTO.newPassword)
+                    this.users[i].password = await Bcrypt.hash(profileUpdateDTO.newPassword);
 
                 this.save();
 
@@ -153,7 +155,7 @@ export default class UsersRepository implements UsersRepositoryPort {
                     email: this.users[i].email,
                     telegramNumber: this.users[i].telegram_number,
                     password: this.users[i].password,
-					plain_password: profileUpdateDTO.newPassword ?? null,
+                    plain_password: profileUpdateDTO.newPassword ?? null,
                 };
             }
         }
@@ -174,11 +176,11 @@ export default class UsersRepository implements UsersRepositoryPort {
         }
     }
 
-	public phoneAlreadyRegistred(userId: string, phoneNumber: string): boolean {
-		return this.users.some(user => {
-			if(user.id !== userId && user.telegram_number === phoneNumber) return true 
-		})
-	}
+    public phoneAlreadyRegistred(userId: string, phoneNumber: string): boolean {
+        return this.users.some((user) => {
+            if (user.id !== userId && user.telegram_number === phoneNumber) return true;
+        });
+    }
 
     public saveResetPasswordToken(userId: string, resetPasswordToken: string) {
         for (let i = 0; i < this.users.length; i++) {
@@ -205,6 +207,17 @@ export default class UsersRepository implements UsersRepositoryPort {
                 }
             }
         }
+    }
+
+    public findResetPasswordToken(resetPasswordToken: string): boolean {
+        return this.users.some((user) => {
+            if (
+                user.reset_password_token === resetPasswordToken &&
+                !DateTime.isExpired(new Date(user.reset_password_token_expires_at))
+            ) {
+                return true;
+            }
+        });
     }
 
     public updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo) {
