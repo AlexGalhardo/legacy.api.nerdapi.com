@@ -50,11 +50,19 @@ export default class AuthLoginGitHubUseCase implements AuthLoginGitHubUseCasePor
                     Authorization: `Bearer ${githubResponseJson.access_token}`,
                 },
             });
+
+			const responseGithubProfileJson = await responseGithubProfile.json()
+
             const { email, name } = await responseGithubProfile.json();
+
+			console.log('\n\n github login email => ', email)
+			console.log('\n\n responseGithubProfileJson => ', responseGithubProfileJson)
 
             if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
 
             const userExists = this.usersRepository.findByEmail(email);
+
+			console.log('\n\n userExists => ', userExists)
 
             if (userExists) {
                 const { user, index } = this.usersRepository.getByEmail(email);
