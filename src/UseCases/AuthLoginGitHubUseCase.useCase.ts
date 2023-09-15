@@ -29,8 +29,6 @@ export default class AuthLoginGitHubUseCase implements AuthLoginGitHubUseCasePor
     constructor(private readonly usersRepository: UsersRepositoryPort) {}
 
     async execute(request: Request): Promise<AuthLoginGitHubUseCaseResponse> {
-        console.log("ENTROOOU");
-
         try {
             const requestToken = request.query.code;
 

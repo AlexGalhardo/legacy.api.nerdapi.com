@@ -112,7 +112,7 @@ let AuthController = class AuthController {
         try {
             const { success, redirect } = await this.authLoginGitHubUseCase.execute(request);
             if (success) {
-                response.redirect(redirect);
+                return response.redirect(redirect);
             }
         }
         catch (error) {

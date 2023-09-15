@@ -5,7 +5,7 @@
         "email": "aleexgvieira@gmail.com",
         "telegram_number": null,
         "password": "$2b$12$b1/Ip8ZN2q1WCXdICVm3JeuYUyHpzZrdneOD4pk6GQZ3BTSsHdV.a",
-        "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJhODNhMDYwYS1kMThjLTRlYWYtOTRmOS05NjZhYzA4NzY1OWEiLCJpYXQiOjE2OTQ4MTI0NTB9.CDrHN5PyVXPxCDMuJ2nlvufJj4wkK9H3M_dKG42tdyY",
+        "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJhODNhMDYwYS1kMThjLTRlYWYtOTRmOS05NjZhYzA4NzY1OWEiLCJpYXQiOjE2OTQ4MTMxNDF9.J4YvaoaC8D5pazr0XwTpeMOwnM_55CbhLdQJTk4jNyQ",
         "api_token": null,
         "reset_password_token": null,
         "reset_password_token_expires_at": null,
