@@ -5,23 +5,32 @@ const ErrorsMessages_1 = require("../Utils/ErrorsMessages");
 const Exception_1 = require("../Utils/Exception");
 const Validator_1 = require("../Utils/Validator");
 const jwt = require("jsonwebtoken");
-const google_auth_library_1 = require("google-auth-library");
 const node_crypto_1 = require("node:crypto");
 const DateTime_1 = require("../Utils/DataTypes/DateTime");
 const Constants_1 = require("../Utils/Constants");
-class AuthLoginGoogleUseCase {
+require("dotenv/config");
+class AuthLoginGitHubUseCase {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
     }
     async execute(request) {
+        console.log("ENTROOOU");
         try {
-            const { credential } = request.body;
-            const googleResponse = await new google_auth_library_1.OAuth2Client().verifyIdToken({
-                idToken: credential,
-                audience: process.env.GOOGLE_CLIENT_ID,
+            const requestToken = request.query.code;
+            const githubResponse = await fetch(`https://github.com/login/oauth/access_token?client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}&code=${requestToken}`, {
+                method: "POST",
+                headers: {
+                    accept: "application/json",
+                },
             });
-            const payload = googleResponse.getPayload();
-            const { email, name } = payload;
+            const githubResponseJson = await githubResponse.json();
+            const responseGithubProfile = await fetch(`https://api.github.com/user`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${githubResponseJson.access_token}`,
+                },
+            });
+            const { email, name } = await responseGithubProfile.json();
             if (!Validator_1.default.email.isValid(email))
                 throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.EMAIL_IS_INVALID);
             const userExists = this.usersRepository.findByEmail(email);
@@ -80,5 +89,5 @@ class AuthLoginGoogleUseCase {
         }
     }
 }
-exports.default = AuthLoginGoogleUseCase;
-//# sourceMappingURL=AuthLoginGoogle.useCase.js.map
+exports.default = AuthLoginGitHubUseCase;
+//# sourceMappingURL=AuthLoginGitHubUseCase.useCase.js.map

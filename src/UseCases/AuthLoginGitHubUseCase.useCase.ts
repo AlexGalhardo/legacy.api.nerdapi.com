@@ -5,13 +5,13 @@ import { ClientException } from "src/Utils/Exception";
 import Validator from "src/Utils/Validator";
 import * as jwt from "jsonwebtoken";
 import { Request } from "express";
-import { OAuth2Client } from "google-auth-library";
 import { randomUUID } from "node:crypto";
 import DateTime from "src/Utils/DataTypes/DateTime";
 import { APP_URL } from "src/Utils/Constants";
+import "dotenv/config";
 
-export interface AuthLoginGoogleUseCasePort {
-    execute(request: Request): Promise<AuthLoginGoogleUseCaseResponse>;
+export interface AuthLoginGitHubUseCasePort {
+    execute(request: Request): Promise<AuthLoginGitHubUseCaseResponse>;
 }
 
 export interface AuthLoginDTO {
@@ -19,25 +19,40 @@ export interface AuthLoginDTO {
     password: string;
 }
 
-interface AuthLoginGoogleUseCaseResponse {
+interface AuthLoginGitHubUseCaseResponse {
     success: boolean;
     redirect: string;
     jwt_token?: string;
 }
 
-export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePort {
+export default class AuthLoginGitHubUseCase implements AuthLoginGitHubUseCasePort {
     constructor(private readonly usersRepository: UsersRepositoryPort) {}
 
-    async execute(request: Request): Promise<AuthLoginGoogleUseCaseResponse> {
-        try {
-            const { credential } = request.body;
+    async execute(request: Request): Promise<AuthLoginGitHubUseCaseResponse> {
+        console.log("ENTROOOU");
 
-            const googleResponse = await new OAuth2Client().verifyIdToken({
-                idToken: credential,
-                audience: process.env.GOOGLE_CLIENT_ID,
+        try {
+            const requestToken = request.query.code;
+
+            const githubResponse = await fetch(
+                `https://github.com/login/oauth/access_token?client_id=${process.env.GITHUB_CLIENT_ID}&client_secret=${process.env.GITHUB_CLIENT_SECRET}&code=${requestToken}`,
+                {
+                    method: "POST",
+                    headers: {
+                        accept: "application/json",
+                    },
+                },
+            );
+
+            const githubResponseJson = await githubResponse.json();
+
+            const responseGithubProfile = await fetch(`https://api.github.com/user`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${githubResponseJson.access_token}`,
+                },
             });
-            const payload = googleResponse.getPayload();
-            const { email, name } = payload;
+            const { email, name } = await responseGithubProfile.json();
 
             if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
 

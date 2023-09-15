@@ -10,10 +10,11 @@
 *   Payment API: <https://stripe.com/en-br>
 *   Emails API: <https://resend.com/>
 
-## API Documentation
+## API
 
-* Source code: https://github.com/AlexGalhardo/docs.nerdapi.com
-* Docs: [https://docs.nerdapi.com](https://docs.nerdapi.com)
+*   FrontEnd Source Code: <https://github.com/AlexGalhardo/nerdapi.com>
+*   Documentation Source code: <https://github.com/AlexGalhardo/docs.nerdapi.com>
+*   Docs Live: <https://docs.nerdapi.com>
 
 ## Development Setup Local
 

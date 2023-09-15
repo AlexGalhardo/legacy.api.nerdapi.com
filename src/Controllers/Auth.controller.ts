@@ -1,4 +1,4 @@
-import { Controller, Post, Res, Body, Inject, HttpStatus, Req } from "@nestjs/common";
+import { Controller, Post, Res, Body, Inject, HttpStatus, Req, Get } from "@nestjs/common";
 import { Request, Response } from "express";
 import {
     AuthCheckResetPasswordTokenUseCasePort,
@@ -6,6 +6,7 @@ import {
 } from "src/UseCases/AuthCheckResetPasswordToken.useCase";
 import { AuthForgetPasswordDTO, AuthForgetPasswordUseCasePort } from "src/UseCases/AuthForgetPassword.useCase";
 import { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCases/AuthLogin.useCase";
+import { AuthLoginGitHubUseCasePort } from "src/UseCases/AuthLoginGitHubUseCase.useCase";
 import { AuthLoginGoogleUseCasePort } from "src/UseCases/AuthLoginGoogle.useCase";
 import { AuthLogoutUseCasePort } from "src/UseCases/AuthLogout.useCase";
 import { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
@@ -34,6 +35,7 @@ interface AuthControllerPort {
         response: Response,
     ): Promise<Response<AuthUseCaseResponse>>;
     loginGoogle(request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
+    loginGithub(request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
 }
 
 @Controller()
@@ -41,6 +43,7 @@ export class AuthController implements AuthControllerPort {
     constructor(
         @Inject("AuthLoginUseCasePort") private readonly authLoginUseCase: AuthLoginUseCasePort,
         @Inject("AuthLoginGoogleUseCasePort") private readonly authLoginGoogleUseCase: AuthLoginGoogleUseCasePort,
+        @Inject("AuthLoginGitHubUseCasePort") private readonly authLoginGitHubUseCase: AuthLoginGitHubUseCasePort,
         @Inject("AuthRegisterUseCasePort") private readonly authRegisterUseCase: AuthRegisterUseCasePort,
         @Inject("AuthLogoutUseCasePort") private readonly authLogoutUseCase: AuthLogoutUseCasePort,
         @Inject("AuthTokenUserUseCasePort") private readonly authTokenUserUseCase: AuthTokenUserUseCasePort,
@@ -139,6 +142,18 @@ export class AuthController implements AuthControllerPort {
     async loginGoogle(@Req() request: Request, @Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
             const { success, redirect } = await this.authLoginGoogleUseCase.execute(request);
+            if (success) {
+                response.redirect(redirect);
+            }
+        } catch (error) {
+            return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
+        }
+    }
+
+    @Get("/login/github/callback")
+    async loginGithub(@Req() request: Request, @Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
+        try {
+            const { success, redirect } = await this.authLoginGitHubUseCase.execute(request);
             if (success) {
                 response.redirect(redirect);
             }

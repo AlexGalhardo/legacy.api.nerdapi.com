@@ -15,9 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
 let AuthController = class AuthController {
-    constructor(authLoginUseCase, authLoginGoogleUseCase, authRegisterUseCase, authLogoutUseCase, authTokenUserUseCase, authForgetPasswordUseCase, authResetPasswordUseCase, authCheckResetPasswordTokenUseCase) {
+    constructor(authLoginUseCase, authLoginGoogleUseCase, authLoginGitHubUseCase, authRegisterUseCase, authLogoutUseCase, authTokenUserUseCase, authForgetPasswordUseCase, authResetPasswordUseCase, authCheckResetPasswordTokenUseCase) {
         this.authLoginUseCase = authLoginUseCase;
         this.authLoginGoogleUseCase = authLoginGoogleUseCase;
+        this.authLoginGitHubUseCase = authLoginGitHubUseCase;
         this.authRegisterUseCase = authRegisterUseCase;
         this.authLogoutUseCase = authLogoutUseCase;
         this.authTokenUserUseCase = authTokenUserUseCase;
@@ -107,6 +108,17 @@ let AuthController = class AuthController {
             return response.status(common_1.HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
+    async loginGithub(request, response) {
+        try {
+            const { success, redirect } = await this.authLoginGitHubUseCase.execute(request);
+            if (success) {
+                response.redirect(redirect);
+            }
+        }
+        catch (error) {
+            return response.status(common_1.HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
+        }
+    }
 };
 exports.AuthController = AuthController;
 __decorate([
@@ -172,16 +184,25 @@ __decorate([
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "loginGoogle", null);
+__decorate([
+    (0, common_1.Get)("/login/github/callback"),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "loginGithub", null);
 exports.AuthController = AuthController = __decorate([
     (0, common_1.Controller)(),
     __param(0, (0, common_1.Inject)("AuthLoginUseCasePort")),
     __param(1, (0, common_1.Inject)("AuthLoginGoogleUseCasePort")),
-    __param(2, (0, common_1.Inject)("AuthRegisterUseCasePort")),
-    __param(3, (0, common_1.Inject)("AuthLogoutUseCasePort")),
-    __param(4, (0, common_1.Inject)("AuthTokenUserUseCasePort")),
-    __param(5, (0, common_1.Inject)("AuthForgetPasswordUseCasePort")),
-    __param(6, (0, common_1.Inject)("AuthResetPasswordUseCasePort")),
-    __param(7, (0, common_1.Inject)("AuthCheckResetPasswordTokenUseCasePort")),
-    __metadata("design:paramtypes", [Object, Object, Object, Object, Object, Object, Object, Object])
+    __param(2, (0, common_1.Inject)("AuthLoginGitHubUseCasePort")),
+    __param(3, (0, common_1.Inject)("AuthRegisterUseCasePort")),
+    __param(4, (0, common_1.Inject)("AuthLogoutUseCasePort")),
+    __param(5, (0, common_1.Inject)("AuthTokenUserUseCasePort")),
+    __param(6, (0, common_1.Inject)("AuthForgetPasswordUseCasePort")),
+    __param(7, (0, common_1.Inject)("AuthResetPasswordUseCasePort")),
+    __param(8, (0, common_1.Inject)("AuthCheckResetPasswordTokenUseCasePort")),
+    __metadata("design:paramtypes", [Object, Object, Object, Object, Object, Object, Object, Object, Object])
 ], AuthController);
 //# sourceMappingURL=Auth.controller.js.map
