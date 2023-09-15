@@ -51,19 +51,18 @@ export default class AuthLoginGitHubUseCase implements AuthLoginGitHubUseCasePor
                 },
             });
 
-            const { email, name } = await responseGithubProfile.json();
+            const responseGithubProfileJSON = await responseGithubProfile.json();
 
-			console.log('\n\n github login email => ', email)
-			console.log('\n\n name => ', name)
+			console.log('\n\n responseGithubProfileJSON => ', responseGithubProfileJSON)
 
-            if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
+            if (!Validator.email.isValid(responseGithubProfileJSON.email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
 
-            const userExists = this.usersRepository.findByEmail(email);
+            const userExists = this.usersRepository.findByEmail(responseGithubProfileJSON.email);
 
 			console.log('\n\n userExists => ', userExists)
 
             if (userExists) {
-                const { user, index } = this.usersRepository.getByEmail(email);
+                const { user, index } = this.usersRepository.getByEmail(responseGithubProfileJSON.email);
                 const jwt_token = jwt.sign({ userID: user.id }, process.env.JWT_SECRET);
                 user.jwt_token = jwt_token;
                 this.usersRepository.save(user, index);
@@ -80,10 +79,10 @@ export default class AuthLoginGitHubUseCase implements AuthLoginGitHubUseCasePor
 
                 this.usersRepository.create({
                     id: userId,
-                    username: name,
-                    email,
+                    username: responseGithubProfileJSON.name,
+                    email: responseGithubProfileJSON.email,
                     telegram_number: null,
-                    password: await Bcrypt.hash(email),
+                    password: await Bcrypt.hash(responseGithubProfileJSON.email),
                     jwt_token,
                     api_token: null,
                     reset_password_token: null,
