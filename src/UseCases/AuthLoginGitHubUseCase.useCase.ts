@@ -51,12 +51,10 @@ export default class AuthLoginGitHubUseCase implements AuthLoginGitHubUseCasePor
                 },
             });
 
-			const responseGithubProfileJson = await responseGithubProfile.json()
-
             const { email, name } = await responseGithubProfile.json();
 
 			console.log('\n\n github login email => ', email)
-			console.log('\n\n responseGithubProfileJson => ', responseGithubProfileJson)
+			console.log('\n\n name => ', name)
 
             if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
 
