@@ -534,6 +534,13 @@ export default class UsersRepository implements UsersRepositoryPort {
         if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === user.id) {
+
+					let subscriptionName = 'NOOB'
+
+					if(stripeSubscriptionInfo.amount){
+						subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL"
+					}
+
                     this.users[i].api_token = stripeSubscriptionInfo.apiToken ?? this.users[i].api_token;
                     this.users[i].stripe.customer_id =
                         stripeSubscriptionInfo.customerId ?? this.users[i].stripe.customer_id;
@@ -541,7 +548,8 @@ export default class UsersRepository implements UsersRepositoryPort {
                         stripeSubscriptionInfo.paid ?? this.users[i].stripe.subscription.active;
                     this.users[i].stripe.subscription.charge_id =
                         stripeSubscriptionInfo.chargeId ?? this.users[i].stripe.subscription.charge_id;
-                    this.users[i].stripe.subscription.name = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
+                    this.users[i].stripe.subscription.name = subscriptionName
+
                     this.users[i].stripe.subscription.receipt_url =
                         stripeSubscriptionInfo.receiptUrl ?? this.users[i].stripe.subscription.receipt_url;
                     this.users[i].stripe.subscription.hosted_invoice_url =
@@ -564,6 +572,12 @@ export default class UsersRepository implements UsersRepositoryPort {
             throw new Error(ErrorsMessages.USER_NOT_FOUND);
         }
 
+		let subscriptionName = 'NOOB'
+
+		if(stripeSubscriptionInfo.amount){
+			subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL"
+		}
+
         const userUpdated = await this.database.users.update({
             where: {
                 id: user.id,
@@ -573,7 +587,7 @@ export default class UsersRepository implements UsersRepositoryPort {
                 stripe_customer_id: stripeSubscriptionInfo.customerId,
                 stripe_subscription_active: stripeSubscriptionInfo.paid,
                 stripe_subscription_charge_id: stripeSubscriptionInfo.chargeId,
-                stripe_subscription_name: stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL",
+                stripe_subscription_name: subscriptionName,
                 stripe_subscription_receipt_url: stripeSubscriptionInfo.receiptUrl,
                 stripe_subscription_hosted_invoice_url: stripeSubscriptionInfo.hostedInvoiceUrl,
                 stripe_subscription_starts_at: stripeSubscriptionInfo.startAt,
