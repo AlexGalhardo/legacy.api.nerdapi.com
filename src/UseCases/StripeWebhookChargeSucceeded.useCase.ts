@@ -16,10 +16,10 @@ export default class StripeWebhookChargeSucceededUseCase implements StripeWebhoo
     ) {}
 
     async execute(event: any) {
-        const response = await this.usersRepository.getByEmail(event.data.object.billing_details.email);
+        const {user} = await this.usersRepository.getByEmail(event.data.object.billing_details.email);
 
-        if (response.user) {
-            await this.usersRepository.updateStripeSubscriptionInfo(response.user, {
+        if (user) {
+            await this.usersRepository.updateStripeSubscriptionInfo(user, {
                 apiToken: event.data.object.paid ? generateRandomToken() : null,
                 customerId: event.data.object.customer ?? null,
                 paid: event.data.object.paid ?? null,
@@ -35,7 +35,8 @@ export default class StripeWebhookChargeSucceededUseCase implements StripeWebhoo
 
             this.stripeRepository.saveChargeWebhookEventLog(event);
         }
-
-        throw new ClientException(ErrorsMessages.USER_NOT_FOUND);
+		else {
+			throw new ClientException(ErrorsMessages.USER_NOT_FOUND);
+		}
     }
 }

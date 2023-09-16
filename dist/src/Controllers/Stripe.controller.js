@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StripeController = void 0;
 const common_1 = require("@nestjs/common");
+const TelegramBOTLogger_1 = require("../Utils/TelegramBOTLogger");
 let StripeController = class StripeController {
     constructor(stripeRepository, stripeCreateCheckoutSessionUseCase, stripeCreatePortalSessionUseCase, stripeWebhookChargeSucceededUseCase, stripeWebhookInvoiceFinalizedUseCase) {
         this.stripeRepository = stripeRepository;
@@ -88,7 +89,7 @@ let StripeController = class StripeController {
                     this.stripeRepository.saveBillingPortalSessionWebhookEventLog(event);
                     break;
                 default:
-                    console.log(`Unhandled event type ${event.type}`);
+                    TelegramBOTLogger_1.default.logError(event.type);
             }
             return response.json({ received: true });
         }

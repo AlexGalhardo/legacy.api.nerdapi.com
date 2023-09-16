@@ -13,6 +13,7 @@ TELEGRAM_BOT_CHANNEL_ID=chat.id here
 import * as https from "https";
 
 import DateTime from "./DataTypes/DateTime";
+import { ContactSendMessageDTO } from "src/UseCases/ContactSendMessage.useCase";
 
 interface SubscriptionTransaction {
 	charge_id: string;
@@ -59,10 +60,10 @@ class TelegramBOTLogger {
         };
     }
 
-    sendMessage(level: string, type: string, message: string) {
-        const emoji = this.emojiMap()[level];
+    logError(message: string) {
+        const emoji = this.emojiMap().ERROR;
 
-        const messageToSend = `${emoji} ${type} ${emoji}\n\n <b>CREATED_AT:</b> ${DateTime.getNow()}\n ${message}`;
+        const messageToSend = `${emoji} ERROR ${emoji}\n\n <b>CREATED_AT:</b> ${DateTime.getNow()}\n ${message}`;
 
         const urlParams = encodeURI(`chat_id=${this.channelName}&text=${messageToSend}&parse_mode=HTML`);
 
@@ -71,7 +72,7 @@ class TelegramBOTLogger {
         this.sendRequest(url);
     }
 
-    logContactSendMessage(contactObject: any) {
+    logContactSendMessage(contactObject: ContactSendMessageDTO) {
         const emoji = this.emojiMap().CONTACT;
 
         const log = `

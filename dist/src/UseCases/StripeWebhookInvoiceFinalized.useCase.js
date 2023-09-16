@@ -11,7 +11,7 @@ class StripeWebhookInvoiceFinalizedUseCase {
         this.usersRepository = usersRepository;
     }
     async execute(event) {
-        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j;
         const { user } = await this.usersRepository.getByEmail(event.data.object.customer_email);
         if (user) {
             const userUpdated = await this.usersRepository.updateStripeSubscriptionInfo(user, {
@@ -24,8 +24,8 @@ class StripeWebhookInvoiceFinalizedUseCase {
                 hostedInvoiceUrl: (_f = event.data.object.hosted_invoice_url) !== null && _f !== void 0 ? _f : null,
                 startAt: (_g = DateTime_1.default.timestampToGetNow(event.data.object.lines.data[0].period.start)) !== null && _g !== void 0 ? _g : null,
                 endsAt: (_h = DateTime_1.default.timestampToGetNow(event.data.object.lines.data[0].period.end)) !== null && _h !== void 0 ? _h : null,
-                createdAt: (_j = String(new Date(event.created))) !== null && _j !== void 0 ? _j : null,
-                createdAtBrazil: (_k = DateTime_1.default.timestampToGetNow(event.created)) !== null && _k !== void 0 ? _k : null,
+                createdAt: String(new Date(event.created)),
+                createdAtBrazil: (_j = DateTime_1.default.timestampToGetNow(event.created)) !== null && _j !== void 0 ? _j : null,
             });
             this.stripeRepository.saveInvoiceWebhookEventLog(event);
             TelegramBOTLogger_1.default.logSubscriptionTransaction({
@@ -44,7 +44,9 @@ class StripeWebhookInvoiceFinalizedUseCase {
                 customer_api_token: userUpdated.api_token
             });
         }
-        throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
+        else {
+            throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
+        }
     }
 }
 exports.default = StripeWebhookInvoiceFinalizedUseCase;

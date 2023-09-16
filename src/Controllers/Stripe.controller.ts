@@ -8,6 +8,7 @@ import {
 import { StripeCreatePortalSessionUseCasePort } from "src/UseCases/StripeCreatePortalSession.useCase";
 import { StripeWebhookChargeSucceededUseCasePort } from "src/UseCases/StripeWebhookChargeSucceeded.useCase";
 import { StripeWebhookInvoiceFinalizedUseCasePort } from "src/UseCases/StripeWebhookInvoiceFinalized.useCase";
+import TelegramBOTLogger from "src/Utils/TelegramBOTLogger";
 
 interface StripeUseCaseResponse {
     success: boolean;
@@ -150,7 +151,7 @@ export class StripeController implements StripeControllerPort {
                     break;
 
                 default:
-                    console.log(`Unhandled event type ${event.type}`);
+                    TelegramBOTLogger.logError(event.type)
             }
 
             return response.json({ received: true });

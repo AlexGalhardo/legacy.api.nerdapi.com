@@ -25,9 +25,9 @@ class TelegramBOTLogger {
             SUBSCRIPTION: "🏆",
         };
     }
-    sendMessage(level, type, message) {
-        const emoji = this.emojiMap()[level];
-        const messageToSend = `${emoji} ${type} ${emoji}\n\n <b>CREATED_AT:</b> ${DateTime_1.default.getNow()}\n ${message}`;
+    logError(message) {
+        const emoji = this.emojiMap().ERROR;
+        const messageToSend = `${emoji} ERROR ${emoji}\n\n <b>CREATED_AT:</b> ${DateTime_1.default.getNow()}\n ${message}`;
         const urlParams = encodeURI(`chat_id=${this.channelName}&text=${messageToSend}&parse_mode=HTML`);
         const url = `${this.baseUrl}/sendMessage?${urlParams}`;
         this.sendRequest(url);

@@ -10,10 +10,10 @@ class StripeWebhookChargeSucceededUseCase {
         this.usersRepository = usersRepository;
     }
     async execute(event) {
-        var _a, _b, _c, _d, _e, _f, _g, _h;
-        const response = await this.usersRepository.getByEmail(event.data.object.billing_details.email);
-        if (response.user) {
-            await this.usersRepository.updateStripeSubscriptionInfo(response.user, {
+        var _a, _b, _c, _d, _e, _f, _g;
+        const { user } = await this.usersRepository.getByEmail(event.data.object.billing_details.email);
+        if (user) {
+            await this.usersRepository.updateStripeSubscriptionInfo(user, {
                 apiToken: event.data.object.paid ? (0, RandomToken_1.generateRandomToken)() : null,
                 customerId: (_a = event.data.object.customer) !== null && _a !== void 0 ? _a : null,
                 paid: (_b = event.data.object.paid) !== null && _b !== void 0 ? _b : null,
@@ -23,12 +23,14 @@ class StripeWebhookChargeSucceededUseCase {
                 hostedInvoiceUrl: (_f = event.data.object.hosted_invoice_url) !== null && _f !== void 0 ? _f : null,
                 startAt: undefined,
                 endsAt: undefined,
-                createdAt: (_g = String(new Date(event.created))) !== null && _g !== void 0 ? _g : null,
-                createdAtBrazil: (_h = DateTime_1.default.timestampToGetNow(event.created)) !== null && _h !== void 0 ? _h : null,
+                createdAt: String(new Date(event.created)),
+                createdAtBrazil: (_g = DateTime_1.default.timestampToGetNow(event.created)) !== null && _g !== void 0 ? _g : null,
             });
             this.stripeRepository.saveChargeWebhookEventLog(event);
         }
-        throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
+        else {
+            throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
+        }
     }
 }
 exports.default = StripeWebhookChargeSucceededUseCase;

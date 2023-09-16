@@ -1,4 +1,5 @@
 /// <reference types="node" />
+import { ContactSendMessageDTO } from "src/UseCases/ContactSendMessage.useCase";
 interface SubscriptionTransaction {
     charge_id: string;
     charge_paid: boolean;
@@ -26,8 +27,8 @@ declare class TelegramBOTLogger {
         ERROR: string;
         SUBSCRIPTION: string;
     };
-    sendMessage(level: string, type: string, message: string): void;
-    logContactSendMessage(contactObject: any): void;
+    logError(message: string): void;
+    logContactSendMessage(contactObject: ContactSendMessageDTO): void;
     logSubscriptionTransaction(subscriptionTransaction: SubscriptionTransaction): void;
     sendRequest(url: string): import("node:http").ClientRequest;
 }
