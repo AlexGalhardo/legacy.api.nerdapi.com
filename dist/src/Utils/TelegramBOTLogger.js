@@ -48,16 +48,16 @@ class TelegramBOTLogger {
     }
     logSubscriptionTransaction(subscriptionTransaction) {
         const emoji = this.emojiMap().SUBSCRIPTION;
-        const log = `
-        <b>STRIPE CHARGE ID:</b> ${subscriptionTransaction.charge_id}
+        const log = `\n
+		<b>STRIPE CHARGE ID:</b> ${subscriptionTransaction.charge_id}
 		<b>STRIPE CHARGE PAID:</b> ${subscriptionTransaction.charge_paid}
 		<b>STRIPE RECEIPT URL:</b> ${subscriptionTransaction.receipt_url}
 		<b>STRIPE INVOICE URL:</b> ${subscriptionTransaction.invoice_url}
         ---------------------------------------------
         <b>SUBSCRIPTION NAME:</b> ${subscriptionTransaction.plan_name}
         <b>SUBSCRIPTION AMOUNT:</b> ${subscriptionTransaction.plan_amount}
-		<b>SUBSCRIPTION START AT:</b> ${subscriptionTransaction.plan_name}
-        <b>SUBSCRIPTION ENDS AT:</b> ${subscriptionTransaction.plan_amount}
+		<b>SUBSCRIPTION START AT:</b> ${subscriptionTransaction.starts_at}
+        <b>SUBSCRIPTION ENDS AT:</b> ${subscriptionTransaction.ends_at}
         ---------------------------------------------
 		<b>STRIPE CUSTOMER ID:</b> ${subscriptionTransaction.customer_id}
 		<b>CUSTOMER NAME:</b> ${subscriptionTransaction.customer_name}

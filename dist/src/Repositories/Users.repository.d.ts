@@ -42,15 +42,16 @@ export interface UserResponse {
     index: number;
 }
 export interface StripeSubscriptionInfo {
-    apiToken: string | null;
+    apiToken?: string | null;
     customerId: string | null;
-    paid: boolean | null;
-    chargeId: string | null;
-    amount: number | null;
-    receiptUrl: string | null;
-    hostedInvoiceUrl: string | null;
-    startAt: string | null;
-    endsAt: string | null;
+    paid?: boolean | null;
+    chargeId?: string | null;
+    invoiceId?: string | null;
+    amount?: number | null;
+    receiptUrl?: string | null;
+    hostedInvoiceUrl?: string | null;
+    startAt?: string | null;
+    endsAt?: string | null;
     createdAt: string | null;
     createdAtBrazil: string | null;
 }

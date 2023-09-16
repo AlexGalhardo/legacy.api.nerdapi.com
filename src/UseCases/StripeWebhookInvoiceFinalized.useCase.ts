@@ -3,7 +3,6 @@ import { StripeRepositoryPort } from "src/Repositories/Stripe.repository";
 import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import { ClientException } from "src/Utils/Exception";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
-import { generateRandomToken } from "src/Utils/RandomToken";
 import TelegramBOTLogger from "src/Utils/TelegramBOTLogger";
 
 export interface StripeWebhookInvoiceFinalizedUseCasePort {
@@ -21,12 +20,8 @@ export default class StripeWebhookInvoiceFinalizedUseCase implements StripeWebho
 
         if (user) {
             const userUpdated = await this.usersRepository.updateStripeSubscriptionInfo(user, {
-                apiToken: event.data.object.paid ? generateRandomToken() : null,
                 customerId: event.data.object.customer ?? null,
-                paid: event.data.object.paid ?? null,
-                chargeId: event.data.object.id ?? null,
-                amount: event.data.object.amount ?? null,
-                receiptUrl: event.data.object.receipt_url ?? null,
+                invoiceId: event.data.object.id ?? null,
                 hostedInvoiceUrl: event.data.object.hosted_invoice_url ?? null,
                 startAt: DateTime.timestampToGetNow(event.data.object.lines.data[0].period.start) ?? null,
                 endsAt: DateTime.timestampToGetNow(event.data.object.lines.data[0].period.end) ?? null,

@@ -10,7 +10,7 @@ class StripeWebhookChargeSucceededUseCase {
         this.usersRepository = usersRepository;
     }
     async execute(event) {
-        var _a, _b, _c, _d, _e, _f, _g;
+        var _a, _b, _c, _d, _e, _f;
         const { user } = await this.usersRepository.getByEmail(event.data.object.billing_details.email);
         if (user) {
             await this.usersRepository.updateStripeSubscriptionInfo(user, {
@@ -20,11 +20,8 @@ class StripeWebhookChargeSucceededUseCase {
                 chargeId: (_c = event.data.object.id) !== null && _c !== void 0 ? _c : null,
                 amount: (_d = event.data.object.amount_due) !== null && _d !== void 0 ? _d : null,
                 receiptUrl: (_e = event.data.object.receipt_url) !== null && _e !== void 0 ? _e : null,
-                hostedInvoiceUrl: (_f = event.data.object.hosted_invoice_url) !== null && _f !== void 0 ? _f : null,
-                startAt: undefined,
-                endsAt: undefined,
                 createdAt: String(new Date(event.created)),
-                createdAtBrazil: (_g = DateTime_1.default.timestampToGetNow(event.created)) !== null && _g !== void 0 ? _g : null,
+                createdAtBrazil: (_f = DateTime_1.default.timestampToGetNow(event.created)) !== null && _f !== void 0 ? _f : null,
             });
             this.stripeRepository.saveChargeWebhookEventLog(event);
         }
