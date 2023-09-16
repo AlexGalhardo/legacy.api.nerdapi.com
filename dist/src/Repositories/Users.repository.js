@@ -100,6 +100,37 @@ let UsersRepository = class UsersRepository {
             index: null,
         };
     }
+    transformToUser(user) {
+        return {
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            telegram_number: user.telegram_number,
+            password: user.password,
+            jwt_token: user.jwt_token,
+            api_token: user.api_token,
+            reset_password_token: user.reset_password_token,
+            reset_password_token_expires_at: user.reset_password_token_expires_at,
+            stripe: {
+                customer_id: user.stripe_customer_id,
+                subscription: {
+                    active: user.stripe_subscription_active,
+                    name: user.stripe_subscription_name,
+                    starts_at: user.stripe_subscription_starts_at,
+                    ends_at: user.stripe_subscription_ends_at,
+                    charge_id: user.stripe_subscription_charge_id,
+                    receipt_url: user.stripe_subscription_receipt_url,
+                    hosted_invoice_url: user.stripe_subscription_hosted_invoice_url,
+                },
+                updated_at: user.stripe_updated_at,
+                updated_at_pt_br: user.stripe_updated_at_pt_br,
+            },
+            created_at: user.created_at,
+            updated_at: user.updated_at,
+            created_at_pt_br: user.created_at_pt_br,
+            updated_at_pt_br: user.updated_at_pt_br,
+        };
+    }
     async findById(userId) {
         if (process.env.USE_DATABASE_JSON === "true")
             return this.users.some((user) => user.id === userId);
@@ -407,12 +438,12 @@ let UsersRepository = class UsersRepository {
                     this.users[i].stripe.updated_at_pt_br =
                         (_k = stripeSubscriptionInfo.createdAtBrazil) !== null && _k !== void 0 ? _k : this.users[i].stripe.updated_at_pt_br;
                     this.save();
-                    return;
+                    return this.users[i];
                 }
             }
             throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
         }
-        await this.database.users.update({
+        const userUpdated = await this.database.users.update({
             where: {
                 id: user.id,
             },
@@ -430,6 +461,7 @@ let UsersRepository = class UsersRepository {
                 stripe_updated_at_pt_br: stripeSubscriptionInfo.createdAtBrazil,
             },
         });
+        return this.transformToUser(userUpdated);
     }
 };
 UsersRepository = __decorate([

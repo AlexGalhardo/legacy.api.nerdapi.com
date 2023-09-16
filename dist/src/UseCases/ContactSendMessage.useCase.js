@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const DateTime_1 = require("../Utils/DataTypes/DateTime");
 const SMTP_1 = require("../Utils/SMTP");
+const TelegramBOTLogger_1 = require("../Utils/TelegramBOTLogger");
 class ContactSendMessageUseCase {
     constructor(smtp = SMTP_1.SMTP) {
         this.smtp = smtp;
@@ -22,6 +23,12 @@ class ContactSendMessageUseCase {
 					<hr>
 					<p><strong>MESSAGE:</strong> ${message}</p>
 				`,
+            });
+            TelegramBOTLogger_1.default.logContactSendMessage({
+                name,
+                email,
+                subject,
+                message
             });
             return { success: true };
         }

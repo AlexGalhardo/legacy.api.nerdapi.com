@@ -4,7 +4,7 @@
 
 ## Introduction
 
-* A personal project I created to learn [NestJS](https://nestjs.com/), Typescript, Clean/Hexagonal Architecture Principles (ports, useCases, repositories, etc) and Stateless Authentication using JWT and localStorage, as also improve my skills in product development, API development and documentation, SEO, tests, and so on.
+* A personal project I created to learn [NestJS](https://nestjs.com/), Typescript, Clean/Hexagonal Architecture Principles (ports, useCases, repositories, etc) Stateless Authentication using JWT, as also improve my skills in API development and documentation, tests, and so on.
 * This project use 2 databases:
   * JSONs files for simplicity and fast development.
   * PostgresSQL using PrismaORM (migrations, seeds, prisma studio) and Docker

@@ -57,6 +57,7 @@ export interface StripeSubscriptionInfo {
 export interface UsersRepositoryPort {
     save(user?: any, index?: number): Promise<void>;
     transformToUserResponse(user: any): UserResponse;
+    transformToUser(user: any): User;
     findById(userId: string): Promise<boolean>;
     findByEmail(email: string): Promise<boolean>;
     getByEmail(email: string): Promise<UserResponse>;
@@ -69,7 +70,7 @@ export interface UsersRepositoryPort {
     saveResetPasswordToken(userId: string, resetPasswordToken: string): Promise<void>;
     resetPassword(userId: string, newPassword: string): Promise<void>;
     findResetPasswordToken(resetPasswordToken: string): Promise<boolean>;
-    updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): Promise<void>;
+    updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): Promise<User>;
     phoneAlreadyRegistred(userId: string, phoneNumber: string): Promise<boolean>;
 }
 export default class UsersRepository implements UsersRepositoryPort {
@@ -78,6 +79,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     constructor(users: User[], database: Database);
     save(user?: User, index?: number): Promise<void>;
     transformToUserResponse(user: any): UserResponse;
+    transformToUser(user: any): User;
     findById(userId: string): Promise<boolean>;
     findByEmail(email: string): Promise<boolean>;
     getByEmail(email: string): Promise<UserResponse>;
@@ -91,5 +93,5 @@ export default class UsersRepository implements UsersRepositoryPort {
     saveResetPasswordToken(userId: string, resetPasswordToken: string): Promise<void>;
     resetPassword(userId: string, newPassword: string): Promise<void>;
     findResetPasswordToken(resetPasswordToken: string): Promise<boolean>;
-    updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): Promise<void>;
+    updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): Promise<User>;
 }

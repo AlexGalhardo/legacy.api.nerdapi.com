@@ -1,5 +1,6 @@
 import DateTime from "src/Utils/DataTypes/DateTime";
 import { SMTP } from "src/Utils/SMTP";
+import TelegramBOTLogger from "src/Utils/TelegramBOTLogger";
 
 export interface ContactSendMessageDTO {
     name: string;
@@ -37,6 +38,13 @@ export default class ContactSendMessageUseCase implements ContactSendMessageUseC
 					<p><strong>MESSAGE:</strong> ${message}</p>
 				`,
             });
+
+			TelegramBOTLogger.logContactSendMessage({
+				name,
+				email,
+				subject,
+				message
+			})
 
             return { success: true };
         }

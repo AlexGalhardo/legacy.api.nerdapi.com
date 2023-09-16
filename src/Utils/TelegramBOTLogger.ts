@@ -1,8 +1,34 @@
-/* eslint-disable no-param-reassign */
-// https://api.telegram.org/bot<telegram_token_here>/getUpdates
-import https from "node:https";
+/*
+Access: https://core.telegram.org/bots
+Create a new bot in BotFather in telegram, with /newbot prompt command
+TELEGRAM_BOT_HTTP_TOKEN=6513526877:AAHj3nN9AEgRV1zjYFgfhLeuQNjOlwmm0UE
+
+TO GET YOUR TELEGRAM_BOT_CHANNEL_ID
+Send a aleatory message to your new bot
+Access: https://api.telegram.org/bot<YOUR_TELEGRAM_BOT_HTTP_TOKEN_HERE>/getUpdates
+Get the "chat.id"
+TELEGRAM_BOT_CHANNEL_ID=chat.id here
+*/
+
+import * as https from "https";
 
 import DateTime from "./DataTypes/DateTime";
+
+interface SubscriptionTransaction {
+	charge_id: string;
+	charge_paid: boolean;
+	receipt_url: string;
+	invoice_url: string;
+	plan_name: string;
+	plan_amount: number;
+	starts_at: string;
+	ends_at: string;
+	customer_id: string;
+	customer_name: string;
+	customer_email: string;
+	customer_subscription_active: boolean;
+	customer_api_token: string;
+}
 
 class TelegramBOTLogger {
     private token: string;
@@ -45,7 +71,7 @@ class TelegramBOTLogger {
         this.sendRequest(url);
     }
 
-    logContact(contactObject: any) {
+    logContactSendMessage(contactObject: any) {
         const emoji = this.emojiMap().CONTACT;
 
         const log = `
@@ -54,9 +80,9 @@ class TelegramBOTLogger {
         <b>SUBJECT:</b> ${contactObject.subject}
         ---------------------------------------
         <b>MESSAGE:</b> ${contactObject.message}
-                    `;
+        `;
 
-        const message = `${emoji} CONTACT ${emoji}\n\n <b>CREATED_AT:</b> ${DateTime.getNow()}\n ${log}`;
+        const message = `${emoji} CONTACT ${emoji}\n\n<b>CREATED_AT:</b> ${DateTime.getNow()}\n${log}`;
 
         const urlParams = encodeURI(`chat_id=${this.channelName}&text=${message}&parse_mode=HTML`);
 
@@ -65,19 +91,25 @@ class TelegramBOTLogger {
         this.sendRequest(url);
     }
 
-    logSubscriptionTransaction(subscriptionTransactionObject: any) {
+    logSubscriptionTransaction(subscriptionTransaction: SubscriptionTransaction) {
         const emoji = this.emojiMap().SUBSCRIPTION;
 
         const log = `
-        <b>STRIPE_TRANSACTION_ID:</b> ${subscriptionTransactionObject.transaction_id}
+        <b>STRIPE CHARGE ID:</b> ${subscriptionTransaction.charge_id}
+		<b>STRIPE CHARGE PAID:</b> ${subscriptionTransaction.charge_paid}
+		<b>STRIPE RECEIPT URL:</b> ${subscriptionTransaction.receipt_url}
+		<b>STRIPE INVOICE URL:</b> ${subscriptionTransaction.invoice_url}
         ---------------------------------------------
-        <b>PLAN_NAME:</b> ${subscriptionTransactionObject.plan_name}
-        <b>PLAN_AMOUNT:</b> ${subscriptionTransactionObject.plan_amount}
+        <b>SUBSCRIPTION NAME:</b> ${subscriptionTransaction.plan_name}
+        <b>SUBSCRIPTION AMOUNT:</b> ${subscriptionTransaction.plan_amount}
+		<b>SUBSCRIPTION START AT:</b> ${subscriptionTransaction.plan_name}
+        <b>SUBSCRIPTION ENDS AT:</b> ${subscriptionTransaction.plan_amount}
         ---------------------------------------------
-		<b>CUSTOMER_NAME:</b> ${subscriptionTransactionObject.user_name}
-        <b>CUSTOMER_EMAIL:</b> ${subscriptionTransactionObject.user_email}
-        <b>STRIPE_CUSTOMER__ID:</b> ${subscriptionTransactionObject.stripe_customer_id}
-		<b>CUSTOMER_SUBSCRIPTION_ACTIVE: </b> ${subscriptionTransactionObject.status}
+		<b>STRIPE CUSTOMER ID:</b> ${subscriptionTransaction.customer_id}
+		<b>CUSTOMER NAME:</b> ${subscriptionTransaction.customer_name}
+        <b>CUSTOMER EMAIL:</b> ${subscriptionTransaction.customer_email}
+		<b>CUSTOMER SUBSCRIPTION ACTIVE: </b> ${subscriptionTransaction.customer_subscription_active}
+		<b>CUSTOMER API TOKEN: </b> ${subscriptionTransaction.customer_api_token}
         `;
 
         const message = `${emoji} SUBSCRIPTION TRANSACTION ${emoji}\n\n <b>CREATED_AT:</b> ${DateTime.getNow()}\n ${log}`;

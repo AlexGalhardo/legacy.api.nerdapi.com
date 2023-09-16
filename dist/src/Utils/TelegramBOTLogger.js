@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const node_https_1 = require("node:https");
+const https = require("https");
 const DateTime_1 = require("./DataTypes/DateTime");
 class TelegramBOTLogger {
     constructor(token, channelName) {
@@ -32,7 +32,7 @@ class TelegramBOTLogger {
         const url = `${this.baseUrl}/sendMessage?${urlParams}`;
         this.sendRequest(url);
     }
-    logContact(contactObject) {
+    logContactSendMessage(contactObject) {
         const emoji = this.emojiMap().CONTACT;
         const log = `
         <b>NAME:</b> ${contactObject.name}
@@ -40,24 +40,30 @@ class TelegramBOTLogger {
         <b>SUBJECT:</b> ${contactObject.subject}
         ---------------------------------------
         <b>MESSAGE:</b> ${contactObject.message}
-                    `;
-        const message = `${emoji} CONTACT ${emoji}\n\n <b>CREATED_AT:</b> ${DateTime_1.default.getNow()}\n ${log}`;
+        `;
+        const message = `${emoji} CONTACT ${emoji}\n\n<b>CREATED_AT:</b> ${DateTime_1.default.getNow()}\n${log}`;
         const urlParams = encodeURI(`chat_id=${this.channelName}&text=${message}&parse_mode=HTML`);
         const url = `${this.baseUrl}/sendMessage?${urlParams}`;
         this.sendRequest(url);
     }
-    logSubscriptionTransaction(subscriptionTransactionObject) {
+    logSubscriptionTransaction(subscriptionTransaction) {
         const emoji = this.emojiMap().SUBSCRIPTION;
         const log = `
-        <b>STRIPE_TRANSACTION_ID:</b> ${subscriptionTransactionObject.transaction_id}
+        <b>STRIPE CHARGE ID:</b> ${subscriptionTransaction.charge_id}
+		<b>STRIPE CHARGE PAID:</b> ${subscriptionTransaction.charge_paid}
+		<b>STRIPE RECEIPT URL:</b> ${subscriptionTransaction.receipt_url}
+		<b>STRIPE INVOICE URL:</b> ${subscriptionTransaction.invoice_url}
         ---------------------------------------------
-        <b>PLAN_NAME:</b> ${subscriptionTransactionObject.plan_name}
-        <b>PLAN_AMOUNT:</b> ${subscriptionTransactionObject.plan_amount}
+        <b>SUBSCRIPTION NAME:</b> ${subscriptionTransaction.plan_name}
+        <b>SUBSCRIPTION AMOUNT:</b> ${subscriptionTransaction.plan_amount}
+		<b>SUBSCRIPTION START AT:</b> ${subscriptionTransaction.plan_name}
+        <b>SUBSCRIPTION ENDS AT:</b> ${subscriptionTransaction.plan_amount}
         ---------------------------------------------
-		<b>CUSTOMER_NAME:</b> ${subscriptionTransactionObject.user_name}
-        <b>CUSTOMER_EMAIL:</b> ${subscriptionTransactionObject.user_email}
-        <b>STRIPE_CUSTOMER__ID:</b> ${subscriptionTransactionObject.stripe_customer_id}
-		<b>CUSTOMER_SUBSCRIPTION_ACTIVE: </b> ${subscriptionTransactionObject.status}
+		<b>STRIPE CUSTOMER ID:</b> ${subscriptionTransaction.customer_id}
+		<b>CUSTOMER NAME:</b> ${subscriptionTransaction.customer_name}
+        <b>CUSTOMER EMAIL:</b> ${subscriptionTransaction.customer_email}
+		<b>CUSTOMER SUBSCRIPTION ACTIVE: </b> ${subscriptionTransaction.customer_subscription_active}
+		<b>CUSTOMER API TOKEN: </b> ${subscriptionTransaction.customer_api_token}
         `;
         const message = `${emoji} SUBSCRIPTION TRANSACTION ${emoji}\n\n <b>CREATED_AT:</b> ${DateTime_1.default.getNow()}\n ${log}`;
         const urlParams = encodeURI(`chat_id=${this.channelName}&text=${message}&parse_mode=HTML`);
@@ -65,7 +71,7 @@ class TelegramBOTLogger {
         this.sendRequest(url);
     }
     sendRequest(url) {
-        return node_https_1.default
+        return https
             .get(url, (res) => {
             const { statusCode } = res;
             if (statusCode !== 200) {
