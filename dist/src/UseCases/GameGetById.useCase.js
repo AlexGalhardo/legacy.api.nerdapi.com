@@ -8,7 +8,7 @@ class GameGetByIdUseCase {
         this.gamesRepository = gamesRepository;
     }
     async execute(gameId) {
-        const gameById = this.gamesRepository.getById(gameId);
+        const gameById = await this.gamesRepository.getById(gameId);
         if (gameById)
             return { success: true, data: gameById };
         throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.GET_GAME_BY_ID_ERROR);

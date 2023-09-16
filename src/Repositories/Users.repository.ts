@@ -91,7 +91,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     ) {}
 
     public async save(user?: User, index?: number): Promise<void> {
-		if (process.env.DATABASE_JSON === "true"){
+		if (process.env.USE_DATABASE_JSON === "true"){
 			try {
 				if (user && index) {
 					this.users.splice(index, 1, user);
@@ -172,7 +172,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async findById(userId: string): Promise<boolean> {
-        if (process.env.DATABASE_JSON === "true") return this.users.some((user: any) => user.id === userId);
+        if (process.env.USE_DATABASE_JSON === "true") return this.users.some((user: any) => user.id === userId);
 
         const userExist = await this.database.users.findUnique({
             where: {
@@ -186,7 +186,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async findByEmail(email: string): Promise<boolean> {
-        if (process.env.DATABASE_JSON === "true") return this.users.some((user: any) => user.email === email);
+        if (process.env.USE_DATABASE_JSON === "true") return this.users.some((user: any) => user.email === email);
 
         const userExist = await this.database.users.findUnique({
             where: {
@@ -200,7 +200,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async getByEmail(email: string): Promise<UserResponse> {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].email === email) {
                     return { user: this.users[i], index: i };
@@ -222,7 +222,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async getById(userId: string): Promise<UserResponse> {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === userId) {
                     return { user: this.users[i], index: i };
@@ -244,7 +244,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async getByResetPasswordToken(resetPasswordToken: string): Promise<UserResponse> {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].reset_password_token === resetPasswordToken) {
                     return { user: this.users[i], index: i };
@@ -266,7 +266,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async create(user: User): Promise<void> {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             this.users.push(user);
             this.save();
             return;
@@ -302,7 +302,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async update(userId: string, profileUpdateDTO: ProfileUpdateDTO): Promise<UserUpdated> {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === userId) {
                     this.users[i].username = profileUpdateDTO.username ?? this.users[i].username;
@@ -346,7 +346,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async deleteByEmail(email: string): Promise<void> {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             this.users = this.users.filter((user) => user.email !== email);
             this.save();
             return;
@@ -360,7 +360,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async logout(userId: string): Promise<void> {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === userId) {
                     this.users[i].jwt_token = null;
@@ -383,7 +383,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async phoneAlreadyRegistred(userId: string, phoneNumber: string): Promise<boolean> {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             return this.users.some((user) => {
                 if (user.id !== userId && user.telegram_number === phoneNumber) return true;
             });
@@ -402,7 +402,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async saveResetPasswordToken(userId: string, resetPasswordToken: string): Promise<void> {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === userId) {
                     this.users[i].reset_password_token = resetPasswordToken;
@@ -427,7 +427,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async resetPassword(userId: string, newPassword: string): Promise<void> {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === userId) {
                     if (!DateTime.isExpired(new Date(this.users[i].reset_password_token_expires_at))) {
@@ -468,7 +468,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async findResetPasswordToken(resetPasswordToken: string): Promise<boolean> {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             return this.users.some((user) => {
                 if (
                     user.reset_password_token === resetPasswordToken &&
@@ -495,7 +495,7 @@ export default class UsersRepository implements UsersRepositoryPort {
         user: User,
         stripeSubscriptionInfo: StripeSubscriptionInfo,
     ): Promise<void> {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === user.id) {
                     this.users[i].api_token = stripeSubscriptionInfo.apiToken ?? this.users[i].api_token;

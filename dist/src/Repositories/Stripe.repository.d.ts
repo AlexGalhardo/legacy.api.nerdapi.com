@@ -1745,7 +1745,6 @@ export default class StripeRepository implements StripeRepositoryPort {
         };
         type: string;
     })[]);
-    saveBillingPortalCheckoutWebhookEventLog(event: any): void;
     saveChargeWebhookEventLog(event: any): void;
     saveCustomerWebhookEventLog(event: any): void;
     saveInvoiceWebhookEventLog(event: any): void;

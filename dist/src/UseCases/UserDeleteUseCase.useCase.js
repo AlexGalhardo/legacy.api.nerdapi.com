@@ -8,7 +8,7 @@ class UserDeleteUseCase {
     }
     async execute(email) {
         if (this.usersRepository.findByEmail(email)) {
-            this.usersRepository.deleteByEmail(email);
+            await this.usersRepository.deleteByEmail(email);
             return { success: true };
         }
         throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.EMAIL_NOT_REGISTRED);

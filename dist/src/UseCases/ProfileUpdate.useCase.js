@@ -22,7 +22,7 @@ class ProfileUpdateUseCase {
                 if (!Validator_1.default.phone.isValid(profileUpdateDTO.telegramNumber)) {
                     throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.INVALID_PHONE_NUMBER);
                 }
-                if (this.usersRepository.phoneAlreadyRegistred(user.id, profileUpdateDTO.telegramNumber)) {
+                if (await this.usersRepository.phoneAlreadyRegistred(user.id, profileUpdateDTO.telegramNumber)) {
                     throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.PHONE_NUMBER_ALREADY_REGISTRED);
                 }
             }

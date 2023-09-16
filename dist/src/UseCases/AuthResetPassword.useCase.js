@@ -15,7 +15,7 @@ class AuthResetPasswordUseCase {
         const { user } = await this.usersRepository.getByResetPasswordToken(resetPasswordToken);
         if (user) {
             const hashedPassword = await Bcrypt_1.Bcrypt.hash(newPassword);
-            this.usersRepository.resetPassword(user.id, hashedPassword);
+            await this.usersRepository.resetPassword(user.id, hashedPassword);
             return { success: true };
         }
         throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.RESET_PASSWORD_TOKEN_INVALID);

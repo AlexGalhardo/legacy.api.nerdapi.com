@@ -4,15 +4,17 @@ import GamesRepository, { GamesRepositoryPort } from "src/Repositories/Games.rep
 import GameGetByIdUseCase from "src/UseCases/GameGetById.useCase";
 import GameGetByTitleUseCase from "src/UseCases/GameGetByTitle.useCase";
 import GameGetRandomUseCase from "src/UseCases/GameGetRandom.useCase";
+import { Database } from "src/Utils/Database";
 
 @Module({
     controllers: [GamesController],
     providers: [
+		Database,
         {
-            inject: [],
             provide: "GamesRepositoryPort",
-            useFactory: () => {
-                return new GamesRepository();
+			inject: [Database],
+            useFactory: (database: Database) => {
+                return new GamesRepository(undefined, database);
             },
         },
         {

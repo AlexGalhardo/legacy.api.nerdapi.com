@@ -13,7 +13,7 @@ class StripeWebhookInvoiceFinalizedUseCase {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
         const { user } = await this.usersRepository.getByEmail(event.data.object.customer_email);
         if (user) {
-            this.usersRepository.updateStripeSubscriptionInfo(user, {
+            await this.usersRepository.updateStripeSubscriptionInfo(user, {
                 apiToken: event.data.object.paid ? (0, RandomToken_1.generateRandomToken)() : null,
                 customerId: (_a = event.data.object.customer) !== null && _a !== void 0 ? _a : null,
                 paid: (_b = event.data.object.paid) !== null && _b !== void 0 ? _b : null,

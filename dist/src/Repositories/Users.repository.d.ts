@@ -55,7 +55,7 @@ export interface StripeSubscriptionInfo {
     createdAtBrazil: string | null;
 }
 export interface UsersRepositoryPort {
-    save(user?: any, index?: number): void;
+    save(user?: any, index?: number): Promise<void>;
     transformToUserResponse(user: any): UserResponse;
     findById(userId: string): Promise<boolean>;
     findByEmail(email: string): Promise<boolean>;
@@ -76,7 +76,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     private users;
     private readonly database;
     constructor(users: User[], database: Database);
-    save(user?: any, index?: number): void;
+    save(user?: User, index?: number): Promise<void>;
     transformToUserResponse(user: any): UserResponse;
     findById(userId: string): Promise<boolean>;
     findByEmail(email: string): Promise<boolean>;

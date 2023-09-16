@@ -16,9 +16,6 @@ class StripeRepository {
         this.billingPortals = billingPortals;
         this.payments = payments;
     }
-    saveBillingPortalCheckoutWebhookEventLog(event) {
-        throw new Error("Method not implemented.");
-    }
     saveChargeWebhookEventLog(event) {
         try {
             this.charges.push(event);
@@ -31,7 +28,7 @@ class StripeRepository {
     saveCustomerWebhookEventLog(event) {
         try {
             this.customers.push(event);
-            fs.writeFileSync("./src/Repositories/Jsons/Stripe/customers.json", JSON.stringify(this.charges, null, 4), "utf-8");
+            fs.writeFileSync("./src/Repositories/Jsons/Stripe/customers.json", JSON.stringify(this.customers, null, 4), "utf-8");
         }
         catch (error) {
             throw new Error(error);
@@ -40,7 +37,7 @@ class StripeRepository {
     saveInvoiceWebhookEventLog(event) {
         try {
             this.invoices.push(event);
-            fs.writeFileSync("./src/Repositories/Jsons/Stripe/invoices.json", JSON.stringify(this.charges, null, 4), "utf-8");
+            fs.writeFileSync("./src/Repositories/Jsons/Stripe/invoices.json", JSON.stringify(this.invoices, null, 4), "utf-8");
         }
         catch (error) {
             throw new Error(error);
@@ -49,7 +46,7 @@ class StripeRepository {
     savePaymentWebhookEventLog(event) {
         try {
             this.payments.push(event);
-            fs.writeFileSync("./src/Repositories/Jsons/Stripe/payments.json", JSON.stringify(this.charges, null, 4), "utf-8");
+            fs.writeFileSync("./src/Repositories/Jsons/Stripe/payments.json", JSON.stringify(this.payments, null, 4), "utf-8");
         }
         catch (error) {
             throw new Error(error);
@@ -58,7 +55,7 @@ class StripeRepository {
     saveCheckoutSessionWebhookEventLog(event) {
         try {
             this.checkouts.push(event);
-            fs.writeFileSync("./src/Repositories/Jsons/Stripe/checkouts.json", JSON.stringify(this.charges, null, 4), "utf-8");
+            fs.writeFileSync("./src/Repositories/Jsons/Stripe/checkouts.json", JSON.stringify(this.checkouts, null, 4), "utf-8");
         }
         catch (error) {
             throw new Error(error);
@@ -67,7 +64,7 @@ class StripeRepository {
     saveBillingPortalSessionWebhookEventLog(event) {
         try {
             this.billingPortals.push(event);
-            fs.writeFileSync("./src/Repositories/Jsons/Stripe/billingPortals.json", JSON.stringify(this.charges, null, 4), "utf-8");
+            fs.writeFileSync("./src/Repositories/Jsons/Stripe/billingPortals.json", JSON.stringify(this.billingPortals, null, 4), "utf-8");
         }
         catch (error) {
             throw new Error(error);

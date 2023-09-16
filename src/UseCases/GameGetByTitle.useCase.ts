@@ -16,7 +16,7 @@ export default class GameGetByTitleUseCase implements GameGetByTitleUseCasePort 
     constructor(private readonly gamesRepository: GamesRepositoryPort) {}
 
     async execute(gameTitle: string): Promise<GameGetByTitleUseCaseResponse> {
-        const gameByTitle = this.gamesRepository.getByTitle(gameTitle);
+        const gameByTitle = await this.gamesRepository.getByTitle(gameTitle);
 
         if (gameByTitle) return { success: true, data: gameByTitle };
 

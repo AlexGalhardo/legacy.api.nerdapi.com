@@ -22,17 +22,49 @@ let UsersRepository = class UsersRepository {
         this.users = users;
         this.database = database;
     }
-    save(user, index) {
-        try {
-            if (user && index) {
-                this.users.splice(index, 1, user);
+    async save(user, index) {
+        if (process.env.USE_DATABASE_JSON === "true") {
+            try {
+                if (user && index) {
+                    this.users.splice(index, 1, user);
+                }
+                fs.writeFileSync("./src/Repositories/Jsons/users.json", JSON.stringify(this.users, null, 4), "utf-8");
+                this.users = JSON.parse(fs.readFileSync("./src/Repositories/Jsons/users.json", "utf-8"));
             }
-            fs.writeFileSync("./src/Repositories/Jsons/users.json", JSON.stringify(this.users, null, 4), "utf-8");
-            this.users = JSON.parse(fs.readFileSync("./src/Repositories/Jsons/users.json", "utf-8"));
+            catch (error) {
+                throw new Error(error);
+            }
         }
-        catch (error) {
-            throw new Error(error);
-        }
+        await this.database.users.update({
+            where: {
+                id: user.id,
+            },
+            data: {
+                id: user.id,
+                username: user.username,
+                email: user.email,
+                telegram_number: user.telegram_number,
+                password: user.password,
+                jwt_token: user.jwt_token,
+                api_token: user.api_token,
+                reset_password_token: user.reset_password_token,
+                reset_password_token_expires_at: user.reset_password_token_expires_at,
+                stripe_customer_id: user.stripe.customer_id,
+                stripe_subscription_active: user.stripe.subscription.active,
+                stripe_subscription_name: user.stripe.subscription.name,
+                stripe_subscription_starts_at: user.stripe.subscription.starts_at,
+                stripe_subscription_ends_at: user.stripe.subscription.ends_at,
+                stripe_subscription_charge_id: user.stripe.subscription.charge_id,
+                stripe_subscription_receipt_url: user.stripe.subscription.receipt_url,
+                stripe_subscription_hosted_invoice_url: user.stripe.subscription.hosted_invoice_url,
+                stripe_updated_at: user.stripe.updated_at,
+                stripe_updated_at_pt_br: user.stripe.updated_at_pt_br,
+                created_at: user.created_at,
+                updated_at: user.updated_at,
+                created_at_pt_br: user.created_at_pt_br,
+                updated_at_pt_br: user.updated_at_pt_br
+            }
+        });
     }
     transformToUserResponse(user) {
         return {
@@ -69,7 +101,7 @@ let UsersRepository = class UsersRepository {
         };
     }
     async findById(userId) {
-        if (process.env.DATABASE_JSON === "true")
+        if (process.env.USE_DATABASE_JSON === "true")
             return this.users.some((user) => user.id === userId);
         const userExist = await this.database.users.findUnique({
             where: {
@@ -81,7 +113,7 @@ let UsersRepository = class UsersRepository {
         return false;
     }
     async findByEmail(email) {
-        if (process.env.DATABASE_JSON === "true")
+        if (process.env.USE_DATABASE_JSON === "true")
             return this.users.some((user) => user.email === email);
         const userExist = await this.database.users.findUnique({
             where: {
@@ -93,7 +125,7 @@ let UsersRepository = class UsersRepository {
         return false;
     }
     async getByEmail(email) {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].email === email) {
                     return { user: this.users[i], index: i };
@@ -111,7 +143,7 @@ let UsersRepository = class UsersRepository {
         throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
     }
     async getById(userId) {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === userId) {
                     return { user: this.users[i], index: i };
@@ -129,7 +161,7 @@ let UsersRepository = class UsersRepository {
         throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
     }
     async getByResetPasswordToken(resetPasswordToken) {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].reset_password_token === resetPasswordToken) {
                     return { user: this.users[i], index: i };
@@ -147,7 +179,7 @@ let UsersRepository = class UsersRepository {
         throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
     }
     async create(user) {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             this.users.push(user);
             this.save();
             return;
@@ -182,7 +214,7 @@ let UsersRepository = class UsersRepository {
     }
     async update(userId, profileUpdateDTO) {
         var _a, _b, _c, _d;
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === userId) {
                     this.users[i].username = (_a = profileUpdateDTO.username) !== null && _a !== void 0 ? _a : this.users[i].username;
@@ -219,7 +251,7 @@ let UsersRepository = class UsersRepository {
         };
     }
     async deleteByEmail(email) {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             this.users = this.users.filter((user) => user.email !== email);
             this.save();
             return;
@@ -231,7 +263,7 @@ let UsersRepository = class UsersRepository {
         });
     }
     async logout(userId) {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === userId) {
                     this.users[i].jwt_token = null;
@@ -251,7 +283,7 @@ let UsersRepository = class UsersRepository {
         });
     }
     async phoneAlreadyRegistred(userId, phoneNumber) {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             return this.users.some((user) => {
                 if (user.id !== userId && user.telegram_number === phoneNumber)
                     return true;
@@ -269,7 +301,7 @@ let UsersRepository = class UsersRepository {
         return false;
     }
     async saveResetPasswordToken(userId, resetPasswordToken) {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === userId) {
                     this.users[i].reset_password_token = resetPasswordToken;
@@ -290,7 +322,7 @@ let UsersRepository = class UsersRepository {
         });
     }
     async resetPassword(userId, newPassword) {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === userId) {
                     if (!DateTime_1.default.isExpired(new Date(this.users[i].reset_password_token_expires_at))) {
@@ -330,7 +362,7 @@ let UsersRepository = class UsersRepository {
         }
     }
     async findResetPasswordToken(resetPasswordToken) {
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             return this.users.some((user) => {
                 if (user.reset_password_token === resetPasswordToken &&
                     !DateTime_1.default.isExpired(new Date(user.reset_password_token_expires_at))) {
@@ -351,7 +383,7 @@ let UsersRepository = class UsersRepository {
     }
     async updateStripeSubscriptionInfo(user, stripeSubscriptionInfo) {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
-        if (process.env.DATABASE_JSON === "true") {
+        if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === user.id) {
                     this.users[i].api_token = (_a = stripeSubscriptionInfo.apiToken) !== null && _a !== void 0 ? _a : this.users[i].api_token;

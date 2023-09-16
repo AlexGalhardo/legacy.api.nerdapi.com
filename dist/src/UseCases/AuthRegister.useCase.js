@@ -24,7 +24,7 @@ class AuthRegisterUseCase {
         if (!await this.usersRepository.findByEmail(email)) {
             const userId = (0, crypto_1.randomUUID)();
             const jwt_token = jwt.sign({ userID: userId }, process.env.JWT_SECRET);
-            this.usersRepository.create({
+            await this.usersRepository.create({
                 id: userId,
                 username,
                 email,

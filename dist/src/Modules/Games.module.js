@@ -13,6 +13,7 @@ const Games_repository_1 = require("../Repositories/Games.repository");
 const GameGetById_useCase_1 = require("../UseCases/GameGetById.useCase");
 const GameGetByTitle_useCase_1 = require("../UseCases/GameGetByTitle.useCase");
 const GameGetRandom_useCase_1 = require("../UseCases/GameGetRandom.useCase");
+const Database_1 = require("../Utils/Database");
 let GamesModule = class GamesModule {
 };
 exports.GamesModule = GamesModule;
@@ -20,11 +21,12 @@ exports.GamesModule = GamesModule = __decorate([
     (0, common_1.Module)({
         controllers: [GamesController_1.GamesController],
         providers: [
+            Database_1.Database,
             {
-                inject: [],
                 provide: "GamesRepositoryPort",
-                useFactory: () => {
-                    return new Games_repository_1.default();
+                inject: [Database_1.Database],
+                useFactory: (database) => {
+                    return new Games_repository_1.default(undefined, database);
                 },
             },
             {

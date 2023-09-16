@@ -1,3 +1,4 @@
+import { Database } from "src/Utils/Database";
 export interface PlatformAvailable {
     id: string;
     name: string;
@@ -56,16 +57,19 @@ export interface Game {
     updated_at_pt_br: string | null;
 }
 export interface GamesRepositoryPort {
-    save(user?: any, index?: number): void;
-    getById(gameId: string): Game;
-    getByTitle(gameTitle: string): Game[];
-    getRandom(): Game;
+    transformToGameResponse(game: any): Game;
+    transformToGamesResponses(game: any): Game[];
+    getById(gameId: string): Promise<Game>;
+    getByTitle(gameTitle: string): Promise<Game[]>;
+    getRandom(): Promise<Game>;
 }
 export default class GamesRepository implements GamesRepositoryPort {
     private games;
-    constructor(games?: Game[]);
-    save(game?: any, index?: number): void;
-    getById(gameId: string): Game;
-    getByTitle(gameTitle: string): Game[];
-    getRandom(): Game;
+    private readonly database;
+    constructor(games: Game[], database: Database);
+    transformToGameResponse(game: any): Game;
+    transformToGamesResponses(games: any): Game[];
+    getById(gameId: string): Promise<Game>;
+    getByTitle(gameTitle: string): Promise<Game[]>;
+    getRandom(): Promise<Game>;
 }

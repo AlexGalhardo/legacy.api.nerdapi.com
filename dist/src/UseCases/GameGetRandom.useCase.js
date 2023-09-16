@@ -8,7 +8,7 @@ class GameGetRandomUseCase {
         this.gamesRepository = gamesRepository;
     }
     async execute() {
-        const randomGame = this.gamesRepository.getRandom();
+        const randomGame = await this.gamesRepository.getRandom();
         if (randomGame)
             return { success: true, data: randomGame };
         throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.GET_RANDOM_GAME_ERROR);

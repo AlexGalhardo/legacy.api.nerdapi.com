@@ -24,9 +24,6 @@ export default class StripeRepository implements StripeRepositoryPort {
         private billingPortals = StripeBillingPortals,
         private payments = StripePayments,
     ) {}
-    saveBillingPortalCheckoutWebhookEventLog(event: any): void {
-        throw new Error("Method not implemented.");
-    }
 
     public saveChargeWebhookEventLog(event: any) {
         try {
@@ -46,7 +43,7 @@ export default class StripeRepository implements StripeRepositoryPort {
             this.customers.push(event);
             fs.writeFileSync(
                 "./src/Repositories/Jsons/Stripe/customers.json",
-                JSON.stringify(this.charges, null, 4),
+                JSON.stringify(this.customers, null, 4),
                 "utf-8",
             );
         } catch (error) {
@@ -59,7 +56,7 @@ export default class StripeRepository implements StripeRepositoryPort {
             this.invoices.push(event);
             fs.writeFileSync(
                 "./src/Repositories/Jsons/Stripe/invoices.json",
-                JSON.stringify(this.charges, null, 4),
+                JSON.stringify(this.invoices, null, 4),
                 "utf-8",
             );
         } catch (error) {
@@ -72,7 +69,7 @@ export default class StripeRepository implements StripeRepositoryPort {
             this.payments.push(event);
             fs.writeFileSync(
                 "./src/Repositories/Jsons/Stripe/payments.json",
-                JSON.stringify(this.charges, null, 4),
+                JSON.stringify(this.payments, null, 4),
                 "utf-8",
             );
         } catch (error) {
@@ -85,7 +82,7 @@ export default class StripeRepository implements StripeRepositoryPort {
             this.checkouts.push(event);
             fs.writeFileSync(
                 "./src/Repositories/Jsons/Stripe/checkouts.json",
-                JSON.stringify(this.charges, null, 4),
+                JSON.stringify(this.checkouts, null, 4),
                 "utf-8",
             );
         } catch (error) {
@@ -98,7 +95,7 @@ export default class StripeRepository implements StripeRepositoryPort {
             this.billingPortals.push(event);
             fs.writeFileSync(
                 "./src/Repositories/Jsons/Stripe/billingPortals.json",
-                JSON.stringify(this.charges, null, 4),
+                JSON.stringify(this.billingPortals, null, 4),
                 "utf-8",
             );
         } catch (error) {
