@@ -2735,11 +2735,11 @@
 		},
 		"igdb": {
 			"url": "https://www.igdb.com/games/bioshock--3",
-			"rating": null
+			"rating": 91
 		},
 		"metacritic": {
 			"url": "https://www.igdb.com/games/bioshock--3",
-			"rating": null
+			"rating": 92
 		},
 		"where_to_buy": [
 			{
@@ -3030,16 +3030,16 @@
 		"cover_image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co6ab2.jpg",
 		"summary": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod quam sed quam elementum pellentesque. Fusce ultricies mauris sed lectus luctus condimentum non quis est. Mauris ligula libero, ullamcorper in nisi vitae, faucibus facilisis odio. Nullam felis erat, varius eget auctor id, interdum at nunc. Sed rhoncus pellentesque pulvinar. Ut vel ligula lacinia, malesuada lectus venenatis, faucibus diam. Suspendisse est eros, auctor vitae ex nec, dictum blandit enim. Duis aliquam ipsum lacus, vitae finibus quam vehicula sit amet. Etiam mollis eu diam vel auctor. Fusce auctor mi vitae dolor mollis, placerat ullamcorper massa condimentum. Proin tempor odio eu rhoncus convallis. Duis ut dui eleifend velit fringilla elementum. Cras imperdiet mauris dictum leo scelerisque, lacinia blandit dui molestie. Quisque ut rhoncus nulla. Proin tincidunt, diam non luctus pharetra, lectus quam bibendum orci, vitae condimentum orci ligula id sapien. Mauris venenatis tellus turpis, in lacinia nunc dignissim eu. In lobortis ante in faucibus cursus.",
 		"release": {
-			"year": null,
-			"date": null
+			"year": 2023,
+			"date": "2023-20-10T00:00:00.000Z"
 		},
 		"igdb": {
 			"url": "https://www.igdb.com/games/counter-strike-2",
-			"rating": null
+			"rating": 95
 		},
 		"metacritic": {
 			"url": "https://www.igdb.com/games/counter-strike-2",
-			"rating": null
+			"rating": 93
 		},
 		"where_to_buy": [
 			{
@@ -3193,11 +3193,11 @@
 		},
 		"igdb": {
 			"url": "https://www.igdb.com/games/super-mario-rpg",
-			"rating": null
+			"rating": 93
 		},
 		"metacritic": {
 			"url": "https://www.igdb.com/games/super-mario-rpg",
-			"rating": null
+			"rating": 92
 		},
 		"where_to_buy": [
 			{

@@ -39,13 +39,13 @@ model Users {
 model Games {
   id                  String    @id @default(uuid())
   title               String
-  cover_image         String
+  cover_image         String	@unique
   summary             String
   release_year        Int
   release_date        String
-  igdb_url            String?
-  igdb_rating         String?
-  metacritic_url      String?
+  igdb_url            String?	@unique
+  igdb_rating         Int?
+  metacritic_url      String?	@unique
   metacritic_rating   Int?
   where_to_buy        Json
   developer_id        String
@@ -55,8 +55,8 @@ model Games {
   platforms_available Json
   genres              Json
   how_long_to_beat    Json
-  created_at          DateTime  @default(now())
-  updated_at          DateTime?
+  created_at          String
+  updated_at          String?
   created_at_pt_br    String
   updated_at_pt_br    String?
 
