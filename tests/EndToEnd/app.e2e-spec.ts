@@ -12,6 +12,7 @@ import AuthLogoutUseCase from "src/UseCases/AuthLogout.useCase";
 import AuthTokenUserUseCase from "src/UseCases/AuthTokenUser.useCase";
 import AuthLoginGoogleUseCase from "src/UseCases/AuthLoginGoogle.useCase";
 import AuthCheckResetPasswordTokenUseCase from "src/UseCases/AuthCheckResetPasswordToken.useCase";
+import { Database } from "src/Utils/Database";
 
 describe("AppController (e2e)", () => {
     let app: INestApplication;
@@ -22,12 +23,12 @@ describe("AppController (e2e)", () => {
             imports: [AppModule],
             providers: [
                 {
-                    inject: [],
-                    provide: "UsersRepositoryPort",
-                    useFactory: () => {
-                        return new UsersRepository();
-                    },
-                },
+					provide: "UsersRepositoryPort",
+					inject: [Database],
+					useFactory: (database: Database) => {
+						return new UsersRepository(null, database);
+					},
+				},
                 {
                     provide: "AuthRegisterUseCasePort",
                     inject: ["UsersRepositoryPort"],

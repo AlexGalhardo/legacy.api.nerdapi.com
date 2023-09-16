@@ -30,7 +30,7 @@ export default class AuthForgetPasswordUseCase implements AuthForgetPasswordUseC
 
         if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
 
-        const { user } = this.usersRepository.getByEmail(email);
+        const { user } = await this.usersRepository.getByEmail(email);
 
         if (user) {
             const reset_password_token = generateRandomToken();

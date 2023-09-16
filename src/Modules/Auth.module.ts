@@ -10,15 +10,17 @@ import AuthLogoutUseCase from "src/UseCases/AuthLogout.useCase";
 import AuthRegisterUseCase from "src/UseCases/AuthRegister.useCase";
 import AuthResetPasswordUseCase from "src/UseCases/AuthResetPassword.useCase";
 import AuthTokenUserUseCase from "src/UseCases/AuthTokenUser.useCase";
+import { Database } from "src/Utils/Database";
 
 @Module({
     controllers: [AuthController],
     providers: [
+		Database,
         {
-            inject: [],
             provide: "UsersRepositoryPort",
-            useFactory: () => {
-                return new UsersRepository();
+			inject: [Database],
+            useFactory: (database: Database) => {
+                return new UsersRepository(null, database);
             },
         },
         {

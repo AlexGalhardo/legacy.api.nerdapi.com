@@ -16,7 +16,7 @@ export default class StripeWebhookChargeSucceededUseCase implements StripeWebhoo
     ) {}
 
     async execute(event: any) {
-        const { user } = this.usersRepository.getByEmail(event.data.object.billing_details.email);
+        const { user } = await this.usersRepository.getByEmail(event.data.object.billing_details.email);
 
         if (user) {
             this.usersRepository.updateStripeSubscriptionInfo(user, {

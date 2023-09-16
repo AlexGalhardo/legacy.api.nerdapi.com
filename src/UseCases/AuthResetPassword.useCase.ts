@@ -32,7 +32,7 @@ export default class AuthResetPasswordUseCase implements AuthResetPasswordUseCas
         if (!Validator.password.isEqual(newPassword, confirmNewPassword))
             throw new ClientException(ErrorsMessages.PASSWORDS_NOT_EQUAL);
 
-        const { user } = this.usersRepository.getByResetPasswordToken(resetPasswordToken);
+        const { user } = await this.usersRepository.getByResetPasswordToken(resetPasswordToken);
 
         if (user) {
             const hashedPassword = await Bcrypt.hash(newPassword);

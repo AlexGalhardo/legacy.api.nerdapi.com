@@ -5,6 +5,7 @@ import AuthLoginUseCase, { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCas
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDeleteUseCase.useCase";
 import AuthLogoutUseCase, { AuthLogoutUseCasePort } from "src/UseCases/AuthLogout.useCase";
+import { Database } from "src/Utils/Database";
 
 describe("Test AuthLogoutUseCase", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;
@@ -17,10 +18,10 @@ describe("Test AuthLogoutUseCase", () => {
             controllers: [],
             providers: [
                 {
-                    inject: [],
                     provide: "UsersRepositoryPort",
-                    useFactory: () => {
-                        return new UsersRepository();
+                    inject: [Database],
+                    useFactory: (database: Database) => {
+                        return new UsersRepository(null, database);
                     },
                 },
                 {

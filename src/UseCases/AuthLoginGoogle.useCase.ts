@@ -41,10 +41,10 @@ export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePor
 
             if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
 
-            const userExists = this.usersRepository.findByEmail(email);
+            const userExists = await this.usersRepository.findByEmail(email);
 
             if (userExists) {
-                const { user, index } = this.usersRepository.getByEmail(email);
+                const { user, index } = await this.usersRepository.getByEmail(email);
                 const jwt_token = jwt.sign({ userID: user.id }, process.env.JWT_SECRET);
                 user.jwt_token = jwt_token;
                 this.usersRepository.save(user, index);

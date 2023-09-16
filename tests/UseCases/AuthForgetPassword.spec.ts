@@ -7,6 +7,7 @@ import AuthForgetPasswordUseCase, {
     AuthForgetPasswordDTO,
     AuthForgetPasswordUseCasePort,
 } from "src/UseCases/AuthForgetPassword.useCase";
+import { Database } from "src/Utils/Database";
 
 describe("Test AuthForgetPasswordUseCase", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;
@@ -19,9 +20,9 @@ describe("Test AuthForgetPasswordUseCase", () => {
             providers: [
                 {
                     provide: "UsersRepositoryPort",
-                    inject: [],
-                    useFactory: () => {
-                        return new UsersRepository();
+                    inject: [Database],
+                    useFactory: (database: Database) => {
+                        return new UsersRepository(null, database);
                     },
                 },
                 {

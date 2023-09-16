@@ -30,7 +30,7 @@ export default class StripeCreatePortalSessionUseCase implements StripeCreatePor
     ): Promise<StripeCreatePortalSessionUseCaseResponse> {
         const { userID } = jwt.verify(jwtToken, process.env.JWT_SECRET) as jwt.JwtPayload;
 
-        const { user } = this.usersRepository.getById(userID);
+        const { user } = await this.usersRepository.getById(userID);
 
         if (user) {
             if (user.stripe.subscription.active) throw new ClientException(ErrorsMessages.USER_HAS_ACTIVE_PLAN);

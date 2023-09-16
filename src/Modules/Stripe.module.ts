@@ -6,22 +6,24 @@ import StripeCreateCheckoutSessionUseCase from "src/UseCases/StripeCreateCheckou
 import StripeCreatePortalSessionUseCase from "src/UseCases/StripeCreatePortalSession.useCase";
 import StripeWebhookChargeSucceededUseCase from "src/UseCases/StripeWebhookChargeSucceeded.useCase";
 import StripeWebhookInvoiceFinalizedUseCase from "src/UseCases/StripeWebhookInvoiceFinalized.useCase";
+import { Database } from "src/Utils/Database";
 
 @Module({
     controllers: [StripeController],
     providers: [
+		Database,
         {
-            inject: [],
             provide: "StripeRepositoryPort",
+			inject: [],
             useFactory: () => {
                 return new StripeRepository();
             },
         },
         {
-            inject: [],
             provide: "UsersRepositoryPort",
-            useFactory: () => {
-                return new UsersRepository();
+			inject: [Database],
+            useFactory: (database: Database) => {
+                return new UsersRepository(null, database);
             },
         },
         {

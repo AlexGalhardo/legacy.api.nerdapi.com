@@ -4,6 +4,7 @@ import Validator from "src/Utils/Validator";
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDeleteUseCase.useCase";
 import ProfileUpdateUseCase, { ProfileUpdateDTO, ProfileUpdateUseCasePort } from "src/UseCases/ProfileUpdate.useCase";
+import { Database } from "src/Utils/Database";
 
 describe("Test ProfileUpdateUseCase", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;
@@ -15,10 +16,10 @@ describe("Test ProfileUpdateUseCase", () => {
             controllers: [],
             providers: [
                 {
-                    inject: [],
                     provide: "UsersRepositoryPort",
-                    useFactory: () => {
-                        return new UsersRepository();
+                    inject: [Database],
+                    useFactory: (database: Database) => {
+                        return new UsersRepository(null, database);
                     },
                 },
                 {

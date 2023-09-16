@@ -1,6 +1,5 @@
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from "@nestjs/common";
 import { AuthModule } from "./Modules/Auth.module";
-// import usersRepository from "./Repositories/Users.repository";
 import { ProfileModule } from "./Modules/Profile.module";
 import { ContactModule } from "./Modules/Contact.module";
 import { StripeModule } from "./Modules/Stripe.module";
@@ -21,13 +20,6 @@ import { GamesModule } from "./Modules/Games.module";
     ],
     controllers: [],
 	providers: [],
-    // providers: [
-    //     usersRepository,
-    //     {
-    //         provide: "UsersRepositoryPort",
-    //         useClass: usersRepository,
-    //     },
-    // ],
 })
 export class AppModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {

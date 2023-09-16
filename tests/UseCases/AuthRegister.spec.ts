@@ -3,6 +3,7 @@ import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.rep
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import Validator from "src/Utils/Validator";
 import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDeleteUseCase.useCase";
+import { Database } from "src/Utils/Database";
 
 describe("Test AuthRegisterUseCase", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;
@@ -14,9 +15,9 @@ describe("Test AuthRegisterUseCase", () => {
             providers: [
                 {
                     provide: "UsersRepositoryPort",
-                    inject: [],
-                    useFactory: () => {
-                        return new UsersRepository();
+                    inject: [Database],
+                    useFactory: (database: Database) => {
+                        return new UsersRepository(null, database);
                     },
                 },
                 {

@@ -9,18 +9,65 @@ datasource db {
 
 model Users {
     id                                 String    @id @default(uuid())
-    name                               String
+    username                               String
     email                              String    @unique
+	telegram_number String?
+	jwt_token String
+	api_token String?
     password                           String
     reset_password_token               String?
+	reset_password_token_expires_at String?
     stripe_customer_id                 String?   @unique
-    stripe_currently_subscription_id   String?   @unique
-    stripe_currently_subscription_name String?
-    stripe_subscription_start          DateTime?
-    stripe_subscription_end            DateTime?
-    created_at                         DateTime  @default(now())
-    updated_at                         DateTime?
+	stripe_subscription_active                  Boolean @default(false)
+	stripe_subscription_name           String?
+    stripe_subscription_starts_at          String?
+    stripe_subscription_ends_at           String?
+	stripe_subscription_charge_id String?
+    stripe_subscription_receipt_url String?
+    stripe_subscription_hosted_invoice_url String?
+	stripe_updated_at String?
+    stripe_updated_at_pt_br String?
+    created_at                         String 
+    updated_at                         String?
+	created_at_pt_br                         String
+    updated_at_pt_br                         String?
 
     @@unique(fields: [email, reset_password_token], name: "resetPasswordTokenIsValid")
     @@map("users")
+}
+
+model Games {
+    id                                 String    @id @default(uuid())
+	title                              String
+	cover_image	String
+	summary String
+	release_year Int
+	release_date String
+	igdb_url String?
+	igdb_rating String?
+	metacritic_url String?
+	metacritic_rating Int?
+	where_to_buy Json
+	developer_id String
+	developer_name String
+	publisher_id String
+	publisher_name String
+	platforms_available Json
+	genres Json
+	how_long_to_beat Json
+    created_at                         DateTime  @default(now())
+    updated_at                         DateTime?
+	created_at_pt_br                   String
+    updated_at_pt_br                         String?
+
+    @@map("games")
+}
+
+model StripeWebhookEventsLogs {
+    id                                 String    @id @default(uuid())
+	event_log Json
+    created_at                         DateTime  @default(now())
+    updated_at                         DateTime?
+
+    @@map("stripe_webhook_events_logs")
 }

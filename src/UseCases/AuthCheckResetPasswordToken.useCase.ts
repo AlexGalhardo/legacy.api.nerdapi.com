@@ -18,7 +18,7 @@ export default class AuthCheckResetPasswordTokenUseCase implements AuthCheckRese
     constructor(private readonly usersRepository: UsersRepositoryPort) {}
 
     async execute(resetPasswordToken: string): Promise<AuthCheckResetPasswordTokenUseCaseResponse> {
-        const resetPasswordTokenExist = this.usersRepository.findResetPasswordToken(resetPasswordToken);
+        const resetPasswordTokenExist = await this.usersRepository.findResetPasswordToken(resetPasswordToken);
 
         if (resetPasswordTokenExist) return { success: true };
 

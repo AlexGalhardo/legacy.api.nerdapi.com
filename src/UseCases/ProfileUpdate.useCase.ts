@@ -27,7 +27,7 @@ export default class ProfileUpdateUseCase implements ProfileUpdateUseCasePort {
     async execute(jwtToken: string, profileUpdateDTO: ProfileUpdateDTO): Promise<ProfileUpdateUseCaseResponse> {
         const { userID } = jwt.verify(jwtToken, process.env.JWT_SECRET) as jwt.JwtPayload;
 
-        const { user } = this.usersRepository.getById(userID);
+        const { user } = await this.usersRepository.getById(userID);
 
         if (user) {
             if (profileUpdateDTO.username) {

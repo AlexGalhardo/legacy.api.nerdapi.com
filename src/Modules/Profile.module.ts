@@ -2,15 +2,17 @@ import { Module } from "@nestjs/common";
 import { ProfileController } from "src/Controllers/Profile.controller";
 import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import ProfileUpdateUseCase from "src/UseCases/ProfileUpdate.useCase";
+import { Database } from "src/Utils/Database";
 
 @Module({
     controllers: [ProfileController],
     providers: [
+		Database,
         {
-            inject: [],
             provide: "UsersRepositoryPort",
-            useFactory: () => {
-                return new UsersRepository();
+			inject: [Database],
+            useFactory: (database: Database) => {
+                return new UsersRepository(null, database);
             },
         },
         {

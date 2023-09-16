@@ -28,7 +28,7 @@ export default class AuthLoginUseCase implements AuthLoginUseCasePort {
         if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
 
         if (email && password) {
-            const { user, index } = this.usersRepository.getByEmail(email);
+            const { user, index } = await this.usersRepository.getByEmail(email);
 
             if (user) {
                 if (!(await Bcrypt.compare(password, user.password))) {

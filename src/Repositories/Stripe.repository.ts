@@ -2,6 +2,9 @@ import * as fs from "fs";
 import * as StripeCharges from "./Jsons/Stripe/charges.json";
 import * as StripeCustomers from "./Jsons/Stripe/customers.json";
 import * as StripeInvoices from "./Jsons/Stripe/invoices.json";
+import * as StripeCheckouts from "./Jsons/Stripe/checkouts.json";
+import * as StripeBillingPortals from "./Jsons/Stripe/billingPortals.json";
+import * as StripePayments from "./Jsons/Stripe/payments.json";
 
 export interface StripeRepositoryPort {
     saveChargeWebhookEventLog(event: any): void;
@@ -17,6 +20,9 @@ export default class StripeRepository implements StripeRepositoryPort {
         private charges = StripeCharges,
         private customers = StripeCustomers,
         private invoices = StripeInvoices,
+		private checkouts = StripeCheckouts,
+        private billingPortals = StripeBillingPortals,
+		private payments = StripePayments,
     ) {}
     saveBillingPortalCheckoutWebhookEventLog(event: any): void {
         throw new Error("Method not implemented.");
@@ -37,7 +43,7 @@ export default class StripeRepository implements StripeRepositoryPort {
 
     public saveCustomerWebhookEventLog(event: any) {
         try {
-            this.charges.push(event);
+            this.customers.push(event);
             fs.writeFileSync(
                 "./src/Repositories/Jsons/Stripe/customers.json",
                 JSON.stringify(this.charges, null, 4),
@@ -50,7 +56,7 @@ export default class StripeRepository implements StripeRepositoryPort {
 
     public saveInvoiceWebhookEventLog(event: any) {
         try {
-            this.charges.push(event);
+            this.invoices.push(event);
             fs.writeFileSync(
                 "./src/Repositories/Jsons/Stripe/invoices.json",
                 JSON.stringify(this.charges, null, 4),
@@ -63,7 +69,7 @@ export default class StripeRepository implements StripeRepositoryPort {
 
     public savePaymentWebhookEventLog(event: any) {
         try {
-            this.charges.push(event);
+            this.payments.push(event);
             fs.writeFileSync(
                 "./src/Repositories/Jsons/Stripe/payments.json",
                 JSON.stringify(this.charges, null, 4),
@@ -76,7 +82,7 @@ export default class StripeRepository implements StripeRepositoryPort {
 
     public saveCheckoutSessionWebhookEventLog(event: any) {
         try {
-            this.charges.push(event);
+            this.checkouts.push(event);
             fs.writeFileSync(
                 "./src/Repositories/Jsons/Stripe/checkouts.json",
                 JSON.stringify(this.charges, null, 4),
@@ -89,7 +95,7 @@ export default class StripeRepository implements StripeRepositoryPort {
 
     public saveBillingPortalSessionWebhookEventLog(event: any) {
         try {
-            this.charges.push(event);
+            this.billingPortals.push(event);
             fs.writeFileSync(
                 "./src/Repositories/Jsons/Stripe/billingPortals.json",
                 JSON.stringify(this.charges, null, 4),
