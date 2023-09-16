@@ -41,7 +41,7 @@ export default class ProfileUpdateUseCase implements ProfileUpdateUseCasePort {
                     throw new ClientException(ErrorsMessages.INVALID_PHONE_NUMBER);
                 }
 
-                if (this.usersRepository.phoneAlreadyRegistred(user.id, profileUpdateDTO.telegramNumber)) {
+                if (await this.usersRepository.phoneAlreadyRegistred(user.id, profileUpdateDTO.telegramNumber)) {
                     throw new ClientException(ErrorsMessages.PHONE_NUMBER_ALREADY_REGISTRED);
                 }
             }

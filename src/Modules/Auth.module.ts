@@ -15,12 +15,12 @@ import { Database } from "src/Utils/Database";
 @Module({
     controllers: [AuthController],
     providers: [
-		Database,
+        Database,
         {
             provide: "UsersRepositoryPort",
-			inject: [Database],
+            inject: [Database],
             useFactory: (database: Database) => {
-                return new UsersRepository(null, database);
+                return new UsersRepository(undefined, database);
             },
         },
         {

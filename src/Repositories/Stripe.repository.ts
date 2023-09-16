@@ -20,9 +20,9 @@ export default class StripeRepository implements StripeRepositoryPort {
         private charges = StripeCharges,
         private customers = StripeCustomers,
         private invoices = StripeInvoices,
-		private checkouts = StripeCheckouts,
+        private checkouts = StripeCheckouts,
         private billingPortals = StripeBillingPortals,
-		private payments = StripePayments,
+        private payments = StripePayments,
     ) {}
     saveBillingPortalCheckoutWebhookEventLog(event: any): void {
         throw new Error("Method not implemented.");

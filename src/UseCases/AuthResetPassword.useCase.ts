@@ -37,7 +37,7 @@ export default class AuthResetPasswordUseCase implements AuthResetPasswordUseCas
         if (user) {
             const hashedPassword = await Bcrypt.hash(newPassword);
 
-            this.usersRepository.resetPassword(user.id, hashedPassword);
+            await this.usersRepository.resetPassword(user.id, hashedPassword);
 
             return { success: true };
         }

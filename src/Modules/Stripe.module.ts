@@ -11,19 +11,19 @@ import { Database } from "src/Utils/Database";
 @Module({
     controllers: [StripeController],
     providers: [
-		Database,
+        Database,
         {
             provide: "StripeRepositoryPort",
-			inject: [],
+            inject: [],
             useFactory: () => {
                 return new StripeRepository();
             },
         },
         {
             provide: "UsersRepositoryPort",
-			inject: [Database],
+            inject: [Database],
             useFactory: (database: Database) => {
-                return new UsersRepository(null, database);
+                return new UsersRepository(undefined, database);
             },
         },
         {

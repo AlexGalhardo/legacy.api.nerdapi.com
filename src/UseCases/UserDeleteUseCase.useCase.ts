@@ -16,7 +16,7 @@ export default class UserDeleteUseCase implements UserDeleteUseCasePort {
 
     async execute(email: string): Promise<UserDeleteUseCaseResponse> {
         if (this.usersRepository.findByEmail(email)) {
-            this.usersRepository.deleteByEmail(email);
+            await this.usersRepository.deleteByEmail(email);
             return { success: true };
         }
 

@@ -35,7 +35,7 @@ export default class AuthForgetPasswordUseCase implements AuthForgetPasswordUseC
         if (user) {
             const reset_password_token = generateRandomToken();
 
-            this.usersRepository.saveResetPasswordToken(user.id, reset_password_token);
+            await this.usersRepository.saveResetPasswordToken(user.id, reset_password_token);
 
             const APP_FRONT_URL =
                 process.env.NODE_ENV === "development" ? process.env.APP_FRONT_URL_DEV : process.env.APP_FRONT_URL_PROD;

@@ -1,5 +1,6 @@
 import { ProfileUpdateDTO } from "src/UseCases/ProfileUpdate.useCase";
 import { Database } from "src/Utils/Database";
+import "dotenv/config";
 export interface User {
     id: string;
     username: string;
@@ -56,8 +57,8 @@ export interface StripeSubscriptionInfo {
 export interface UsersRepositoryPort {
     save(user?: any, index?: number): void;
     transformToUserResponse(user: any): UserResponse;
-    findById(userId: string): boolean;
-    findByEmail(email: string): boolean;
+    findById(userId: string): Promise<boolean>;
+    findByEmail(email: string): Promise<boolean>;
     getByEmail(email: string): Promise<UserResponse>;
     getById(userId: string): Promise<UserResponse>;
     getByResetPasswordToken(resetPasswordToken: string): Promise<UserResponse>;
@@ -77,8 +78,8 @@ export default class UsersRepository implements UsersRepositoryPort {
     constructor(users: User[], database: Database);
     save(user?: any, index?: number): void;
     transformToUserResponse(user: any): UserResponse;
-    findById(userId: string): boolean;
-    findByEmail(email: string): boolean;
+    findById(userId: string): Promise<boolean>;
+    findByEmail(email: string): Promise<boolean>;
     getByEmail(email: string): Promise<UserResponse>;
     getById(userId: string): Promise<UserResponse>;
     getByResetPasswordToken(resetPasswordToken: string): Promise<UserResponse>;

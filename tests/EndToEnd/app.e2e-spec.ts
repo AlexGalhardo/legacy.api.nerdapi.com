@@ -13,6 +13,7 @@ import AuthTokenUserUseCase from "src/UseCases/AuthTokenUser.useCase";
 import AuthLoginGoogleUseCase from "src/UseCases/AuthLoginGoogle.useCase";
 import AuthCheckResetPasswordTokenUseCase from "src/UseCases/AuthCheckResetPasswordToken.useCase";
 import { Database } from "src/Utils/Database";
+import AuthLoginGitHubUseCase from "src/UseCases/AuthLoginGitHubUseCase.useCase";
 
 describe("AppController (e2e)", () => {
     let app: INestApplication;
@@ -22,13 +23,14 @@ describe("AppController (e2e)", () => {
             controllers: [AuthController],
             imports: [AppModule],
             providers: [
+				Database,
                 {
-					provide: "UsersRepositoryPort",
-					inject: [Database],
-					useFactory: (database: Database) => {
-						return new UsersRepository(null, database);
-					},
-				},
+                    provide: "UsersRepositoryPort",
+                    inject: [Database],
+                    useFactory: (database: Database) => {
+                        return new UsersRepository(undefined, database);
+                    },
+                },
                 {
                     provide: "AuthRegisterUseCasePort",
                     inject: ["UsersRepositoryPort"],
@@ -48,6 +50,13 @@ describe("AppController (e2e)", () => {
                     inject: ["UsersRepositoryPort"],
                     useFactory: (usersRepository: UsersRepositoryPort) => {
                         return new AuthLoginGoogleUseCase(usersRepository);
+                    },
+                },
+				{
+                    provide: "AuthLoginGitHubUseCasePort",
+                    inject: ["UsersRepositoryPort"],
+                    useFactory: (usersRepository: UsersRepositoryPort) => {
+                        return new AuthLoginGitHubUseCase(usersRepository);
                     },
                 },
                 {

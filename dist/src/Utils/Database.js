@@ -14,7 +14,7 @@ let Database = class Database extends client_1.PrismaClient {
         await this.$connect();
     }
     async enableShutdownHooks(app) {
-        process.on('beforeExit', async () => {
+        process.on("beforeExit", async () => {
             await app.close();
         });
     }

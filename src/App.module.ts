@@ -7,6 +7,7 @@ import { HealthCheckModule } from "./Modules/HealthCheck.module";
 import { ConfigModule } from "@nestjs/config";
 import { ValidateToken } from "./MIddlewares/ValidateToken.middleware";
 import { GamesModule } from "./Modules/Games.module";
+import { Database } from "./Utils/Database";
 
 @Module({
     imports: [
@@ -19,7 +20,7 @@ import { GamesModule } from "./Modules/Games.module";
         ConfigModule.forRoot({ isGlobal: true }),
     ],
     controllers: [],
-	providers: [],
+    providers: [],
 })
 export class AppModule implements NestModule {
     configure(consumer: MiddlewareConsumer) {

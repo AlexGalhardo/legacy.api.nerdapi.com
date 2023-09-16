@@ -2,8 +2,8 @@ POST http://localhost:4000/register HTTP/1.1
 content-type: application/json
 
 {
-	"username": "User Test",
-	"email": "usertest@gmail.com",
+	"username": "User Admin",
+	"email": "paokspaos@gmail.com",
 	"telegramNumber": "5518999999999",
-	"password": "testUSER!123"
+	"password": "adminUSER!123"
 }

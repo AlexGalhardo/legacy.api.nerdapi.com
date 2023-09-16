@@ -30,11 +30,9 @@ class AuthLoginGitHubUseCase {
                 },
             });
             const responseGithubProfileJSON = await responseGithubProfile.json();
-            console.log('\n\n responseGithubProfileJSON => ', responseGithubProfileJSON);
             if (!Validator_1.default.email.isValid(responseGithubProfileJSON.email))
                 throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.EMAIL_IS_INVALID);
             const userExists = await this.usersRepository.findByEmail(responseGithubProfileJSON.email);
-            console.log('\n\n userExists => ', userExists);
             if (userExists) {
                 const { user, index } = await this.usersRepository.getByEmail(responseGithubProfileJSON.email);
                 const jwt_token = jwt.sign({ userID: user.id }, process.env.JWT_SECRET);

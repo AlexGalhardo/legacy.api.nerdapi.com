@@ -47,7 +47,7 @@ export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePor
                 const { user, index } = await this.usersRepository.getByEmail(email);
                 const jwt_token = jwt.sign({ userID: user.id }, process.env.JWT_SECRET);
                 user.jwt_token = jwt_token;
-                this.usersRepository.save(user, index);
+                await this.usersRepository.save(user, index);
 
                 return {
                     success: true,
@@ -59,7 +59,7 @@ export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePor
 
                 const jwt_token = jwt.sign({ userID: userId }, process.env.JWT_SECRET);
 
-                this.usersRepository.create({
+                await this.usersRepository.create({
                     id: userId,
                     username: name,
                     email,

@@ -21,7 +21,7 @@ class AuthRegisterUseCase {
         if (password && !Validator_1.default.password.isSecure(password))
             throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.PASSWORD_INSECURE);
         const hashedPassword = await Bcrypt_1.Bcrypt.hash(password);
-        if (!this.usersRepository.findByEmail(email)) {
+        if (!await this.usersRepository.findByEmail(email)) {
             const userId = (0, crypto_1.randomUUID)();
             const jwt_token = jwt.sign({ userID: userId }, process.env.JWT_SECRET);
             this.usersRepository.create({

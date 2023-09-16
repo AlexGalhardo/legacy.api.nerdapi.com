@@ -15,11 +15,12 @@ describe("Test ProfileUpdateUseCase", () => {
         const module: TestingModule = await Test.createTestingModule({
             controllers: [],
             providers: [
+				Database,
                 {
                     provide: "UsersRepositoryPort",
                     inject: [Database],
                     useFactory: (database: Database) => {
-                        return new UsersRepository(null, database);
+                        return new UsersRepository(undefined, database);
                     },
                 },
                 {

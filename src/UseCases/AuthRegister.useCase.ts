@@ -39,12 +39,12 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
 
         const hashedPassword = await Bcrypt.hash(password);
 
-        if (!this.usersRepository.findByEmail(email)) {
+        if (!await this.usersRepository.findByEmail(email)) {
             const userId = randomUUID();
 
             const jwt_token = jwt.sign({ userID: userId }, process.env.JWT_SECRET);
 
-            this.usersRepository.create({
+            await this.usersRepository.create({
                 id: userId,
                 username,
                 email,

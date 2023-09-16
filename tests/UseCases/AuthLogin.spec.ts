@@ -3,8 +3,7 @@ import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.rep
 import Validator from "src/Utils/Validator";
 import AuthLoginUseCase, { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCases/AuthLogin.useCase";
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
-import { UserDeleteUseCasePort } from "src/UseCases/UserDeleteUseCase.useCase";
-import UserDeleteUseCase from "src/UseCases/UserDeleteUseCase.useCase";
+import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDeleteUseCase.useCase";
 import { Database } from "src/Utils/Database";
 
 describe("Test AuthLoginUseCase", () => {
@@ -16,11 +15,12 @@ describe("Test AuthLoginUseCase", () => {
         const module: TestingModule = await Test.createTestingModule({
             controllers: [],
             providers: [
+				Database,
                 {
                     provide: "UsersRepositoryPort",
                     inject: [Database],
                     useFactory: (database: Database) => {
-                        return new UsersRepository(null, database);
+                        return new UsersRepository(undefined, database);
                     },
                 },
                 {

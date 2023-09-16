@@ -18,7 +18,7 @@ export default class AuthTokenUserUseCase implements AuthTokenUserUseCasePort {
     async execute(token: string): Promise<AuthTokenUserUseCaseResponse> {
         const { userID } = jwt.verify(token, process.env.JWT_SECRET) as jwt.JwtPayload;
 
-        if (userID && this.usersRepository.findById(userID)) {
+        if (userID && await this.usersRepository.findById(userID)) {
             const { user } = await this.usersRepository.getById(userID);
             return { success: true, data: user };
         }

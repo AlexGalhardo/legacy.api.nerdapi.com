@@ -53,19 +53,16 @@ export default class AuthLoginGitHubUseCase implements AuthLoginGitHubUseCasePor
 
             const responseGithubProfileJSON = await responseGithubProfile.json();
 
-			console.log('\n\n responseGithubProfileJSON => ', responseGithubProfileJSON)
-
-            if (!Validator.email.isValid(responseGithubProfileJSON.email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
+            if (!Validator.email.isValid(responseGithubProfileJSON.email))
+                throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
 
             const userExists = await this.usersRepository.findByEmail(responseGithubProfileJSON.email);
-
-			console.log('\n\n userExists => ', userExists)
 
             if (userExists) {
                 const { user, index } = await this.usersRepository.getByEmail(responseGithubProfileJSON.email);
                 const jwt_token = jwt.sign({ userID: user.id }, process.env.JWT_SECRET);
                 user.jwt_token = jwt_token;
-                this.usersRepository.save(user, index);
+                await this.usersRepository.save(user, index);
 
                 return {
                     success: true,
@@ -77,7 +74,7 @@ export default class AuthLoginGitHubUseCase implements AuthLoginGitHubUseCasePor
 
                 const jwt_token = jwt.sign({ userID: userId }, process.env.JWT_SECRET);
 
-                this.usersRepository.create({
+                await this.usersRepository.create({
                     id: userId,
                     username: responseGithubProfileJSON.name,
                     email: responseGithubProfileJSON.email,

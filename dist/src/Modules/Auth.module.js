@@ -32,7 +32,7 @@ exports.AuthModule = AuthModule = __decorate([
                 provide: "UsersRepositoryPort",
                 inject: [Database_1.Database],
                 useFactory: (database) => {
-                    return new Users_repository_1.default(null, database);
+                    return new Users_repository_1.default(undefined, database);
                 },
             },
             {

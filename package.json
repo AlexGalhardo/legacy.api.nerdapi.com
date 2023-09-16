@@ -21,7 +21,8 @@
 		"prisma:generate": " npx prisma generate",
 		"prisma:push": "npx prisma db push",
 		"prisma:studio": "npx prisma studio",
-		"prisma:seed": "npx prisma db seed"
+		"prisma:seed": "npx prisma db seed",
+		"prisma:format": "npx prisma format"
 	},
 	"prisma": {
 		"seed": "ts-node --transpile-only --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"

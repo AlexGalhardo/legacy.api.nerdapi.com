@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { Bcrypt } from "../src/Utils/Bcrypt";
-import Validator from "src/Utils/Validator";
-import DateTime from "src/Utils/DataTypes/DateTime";
+import Validator from "../src/Utils/Validator";
+import DateTime from "../src/Utils/DataTypes/DateTime";
 
 const prisma = new PrismaClient();
 
