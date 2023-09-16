@@ -53,7 +53,7 @@ const seedDatabase = async () => {
 				reset_password_token_expires_at: null,
                 stripe_customer_id: null,
 				stripe_subscription_active: false,
-                stripe_subscription_name: null,
+                stripe_subscription_name: "NOOB",
                 stripe_subscription_starts_at: null,
 				stripe_subscription_ends_at: null,
 				stripe_subscription_charge_id: null,

@@ -19,7 +19,7 @@ model Users {
   reset_password_token_expires_at        String?
   stripe_customer_id                     String? @unique
   stripe_subscription_active             Boolean @default(false)
-  stripe_subscription_name               String?
+  stripe_subscription_name               String  @default("NOOB")
   stripe_subscription_starts_at          String?
   stripe_subscription_ends_at            String?
   stripe_subscription_charge_id          String? @unique
@@ -37,15 +37,15 @@ model Users {
 }
 
 model Games {
-  id                  String    @id @default(uuid())
+  id                  String  @id @default(uuid())
   title               String
-  cover_image         String	@unique
+  cover_image         String  @unique
   summary             String
   release_year        Int
   release_date        String
-  igdb_url            String?	@unique
+  igdb_url            String? @unique
   igdb_rating         Int?
-  metacritic_url      String?	@unique
+  metacritic_url      String? @unique
   metacritic_rating   Int?
   where_to_buy        Json
   developer_id        String
