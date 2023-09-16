@@ -1,0 +1,7 @@
+POST http://localhost:4000/stripe/create-checkout-session HTTP/1.1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiNTVmOTA5ZC00MDZhLTQwZjUtYjk1Ny1lZmY2MmQ4MDk0OWIiLCJpYXQiOjE2OTQ4ODUyNjJ9.enEJTl_uT_0Ra1sExNcHCmkiLUU9Wk3qKcrCLTZNAKM
+
+{
+	"lookup_key": "plan_pro"
+}

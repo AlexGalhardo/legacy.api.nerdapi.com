@@ -26,7 +26,7 @@ export class AppModule implements NestModule {
         consumer
             .apply(ValidateToken)
             .forRoutes(
-                { path: "/tokenUser", method: RequestMethod.POST },
+                { path: "/check-user-jwt-token", method: RequestMethod.POST },
                 { path: "/logout", method: RequestMethod.POST },
                 { path: "/profile", method: RequestMethod.PUT },
                 { path: "/stripe/create-checkout-session", method: RequestMethod.POST },

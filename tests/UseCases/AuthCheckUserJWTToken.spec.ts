@@ -3,12 +3,12 @@ import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.rep
 import Validator from "src/Utils/Validator";
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDeleteUseCase.useCase";
-import AuthTokenUserUseCase, { AuthTokenUserUseCasePort } from "src/UseCases/AuthTokenUser.useCase";
+import AuthTokenUserUseCase, { AuthCheckUserJWTTokenUseCasePort } from "src/UseCases/AuthCheckUserJWTToken.useCase";
 import { Database } from "src/Utils/Database";
 
-describe("Test AuthLoginUseCase", () => {
+describe("Test AuthCheckUserJWTToken", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;
-    let authTokenUserUseCase: AuthTokenUserUseCasePort;
+    let authCheckUserJWTToken: AuthCheckUserJWTTokenUseCasePort;
     let deleteUserByEmail: UserDeleteUseCasePort;
 
     beforeAll(async () => {
@@ -47,7 +47,7 @@ describe("Test AuthLoginUseCase", () => {
             ],
         }).compile();
         authRegisterUseCase = module.get<AuthRegisterUseCasePort>("AuthRegisterUseCasePort");
-        authTokenUserUseCase = module.get<AuthTokenUserUseCasePort>("AuthTokenUserUseCasePort");
+        authCheckUserJWTToken = module.get<AuthCheckUserJWTTokenUseCasePort>("AuthTokenUserUseCasePort");
         deleteUserByEmail = module.get<UserDeleteUseCasePort>("UserDeleteUseCasePort");
     });
 
@@ -71,7 +71,7 @@ describe("Test AuthLoginUseCase", () => {
     });
 
     it("should check token and return user", async () => {
-        const { success, data } = await authTokenUserUseCase.execute(loginToken);
+        const { success, data } = await authCheckUserJWTToken.execute(loginToken);
 
         expect(success).toBeTruthy();
         expect(data.username).toBe(username);

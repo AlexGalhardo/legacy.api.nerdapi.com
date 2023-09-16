@@ -11,7 +11,7 @@ import { AuthLoginGoogleUseCasePort } from "src/UseCases/AuthLoginGoogle.useCase
 import { AuthLogoutUseCasePort } from "src/UseCases/AuthLogout.useCase";
 import { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import { AuthResetPasswordDTO, AuthResetPasswordUseCasePort } from "src/UseCases/AuthResetPassword.useCase";
-import { AuthTokenUserUseCasePort } from "src/UseCases/AuthTokenUser.useCase";
+import { AuthCheckUserJWTTokenUseCasePort } from "src/UseCases/AuthCheckUserJWTToken.useCase";
 
 interface AuthUseCaseResponse {
     success: boolean;
@@ -46,7 +46,7 @@ export class AuthController implements AuthControllerPort {
         @Inject("AuthLoginGitHubUseCasePort") private readonly authLoginGitHubUseCase: AuthLoginGitHubUseCasePort,
         @Inject("AuthRegisterUseCasePort") private readonly authRegisterUseCase: AuthRegisterUseCasePort,
         @Inject("AuthLogoutUseCasePort") private readonly authLogoutUseCase: AuthLogoutUseCasePort,
-        @Inject("AuthTokenUserUseCasePort") private readonly authTokenUserUseCase: AuthTokenUserUseCasePort,
+        @Inject("AuthCheckUserJWTTokenUseCasePort") private readonly authCheckUserJWTTokenUseCase: AuthCheckUserJWTTokenUseCasePort,
         @Inject("AuthForgetPasswordUseCasePort")
         private readonly authForgetPasswordUseCase: AuthForgetPasswordUseCasePort,
         @Inject("AuthResetPasswordUseCasePort") private readonly authResetPasswordUseCase: AuthResetPasswordUseCasePort,
@@ -87,10 +87,10 @@ export class AuthController implements AuthControllerPort {
         }
     }
 
-    @Post("/tokenUser")
+    @Post("/check-user-jwt-token")
     async tokenUser(@Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
-            const { success, data } = await this.authTokenUserUseCase.execute(response.locals.jwt_token);
+            const { success, data } = await this.authCheckUserJWTTokenUseCase.execute(response.locals.jwt_token);
             if (success) return response.status(HttpStatus.OK).json({ success: true, data });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });

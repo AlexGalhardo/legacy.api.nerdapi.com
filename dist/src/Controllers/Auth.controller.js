@@ -15,13 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
 let AuthController = class AuthController {
-    constructor(authLoginUseCase, authLoginGoogleUseCase, authLoginGitHubUseCase, authRegisterUseCase, authLogoutUseCase, authTokenUserUseCase, authForgetPasswordUseCase, authResetPasswordUseCase, authCheckResetPasswordTokenUseCase) {
+    constructor(authLoginUseCase, authLoginGoogleUseCase, authLoginGitHubUseCase, authRegisterUseCase, authLogoutUseCase, authCheckUserJWTTokenUseCase, authForgetPasswordUseCase, authResetPasswordUseCase, authCheckResetPasswordTokenUseCase) {
         this.authLoginUseCase = authLoginUseCase;
         this.authLoginGoogleUseCase = authLoginGoogleUseCase;
         this.authLoginGitHubUseCase = authLoginGitHubUseCase;
         this.authRegisterUseCase = authRegisterUseCase;
         this.authLogoutUseCase = authLogoutUseCase;
-        this.authTokenUserUseCase = authTokenUserUseCase;
+        this.authCheckUserJWTTokenUseCase = authCheckUserJWTTokenUseCase;
         this.authForgetPasswordUseCase = authForgetPasswordUseCase;
         this.authResetPasswordUseCase = authResetPasswordUseCase;
         this.authCheckResetPasswordTokenUseCase = authCheckResetPasswordTokenUseCase;
@@ -58,7 +58,7 @@ let AuthController = class AuthController {
     }
     async tokenUser(response) {
         try {
-            const { success, data } = await this.authTokenUserUseCase.execute(response.locals.jwt_token);
+            const { success, data } = await this.authCheckUserJWTTokenUseCase.execute(response.locals.jwt_token);
             if (success)
                 return response.status(common_1.HttpStatus.OK).json({ success: true, data });
         }
@@ -145,7 +145,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "logout", null);
 __decorate([
-    (0, common_1.Post)("/tokenUser"),
+    (0, common_1.Post)("/check-user-jwt-token"),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -199,7 +199,7 @@ exports.AuthController = AuthController = __decorate([
     __param(2, (0, common_1.Inject)("AuthLoginGitHubUseCasePort")),
     __param(3, (0, common_1.Inject)("AuthRegisterUseCasePort")),
     __param(4, (0, common_1.Inject)("AuthLogoutUseCasePort")),
-    __param(5, (0, common_1.Inject)("AuthTokenUserUseCasePort")),
+    __param(5, (0, common_1.Inject)("AuthCheckUserJWTTokenUseCasePort")),
     __param(6, (0, common_1.Inject)("AuthForgetPasswordUseCasePort")),
     __param(7, (0, common_1.Inject)("AuthResetPasswordUseCasePort")),
     __param(8, (0, common_1.Inject)("AuthCheckResetPasswordTokenUseCasePort")),

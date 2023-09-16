@@ -7,7 +7,7 @@ import { AuthLoginGoogleUseCasePort } from "src/UseCases/AuthLoginGoogle.useCase
 import { AuthLogoutUseCasePort } from "src/UseCases/AuthLogout.useCase";
 import { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import { AuthResetPasswordDTO, AuthResetPasswordUseCasePort } from "src/UseCases/AuthResetPassword.useCase";
-import { AuthTokenUserUseCasePort } from "src/UseCases/AuthTokenUser.useCase";
+import { AuthCheckUserJWTTokenUseCasePort } from "src/UseCases/AuthCheckUserJWTToken.useCase";
 interface AuthUseCaseResponse {
     success: boolean;
     jwt_token?: string;
@@ -30,11 +30,11 @@ export declare class AuthController implements AuthControllerPort {
     private readonly authLoginGitHubUseCase;
     private readonly authRegisterUseCase;
     private readonly authLogoutUseCase;
-    private readonly authTokenUserUseCase;
+    private readonly authCheckUserJWTTokenUseCase;
     private readonly authForgetPasswordUseCase;
     private readonly authResetPasswordUseCase;
     private readonly authCheckResetPasswordTokenUseCase;
-    constructor(authLoginUseCase: AuthLoginUseCasePort, authLoginGoogleUseCase: AuthLoginGoogleUseCasePort, authLoginGitHubUseCase: AuthLoginGitHubUseCasePort, authRegisterUseCase: AuthRegisterUseCasePort, authLogoutUseCase: AuthLogoutUseCasePort, authTokenUserUseCase: AuthTokenUserUseCasePort, authForgetPasswordUseCase: AuthForgetPasswordUseCasePort, authResetPasswordUseCase: AuthResetPasswordUseCasePort, authCheckResetPasswordTokenUseCase: AuthCheckResetPasswordTokenUseCasePort);
+    constructor(authLoginUseCase: AuthLoginUseCasePort, authLoginGoogleUseCase: AuthLoginGoogleUseCasePort, authLoginGitHubUseCase: AuthLoginGitHubUseCasePort, authRegisterUseCase: AuthRegisterUseCasePort, authLogoutUseCase: AuthLogoutUseCasePort, authCheckUserJWTTokenUseCase: AuthCheckUserJWTTokenUseCasePort, authForgetPasswordUseCase: AuthForgetPasswordUseCasePort, authResetPasswordUseCase: AuthResetPasswordUseCasePort, authCheckResetPasswordTokenUseCase: AuthCheckResetPasswordTokenUseCasePort);
     login(authLoginDTO: AuthLoginDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
     register(authRegisterDTO: AuthRegisterDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
     logout(response: Response): Promise<Response<AuthUseCaseResponse>>;

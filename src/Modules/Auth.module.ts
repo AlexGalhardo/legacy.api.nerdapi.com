@@ -9,8 +9,8 @@ import AuthLoginGoogleUseCase from "src/UseCases/AuthLoginGoogle.useCase";
 import AuthLogoutUseCase from "src/UseCases/AuthLogout.useCase";
 import AuthRegisterUseCase from "src/UseCases/AuthRegister.useCase";
 import AuthResetPasswordUseCase from "src/UseCases/AuthResetPassword.useCase";
-import AuthTokenUserUseCase from "src/UseCases/AuthTokenUser.useCase";
 import { Database } from "src/Utils/Database";
+import AuthCheckUserJWTTokenUseCase from "src/UseCases/AuthCheckUserJWTToken.useCase";
 
 @Module({
     controllers: [AuthController],
@@ -59,10 +59,10 @@ import { Database } from "src/Utils/Database";
             },
         },
         {
-            provide: "AuthTokenUserUseCasePort",
+            provide: "AuthCheckUserJWTTokenUseCasePort",
             inject: ["UsersRepositoryPort"],
             useFactory: (usersRepository: UsersRepositoryPort) => {
-                return new AuthTokenUserUseCase(usersRepository);
+                return new AuthCheckUserJWTTokenUseCase(usersRepository);
             },
         },
         {

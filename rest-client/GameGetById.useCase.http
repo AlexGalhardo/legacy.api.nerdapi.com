@@ -1,0 +1,1 @@
+GET http://localhost:4000/games/id/8b82c2ce-28f8-45e5-b066-950e6873aefb HTTP/1.1

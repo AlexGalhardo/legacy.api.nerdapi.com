@@ -9,7 +9,7 @@ import AuthRegisterUseCase from "../../src/UseCases/AuthRegister.useCase";
 import AuthForgetPasswordUseCase from "../../src/UseCases/AuthForgetPassword.useCase";
 import AuthResetPasswordUseCase from "../../src/UseCases/AuthResetPassword.useCase";
 import AuthLogoutUseCase from "src/UseCases/AuthLogout.useCase";
-import AuthTokenUserUseCase from "src/UseCases/AuthTokenUser.useCase";
+import AuthTokenUserUseCase from "src/UseCases/AuthCheckUserJWTToken.useCase";
 import AuthLoginGoogleUseCase from "src/UseCases/AuthLoginGoogle.useCase";
 import AuthCheckResetPasswordTokenUseCase from "src/UseCases/AuthCheckResetPasswordToken.useCase";
 import { Database } from "src/Utils/Database";

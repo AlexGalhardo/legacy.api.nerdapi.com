@@ -18,8 +18,8 @@ const AuthLoginGoogle_useCase_1 = require("../UseCases/AuthLoginGoogle.useCase")
 const AuthLogout_useCase_1 = require("../UseCases/AuthLogout.useCase");
 const AuthRegister_useCase_1 = require("../UseCases/AuthRegister.useCase");
 const AuthResetPassword_useCase_1 = require("../UseCases/AuthResetPassword.useCase");
-const AuthTokenUser_useCase_1 = require("../UseCases/AuthTokenUser.useCase");
 const Database_1 = require("../Utils/Database");
+const AuthCheckUserJWTToken_useCase_1 = require("../UseCases/AuthCheckUserJWTToken.useCase");
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
@@ -71,10 +71,10 @@ exports.AuthModule = AuthModule = __decorate([
                 },
             },
             {
-                provide: "AuthTokenUserUseCasePort",
+                provide: "AuthCheckUserJWTTokenUseCasePort",
                 inject: ["UsersRepositoryPort"],
                 useFactory: (usersRepository) => {
-                    return new AuthTokenUser_useCase_1.default(usersRepository);
+                    return new AuthCheckUserJWTToken_useCase_1.default(usersRepository);
                 },
             },
             {

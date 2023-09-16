@@ -1,0 +1,9 @@
+POST http://localhost:4000/contact HTTP/1.1
+content-type: application/json
+
+{
+	"name": "Testing Name",
+	"email": "testing_email@gmail.com",
+	"subject": "FEEDBACK",
+	"message": "Testing contact send message use case rest client http request"
+}
