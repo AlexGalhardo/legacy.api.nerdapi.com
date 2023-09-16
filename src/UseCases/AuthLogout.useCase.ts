@@ -17,7 +17,7 @@ export default class AuthLogoutUseCase implements AuthLogoutUseCasePort {
     async execute(jwtToken: string): Promise<AuthLogoutUseCaseResponse> {
         const { userID } = jwt.verify(jwtToken, process.env.JWT_SECRET) as jwt.JwtPayload;
 
-        if (userID && await this.usersRepository.findById(userID)) {
+        if (userID && (await this.usersRepository.findById(userID))) {
             await this.usersRepository.logout(userID);
             return { success: true };
         }

@@ -15,7 +15,7 @@ describe("Test ProfileUpdateUseCase", () => {
         const module: TestingModule = await Test.createTestingModule({
             controllers: [],
             providers: [
-				Database,
+                Database,
                 {
                     provide: "UsersRepositoryPort",
                     inject: [Database],

@@ -56,7 +56,7 @@ export interface StripeSubscriptionInfo {
     customerId: string | null;
     paid?: boolean | null;
     chargeId?: string | null;
-	invoiceId?: string | null;
+    invoiceId?: string | null;
     amount?: number | null;
     receiptUrl?: string | null;
     hostedInvoiceUrl?: string | null;
@@ -68,7 +68,7 @@ export interface StripeSubscriptionInfo {
 export interface UsersRepositoryPort {
     save(user?: any, index?: number): Promise<void>;
     transformToUserResponse(user): UserResponse;
-	transformToUser(user): User;
+    transformToUser(user): User;
     findById(userId: string): Promise<boolean>;
     findByEmail(email: string): Promise<boolean>;
     getByEmail(email: string): Promise<UserResponse>;
@@ -93,26 +93,26 @@ export default class UsersRepository implements UsersRepositoryPort {
     ) {}
 
     public async save(user?: User, index?: number): Promise<void> {
-		if (process.env.USE_DATABASE_JSON === "true"){
-			try {
-				if (user && index) {
-					this.users.splice(index, 1, user);
-				}
+        if (process.env.USE_DATABASE_JSON === "true") {
+            try {
+                if (user && index) {
+                    this.users.splice(index, 1, user);
+                }
 
-				fs.writeFileSync("./src/Repositories/Jsons/users.json", JSON.stringify(this.users, null, 4), "utf-8");
-				this.users = JSON.parse(fs.readFileSync("./src/Repositories/Jsons/users.json", "utf-8"));
-			} catch (error) {
-				throw new Error(error);
-			}
-		}
+                fs.writeFileSync("./src/Repositories/Jsons/users.json", JSON.stringify(this.users, null, 4), "utf-8");
+                this.users = JSON.parse(fs.readFileSync("./src/Repositories/Jsons/users.json", "utf-8"));
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
 
-		await this.database.users.update({
-			where: {
-				id: user.id,
-			},
-			data: {
-				id: user.id,
-				username: user.username,
+        await this.database.users.update({
+            where: {
+                id: user.id,
+            },
+            data: {
+                id: user.id,
+                username: user.username,
                 email: user.email,
                 telegram_number: user.telegram_number,
                 password: user.password,
@@ -120,22 +120,22 @@ export default class UsersRepository implements UsersRepositoryPort {
                 api_token: user.api_token,
                 reset_password_token: user.reset_password_token,
                 reset_password_token_expires_at: user.reset_password_token_expires_at,
-				stripe_customer_id: user.stripe.customer_id,
+                stripe_customer_id: user.stripe.customer_id,
                 stripe_subscription_active: user.stripe.subscription.active,
-				stripe_subscription_name: user.stripe.subscription.name,
-				stripe_subscription_starts_at: user.stripe.subscription.starts_at,
-				stripe_subscription_ends_at: user.stripe.subscription.ends_at,
-				stripe_subscription_charge_id: user.stripe.subscription.charge_id,
-				stripe_subscription_receipt_url: user.stripe.subscription.receipt_url,
-				stripe_subscription_hosted_invoice_url: user.stripe.subscription.hosted_invoice_url,
-				stripe_updated_at: user.stripe.updated_at,
-				stripe_updated_at_pt_br: user.stripe.updated_at_pt_br,
+                stripe_subscription_name: user.stripe.subscription.name,
+                stripe_subscription_starts_at: user.stripe.subscription.starts_at,
+                stripe_subscription_ends_at: user.stripe.subscription.ends_at,
+                stripe_subscription_charge_id: user.stripe.subscription.charge_id,
+                stripe_subscription_receipt_url: user.stripe.subscription.receipt_url,
+                stripe_subscription_hosted_invoice_url: user.stripe.subscription.hosted_invoice_url,
+                stripe_updated_at: user.stripe.updated_at,
+                stripe_updated_at_pt_br: user.stripe.updated_at_pt_br,
                 created_at: user.created_at,
                 updated_at: user.updated_at,
                 created_at_pt_br: user.created_at_pt_br,
-                updated_at_pt_br: user.updated_at_pt_br
-			}
-		})
+                updated_at_pt_br: user.updated_at_pt_br,
+            },
+        });
     }
 
     public transformToUserResponse(user): UserResponse {
@@ -173,35 +173,35 @@ export default class UsersRepository implements UsersRepositoryPort {
         };
     }
 
-	public transformToUser(user): User {
+    public transformToUser(user): User {
         return {
-			id: user.id,
-			username: user.username,
-			email: user.email,
-			telegram_number: user.telegram_number,
-			password: user.password,
-			jwt_token: user.jwt_token,
-			api_token: user.api_token,
-			reset_password_token: user.reset_password_token,
-			reset_password_token_expires_at: user.reset_password_token_expires_at,
-			stripe: {
-				customer_id: user.stripe_customer_id,
-				subscription: {
-					active: user.stripe_subscription_active,
-					name: user.stripe_subscription_name,
-					starts_at: user.stripe_subscription_starts_at,
-					ends_at: user.stripe_subscription_ends_at,
-					charge_id: user.stripe_subscription_charge_id,
-					receipt_url: user.stripe_subscription_receipt_url,
-					hosted_invoice_url: user.stripe_subscription_hosted_invoice_url,
-				},
-				updated_at: user.stripe_updated_at,
-				updated_at_pt_br: user.stripe_updated_at_pt_br,
-			},
-			created_at: user.created_at,
-			updated_at: user.updated_at,
-			created_at_pt_br: user.created_at_pt_br,
-			updated_at_pt_br: user.updated_at_pt_br,
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            telegram_number: user.telegram_number,
+            password: user.password,
+            jwt_token: user.jwt_token,
+            api_token: user.api_token,
+            reset_password_token: user.reset_password_token,
+            reset_password_token_expires_at: user.reset_password_token_expires_at,
+            stripe: {
+                customer_id: user.stripe_customer_id,
+                subscription: {
+                    active: user.stripe_subscription_active,
+                    name: user.stripe_subscription_name,
+                    starts_at: user.stripe_subscription_starts_at,
+                    ends_at: user.stripe_subscription_ends_at,
+                    charge_id: user.stripe_subscription_charge_id,
+                    receipt_url: user.stripe_subscription_receipt_url,
+                    hosted_invoice_url: user.stripe_subscription_hosted_invoice_url,
+                },
+                updated_at: user.stripe_updated_at,
+                updated_at_pt_br: user.stripe_updated_at_pt_br,
+            },
+            created_at: user.created_at,
+            updated_at: user.updated_at,
+            created_at_pt_br: user.created_at_pt_br,
+            updated_at_pt_br: user.updated_at_pt_br,
         };
     }
 
@@ -244,17 +244,17 @@ export default class UsersRepository implements UsersRepositoryPort {
             throw new Error(ErrorsMessages.USER_NOT_FOUND);
         }
 
-		try {
-			const user = await this.database.users.findUnique({
-				where: {
-					email,
-				},
-			});
+        try {
+            const user = await this.database.users.findUnique({
+                where: {
+                    email,
+                },
+            });
 
-			if (user) return this.transformToUserResponse(user);
-		} catch(error){
-			throw new Error(error)
-		}
+            if (user) return this.transformToUserResponse(user);
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     public async getById(userId: string): Promise<UserResponse> {
@@ -310,8 +310,8 @@ export default class UsersRepository implements UsersRepositoryPort {
 
         await this.database.users.create({
             data: {
-				id: user.id,
-				username: user.username,
+                id: user.id,
+                username: user.username,
                 email: user.email,
                 telegram_number: user.telegram_number,
                 password: user.password,
@@ -319,21 +319,21 @@ export default class UsersRepository implements UsersRepositoryPort {
                 api_token: user.api_token,
                 reset_password_token: user.reset_password_token,
                 reset_password_token_expires_at: user.reset_password_token_expires_at,
-				stripe_customer_id: user.stripe.customer_id,
+                stripe_customer_id: user.stripe.customer_id,
                 stripe_subscription_active: user.stripe.subscription.active,
-				stripe_subscription_name: user.stripe.subscription.name,
-				stripe_subscription_starts_at: user.stripe.subscription.starts_at,
-				stripe_subscription_ends_at: user.stripe.subscription.ends_at,
-				stripe_subscription_charge_id: user.stripe.subscription.charge_id,
-				stripe_subscription_receipt_url: user.stripe.subscription.receipt_url,
-				stripe_subscription_hosted_invoice_url: user.stripe.subscription.hosted_invoice_url,
-				stripe_updated_at: user.stripe.updated_at,
-				stripe_updated_at_pt_br: user.stripe.updated_at_pt_br,
+                stripe_subscription_name: user.stripe.subscription.name,
+                stripe_subscription_starts_at: user.stripe.subscription.starts_at,
+                stripe_subscription_ends_at: user.stripe.subscription.ends_at,
+                stripe_subscription_charge_id: user.stripe.subscription.charge_id,
+                stripe_subscription_receipt_url: user.stripe.subscription.receipt_url,
+                stripe_subscription_hosted_invoice_url: user.stripe.subscription.hosted_invoice_url,
+                stripe_updated_at: user.stripe.updated_at,
+                stripe_updated_at_pt_br: user.stripe.updated_at_pt_br,
                 created_at: user.created_at,
                 updated_at: user.updated_at,
                 created_at_pt_br: user.created_at_pt_br,
-                updated_at_pt_br: user.updated_at_pt_br
-			},
+                updated_at_pt_br: user.updated_at_pt_br,
+            },
         });
     }
 
@@ -534,12 +534,11 @@ export default class UsersRepository implements UsersRepositoryPort {
         if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === user.id) {
+                    let subscriptionName = "NOOB";
 
-					let subscriptionName = 'NOOB'
-
-					if(stripeSubscriptionInfo.amount){
-						subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL"
-					}
+                    if (stripeSubscriptionInfo.amount) {
+                        subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
+                    }
 
                     this.users[i].api_token = stripeSubscriptionInfo.apiToken ?? this.users[i].api_token;
                     this.users[i].stripe.customer_id =
@@ -548,7 +547,7 @@ export default class UsersRepository implements UsersRepositoryPort {
                         stripeSubscriptionInfo.paid ?? this.users[i].stripe.subscription.active;
                     this.users[i].stripe.subscription.charge_id =
                         stripeSubscriptionInfo.chargeId ?? this.users[i].stripe.subscription.charge_id;
-                    this.users[i].stripe.subscription.name = subscriptionName
+                    this.users[i].stripe.subscription.name = subscriptionName;
 
                     this.users[i].stripe.subscription.receipt_url =
                         stripeSubscriptionInfo.receiptUrl ?? this.users[i].stripe.subscription.receipt_url;
@@ -572,11 +571,11 @@ export default class UsersRepository implements UsersRepositoryPort {
             throw new Error(ErrorsMessages.USER_NOT_FOUND);
         }
 
-		let subscriptionName = 'NOOB'
+        let subscriptionName = "NOOB";
 
-		if(stripeSubscriptionInfo.amount){
-			subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL"
-		}
+        if (stripeSubscriptionInfo.amount) {
+            subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
+        }
 
         const userUpdated = await this.database.users.update({
             where: {
@@ -597,6 +596,6 @@ export default class UsersRepository implements UsersRepositoryPort {
             },
         });
 
-		return this.transformToUser(userUpdated)
+        return this.transformToUser(userUpdated);
     }
 }

@@ -26,156 +26,156 @@ export default class StripeRepository implements StripeRepositoryPort {
         private checkouts = StripeCheckouts,
         private billingPortals = StripeBillingPortals,
         private payments = StripePayments,
-		private readonly database: Database
+        private readonly database: Database,
     ) {}
 
     public async saveChargeWebhookEventLog(event: any) {
-		if (process.env.USE_DATABASE_JSON === "true"){
-			try {
-				this.charges.push(event);
-				fs.writeFileSync(
-					"./src/Repositories/Jsons/Stripe/charges.json",
-					JSON.stringify(this.charges, null, 4),
-					"utf-8",
-				);
-			} catch (error) {
-				throw new Error(error);
-			}
-		}
+        if (process.env.USE_DATABASE_JSON === "true") {
+            try {
+                this.charges.push(event);
+                fs.writeFileSync(
+                    "./src/Repositories/Jsons/Stripe/charges.json",
+                    JSON.stringify(this.charges, null, 4),
+                    "utf-8",
+                );
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
 
-		try {
-			await this.database.stripeWebhookChargesLogs.create({
-				data: {
-					event_log: JSON.stringify(event)
-				}
-			})
-		} catch (error){
-			throw new Error(error);
-		}
+        try {
+            await this.database.stripeWebhookChargesLogs.create({
+                data: {
+                    event_log: JSON.stringify(event),
+                },
+            });
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     public async saveCustomerWebhookEventLog(event: any) {
-		if (process.env.USE_DATABASE_JSON === "true"){
-			try {
-				this.customers.push(event);
-				fs.writeFileSync(
-					"./src/Repositories/Jsons/Stripe/customers.json",
-					JSON.stringify(this.customers, null, 4),
-					"utf-8",
-				);
-			} catch (error) {
-				throw new Error(error);
-			}
-		}
+        if (process.env.USE_DATABASE_JSON === "true") {
+            try {
+                this.customers.push(event);
+                fs.writeFileSync(
+                    "./src/Repositories/Jsons/Stripe/customers.json",
+                    JSON.stringify(this.customers, null, 4),
+                    "utf-8",
+                );
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
 
-		try {
-			await this.database.stripeWebhookCustomersLogs.create({
-				data: {
-					event_log: JSON.stringify(event)
-				}
-			})
-		} catch (error){
-			throw new Error(error);
-		}
+        try {
+            await this.database.stripeWebhookCustomersLogs.create({
+                data: {
+                    event_log: JSON.stringify(event),
+                },
+            });
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     public async saveInvoiceWebhookEventLog(event: any) {
-		if (process.env.USE_DATABASE_JSON === "true"){
-			try {
-				this.invoices.push(event);
-				fs.writeFileSync(
-					"./src/Repositories/Jsons/Stripe/invoices.json",
-					JSON.stringify(this.invoices, null, 4),
-					"utf-8",
-				);
-			} catch (error) {
-				throw new Error(error);
-			}
-		}
+        if (process.env.USE_DATABASE_JSON === "true") {
+            try {
+                this.invoices.push(event);
+                fs.writeFileSync(
+                    "./src/Repositories/Jsons/Stripe/invoices.json",
+                    JSON.stringify(this.invoices, null, 4),
+                    "utf-8",
+                );
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
 
-		try {
-			await this.database.stripeWebhookInvoicesLogs.create({
-				data: {
-					event_log: JSON.stringify(event)
-				}
-			})
-		} catch (error){
-			throw new Error(error);
-		}
+        try {
+            await this.database.stripeWebhookInvoicesLogs.create({
+                data: {
+                    event_log: JSON.stringify(event),
+                },
+            });
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     public async savePaymentWebhookEventLog(event: any) {
-		if (process.env.USE_DATABASE_JSON === "true"){
-			try {
-				this.payments.push(event);
-				fs.writeFileSync(
-					"./src/Repositories/Jsons/Stripe/payments.json",
-					JSON.stringify(this.payments, null, 4),
-					"utf-8",
-				);
-			} catch (error) {
-				throw new Error(error);
-			}
-		}
+        if (process.env.USE_DATABASE_JSON === "true") {
+            try {
+                this.payments.push(event);
+                fs.writeFileSync(
+                    "./src/Repositories/Jsons/Stripe/payments.json",
+                    JSON.stringify(this.payments, null, 4),
+                    "utf-8",
+                );
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
 
-		try {
-			await this.database.stripeWebhookPaymentsLogs.create({
-				data: {
-					event_log: JSON.stringify(event)
-				}
-			})
-		} catch (error){
-			throw new Error(error);
-		}
+        try {
+            await this.database.stripeWebhookPaymentsLogs.create({
+                data: {
+                    event_log: JSON.stringify(event),
+                },
+            });
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     public async saveCheckoutSessionWebhookEventLog(event: any) {
-		if (process.env.USE_DATABASE_JSON === "true"){
-			try {
-				this.checkouts.push(event);
-				fs.writeFileSync(
-					"./src/Repositories/Jsons/Stripe/checkouts.json",
-					JSON.stringify(this.checkouts, null, 4),
-					"utf-8",
-				);
-			} catch (error) {
-				throw new Error(error);
-			}
-		}
+        if (process.env.USE_DATABASE_JSON === "true") {
+            try {
+                this.checkouts.push(event);
+                fs.writeFileSync(
+                    "./src/Repositories/Jsons/Stripe/checkouts.json",
+                    JSON.stringify(this.checkouts, null, 4),
+                    "utf-8",
+                );
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
 
-		try {
-			await this.database.stripeWebhookCheckoutsLogs.create({
-				data: {
-					event_log: JSON.stringify(event)
-				}
-			})
-		} catch (error){
-			throw new Error(error);
-		}
+        try {
+            await this.database.stripeWebhookCheckoutsLogs.create({
+                data: {
+                    event_log: JSON.stringify(event),
+                },
+            });
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 
     public async saveBillingPortalSessionWebhookEventLog(event: any) {
-		if (process.env.USE_DATABASE_JSON === "true"){
-			try {
-				this.billingPortals.push(event);
-				fs.writeFileSync(
-					"./src/Repositories/Jsons/Stripe/billingPortals.json",
-					JSON.stringify(this.billingPortals, null, 4),
-					"utf-8",
-				);
-			} catch (error) {
-				throw new Error(error);
-			}
-		}
+        if (process.env.USE_DATABASE_JSON === "true") {
+            try {
+                this.billingPortals.push(event);
+                fs.writeFileSync(
+                    "./src/Repositories/Jsons/Stripe/billingPortals.json",
+                    JSON.stringify(this.billingPortals, null, 4),
+                    "utf-8",
+                );
+            } catch (error) {
+                throw new Error(error);
+            }
+        }
 
-		try {
-			await this.database.stripeWebhookBillingPortalLogs.create({
-				data: {
-					event_log: JSON.stringify(event)
-				}
-			})
-		} catch (error){
-			throw new Error(error);
-		}
+        try {
+            await this.database.stripeWebhookBillingPortalLogs.create({
+                data: {
+                    event_log: JSON.stringify(event),
+                },
+            });
+        } catch (error) {
+            throw new Error(error);
+        }
     }
 }

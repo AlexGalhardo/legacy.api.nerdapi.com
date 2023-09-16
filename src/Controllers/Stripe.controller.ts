@@ -86,7 +86,7 @@ export class StripeController implements StripeControllerPort {
         }
     }
 
-	// https://github.com/stripe/stripe-cli
+    // https://github.com/stripe/stripe-cli
     @Post("/webhook")
     async webhook(
         @Body() event: StripeWebhookEventDTO,
@@ -142,7 +142,7 @@ export class StripeController implements StripeControllerPort {
                     this.stripeRepository.savePaymentWebhookEventLog(event);
                     break;
 
-				case "payment_intent.created":
+                case "payment_intent.created":
                     this.stripeRepository.savePaymentWebhookEventLog(event);
                     break;
 
@@ -155,7 +155,7 @@ export class StripeController implements StripeControllerPort {
                     break;
 
                 default:
-                    TelegramBOTLogger.logError(event.type)
+                    TelegramBOTLogger.logError(event.type);
             }
 
             return response.json({ received: true });

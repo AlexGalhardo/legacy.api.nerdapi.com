@@ -39,12 +39,12 @@ export default class ContactSendMessageUseCase implements ContactSendMessageUseC
 				`,
             });
 
-			TelegramBOTLogger.logContactSendMessage({
-				name,
-				email,
-				subject,
-				message
-			})
+            TelegramBOTLogger.logContactSendMessage({
+                name,
+                email,
+                subject,
+                message,
+            });
 
             return { success: true };
         }

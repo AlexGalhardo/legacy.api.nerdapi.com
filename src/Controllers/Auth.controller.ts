@@ -46,7 +46,8 @@ export class AuthController implements AuthControllerPort {
         @Inject("AuthLoginGitHubUseCasePort") private readonly authLoginGitHubUseCase: AuthLoginGitHubUseCasePort,
         @Inject("AuthRegisterUseCasePort") private readonly authRegisterUseCase: AuthRegisterUseCasePort,
         @Inject("AuthLogoutUseCasePort") private readonly authLogoutUseCase: AuthLogoutUseCasePort,
-        @Inject("AuthCheckUserJWTTokenUseCasePort") private readonly authCheckUserJWTTokenUseCase: AuthCheckUserJWTTokenUseCasePort,
+        @Inject("AuthCheckUserJWTTokenUseCasePort")
+        private readonly authCheckUserJWTTokenUseCase: AuthCheckUserJWTTokenUseCasePort,
         @Inject("AuthForgetPasswordUseCasePort")
         private readonly authForgetPasswordUseCase: AuthForgetPasswordUseCasePort,
         @Inject("AuthResetPasswordUseCasePort") private readonly authResetPasswordUseCase: AuthResetPasswordUseCasePort,

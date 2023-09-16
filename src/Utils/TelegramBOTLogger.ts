@@ -16,19 +16,19 @@ import DateTime from "./DataTypes/DateTime";
 import { ContactSendMessageDTO } from "src/UseCases/ContactSendMessage.useCase";
 
 interface SubscriptionTransaction {
-	charge_id: string;
-	charge_paid: boolean;
-	receipt_url: string;
-	invoice_url: string;
-	plan_name: string;
-	plan_amount: number;
-	starts_at: string;
-	ends_at: string;
-	customer_id: string;
-	customer_name: string;
-	customer_email: string;
-	customer_subscription_active: boolean;
-	customer_api_token: string;
+    charge_id: string;
+    charge_paid: boolean;
+    receipt_url: string;
+    invoice_url: string;
+    plan_name: string;
+    plan_amount: number;
+    starts_at: string;
+    ends_at: string;
+    customer_id: string;
+    customer_name: string;
+    customer_email: string;
+    customer_subscription_active: boolean;
+    customer_api_token: string;
 }
 
 class TelegramBOTLogger {

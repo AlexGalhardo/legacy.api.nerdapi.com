@@ -23,7 +23,7 @@ describe("AppController (e2e)", () => {
             controllers: [AuthController],
             imports: [AppModule],
             providers: [
-				Database,
+                Database,
                 {
                     provide: "UsersRepositoryPort",
                     inject: [Database],
@@ -52,7 +52,7 @@ describe("AppController (e2e)", () => {
                         return new AuthLoginGoogleUseCase(usersRepository);
                     },
                 },
-				{
+                {
                     provide: "AuthLoginGitHubUseCasePort",
                     inject: ["UsersRepositoryPort"],
                     useFactory: (usersRepository: UsersRepositoryPort) => {

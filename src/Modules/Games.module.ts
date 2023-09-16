@@ -9,10 +9,10 @@ import { Database } from "src/Utils/Database";
 @Module({
     controllers: [GamesController],
     providers: [
-		Database,
+        Database,
         {
             provide: "GamesRepositoryPort",
-			inject: [Database],
+            inject: [Database],
             useFactory: (database: Database) => {
                 return new GamesRepository(undefined, database);
             },
