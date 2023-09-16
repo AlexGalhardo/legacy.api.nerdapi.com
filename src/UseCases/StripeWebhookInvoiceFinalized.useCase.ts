@@ -17,10 +17,12 @@ export default class StripeWebhookInvoiceFinalizedUseCase implements StripeWebho
     ) {}
 
     async execute(event: any) {
-        const { user } = await this.usersRepository.getByEmail(event.data.object.customer_email);
+        const response = await this.usersRepository.getByEmail(event.data.object.customer_email);
 
-        if (user) {
-            const userUpdated = await this.usersRepository.updateStripeSubscriptionInfo(user, {
+		console.log('\n\n response StripeWebhookInvoiceFinalizedUseCase => ', StripeWebhookInvoiceFinalizedUseCase)
+
+        if (response.user) {
+            const userUpdated = await this.usersRepository.updateStripeSubscriptionInfo(response.user, {
                 apiToken: event.data.object.paid ? generateRandomToken() : null,
                 customerId: event.data.object.customer ?? null,
                 paid: event.data.object.paid ?? null,
@@ -30,7 +32,7 @@ export default class StripeWebhookInvoiceFinalizedUseCase implements StripeWebho
                 hostedInvoiceUrl: event.data.object.hosted_invoice_url ?? null,
                 startAt: DateTime.timestampToGetNow(event.data.object.lines.data[0].period.start) ?? null,
                 endsAt: DateTime.timestampToGetNow(event.data.object.lines.data[0].period.end) ?? null,
-                createdAt: String(new Date(event.created)) ?? null,
+                createdAt: String(new Date(event.created)),
                 createdAtBrazil: DateTime.timestampToGetNow(event.created) ?? null,
             });
 

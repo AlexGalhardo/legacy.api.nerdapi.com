@@ -29,7 +29,7 @@ export default class StripeWebhookChargeSucceededUseCase implements StripeWebhoo
                 hostedInvoiceUrl: event.data.object.hosted_invoice_url ?? null,
                 startAt: undefined,
                 endsAt: undefined,
-                createdAt: String(new Date(event.created)) ?? null,
+                createdAt: String(new Date(event.created)),
                 createdAtBrazil: DateTime.timestampToGetNow(event.created) ?? null,
             });
 
