@@ -33,8 +33,6 @@ export default class StripeCreatePortalSessionUseCase implements StripeCreatePor
         const { user } = await this.usersRepository.getById(userID);
 
         if (user) {
-            if (user.stripe.subscription.active) throw new ClientException(ErrorsMessages.USER_HAS_ACTIVE_PLAN);
-
             const { session_id } = stripeCreatePortalSessionDTO;
             const checkoutSession = await stripe.checkout.sessions.retrieve(session_id);
 
