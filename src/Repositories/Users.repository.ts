@@ -4,6 +4,8 @@ import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import DateTime from "src/Utils/DataTypes/DateTime";
 import { ProfileUpdateDTO } from "src/UseCases/ProfileUpdate.useCase";
 import { Bcrypt } from "src/Utils/Bcrypt";
+import { Injectable } from "@nestjs/common";
+// import { Database } from "src/Utils/Database";
 
 export interface User {
     id: string;
@@ -79,8 +81,10 @@ export interface UsersRepositoryPort {
     phoneAlreadyRegistred(userId: string, phoneNumber: string): boolean;
 }
 
+@Injectable()
 export default class UsersRepository implements UsersRepositoryPort {
     constructor(private users: User[] = usersDatabase) {}
+	// constructor(private readonly database: Database) {}
 
     public save(user?: any, index?: number): void {
         try {

@@ -1,0 +1,7 @@
+POST localhost:3000/users/login-by-code HTTP/1.1
+content-type: application/json
+
+{
+    "documentNumber": "12345678901",
+    "code": "123456"
+}

@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+    postgres_nerdapi:
+        image: postgres
+        container_name: postgres_nerdapi
+        environment:
+            POSTGRES_PASSWORD: "root"
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres_nerdapi:/var/lib/postgresql
+        networks:
+            - network_nerdapi
+
+networks:
+    network_nerdapi:
+        driver: bridge
+
+volumes:
+    postgres_nerdapi:
+        driver: local
