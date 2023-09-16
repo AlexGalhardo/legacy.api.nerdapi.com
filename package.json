@@ -8,7 +8,7 @@
 		"start": "npx nest start",
 		"dev": "npx nest start --watch",
 		"start:debug": "npx nest start --debug --watch",
-		"start:prod": "node dist/main",
+		"start:prod": "node dist/src/main",
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"test:cov": "jest --coverage",
