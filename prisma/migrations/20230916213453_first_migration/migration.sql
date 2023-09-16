@@ -11,7 +11,7 @@ CREATE TABLE "users" (
     "reset_password_token_expires_at" TEXT,
     "stripe_customer_id" TEXT,
     "stripe_subscription_active" BOOLEAN NOT NULL DEFAULT false,
-    "stripe_subscription_name" TEXT NOT NULL DEFAULT 'NOOB',
+    "stripe_subscription_name" TEXT DEFAULT 'NOOB',
     "stripe_subscription_starts_at" TEXT,
     "stripe_subscription_ends_at" TEXT,
     "stripe_subscription_charge_id" TEXT,

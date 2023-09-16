@@ -139,7 +139,7 @@ export class AuthController implements AuthControllerPort {
         }
     }
 
-    @Post("/callback/google/login")
+    @Post("/login/google/callback")
     async loginGoogle(@Req() request: Request, @Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
             const { success, redirect } = await this.authLoginGoogleUseCase.execute(request);
