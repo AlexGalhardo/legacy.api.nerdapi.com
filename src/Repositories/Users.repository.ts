@@ -243,15 +243,17 @@ export default class UsersRepository implements UsersRepositoryPort {
             throw new Error(ErrorsMessages.USER_NOT_FOUND);
         }
 
-        const user = await this.database.users.findUnique({
-            where: {
-                email,
-            },
-        });
+		try {
+			const user = await this.database.users.findUnique({
+				where: {
+					email,
+				},
+			});
 
-        if (user) return this.transformToUserResponse(user);
-
-        throw new Error(ErrorsMessages.USER_NOT_FOUND);
+			if (user) return this.transformToUserResponse(user);
+		} catch(error){
+			throw new Error(error)
+		}
     }
 
     public async getById(userId: string): Promise<UserResponse> {

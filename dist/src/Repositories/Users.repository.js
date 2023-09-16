@@ -164,14 +164,18 @@ let UsersRepository = class UsersRepository {
             }
             throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
         }
-        const user = await this.database.users.findUnique({
-            where: {
-                email,
-            },
-        });
-        if (user)
-            return this.transformToUserResponse(user);
-        throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
+        try {
+            const user = await this.database.users.findUnique({
+                where: {
+                    email,
+                },
+            });
+            if (user)
+                return this.transformToUserResponse(user);
+        }
+        catch (error) {
+            throw new Error(error);
+        }
     }
     async getById(userId) {
         if (process.env.USE_DATABASE_JSON === "true") {

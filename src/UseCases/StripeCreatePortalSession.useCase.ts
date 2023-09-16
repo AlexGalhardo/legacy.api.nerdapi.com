@@ -39,7 +39,7 @@ export default class StripeCreatePortalSessionUseCase implements StripeCreatePor
             const checkoutSession = await stripe.checkout.sessions.retrieve(session_id);
 
             const portalSession = await stripe.billingPortal.sessions.create({
-                customer: (checkoutSession.customer as string) ?? "cus_OZrXWOVtDiSJlB",
+                customer: checkoutSession.customer as string,
                 return_url: `${APP_URL}/profile`,
             });
 

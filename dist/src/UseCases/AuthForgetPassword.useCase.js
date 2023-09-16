@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 require("dotenv/config");
+const Constants_1 = require("../Utils/Constants");
 const ErrorsMessages_1 = require("../Utils/ErrorsMessages");
 const Exception_1 = require("../Utils/Exception");
 const RandomToken_1 = require("../Utils/RandomToken");
@@ -19,8 +20,7 @@ class AuthForgetPasswordUseCase {
         if (user) {
             const reset_password_token = (0, RandomToken_1.generateRandomToken)();
             await this.usersRepository.saveResetPasswordToken(user.id, reset_password_token);
-            const APP_FRONT_URL = process.env.NODE_ENV === "development" ? process.env.APP_FRONT_URL_DEV : process.env.APP_FRONT_URL_PROD;
-            const resetPasswordLink = `${APP_FRONT_URL}/auth/reset-password/${reset_password_token}`;
+            const resetPasswordLink = `${Constants_1.APP_URL}/reset-password/${reset_password_token}`;
             const sendEmailForgetPasswordResponse = await this.smtp.sendMail({
                 from: process.env.SMTP_EMAIL_FROM,
                 to: "aleexgvieira@gmail.com",

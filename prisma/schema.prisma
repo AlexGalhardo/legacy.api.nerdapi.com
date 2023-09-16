@@ -63,11 +63,56 @@ model Games {
   @@map("games")
 }
 
-model StripeWebhookEventsLogs {
+model StripeWebhookBillingPortalLogs {
   id         String    @id @default(uuid())
   event_log  Json
   created_at DateTime  @default(now())
   updated_at DateTime?
 
-  @@map("stripe_webhook_events_logs")
+  @@map("stripe_webhook_billing_portal_logs")
+}
+
+model StripeWebhookChargesLogs {
+  id         String    @id @default(uuid())
+  event_log  Json
+  created_at DateTime  @default(now())
+  updated_at DateTime?
+
+  @@map("stripe_webhook_charges_logs")
+}
+
+model StripeWebhookCheckoutsLogs {
+  id         String    @id @default(uuid())
+  event_log  Json
+  created_at DateTime  @default(now())
+  updated_at DateTime?
+
+  @@map("stripe_webhook_checkouts_logs")
+}
+
+model StripeWebhookCustomersLogs {
+  id         String    @id @default(uuid())
+  event_log  Json
+  created_at DateTime  @default(now())
+  updated_at DateTime?
+
+  @@map("stripe_webhook_customers_logs")
+}
+
+model StripeWebhookInvoicesLogs {
+  id         String    @id @default(uuid())
+  event_log  Json
+  created_at DateTime  @default(now())
+  updated_at DateTime?
+
+  @@map("stripe_webhook_invoices_logs")
+}
+
+model StripeWebhookPaymentsLogs {
+  id         String    @id @default(uuid())
+  event_log  Json
+  created_at DateTime  @default(now())
+  updated_at DateTime?
+
+  @@map("stripe_webhook_payments_logs")
 }

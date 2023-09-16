@@ -1,3 +1,4 @@
+import { Database } from "src/Utils/Database";
 export interface StripeRepositoryPort {
     saveChargeWebhookEventLog(event: any): void;
     saveCustomerWebhookEventLog(event: any): void;
@@ -13,7 +14,8 @@ export default class StripeRepository implements StripeRepositoryPort {
     private checkouts;
     private billingPortals;
     private payments;
-    constructor(charges?: ({
+    private readonly database;
+    constructor(charges: ({
         id: string;
         object: string;
         api_version: string;
@@ -194,7 +196,7 @@ export default class StripeRepository implements StripeRepositoryPort {
             idempotency_key: string;
         };
         type: string;
-    })[], customers?: ({
+    })[], customers: ({
         id: string;
         object: string;
         api_version: string;
@@ -496,7 +498,7 @@ export default class StripeRepository implements StripeRepositoryPort {
             idempotency_key: string;
         };
         type: string;
-    })[], invoices?: ({
+    })[], invoices: ({
         id: string;
         object: string;
         api_version: string;
@@ -1032,7 +1034,7 @@ export default class StripeRepository implements StripeRepositoryPort {
             idempotency_key: string;
         };
         type: string;
-    })[], checkouts?: ({
+    })[], checkouts: ({
         id: string;
         object: string;
         api_version: string;
@@ -1411,7 +1413,7 @@ export default class StripeRepository implements StripeRepositoryPort {
             idempotency_key: any;
         };
         type: string;
-    })[], billingPortals?: {
+    })[], billingPortals: {
         id: string;
         object: string;
         api_version: string;
@@ -1438,7 +1440,7 @@ export default class StripeRepository implements StripeRepositoryPort {
             idempotency_key: string;
         };
         type: string;
-    }[], payments?: ({
+    }[], payments: ({
         id: string;
         object: string;
         api_version: string;
@@ -1744,11 +1746,11 @@ export default class StripeRepository implements StripeRepositoryPort {
             idempotency_key: string;
         };
         type: string;
-    })[]);
-    saveChargeWebhookEventLog(event: any): void;
-    saveCustomerWebhookEventLog(event: any): void;
-    saveInvoiceWebhookEventLog(event: any): void;
-    savePaymentWebhookEventLog(event: any): void;
-    saveCheckoutSessionWebhookEventLog(event: any): void;
-    saveBillingPortalSessionWebhookEventLog(event: any): void;
+    })[], database: Database);
+    saveChargeWebhookEventLog(event: any): Promise<void>;
+    saveCustomerWebhookEventLog(event: any): Promise<void>;
+    saveInvoiceWebhookEventLog(event: any): Promise<void>;
+    savePaymentWebhookEventLog(event: any): Promise<void>;
+    saveCheckoutSessionWebhookEventLog(event: any): Promise<void>;
+    saveBillingPortalSessionWebhookEventLog(event: any): Promise<void>;
 }

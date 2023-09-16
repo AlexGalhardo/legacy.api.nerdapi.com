@@ -26,9 +26,9 @@ exports.StripeModule = StripeModule = __decorate([
             Database_1.Database,
             {
                 provide: "StripeRepositoryPort",
-                inject: [],
-                useFactory: () => {
-                    return new Stripe_repository_1.default();
+                inject: [Database_1.Database],
+                useFactory: (database) => {
+                    return new Stripe_repository_1.default(undefined, undefined, undefined, undefined, undefined, undefined, database);
                 },
             },
             {

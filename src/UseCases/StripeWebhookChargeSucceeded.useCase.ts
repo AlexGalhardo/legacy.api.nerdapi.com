@@ -4,7 +4,6 @@ import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
 import { generateRandomToken } from "src/Utils/RandomToken";
-import TelegramBOTLogger from "src/Utils/TelegramBOTLogger";
 
 export interface StripeWebhookChargeSucceededUseCasePort {
     execute(event: any): void;
@@ -17,10 +16,10 @@ export default class StripeWebhookChargeSucceededUseCase implements StripeWebhoo
     ) {}
 
     async execute(event: any) {
-        const { user } = await this.usersRepository.getByEmail(event.data.object.billing_details.email);
+        const response = await this.usersRepository.getByEmail(event.data.object.billing_details.email);
 
-        if (user) {
-            await this.usersRepository.updateStripeSubscriptionInfo(user, {
+        if (response.user) {
+            await this.usersRepository.updateStripeSubscriptionInfo(response.user, {
                 apiToken: event.data.object.paid ? generateRandomToken() : null,
                 customerId: event.data.object.customer ?? null,
                 paid: event.data.object.paid ?? null,

@@ -1,5 +1,6 @@
 import "dotenv/config";
 import { UsersRepositoryPort } from "src/Repositories/Users.repository";
+import { APP_URL } from "src/Utils/Constants";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
 import { generateRandomToken } from "src/Utils/RandomToken";
@@ -37,10 +38,7 @@ export default class AuthForgetPasswordUseCase implements AuthForgetPasswordUseC
 
             await this.usersRepository.saveResetPasswordToken(user.id, reset_password_token);
 
-            const APP_FRONT_URL =
-                process.env.NODE_ENV === "development" ? process.env.APP_FRONT_URL_DEV : process.env.APP_FRONT_URL_PROD;
-
-            const resetPasswordLink = `${APP_FRONT_URL}/auth/reset-password/${reset_password_token}`;
+            const resetPasswordLink = `${APP_URL}/reset-password/${reset_password_token}`;
 
             const sendEmailForgetPasswordResponse = await this.smtp.sendMail({
                 from: process.env.SMTP_EMAIL_FROM,

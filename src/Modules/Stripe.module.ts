@@ -14,9 +14,9 @@ import { Database } from "src/Utils/Database";
         Database,
         {
             provide: "StripeRepositoryPort",
-            inject: [],
-            useFactory: () => {
-                return new StripeRepository();
+            inject: [Database],
+            useFactory: (database: Database) => {
+                return new StripeRepository(undefined, undefined, undefined, undefined, undefined, undefined, database);
             },
         },
         {

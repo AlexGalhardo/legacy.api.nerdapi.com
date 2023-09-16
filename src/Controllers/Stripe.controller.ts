@@ -85,6 +85,7 @@ export class StripeController implements StripeControllerPort {
         }
     }
 
+	// https://github.com/stripe/stripe-cli
     @Post("/webhook")
     async webhook(
         @Body() event: StripeWebhookEventDTO,
