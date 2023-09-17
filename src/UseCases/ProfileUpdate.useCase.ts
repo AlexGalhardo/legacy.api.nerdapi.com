@@ -3,7 +3,6 @@ import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
 import * as jwt from "jsonwebtoken";
 import Validator from "src/Utils/Validator";
-import { Bcrypt } from "src/Utils/Bcrypt";
 
 interface ProfileUpdateUseCaseResponse {
     success: boolean;
@@ -17,8 +16,8 @@ export interface ProfileUpdateUseCasePort {
 export interface ProfileUpdateDTO {
     username?: string | null;
     telegramNumber?: string | null;
-    olderPassword?: string | null;
     newPassword?: string | null;
+    confirmNewPassword?: string | null;
 }
 
 export default class ProfileUpdateUseCase implements ProfileUpdateUseCasePort {
@@ -46,9 +45,9 @@ export default class ProfileUpdateUseCase implements ProfileUpdateUseCasePort {
                 }
             }
 
-            if (profileUpdateDTO.olderPassword && profileUpdateDTO.newPassword) {
-                if (!(await Bcrypt.compare(profileUpdateDTO.olderPassword, user.password))) {
-                    throw new ClientException(ErrorsMessages.INVALID_OLDER_PASSWORD);
+            if (profileUpdateDTO.newPassword && profileUpdateDTO.confirmNewPassword) {
+                if (!Validator.password.isEqual(profileUpdateDTO.newPassword, profileUpdateDTO.confirmNewPassword)) {
+                    throw new ClientException(ErrorsMessages.PASSWORDS_NOT_EQUAL);
                 }
 
                 if (!Validator.password.isSecure(profileUpdateDTO.newPassword)) {

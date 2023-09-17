@@ -4,7 +4,6 @@ const ErrorsMessages_1 = require("../Utils/ErrorsMessages");
 const Exception_1 = require("../Utils/Exception");
 const jwt = require("jsonwebtoken");
 const Validator_1 = require("../Utils/Validator");
-const Bcrypt_1 = require("../Utils/Bcrypt");
 class ProfileUpdateUseCase {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
@@ -26,9 +25,9 @@ class ProfileUpdateUseCase {
                     throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.PHONE_NUMBER_ALREADY_REGISTRED);
                 }
             }
-            if (profileUpdateDTO.olderPassword && profileUpdateDTO.newPassword) {
-                if (!(await Bcrypt_1.Bcrypt.compare(profileUpdateDTO.olderPassword, user.password))) {
-                    throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.INVALID_OLDER_PASSWORD);
+            if (profileUpdateDTO.newPassword && profileUpdateDTO.confirmNewPassword) {
+                if (!Validator_1.default.password.isEqual(profileUpdateDTO.newPassword, profileUpdateDTO.confirmNewPassword)) {
+                    throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.PASSWORDS_NOT_EQUAL);
                 }
                 if (!Validator_1.default.password.isSecure(profileUpdateDTO.newPassword)) {
                     throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.NEW_PASSWORD_IS_INSECURE);

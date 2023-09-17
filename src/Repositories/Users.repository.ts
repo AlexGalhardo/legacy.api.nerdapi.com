@@ -366,9 +366,9 @@ export default class UsersRepository implements UsersRepositoryPort {
                 id: userId,
             },
             data: {
-                username: profileUpdateDTO.username,
-                telegram_number: profileUpdateDTO.telegramNumber,
-                password: await Bcrypt.hash(profileUpdateDTO.newPassword),
+                username: profileUpdateDTO.username ? profileUpdateDTO.username : undefined,
+                telegram_number: profileUpdateDTO.telegramNumber ? profileUpdateDTO.telegramNumber : undefined,
+                password: profileUpdateDTO.newPassword ? await Bcrypt.hash(profileUpdateDTO.newPassword) : undefined,
             },
         });
 

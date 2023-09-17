@@ -150,6 +150,14 @@ export class StripeController implements StripeControllerPort {
                     this.stripeRepository.saveCheckoutSessionWebhookEventLog(event);
                     break;
 
+                case "checkout.session.expired":
+                    this.stripeRepository.saveCheckoutSessionWebhookEventLog(event);
+                    break;
+
+                case "balance.available":
+                    this.stripeRepository.savePaymentWebhookEventLog(event);
+                    break;
+
                 case "billing_portal.session.created":
                     this.stripeRepository.saveBillingPortalSessionWebhookEventLog(event);
                     break;

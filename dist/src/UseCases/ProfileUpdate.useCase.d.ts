@@ -9,8 +9,8 @@ export interface ProfileUpdateUseCasePort {
 export interface ProfileUpdateDTO {
     username?: string | null;
     telegramNumber?: string | null;
-    olderPassword?: string | null;
     newPassword?: string | null;
+    confirmNewPassword?: string | null;
 }
 export default class ProfileUpdateUseCase implements ProfileUpdateUseCasePort {
     private readonly usersRepository;

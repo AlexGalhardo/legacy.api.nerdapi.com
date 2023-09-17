@@ -272,9 +272,9 @@ let UsersRepository = class UsersRepository {
                 id: userId,
             },
             data: {
-                username: profileUpdateDTO.username,
-                telegram_number: profileUpdateDTO.telegramNumber,
-                password: await Bcrypt_1.Bcrypt.hash(profileUpdateDTO.newPassword),
+                username: profileUpdateDTO.username ? profileUpdateDTO.username : undefined,
+                telegram_number: profileUpdateDTO.telegramNumber ? profileUpdateDTO.telegramNumber : undefined,
+                password: profileUpdateDTO.newPassword ? await Bcrypt_1.Bcrypt.hash(profileUpdateDTO.newPassword) : undefined,
             },
         });
         return {
