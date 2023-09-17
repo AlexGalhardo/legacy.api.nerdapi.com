@@ -74,7 +74,7 @@ export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePor
                         customer_id: null,
                         subscription: {
                             active: false,
-                            name: null,
+                            name: "NOOB",
                             starts_at: null,
                             ends_at: null,
                             charge_id: null,

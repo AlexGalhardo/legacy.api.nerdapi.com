@@ -17,6 +17,7 @@ export interface AuthLoginDTO {
 interface UserLoginUseCaseResponse {
     success: boolean;
     jwt_token?: string;
+    message?: string;
 }
 
 export default class AuthLoginUseCase implements AuthLoginUseCasePort {
@@ -32,7 +33,7 @@ export default class AuthLoginUseCase implements AuthLoginUseCasePort {
 
             if (user) {
                 if (!(await Bcrypt.compare(password, user.password))) {
-                    return { success: false };
+                    return { success: false, message: ErrorsMessages.EMAIL_OR_PASSWORD_INVALID };
                 }
 
                 const jwt_token = jwt.sign({ userID: user.id }, process.env.JWT_SECRET);
@@ -41,6 +42,8 @@ export default class AuthLoginUseCase implements AuthLoginUseCasePort {
 
                 return { success: true, jwt_token };
             }
+
+            throw new ClientException(ErrorsMessages.USER_NOT_FOUND);
         }
 
         throw new ClientException(ErrorsMessages.EMAIL_OR_PASSWORD_INVALID);

@@ -17,13 +17,14 @@ class AuthLoginUseCase {
             const { user, index } = await this.usersRepository.getByEmail(email);
             if (user) {
                 if (!(await Bcrypt_1.Bcrypt.compare(password, user.password))) {
-                    return { success: false };
+                    return { success: false, message: ErrorsMessages_1.ErrorsMessages.EMAIL_OR_PASSWORD_INVALID };
                 }
                 const jwt_token = jwt.sign({ userID: user.id }, process.env.JWT_SECRET);
                 user.jwt_token = jwt_token;
                 await this.usersRepository.save(user, index);
                 return { success: true, jwt_token };
             }
+            throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
         }
         throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.EMAIL_OR_PASSWORD_INVALID);
     }

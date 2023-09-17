@@ -18,7 +18,7 @@ export declare enum ErrorsMessages {
     RESET_PASSWORD_TOKEN_EXPIRED = "Reset password token expired",
     EMAIL_IS_INVALID = "Email is invalid",
     EMAIL_ALREADY_REGISTRED = "Email already registred",
-    EMAIL_OR_PASSWORD_INVALID = "Email or password invalid",
+    EMAIL_OR_PASSWORD_INVALID = "Email and/or Password Invalid",
     EMAIL_NOT_REGISTRED = "Email not registred",
     USER_HAS_ACTIVE_PLAN = "User has active plan",
     GET_RANDOM_GAME_ERROR = "Get random game error",

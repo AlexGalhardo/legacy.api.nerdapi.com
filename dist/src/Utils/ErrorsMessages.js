@@ -22,7 +22,7 @@ var ErrorsMessages;
     ErrorsMessages["RESET_PASSWORD_TOKEN_EXPIRED"] = "Reset password token expired";
     ErrorsMessages["EMAIL_IS_INVALID"] = "Email is invalid";
     ErrorsMessages["EMAIL_ALREADY_REGISTRED"] = "Email already registred";
-    ErrorsMessages["EMAIL_OR_PASSWORD_INVALID"] = "Email or password invalid";
+    ErrorsMessages["EMAIL_OR_PASSWORD_INVALID"] = "Email and/or Password Invalid";
     ErrorsMessages["EMAIL_NOT_REGISTRED"] = "Email not registred";
     ErrorsMessages["USER_HAS_ACTIVE_PLAN"] = "User has active plan";
     ErrorsMessages["GET_RANDOM_GAME_ERROR"] = "Get random game error";

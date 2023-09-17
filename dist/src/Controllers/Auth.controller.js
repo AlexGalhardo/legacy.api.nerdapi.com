@@ -28,9 +28,10 @@ let AuthController = class AuthController {
     }
     async login(authLoginDTO, response) {
         try {
-            const { success, jwt_token } = await this.authLoginUseCase.execute(authLoginDTO);
-            if (success)
+            const { success, jwt_token, message } = await this.authLoginUseCase.execute(authLoginDTO);
+            if (success === true)
                 return response.status(common_1.HttpStatus.OK).json({ success: true, jwt_token });
+            return response.status(common_1.HttpStatus.BAD_REQUEST).json({ success: false, message });
         }
         catch (error) {
             return response.status(common_1.HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
@@ -39,7 +40,7 @@ let AuthController = class AuthController {
     async register(authRegisterDTO, response) {
         try {
             const { success, jwt_token } = await this.authRegisterUseCase.execute(authRegisterDTO);
-            if (success)
+            if (success === true)
                 return response.status(common_1.HttpStatus.OK).json({ success: true, jwt_token });
         }
         catch (error) {

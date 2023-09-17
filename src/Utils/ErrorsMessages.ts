@@ -29,7 +29,7 @@ export enum ErrorsMessages {
     EMAIL_IS_INVALID = "Email is invalid",
     EMAIL_ALREADY_REGISTRED = "Email already registred",
 
-    EMAIL_OR_PASSWORD_INVALID = "Email or password invalid",
+    EMAIL_OR_PASSWORD_INVALID = "Email and/or Password Invalid",
     EMAIL_NOT_REGISTRED = "Email not registred",
 
     USER_HAS_ACTIVE_PLAN = "User has active plan",

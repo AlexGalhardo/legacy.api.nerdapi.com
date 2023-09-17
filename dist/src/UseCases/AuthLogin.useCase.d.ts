@@ -9,6 +9,7 @@ export interface AuthLoginDTO {
 interface UserLoginUseCaseResponse {
     success: boolean;
     jwt_token?: string;
+    message?: string;
 }
 export default class AuthLoginUseCase implements AuthLoginUseCasePort {
     private readonly usersRepository;
