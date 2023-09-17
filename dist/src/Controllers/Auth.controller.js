@@ -97,11 +97,11 @@ let AuthController = class AuthController {
             return response.status(common_1.HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
-    async loginGoogle(request, response) {
+    async loginGoogle(query, request, response) {
         try {
-            const { success, redirect } = await this.authLoginGoogleUseCase.execute(request);
+            const { success, redirect } = await this.authLoginGoogleUseCase.execute(query.id_token);
             if (success) {
-                response.redirect(redirect);
+                return response.status(common_1.HttpStatus.OK).json({ success: true, redirect });
             }
         }
         catch (error) {
@@ -178,10 +178,11 @@ __decorate([
 ], AuthController.prototype, "checkResetPasswordToken", null);
 __decorate([
     (0, common_1.Get)("/login/google/callback"),
-    __param(0, (0, common_1.Req)()),
-    __param(1, (0, common_1.Res)()),
+    __param(0, (0, common_1.Query)()),
+    __param(1, (0, common_1.Req)()),
+    __param(2, (0, common_1.Res)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [Object, Object, Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "loginGoogle", null);
 __decorate([

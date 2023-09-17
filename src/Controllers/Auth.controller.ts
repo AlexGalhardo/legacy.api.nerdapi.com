@@ -1,4 +1,4 @@
-import { Controller, Post, Res, Body, Inject, HttpStatus, Req, Get } from "@nestjs/common";
+import { Controller, Post, Res, Body, Inject, HttpStatus, Req, Get, Query } from "@nestjs/common";
 import { Request, Response } from "express";
 import {
     AuthCheckResetPasswordTokenUseCasePort,
@@ -34,7 +34,7 @@ interface AuthControllerPort {
         request: Request,
         response: Response,
     ): Promise<Response<AuthUseCaseResponse>>;
-    loginGoogle(request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
+    loginGoogle(query, request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
     loginGithub(request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
 }
 
@@ -140,11 +140,15 @@ export class AuthController implements AuthControllerPort {
     }
 
     @Get("/login/google/callback")
-    async loginGoogle(@Req() request: Request, @Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
+    async loginGoogle(
+        @Query() query,
+        @Req() request: Request,
+        @Res() response: Response,
+    ): Promise<Response<AuthUseCaseResponse>> {
         try {
-            const { success, redirect } = await this.authLoginGoogleUseCase.execute(request);
+            const { success, redirect } = await this.authLoginGoogleUseCase.execute(query.id_token as string);
             if (success) {
-                response.redirect(redirect);
+                return response.status(HttpStatus.OK).json({ success: true, redirect });
             }
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });

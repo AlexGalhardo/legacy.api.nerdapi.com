@@ -11,7 +11,7 @@ import DateTime from "src/Utils/DataTypes/DateTime";
 import { APP_URL } from "src/Utils/Constants";
 
 export interface AuthLoginGoogleUseCasePort {
-    execute(request: Request): Promise<AuthLoginGoogleUseCaseResponse>;
+    execute(idToken: string): Promise<AuthLoginGoogleUseCaseResponse>;
 }
 
 export interface AuthLoginDTO {
@@ -28,12 +28,10 @@ interface AuthLoginGoogleUseCaseResponse {
 export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePort {
     constructor(private readonly usersRepository: UsersRepositoryPort) {}
 
-    async execute(request: Request): Promise<AuthLoginGoogleUseCaseResponse> {
+    async execute(idToken: string): Promise<AuthLoginGoogleUseCaseResponse> {
         try {
-            const { credential } = request.body;
-
             const googleResponse = await new OAuth2Client().verifyIdToken({
-                idToken: credential,
+                idToken,
                 audience: process.env.GOOGLE_CLIENT_ID,
             });
             const payload = googleResponse.getPayload();
@@ -96,6 +94,7 @@ export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePor
                 };
             }
         } catch (error) {
+            console.log("error => ", error);
             throw new ClientException(error);
         }
     }

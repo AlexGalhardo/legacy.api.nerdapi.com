@@ -27,5 +27,63 @@
         "updated_at": null,
         "created_at_pt_br": "16/09/2023 12:44:41",
         "updated_at_pt_br": null
+    },
+    {
+        "id": "7d5eed4a-ff20-4b29-821b-233346763d2e",
+        "username": "Alex Galhardo",
+        "email": "aleexgvieira@gmail.com",
+        "telegram_number": null,
+        "password": "$2b$12$naadYysU9HaCorUjDKPaKeTsHj1aHOfUjTCloc6Mf0aZDW3nd2SLq",
+        "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI3ZDVlZWQ0YS1mZjIwLTRiMjktODIxYi0yMzMzNDY3NjNkMmUiLCJpYXQiOjE2OTQ5NjEzNjR9.yXpZdNDNlcFYZpVzZpek28qBv8fqsob-mJA4joPoaVU",
+        "api_token": null,
+        "reset_password_token": null,
+        "reset_password_token_expires_at": null,
+        "stripe": {
+            "customer_id": null,
+            "subscription": {
+                "active": false,
+                "name": null,
+                "starts_at": null,
+                "ends_at": null,
+                "charge_id": null,
+                "receipt_url": null,
+                "hosted_invoice_url": null
+            },
+            "updated_at": null,
+            "updated_at_pt_br": null
+        },
+        "created_at": "Sun Sep 17 2023 11:36:05 GMT-0300 (Brasilia Standard Time)",
+        "updated_at": null,
+        "created_at_pt_br": "17/09/2023 11:36:05",
+        "updated_at_pt_br": null
+    },
+    {
+        "id": "176ef233-4ea5-42c2-8cce-8cc950ffb4bd",
+        "username": "Boby Jack",
+        "email": "aleexgalhardoo@gmail.com",
+        "telegram_number": null,
+        "password": "$2b$12$tWah7SKgWQAPBTClQ7oGSu3iPfZUagFIoQmaA18ylnH0QKmNd40Ne",
+        "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIxNzZlZjIzMy00ZWE1LTQyYzItOGNjZS04Y2M5NTBmZmI0YmQiLCJpYXQiOjE2OTQ5NjE3NDl9.-axFVG1xFWqBGF3Ag6d7cllvr5p0L-PHhq_jcpOqQR8",
+        "api_token": null,
+        "reset_password_token": null,
+        "reset_password_token_expires_at": null,
+        "stripe": {
+            "customer_id": null,
+            "subscription": {
+                "active": false,
+                "name": null,
+                "starts_at": null,
+                "ends_at": null,
+                "charge_id": null,
+                "receipt_url": null,
+                "hosted_invoice_url": null
+            },
+            "updated_at": null,
+            "updated_at_pt_br": null
+        },
+        "created_at": "Sun Sep 17 2023 11:36:17 GMT-0300 (Brasilia Standard Time)",
+        "updated_at": null,
+        "created_at_pt_br": "17/09/2023 11:36:17",
+        "updated_at_pt_br": null
     }
 ]

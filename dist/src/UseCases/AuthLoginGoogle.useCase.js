@@ -13,11 +13,10 @@ class AuthLoginGoogleUseCase {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
     }
-    async execute(request) {
+    async execute(idToken) {
         try {
-            const { credential } = request.body;
             const googleResponse = await new google_auth_library_1.OAuth2Client().verifyIdToken({
-                idToken: credential,
+                idToken,
                 audience: process.env.GOOGLE_CLIENT_ID,
             });
             const payload = googleResponse.getPayload();
@@ -76,6 +75,7 @@ class AuthLoginGoogleUseCase {
             }
         }
         catch (error) {
+            console.log('error => ', error);
             throw new Exception_1.ClientException(error);
         }
     }

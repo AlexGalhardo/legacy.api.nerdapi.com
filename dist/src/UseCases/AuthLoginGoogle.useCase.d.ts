@@ -1,7 +1,6 @@
 import { UsersRepositoryPort } from "src/Repositories/Users.repository";
-import { Request } from "express";
 export interface AuthLoginGoogleUseCasePort {
-    execute(request: Request): Promise<AuthLoginGoogleUseCaseResponse>;
+    execute(idToken: string): Promise<AuthLoginGoogleUseCaseResponse>;
 }
 export interface AuthLoginDTO {
     email: string;
@@ -15,6 +14,6 @@ interface AuthLoginGoogleUseCaseResponse {
 export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePort {
     private readonly usersRepository;
     constructor(usersRepository: UsersRepositoryPort);
-    execute(request: Request): Promise<AuthLoginGoogleUseCaseResponse>;
+    execute(idToken: string): Promise<AuthLoginGoogleUseCaseResponse>;
 }
 export {};
