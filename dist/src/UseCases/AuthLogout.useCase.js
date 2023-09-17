@@ -9,7 +9,7 @@ class AuthLogoutUseCase {
     }
     async execute(jwtToken) {
         const { userID } = jwt.verify(jwtToken, process.env.JWT_SECRET);
-        if (userID && await this.usersRepository.findById(userID)) {
+        if (userID && (await this.usersRepository.findById(userID))) {
             await this.usersRepository.logout(userID);
             return { success: true };
         }

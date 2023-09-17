@@ -36,7 +36,7 @@ class StripeWebhookInvoiceFinalizedUseCase {
                 customer_name: userUpdated.username,
                 customer_email: userUpdated.email,
                 customer_subscription_active: userUpdated.stripe.subscription.active,
-                customer_api_token: userUpdated.api_token
+                customer_api_token: userUpdated.api_token,
             });
         }
         else {

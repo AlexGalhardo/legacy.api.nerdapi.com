@@ -62,8 +62,8 @@ let UsersRepository = class UsersRepository {
                 created_at: user.created_at,
                 updated_at: user.updated_at,
                 created_at_pt_br: user.created_at_pt_br,
-                updated_at_pt_br: user.updated_at_pt_br
-            }
+                updated_at_pt_br: user.updated_at_pt_br,
+            },
         });
     }
     transformToUserResponse(user) {
@@ -243,7 +243,7 @@ let UsersRepository = class UsersRepository {
                 created_at: user.created_at,
                 updated_at: user.updated_at,
                 created_at_pt_br: user.created_at_pt_br,
-                updated_at_pt_br: user.updated_at_pt_br
+                updated_at_pt_br: user.updated_at_pt_br,
             },
         });
     }
@@ -421,6 +421,10 @@ let UsersRepository = class UsersRepository {
         if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === user.id) {
+                    let subscriptionName = "NOOB";
+                    if (stripeSubscriptionInfo.amount) {
+                        subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
+                    }
                     this.users[i].api_token = (_a = stripeSubscriptionInfo.apiToken) !== null && _a !== void 0 ? _a : this.users[i].api_token;
                     this.users[i].stripe.customer_id =
                         (_b = stripeSubscriptionInfo.customerId) !== null && _b !== void 0 ? _b : this.users[i].stripe.customer_id;
@@ -428,7 +432,7 @@ let UsersRepository = class UsersRepository {
                         (_c = stripeSubscriptionInfo.paid) !== null && _c !== void 0 ? _c : this.users[i].stripe.subscription.active;
                     this.users[i].stripe.subscription.charge_id =
                         (_d = stripeSubscriptionInfo.chargeId) !== null && _d !== void 0 ? _d : this.users[i].stripe.subscription.charge_id;
-                    this.users[i].stripe.subscription.name = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
+                    this.users[i].stripe.subscription.name = subscriptionName;
                     this.users[i].stripe.subscription.receipt_url =
                         (_e = stripeSubscriptionInfo.receiptUrl) !== null && _e !== void 0 ? _e : this.users[i].stripe.subscription.receipt_url;
                     this.users[i].stripe.subscription.hosted_invoice_url =
@@ -447,6 +451,10 @@ let UsersRepository = class UsersRepository {
             }
             throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
         }
+        let subscriptionName = "NOOB";
+        if (stripeSubscriptionInfo.amount) {
+            subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
+        }
         const userUpdated = await this.database.users.update({
             where: {
                 id: user.id,
@@ -456,7 +464,7 @@ let UsersRepository = class UsersRepository {
                 stripe_customer_id: stripeSubscriptionInfo.customerId,
                 stripe_subscription_active: stripeSubscriptionInfo.paid,
                 stripe_subscription_charge_id: stripeSubscriptionInfo.chargeId,
-                stripe_subscription_name: stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL",
+                stripe_subscription_name: subscriptionName,
                 stripe_subscription_receipt_url: stripeSubscriptionInfo.receiptUrl,
                 stripe_subscription_hosted_invoice_url: stripeSubscriptionInfo.hostedInvoiceUrl,
                 stripe_subscription_starts_at: stripeSubscriptionInfo.startAt,

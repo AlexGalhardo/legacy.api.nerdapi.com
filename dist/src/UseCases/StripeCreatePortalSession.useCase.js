@@ -13,8 +13,6 @@ class StripeCreatePortalSessionUseCase {
         const { userID } = jwt.verify(jwtToken, process.env.JWT_SECRET);
         const { user } = await this.usersRepository.getById(userID);
         if (user) {
-            if (user.stripe.subscription.active)
-                throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.USER_HAS_ACTIVE_PLAN);
             const { session_id } = stripeCreatePortalSessionDTO;
             const checkoutSession = await Stripe_1.stripe.checkout.sessions.retrieve(session_id);
             const portalSession = await Stripe_1.stripe.billingPortal.sessions.create({

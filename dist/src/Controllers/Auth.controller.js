@@ -177,7 +177,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "checkResetPasswordToken", null);
 __decorate([
-    (0, common_1.Post)("/callback/google/login"),
+    (0, common_1.Get)("/login/google/callback"),
     __param(0, (0, common_1.Req)()),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),

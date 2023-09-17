@@ -41,8 +41,8 @@ let StripeRepository = class StripeRepository {
         try {
             await this.database.stripeWebhookChargesLogs.create({
                 data: {
-                    event_log: JSON.stringify(event)
-                }
+                    event_log: JSON.stringify(event),
+                },
             });
         }
         catch (error) {
@@ -62,8 +62,8 @@ let StripeRepository = class StripeRepository {
         try {
             await this.database.stripeWebhookCustomersLogs.create({
                 data: {
-                    event_log: JSON.stringify(event)
-                }
+                    event_log: JSON.stringify(event),
+                },
             });
         }
         catch (error) {
@@ -83,8 +83,8 @@ let StripeRepository = class StripeRepository {
         try {
             await this.database.stripeWebhookInvoicesLogs.create({
                 data: {
-                    event_log: JSON.stringify(event)
-                }
+                    event_log: JSON.stringify(event),
+                },
             });
         }
         catch (error) {
@@ -104,8 +104,8 @@ let StripeRepository = class StripeRepository {
         try {
             await this.database.stripeWebhookPaymentsLogs.create({
                 data: {
-                    event_log: JSON.stringify(event)
-                }
+                    event_log: JSON.stringify(event),
+                },
             });
         }
         catch (error) {
@@ -125,8 +125,8 @@ let StripeRepository = class StripeRepository {
         try {
             await this.database.stripeWebhookCheckoutsLogs.create({
                 data: {
-                    event_log: JSON.stringify(event)
-                }
+                    event_log: JSON.stringify(event),
+                },
             });
         }
         catch (error) {
@@ -146,8 +146,8 @@ let StripeRepository = class StripeRepository {
         try {
             await this.database.stripeWebhookBillingPortalLogs.create({
                 data: {
-                    event_log: JSON.stringify(event)
-                }
+                    event_log: JSON.stringify(event),
+                },
             });
         }
         catch (error) {

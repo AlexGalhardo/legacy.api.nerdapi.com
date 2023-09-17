@@ -27,7 +27,7 @@ let GamesRepository = class GamesRepository {
             summary: game.summary,
             release: {
                 year: game.release_year,
-                date: game.release_date
+                date: game.release_date,
             },
             igdb: {
                 url: game.igdb_url,
@@ -40,11 +40,11 @@ let GamesRepository = class GamesRepository {
             where_to_buy: JSON.parse(game.where_to_buy),
             developer: {
                 id: game.developer_id,
-                name: game.developer_name
+                name: game.developer_name,
             },
             publisher: {
                 id: game.publisher_id,
-                name: game.publisher_name
+                name: game.publisher_name,
             },
             platforms_available: JSON.parse(game.platforms_available),
             genres: JSON.parse(game.genres),
@@ -52,7 +52,7 @@ let GamesRepository = class GamesRepository {
             created_at: game.created_at,
             updated_at: game.updated_at,
             created_at_pt_br: game.created_at_pt_br,
-            updated_at_pt_br: game.updated_at_pt_br
+            updated_at_pt_br: game.updated_at_pt_br,
         };
     }
     transformToGamesResponses(games) {
@@ -64,7 +64,7 @@ let GamesRepository = class GamesRepository {
                 summary: game.summary,
                 release: {
                     year: game.release_year,
-                    date: game.release_date
+                    date: game.release_date,
                 },
                 igdb: {
                     url: game.igdb_url,
@@ -77,11 +77,11 @@ let GamesRepository = class GamesRepository {
                 where_to_buy: JSON.parse(game.where_to_buy),
                 developer: {
                     id: game.developer_id,
-                    name: game.developer_name
+                    name: game.developer_name,
                 },
                 publisher: {
                     id: game.publisher_id,
-                    name: game.publisher_name
+                    name: game.publisher_name,
                 },
                 platforms_available: JSON.parse(game.platforms_available),
                 genres: JSON.parse(game.genres),
@@ -89,7 +89,7 @@ let GamesRepository = class GamesRepository {
                 created_at: game.created_at,
                 updated_at: game.updated_at,
                 created_at_pt_br: game.created_at_pt_br,
-                updated_at_pt_br: game.updated_at_pt_br
+                updated_at_pt_br: game.updated_at_pt_br,
             };
         });
     }
@@ -124,9 +124,9 @@ let GamesRepository = class GamesRepository {
             where: {
                 title: {
                     contains: gameTitle,
-                    mode: 'insensitive',
-                }
-            }
+                    mode: "insensitive",
+                },
+            },
         });
         const matches = stringSimilarity.findBestMatch(gameTitle, allGames.map((game) => game.title));
         matches.ratings.forEach((similarity) => {

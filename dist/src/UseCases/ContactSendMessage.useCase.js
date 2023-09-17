@@ -28,7 +28,7 @@ class ContactSendMessageUseCase {
                 name,
                 email,
                 subject,
-                message
+                message,
             });
             return { success: true };
         }
