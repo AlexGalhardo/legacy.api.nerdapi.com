@@ -21,7 +21,7 @@ interface AuthControllerPort {
     tokenUser(response: Response): Promise<Response<AuthUseCaseResponse>>;
     forgetPassword(authForgetPasswordDTO: AuthForgetPasswordDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
     resetPassword(authResetPasswordDTO: AuthResetPasswordDTO, request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
-    loginGoogle(query: any, request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
+    loginGoogle(request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
     loginGithub(request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
 }
 export declare class AuthController implements AuthControllerPort {
@@ -42,7 +42,7 @@ export declare class AuthController implements AuthControllerPort {
     forgetPassword(authForgetPasswordDTO: AuthForgetPasswordDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
     resetPassword(authResetPasswordDTO: AuthResetPasswordDTO, request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
     checkResetPasswordToken({ resetPasswordToken }: CheckResetPasswordTokenDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
-    loginGoogle(query: any, request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
+    loginGoogle(request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
     loginGithub(request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
 }
 export {};
