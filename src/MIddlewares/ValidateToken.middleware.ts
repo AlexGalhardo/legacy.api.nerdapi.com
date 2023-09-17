@@ -18,8 +18,6 @@ export class ValidateToken implements NestMiddleware {
 
         response.locals.jwt_token = jwt_token;
 
-        // response.locals.jwt_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIyMmE3MTMxNS0yZGEwLTQ2NzYtYmNkNC1jMzRmMjRlMWM4OTUiLCJpYXQiOjE2OTQyMTQxOTh9.n3hiu645O1K1rVDbleJjZePL-FS5jX_6b29IqlSckgs';
-
         next();
     }
 }

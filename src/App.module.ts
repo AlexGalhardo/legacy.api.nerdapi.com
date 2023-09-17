@@ -31,6 +31,9 @@ export class AppModule implements NestModule {
                 { path: "/profile", method: RequestMethod.PUT },
                 { path: "/stripe/create-checkout-session", method: RequestMethod.POST },
                 { path: "/stripe/create-portal-session", method: RequestMethod.POST },
+                { path: "/games/random", method: RequestMethod.GET },
+                { path: "/games/id/:game_id", method: RequestMethod.GET },
+                { path: "/games/id/:game_title", method: RequestMethod.GET },
             );
     }
 }

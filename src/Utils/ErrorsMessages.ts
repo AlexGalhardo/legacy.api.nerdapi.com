@@ -41,4 +41,6 @@ export enum ErrorsMessages {
     RESET_PASSWORD_TOKEN_INVALID = "Reset password token invalid",
 
     GAME_NOT_FOUND = "Game not found",
+
+    INVALID_API_KEY = "Invalid API Key",
 }

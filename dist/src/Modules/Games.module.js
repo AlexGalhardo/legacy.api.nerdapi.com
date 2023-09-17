@@ -10,6 +10,7 @@ exports.GamesModule = void 0;
 const common_1 = require("@nestjs/common");
 const GamesController_1 = require("../Controllers/GamesController");
 const Games_repository_1 = require("../Repositories/Games.repository");
+const Users_repository_1 = require("../Repositories/Users.repository");
 const GameGetById_useCase_1 = require("../UseCases/GameGetById.useCase");
 const GameGetByTitle_useCase_1 = require("../UseCases/GameGetByTitle.useCase");
 const GameGetRandom_useCase_1 = require("../UseCases/GameGetRandom.useCase");
@@ -30,10 +31,17 @@ exports.GamesModule = GamesModule = __decorate([
                 },
             },
             {
+                provide: "UsersRepositoryPort",
+                inject: [Database_1.Database],
+                useFactory: (database) => {
+                    return new Users_repository_1.default(undefined, database);
+                },
+            },
+            {
                 provide: "GameGetRandomUseCasePort",
-                inject: ["GamesRepositoryPort"],
-                useFactory: (gamesRepository) => {
-                    return new GameGetRandom_useCase_1.default(gamesRepository);
+                inject: ["GamesRepositoryPort", "UsersRepositoryPort"],
+                useFactory: (gamesRepository, usersRepository) => {
+                    return new GameGetRandom_useCase_1.default(gamesRepository, usersRepository);
                 },
             },
             {

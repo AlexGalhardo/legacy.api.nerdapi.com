@@ -5,6 +5,7 @@ const Bcrypt_1 = require("../src/Utils/Bcrypt");
 const Validator_1 = require("../src/Utils/Validator");
 const DateTime_1 = require("../src/Utils/DataTypes/DateTime");
 const gamesJSONDatabase = require("../src/Repositories/Jsons/games.json");
+const GenerateRandomToken_1 = require("../src/Utils/GenerateRandomToken");
 const prisma = new client_1.PrismaClient({
     errorFormat: "pretty",
 });
@@ -44,7 +45,7 @@ const seedDatabase = async () => {
                 email: "test@gmail.com",
                 telegram_number: Validator_1.default.phone.generate(),
                 jwt_token: null,
-                api_token: null,
+                api_token: (0, GenerateRandomToken_1.default)(),
                 password: await Bcrypt_1.Bcrypt.hash("testUSER!123"),
                 reset_password_token: null,
                 reset_password_token_expires_at: null,

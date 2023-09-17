@@ -83,6 +83,7 @@ export interface UsersRepositoryPort {
     findResetPasswordToken(resetPasswordToken: string): Promise<boolean>;
     updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): Promise<User>;
     phoneAlreadyRegistred(userId: string, phoneNumber: string): Promise<boolean>;
+    incrementAPIRequest(userAPIKey: string): Promise<{ success: boolean; api_requests_today: number }>;
 }
 
 @Injectable()
@@ -597,5 +598,32 @@ export default class UsersRepository implements UsersRepositoryPort {
         });
 
         return this.transformToUser(userUpdated);
+    }
+
+    public async incrementAPIRequest(userAPIKey: string): Promise<{ success: boolean; api_requests_today: number }> {
+        const user = await this.database.users.findUnique({
+            where: {
+                api_token: userAPIKey,
+            },
+        });
+
+        if (user && user.stripe_subscription_name === "NOOB" && user.api_requests_today >= 10 && !DateTime.isNewDay()) {
+            return {
+                success: false,
+                api_requests_today: user.api_requests_today,
+            };
+        }
+
+        await this.database.users.update({
+            where: {
+                api_token: userAPIKey,
+            },
+            data: { api_requests_today: { increment: 1 } },
+        });
+
+        return {
+            success: true,
+            api_requests_today: user.api_requests_today,
+        };
     }
 }

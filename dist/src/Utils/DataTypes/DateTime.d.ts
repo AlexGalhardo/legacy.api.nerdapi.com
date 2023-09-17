@@ -1,6 +1,7 @@
 export default class DateTime {
     static timestampToGetNow(timestamp: number): string;
     static getNow(): string;
+    static isNewDay(): boolean;
     static isExpired(dateToCheck: Date): boolean;
     secondsToMilliseconds(seconds: number): number;
     minutesToMilliseconds(minutes: number): number;

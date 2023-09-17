@@ -11,6 +11,14 @@ class DateTime {
         const time = new Date().toLocaleTimeString(process.env.LOCALE_DATE_TIME);
         return `${date} ${time}`;
     }
+    static isNewDay() {
+        const now = new Date();
+        const midnight = new Date();
+        midnight.setHours(0, 0, 0, 0);
+        if (now < midnight)
+            return true;
+        return false;
+    }
     static isExpired(dateToCheck) {
         return dateToCheck <= new Date();
     }

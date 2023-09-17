@@ -28,8 +28,13 @@ export class GamesController implements GamesControllerPort {
     @Get("/random")
     async getRandom(@Res() response: Response): Promise<Response<GameUseCaseResponse>> {
         try {
-            const { success, data } = await this.gameGetRandomUseCase.execute();
+            const { success, data, message, api_requests_today } = await this.gameGetRandomUseCase.execute(
+                response.locals.jwt_token,
+            );
+
             if (success) return response.status(HttpStatus.OK).json({ success: true, data });
+
+            return response.status(HttpStatus.OK).json({ success: false, message, api_requests_today });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }

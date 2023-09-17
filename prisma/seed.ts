@@ -3,6 +3,7 @@ import { Bcrypt } from "../src/Utils/Bcrypt";
 import Validator from "../src/Utils/Validator";
 import DateTime from "../src/Utils/DataTypes/DateTime";
 import * as gamesJSONDatabase from '../src/Repositories/Jsons/games.json';
+import GenerateRandomToken from "../src/Utils/GenerateRandomToken";
 
 const prisma = new PrismaClient({
     errorFormat: "pretty",
@@ -47,7 +48,7 @@ const seedDatabase = async () => {
                 email: "test@gmail.com",
 				telegram_number: Validator.phone.generate(),
 				jwt_token: null,
-				api_token: null,
+				api_token: GenerateRandomToken(),
                 password: await Bcrypt.hash("testUSER!123"),
 				reset_password_token: null,
 				reset_password_token_expires_at: null,

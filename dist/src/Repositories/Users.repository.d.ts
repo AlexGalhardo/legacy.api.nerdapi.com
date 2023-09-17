@@ -73,6 +73,10 @@ export interface UsersRepositoryPort {
     findResetPasswordToken(resetPasswordToken: string): Promise<boolean>;
     updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): Promise<User>;
     phoneAlreadyRegistred(userId: string, phoneNumber: string): Promise<boolean>;
+    incrementAPIRequest(userAPIKey: string): Promise<{
+        success: boolean;
+        api_requests_today: number;
+    }>;
 }
 export default class UsersRepository implements UsersRepositoryPort {
     private users;
@@ -95,4 +99,8 @@ export default class UsersRepository implements UsersRepositoryPort {
     resetPassword(userId: string, newPassword: string): Promise<void>;
     findResetPasswordToken(resetPasswordToken: string): Promise<boolean>;
     updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): Promise<User>;
+    incrementAPIRequest(userAPIKey: string): Promise<{
+        success: boolean;
+        api_requests_today: number;
+    }>;
 }
