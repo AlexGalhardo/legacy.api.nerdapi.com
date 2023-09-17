@@ -3,7 +3,7 @@ import { StripeRepositoryPort } from "src/Repositories/Stripe.repository";
 import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
-import { generateRandomToken } from "src/Utils/RandomToken";
+import GenerateRandomToken from "src/Utils/GenerateRandomToken";
 
 export interface StripeWebhookChargeSucceededUseCasePort {
     execute(event: any): void;
@@ -20,7 +20,7 @@ export default class StripeWebhookChargeSucceededUseCase implements StripeWebhoo
 
         if (user) {
             await this.usersRepository.updateStripeSubscriptionInfo(user, {
-                apiToken: event.data.object.paid ? generateRandomToken() : null,
+                apiToken: event.data.object.paid ? GenerateRandomToken() : null,
                 customerId: event.data.object.customer ?? null,
                 paid: event.data.object.paid ?? null,
                 chargeId: event.data.object.id ?? null,

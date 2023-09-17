@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const DateTime_1 = require("../Utils/DataTypes/DateTime");
 const ErrorsMessages_1 = require("../Utils/ErrorsMessages");
 const Exception_1 = require("../Utils/Exception");
-const RandomToken_1 = require("../Utils/RandomToken");
+const GenerateRandomToken_1 = require("../Utils/GenerateRandomToken");
 class StripeWebhookChargeSucceededUseCase {
     constructor(stripeRepository, usersRepository) {
         this.stripeRepository = stripeRepository;
@@ -14,7 +14,7 @@ class StripeWebhookChargeSucceededUseCase {
         const { user } = await this.usersRepository.getByEmail(event.data.object.billing_details.email);
         if (user) {
             await this.usersRepository.updateStripeSubscriptionInfo(user, {
-                apiToken: event.data.object.paid ? (0, RandomToken_1.generateRandomToken)() : null,
+                apiToken: event.data.object.paid ? (0, GenerateRandomToken_1.default)() : null,
                 customerId: (_a = event.data.object.customer) !== null && _a !== void 0 ? _a : null,
                 paid: (_b = event.data.object.paid) !== null && _b !== void 0 ? _b : null,
                 chargeId: (_c = event.data.object.id) !== null && _c !== void 0 ? _c : null,

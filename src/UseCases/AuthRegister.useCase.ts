@@ -7,6 +7,7 @@ import { ClientException } from "src/Utils/Exception";
 import Validator from "src/Utils/Validator";
 import * as jwt from "jsonwebtoken";
 import DateTime from "src/Utils/DataTypes/DateTime";
+import GenerateRandomToken from "src/Utils/GenerateRandomToken";
 
 interface AuthRegisterUseCaseResponse {
     success: boolean;
@@ -51,7 +52,7 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
                 telegram_number: telegramNumber,
                 password: hashedPassword,
                 jwt_token,
-                api_token: null,
+                api_token: GenerateRandomToken(),
                 reset_password_token: null,
                 reset_password_token_expires_at: null,
                 stripe: {

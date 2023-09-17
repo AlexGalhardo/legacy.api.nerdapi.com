@@ -9,6 +9,7 @@ const google_auth_library_1 = require("google-auth-library");
 const node_crypto_1 = require("node:crypto");
 const DateTime_1 = require("../Utils/DataTypes/DateTime");
 const Constants_1 = require("../Utils/Constants");
+const GenerateRandomToken_1 = require("../Utils/GenerateRandomToken");
 class AuthLoginGoogleUseCase {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
@@ -46,7 +47,7 @@ class AuthLoginGoogleUseCase {
                     telegram_number: null,
                     password: await Bcrypt_1.Bcrypt.hash(email),
                     jwt_token,
-                    api_token: null,
+                    api_token: (0, GenerateRandomToken_1.default)(),
                     reset_password_token: null,
                     reset_password_token_expires_at: null,
                     stripe: {

@@ -1,6 +1,6 @@
 import * as crypto from "crypto";
 
-export function generateRandomToken(tokenLength: number = 32): string {
+export default function GenerateRandomToken(tokenLength: number = 48): string {
     return crypto
         .randomBytes(Math.ceil(tokenLength / 2))
         .toString("hex")

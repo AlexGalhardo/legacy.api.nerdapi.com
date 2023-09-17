@@ -9,6 +9,7 @@ const node_crypto_1 = require("node:crypto");
 const DateTime_1 = require("../Utils/DataTypes/DateTime");
 const Constants_1 = require("../Utils/Constants");
 require("dotenv/config");
+const GenerateRandomToken_1 = require("../Utils/GenerateRandomToken");
 class AuthLoginGitHubUseCase {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
@@ -54,7 +55,7 @@ class AuthLoginGitHubUseCase {
                     telegram_number: null,
                     password: await Bcrypt_1.Bcrypt.hash(responseGithubProfileJSON.email),
                     jwt_token,
-                    api_token: null,
+                    api_token: (0, GenerateRandomToken_1.default)(),
                     reset_password_token: null,
                     reset_password_token_expires_at: null,
                     stripe: {

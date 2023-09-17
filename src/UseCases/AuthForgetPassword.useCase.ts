@@ -3,7 +3,7 @@ import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import { APP_URL } from "src/Utils/Constants";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
-import { generateRandomToken } from "src/Utils/RandomToken";
+import GenerateRandomToken from "src/Utils/GenerateRandomToken";
 import { SMTP } from "src/Utils/SMTP";
 import Validator from "src/Utils/Validator";
 
@@ -34,7 +34,7 @@ export default class AuthForgetPasswordUseCase implements AuthForgetPasswordUseC
         const { user } = await this.usersRepository.getByEmail(email);
 
         if (user) {
-            const reset_password_token = generateRandomToken();
+            const reset_password_token = GenerateRandomToken();
 
             await this.usersRepository.saveResetPasswordToken(user.id, reset_password_token);
 

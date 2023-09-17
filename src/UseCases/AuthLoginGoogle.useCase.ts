@@ -9,6 +9,7 @@ import { OAuth2Client } from "google-auth-library";
 import { randomUUID } from "node:crypto";
 import DateTime from "src/Utils/DataTypes/DateTime";
 import { APP_URL } from "src/Utils/Constants";
+import GenerateRandomToken from "src/Utils/GenerateRandomToken";
 
 export interface AuthLoginGoogleUseCasePort {
     execute(request: Request): Promise<AuthLoginGoogleUseCaseResponse>;
@@ -66,7 +67,7 @@ export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePor
                     telegram_number: null,
                     password: await Bcrypt.hash(email),
                     jwt_token,
-                    api_token: null,
+                    api_token: GenerateRandomToken(),
                     reset_password_token: null,
                     reset_password_token_expires_at: null,
                     stripe: {

@@ -8,6 +8,7 @@ const Exception_1 = require("../Utils/Exception");
 const Validator_1 = require("../Utils/Validator");
 const jwt = require("jsonwebtoken");
 const DateTime_1 = require("../Utils/DataTypes/DateTime");
+const GenerateRandomToken_1 = require("../Utils/GenerateRandomToken");
 class AuthRegisterUseCase {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
@@ -31,7 +32,7 @@ class AuthRegisterUseCase {
                 telegram_number: telegramNumber,
                 password: hashedPassword,
                 jwt_token,
-                api_token: null,
+                api_token: (0, GenerateRandomToken_1.default)(),
                 reset_password_token: null,
                 reset_password_token_expires_at: null,
                 stripe: {

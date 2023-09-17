@@ -9,6 +9,7 @@ import { randomUUID } from "node:crypto";
 import DateTime from "src/Utils/DataTypes/DateTime";
 import { APP_URL } from "src/Utils/Constants";
 import "dotenv/config";
+import GenerateRandomToken from "src/Utils/GenerateRandomToken";
 
 export interface AuthLoginGitHubUseCasePort {
     execute(request: Request): Promise<AuthLoginGitHubUseCaseResponse>;
@@ -81,7 +82,7 @@ export default class AuthLoginGitHubUseCase implements AuthLoginGitHubUseCasePor
                     telegram_number: null,
                     password: await Bcrypt.hash(responseGithubProfileJSON.email),
                     jwt_token,
-                    api_token: null,
+                    api_token: GenerateRandomToken(),
                     reset_password_token: null,
                     reset_password_token_expires_at: null,
                     stripe: {
