@@ -1,5 +1,5 @@
 <div align="center">
- <h1 align="center"><a href="https://nerdapi.com/" target="_blank">api.nerdapi.com</a></h1>
+ <h1 align="center"><a href="https://api.nerdapi.com/" target="_blank">api.nerdapi.com</a></h1>
 </div>
 
 ## Introduction
