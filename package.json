@@ -22,7 +22,8 @@
 		"prisma:push": "npx prisma db push",
 		"prisma:studio": "npx prisma studio",
 		"prisma:seed": "npx prisma db seed",
-		"prisma:format": "npx prisma format"
+		"prisma:format": "npx prisma format",
+		"prepare": "husky install"
 	},
 	"prisma": {
 		"seed": "ts-node --transpile-only --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
@@ -75,7 +76,8 @@
 		"ts-loader": "^9.4.4",
 		"ts-node": "^10.9.1",
 		"tsconfig-paths": "^4.2.0",
-		"typescript": "^5.2.2"
+		"typescript": "^5.2.2",
+		"husky": "^8.0.0"
 	},
 	"jest": {
 		"moduleFileExtensions": [
