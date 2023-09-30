@@ -14,6 +14,7 @@ import AuthLoginGoogleUseCase from "src/UseCases/AuthLoginGoogle.useCase";
 import AuthCheckResetPasswordTokenUseCase from "src/UseCases/AuthCheckResetPasswordToken.useCase";
 import { Database } from "src/Utils/Database";
 import AuthLoginGitHubUseCase from "src/UseCases/AuthLoginGitHubUseCase.useCase";
+import AuthCheckUserJWTTokenUseCase from "src/UseCases/AuthCheckUserJWTToken.useCase";
 
 describe("AppController (e2e)", () => {
     let app: INestApplication;
@@ -92,6 +93,13 @@ describe("AppController (e2e)", () => {
                     inject: ["UsersRepositoryPort"],
                     useFactory: (usersRepository: UsersRepositoryPort) => {
                         return new AuthCheckResetPasswordTokenUseCase(usersRepository);
+                    },
+                },
+                {
+                    provide: "AuthCheckUserJWTTokenUseCasePort",
+                    inject: ["UsersRepositoryPort"],
+                    useFactory: (usersRepository: UsersRepositoryPort) => {
+                        return new AuthCheckUserJWTTokenUseCase(usersRepository);
                     },
                 },
             ],

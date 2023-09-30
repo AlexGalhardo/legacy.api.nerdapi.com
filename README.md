@@ -134,7 +134,7 @@ npm run test
 npm run test:e2e
 ```
 
-![print-tests-api-nerdapi](https://github.com/AlexGalhardo/api.nerdapi.com/assets/19540357/c9fe9b9a-2a17-4612-bb85-3ab06d1467bc)
+![tests](https://github.com/AlexGalhardo/api.nerdapi.com/assets/19540357/f427f0ae-521c-4400-adc9-985a15621c9b)
 
 ## Before Submit Commits & PRs
 

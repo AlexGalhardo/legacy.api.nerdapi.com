@@ -6,6 +6,7 @@ CREATE TABLE "users" (
     "telegram_number" TEXT,
     "jwt_token" TEXT,
     "api_token" TEXT,
+    "api_requests_today" INTEGER NOT NULL DEFAULT 0,
     "password" TEXT NOT NULL,
     "reset_password_token" TEXT,
     "reset_password_token_expires_at" TEXT,
