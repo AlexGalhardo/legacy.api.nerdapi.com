@@ -1,14 +1,19 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.repository";
-import Validator from "src/Utils/Validator";
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
+import Validator from "src/Utils/Validator";
 import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDeleteUseCase.useCase";
-import ProfileUpdateUseCase, { ProfileUpdateDTO, ProfileUpdateUseCasePort } from "src/UseCases/ProfileUpdate.useCase";
+import AuthForgetPasswordUseCase, {
+    AuthForgetPasswordDTO,
+    AuthForgetPasswordUseCasePort,
+} from "src/UseCases/AuthForgetPassword.useCase";
 import { Database } from "src/Utils/Database";
+import AuthCheckResetPasswordTokenUseCase from "src/UseCases/AuthCheckResetPasswordToken.useCase";
 
-describe("Test ProfileUpdateUseCase", () => {
+describe("Test AuthCheckResetPasswordTokenUseCase", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;
-    let profileUpdateUseCase: ProfileUpdateUseCasePort;
+    let authForgetPasswordUseCase: AuthForgetPasswordUseCasePort;
+    let authCheckResetPasswordTokenUseCase: AuthCheckResetPasswordTokenUseCase;
     let deleteUserByEmail: UserDeleteUseCasePort;
 
     beforeAll(async () => {
@@ -31,10 +36,17 @@ describe("Test ProfileUpdateUseCase", () => {
                     },
                 },
                 {
-                    provide: "ProfileUpdateUseCasePort",
+                    provide: "AuthForgetPasswordUseCasePort",
                     inject: ["UsersRepositoryPort"],
                     useFactory: (usersRepository: UsersRepositoryPort) => {
-                        return new ProfileUpdateUseCase(usersRepository);
+                        return new AuthForgetPasswordUseCase(usersRepository);
+                    },
+                },
+                {
+                    provide: "AuthCheckResetPasswordTokenUseCasePort",
+                    inject: ["UsersRepositoryPort"],
+                    useFactory: (usersRepository: UsersRepositoryPort) => {
+                        return new AuthCheckResetPasswordTokenUseCase(usersRepository);
                     },
                 },
                 {
@@ -47,45 +59,43 @@ describe("Test ProfileUpdateUseCase", () => {
             ],
         }).compile();
         authRegisterUseCase = module.get<AuthRegisterUseCasePort>("AuthRegisterUseCasePort");
-        profileUpdateUseCase = module.get<ProfileUpdateUseCasePort>("ProfileUpdateUseCasePort");
+        authForgetPasswordUseCase = module.get<AuthForgetPasswordUseCasePort>("AuthForgetPasswordUseCasePort");
+        authCheckResetPasswordTokenUseCase = module.get<AuthCheckResetPasswordTokenUseCase>(
+            "AuthCheckResetPasswordTokenUseCasePort",
+        );
         deleteUserByEmail = module.get<UserDeleteUseCasePort>("UserDeleteUseCasePort");
     });
 
     const userEmail = Validator.email.generate();
-    const userPassword = Validator.password.generate();
-    let jwtToken = null;
+    let userResetPasswordToken = null;
 
     it("should register a user", async () => {
         const authRegisterDTO: AuthRegisterDTO = {
-            username: "Testing Login Test",
+            username: "Testing ForgetPassword Test",
             email: userEmail,
             telegramNumber: Validator.phone.generate(),
-            password: userPassword,
+            password: Validator.password.generate(),
         };
         const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);
-        jwtToken = jwt_token;
 
         expect(success).toBeTruthy();
         expect(jwt_token).toBeDefined();
     });
 
-    const newUserName = "Testing Profile Updat";
-    const newTelegramNumber = Validator.phone.generate();
-    const newPassword = Validator.password.generate();
+    it("should send a email with reset_password_token to user reset password", async () => {
+        const authForgetPasswordDTO: AuthForgetPasswordDTO = { email: userEmail };
+        const { success, reset_password_token } = await authForgetPasswordUseCase.execute(authForgetPasswordDTO);
 
-    it("should update profile", async () => {
-        const profileUpdateDTO: ProfileUpdateDTO = {
-            username: newUserName,
-            telegramNumber: newTelegramNumber,
-            newPassword: newPassword,
-            confirmNewPassword: newPassword,
-        };
-        const { success, data } = await profileUpdateUseCase.execute(jwtToken, profileUpdateDTO);
+        userResetPasswordToken = reset_password_token;
 
         expect(success).toBeTruthy();
-        expect(data.username).toBe(newUserName);
-        expect(data.telegramNumber).toBe(newTelegramNumber);
-        expect(data.password).toBeDefined();
+        expect(reset_password_token).toBeDefined();
+    });
+
+    it("should check if password reset token exists and is valid", async () => {
+        const { success } = await authCheckResetPasswordTokenUseCase.execute(userResetPasswordToken);
+
+        expect(success).toBeTruthy();
     });
 
     afterAll(async () => {

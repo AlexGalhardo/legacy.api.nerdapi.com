@@ -65,6 +65,12 @@ export interface StripeSubscriptionInfo {
     createdAt: string | null;
     createdAtBrazil: string | null;
 }
+
+export interface IncrementAPIRequestResponse {
+    success: boolean;
+    found_api_key: boolean;
+    api_requests_today: number;
+}
 export interface UsersRepositoryPort {
     save(user?: any, index?: number): Promise<void>;
     transformToUserResponse(user): UserResponse;
@@ -83,7 +89,7 @@ export interface UsersRepositoryPort {
     findResetPasswordToken(resetPasswordToken: string): Promise<boolean>;
     updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): Promise<User>;
     phoneAlreadyRegistred(userId: string, phoneNumber: string): Promise<boolean>;
-    incrementAPIRequest(userAPIKey: string): Promise<{ success: boolean; api_requests_today: number }>;
+    incrementAPIRequest(userAPIKey: string): Promise<IncrementAPIRequestResponse>;
 }
 
 @Injectable()
@@ -532,11 +538,11 @@ export default class UsersRepository implements UsersRepositoryPort {
         user: User,
         stripeSubscriptionInfo: StripeSubscriptionInfo,
     ): Promise<User> {
+        let subscriptionName = "NOOB";
+
         if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === user.id) {
-                    let subscriptionName = "NOOB";
-
                     if (stripeSubscriptionInfo.amount) {
                         subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
                     }
@@ -572,8 +578,6 @@ export default class UsersRepository implements UsersRepositoryPort {
             throw new Error(ErrorsMessages.USER_NOT_FOUND);
         }
 
-        let subscriptionName = "NOOB";
-
         if (stripeSubscriptionInfo.amount) {
             subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
         }
@@ -600,16 +604,56 @@ export default class UsersRepository implements UsersRepositoryPort {
         return this.transformToUser(userUpdated);
     }
 
-    public async incrementAPIRequest(userAPIKey: string): Promise<{ success: boolean; api_requests_today: number }> {
+    public async incrementAPIRequest(userAPIKey: string): Promise<IncrementAPIRequestResponse> {
         const user = await this.database.users.findUnique({
             where: {
                 api_token: userAPIKey,
             },
         });
 
-        if (user && user.stripe_subscription_name === "NOOB" && user.api_requests_today >= 10 && !DateTime.isNewDay()) {
+        if (!user) {
             return {
                 success: false,
+                found_api_key: false,
+                api_requests_today: 0,
+            };
+        }
+
+        if (
+            user &&
+            user.stripe_subscription_name === "NOOB" &&
+            user.api_requests_today >= Number(process.env.NOOB_API_REQUESTS_PER_DAY) &&
+            !DateTime.isNewDay()
+        ) {
+            return {
+                success: false,
+                found_api_key: true,
+                api_requests_today: user.api_requests_today,
+            };
+        }
+
+        if (
+            user &&
+            user.stripe_subscription_name === "CASUAL" &&
+            user.api_requests_today >= Number(process.env.CASUAL_API_REQUESTS_PER_DAY) &&
+            !DateTime.isNewDay()
+        ) {
+            return {
+                success: false,
+                found_api_key: true,
+                api_requests_today: user.api_requests_today,
+            };
+        }
+
+        if (
+            user &&
+            user.stripe_subscription_name === "PRO" &&
+            user.api_requests_today >= Number(process.env.PRO_API_REQUESTS_PER_DAY) &&
+            !DateTime.isNewDay()
+        ) {
+            return {
+                success: false,
+                found_api_key: true,
                 api_requests_today: user.api_requests_today,
             };
         }
@@ -623,6 +667,7 @@ export default class UsersRepository implements UsersRepositoryPort {
 
         return {
             success: true,
+            found_api_key: true,
             api_requests_today: user.api_requests_today,
         };
     }

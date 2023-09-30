@@ -24,21 +24,24 @@ export default class GameGetRandomUseCase implements GameGetRandomUseCasePort {
     async execute(apiKey: string): Promise<GameGetRandomUseCaseResponse> {
         if (!apiKey) throw new ClientException(ErrorsMessages.INVALID_API_KEY);
 
-        if (apiKey === "nerdapiadmin") {
+        if (apiKey === process.env.API_KEY_ADMIN) {
             const randomGame = await this.gamesRepository.getRandom();
 
             if (randomGame) return { success: true, data: randomGame };
 
             throw new ClientException(ErrorsMessages.GET_RANDOM_GAME_ERROR);
         } else {
-            const { success, api_requests_today } = await this.usersRepository.incrementAPIRequest(apiKey);
+            const { success, found_api_key, api_requests_today } =
+                await this.usersRepository.incrementAPIRequest(apiKey);
 
-            if (success) {
+            if (success && found_api_key) {
                 const randomGame = await this.gamesRepository.getRandom();
-                if (randomGame) return { success: true, data: randomGame };
+                if (randomGame) return { success, data: randomGame, api_requests_today };
                 throw new ClientException(ErrorsMessages.GET_RANDOM_GAME_ERROR);
+            } else if (!success && found_api_key) {
+                return { success, message: "Your API Requests reached limit for today", api_requests_today };
             } else {
-                return { success: false, message: "Your API Requests reached limit for today", api_requests_today };
+                return { success, message: ErrorsMessages.API_KEY_NOT_FOUND };
             }
         }
     }

@@ -30,6 +30,7 @@ var ErrorsMessages;
     ErrorsMessages["GET_GAME_BY_ID_ERROR"] = "Get game by id error";
     ErrorsMessages["RESET_PASSWORD_TOKEN_INVALID"] = "Reset password token invalid";
     ErrorsMessages["GAME_NOT_FOUND"] = "Game not found";
-    ErrorsMessages["INVALID_API_KEY"] = "Invalid API Key";
+    ErrorsMessages["INVALID_API_KEY"] = "You need to send request with a API Key";
+    ErrorsMessages["API_KEY_NOT_FOUND"] = "API Key not found";
 })(ErrorsMessages || (exports.ErrorsMessages = ErrorsMessages = {}));
 //# sourceMappingURL=ErrorsMessages.js.map

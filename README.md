@@ -4,11 +4,32 @@
 
 ## Introduction
 
-* A personal project I created to learn [NestJS](https://nestjs.com/), Typescript, Clean/Hexagonal Architecture Principles (ports, useCases, repositories, etc) Stateless Authentication using JWT, as also improve my skills in API development and documentation, tests, and so on.
+* A personal project I created to learn and improve my skills in:
+  * [NestJS](https://nestjs.com/)
+  * Typescript
+  * Clean/Hexagonal Architecture Principles (ports, useCases, repositories, etc)
+  * Stateless Authentication using JWT
+  * API (REST) development and documentation
+  * Tests (Unit, e2e, TDD, etc)
+  * Web Scrapping
+  * And so on
 * This project use 2 databases:
   * JSONs files for simplicity and fast development.
   * PostgresSQL using PrismaORM (migrations, seeds, prisma studio) and Docker
-* This API is hosted in: <https://render.com/>
+
+## Tools and Services Used
+
+* [Linux Mint XFCE 21.04](https://linuxmint.com/)
+* [Git for control version](https://git-scm.com/)
+* [Vite v4](https://vitejs.dev/)
+* [Boostrap v5](https://getbootstrap.com/)
+* [ReacJS](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
+* [NodeJS v20](https://nodejs.org/en)
+* Code Editor: [VSCode](https://code.visualstudio.com/)
+* Google & Github Social Login
+* HTTP Requests Client: <https://insomnia.rest/>
+* Telegram API for Logs: <https://core.telegram.org/api>
+* Deploy: <https://render.com/>
 * Payment API: <https://stripe.com/en-br>
 * Emails API: <https://resend.com/>
 
@@ -131,6 +152,10 @@ npm run format
 ## HTTP Requests
 
 * You can see the HTTP Requests references inside folder **rest-client/**
+
+* You can also import file `INSOMNIA_API_NERDAPI_HTTP_REQUESTS_COLLECTION.json` to your Insomnia HTTP Client
+
+![print-insomnia](https://github.com/AlexGalhardo/api.nerdapi.com/assets/19540357/286e1688-bae2-431f-83fb-bcfa6db045fd)
 
 ## License
 

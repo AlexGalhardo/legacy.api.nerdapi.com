@@ -42,5 +42,6 @@ export enum ErrorsMessages {
 
     GAME_NOT_FOUND = "Game not found",
 
-    INVALID_API_KEY = "Invalid API Key",
+    INVALID_API_KEY = "You need to send request with a API Key",
+    API_KEY_NOT_FOUND = "API Key not found",
 }

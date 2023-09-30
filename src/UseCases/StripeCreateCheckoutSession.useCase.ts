@@ -35,7 +35,7 @@ export default class StripeCreateCheckoutSessionUseCase implements StripeCreateC
         if (user) {
             if (user.stripe.subscription.active) throw new ClientException(ErrorsMessages.USER_HAS_ACTIVE_PLAN);
 
-            let { lookup_key } = stripeCreateCheckoutSessionDTO;
+            const { lookup_key } = stripeCreateCheckoutSessionDTO;
 
             const prices = await stripe.prices.list({
                 lookup_keys: [lookup_key],

@@ -26,5 +26,6 @@ export declare enum ErrorsMessages {
     GET_GAME_BY_ID_ERROR = "Get game by id error",
     RESET_PASSWORD_TOKEN_INVALID = "Reset password token invalid",
     GAME_NOT_FOUND = "Game not found",
-    INVALID_API_KEY = "Invalid API Key"
+    INVALID_API_KEY = "You need to send request with a API Key",
+    API_KEY_NOT_FOUND = "API Key not found"
 }

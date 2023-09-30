@@ -55,6 +55,11 @@ export interface StripeSubscriptionInfo {
     createdAt: string | null;
     createdAtBrazil: string | null;
 }
+export interface IncrementAPIRequestResponse {
+    success: boolean;
+    found_api_key: boolean;
+    api_requests_today: number;
+}
 export interface UsersRepositoryPort {
     save(user?: any, index?: number): Promise<void>;
     transformToUserResponse(user: any): UserResponse;
@@ -73,10 +78,7 @@ export interface UsersRepositoryPort {
     findResetPasswordToken(resetPasswordToken: string): Promise<boolean>;
     updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): Promise<User>;
     phoneAlreadyRegistred(userId: string, phoneNumber: string): Promise<boolean>;
-    incrementAPIRequest(userAPIKey: string): Promise<{
-        success: boolean;
-        api_requests_today: number;
-    }>;
+    incrementAPIRequest(userAPIKey: string): Promise<IncrementAPIRequestResponse>;
 }
 export default class UsersRepository implements UsersRepositoryPort {
     private users;
@@ -99,8 +101,5 @@ export default class UsersRepository implements UsersRepositoryPort {
     resetPassword(userId: string, newPassword: string): Promise<void>;
     findResetPasswordToken(resetPasswordToken: string): Promise<boolean>;
     updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): Promise<User>;
-    incrementAPIRequest(userAPIKey: string): Promise<{
-        success: boolean;
-        api_requests_today: number;
-    }>;
+    incrementAPIRequest(userAPIKey: string): Promise<IncrementAPIRequestResponse>;
 }

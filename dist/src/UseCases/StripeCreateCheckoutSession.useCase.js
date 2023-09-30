@@ -15,7 +15,7 @@ class StripeCreateCheckoutSessionUseCase {
         if (user) {
             if (user.stripe.subscription.active)
                 throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.USER_HAS_ACTIVE_PLAN);
-            let { lookup_key } = stripeCreateCheckoutSessionDTO;
+            const { lookup_key } = stripeCreateCheckoutSessionDTO;
             const prices = await Stripe_1.stripe.prices.list({
                 lookup_keys: [lookup_key],
                 expand: ["data.product"],

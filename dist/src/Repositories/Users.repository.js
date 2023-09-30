@@ -418,10 +418,10 @@ let UsersRepository = class UsersRepository {
     }
     async updateStripeSubscriptionInfo(user, stripeSubscriptionInfo) {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+        let subscriptionName = "NOOB";
         if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === user.id) {
-                    let subscriptionName = "NOOB";
                     if (stripeSubscriptionInfo.amount) {
                         subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
                     }
@@ -451,7 +451,6 @@ let UsersRepository = class UsersRepository {
             }
             throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
         }
-        let subscriptionName = "NOOB";
         if (stripeSubscriptionInfo.amount) {
             subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
         }
@@ -481,9 +480,40 @@ let UsersRepository = class UsersRepository {
                 api_token: userAPIKey,
             },
         });
-        if (user && user.stripe_subscription_name === "NOOB" && user.api_requests_today >= 10 && !DateTime_1.default.isNewDay()) {
+        if (!user) {
             return {
                 success: false,
+                found_api_key: false,
+                api_requests_today: 0,
+            };
+        }
+        if (user &&
+            user.stripe_subscription_name === "NOOB" &&
+            user.api_requests_today >= Number(process.env.NOOB_API_REQUESTS_PER_DAY) &&
+            !DateTime_1.default.isNewDay()) {
+            return {
+                success: false,
+                found_api_key: true,
+                api_requests_today: user.api_requests_today,
+            };
+        }
+        if (user &&
+            user.stripe_subscription_name === "CASUAL" &&
+            user.api_requests_today >= Number(process.env.CASUAL_API_REQUESTS_PER_DAY) &&
+            !DateTime_1.default.isNewDay()) {
+            return {
+                success: false,
+                found_api_key: true,
+                api_requests_today: user.api_requests_today,
+            };
+        }
+        if (user &&
+            user.stripe_subscription_name === "PRO" &&
+            user.api_requests_today >= Number(process.env.PRO_API_REQUESTS_PER_DAY) &&
+            !DateTime_1.default.isNewDay()) {
+            return {
+                success: false,
+                found_api_key: true,
                 api_requests_today: user.api_requests_today,
             };
         }
@@ -495,6 +525,7 @@ let UsersRepository = class UsersRepository {
         });
         return {
             success: true,
+            found_api_key: true,
             api_requests_today: user.api_requests_today,
         };
     }
