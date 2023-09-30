@@ -23,6 +23,7 @@ export default class StripeWebhookInvoiceFinalizedUseCase implements StripeWebho
                 customerId: event.data.object.customer ?? null,
                 invoiceId: event.data.object.id ?? null,
                 hostedInvoiceUrl: event.data.object.hosted_invoice_url ?? null,
+                amount: event.data.object.amount_due,
                 startAt: DateTime.timestampToGetNow(event.data.object.lines.data[0].period.start) ?? null,
                 endsAt: DateTime.timestampToGetNow(event.data.object.lines.data[0].period.end) ?? null,
                 createdAt: String(new Date(event.created)),
