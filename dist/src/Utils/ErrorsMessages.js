@@ -10,7 +10,7 @@ var ErrorsMessages;
     ErrorsMessages["USER_CANNOT_AUTHENTICATE"] = "Cannot authenticate user";
     ErrorsMessages["INVALID_LOGIN_TOKEN"] = "Invalid session token";
     ErrorsMessages["INVALID_PHONE_NUMBER"] = "Invalid telegram number";
-    ErrorsMessages["TOKEN_EXPIRED_OR_INVALID"] = "Token expired or invalid";
+    ErrorsMessages["TOKEN_EXPIRED_OR_INVALID"] = "Header Authorization Bearer Token or API Key Expired Or Invalid";
     ErrorsMessages["NAME_IS_INVALID"] = "Name is invalid";
     ErrorsMessages["INVALID_PASSWORD"] = "Invalid password";
     ErrorsMessages["INVALID_OLDER_PASSWORD"] = "Invalid older password";

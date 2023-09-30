@@ -9,14 +9,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ValidateToken = void 0;
 const common_1 = require("@nestjs/common");
 const ErrorsMessages_1 = require("../Utils/ErrorsMessages");
-const Exception_1 = require("../Utils/Exception");
 let ValidateToken = class ValidateToken {
     use(request, response, next) {
         var _a;
         if (!((_a = request.headers) === null || _a === void 0 ? void 0 : _a.authorization) ||
             !request.headers.authorization.startsWith("Bearer") ||
             !request.headers.authorization.split(" ")[1]) {
-            throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.TOKEN_EXPIRED_OR_INVALID);
+            return response
+                .status(common_1.HttpStatus.BAD_REQUEST)
+                .json({ success: false, message: ErrorsMessages_1.ErrorsMessages.TOKEN_EXPIRED_OR_INVALID });
         }
         const jwt_token = request.headers.authorization.split(" ")[1];
         response.locals.jwt_token = jwt_token;

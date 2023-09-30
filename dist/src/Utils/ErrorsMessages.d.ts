@@ -6,7 +6,7 @@ export declare enum ErrorsMessages {
     USER_CANNOT_AUTHENTICATE = "Cannot authenticate user",
     INVALID_LOGIN_TOKEN = "Invalid session token",
     INVALID_PHONE_NUMBER = "Invalid telegram number",
-    TOKEN_EXPIRED_OR_INVALID = "Token expired or invalid",
+    TOKEN_EXPIRED_OR_INVALID = "Header Authorization Bearer Token or API Key Expired Or Invalid",
     NAME_IS_INVALID = "Name is invalid",
     INVALID_PASSWORD = "Invalid password",
     INVALID_OLDER_PASSWORD = "Invalid older password",
