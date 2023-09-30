@@ -30,7 +30,7 @@ declare class TelegramBOTLogger {
     logError(message: string): void;
     logContactSendMessage(contactObject: ContactSendMessageDTO): void;
     logSubscriptionTransaction(subscriptionTransaction: SubscriptionTransaction): void;
-    sendRequest(url: string): import("node:http").ClientRequest;
+    sendRequest(url: string): import("http").ClientRequest;
 }
 declare const _default: TelegramBOTLogger;
 export default _default;

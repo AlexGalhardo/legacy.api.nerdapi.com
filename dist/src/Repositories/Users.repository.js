@@ -478,24 +478,24 @@ let UsersRepository = class UsersRepository {
     async incrementAPIRequest(userAPIKey) {
         const user = await this.database.users.findUnique({
             where: {
-                api_token: userAPIKey
-            }
+                api_token: userAPIKey,
+            },
         });
         if (user && user.stripe_subscription_name === "NOOB" && user.api_requests_today >= 10 && !DateTime_1.default.isNewDay()) {
             return {
                 success: false,
-                api_requests_today: user.api_requests_today
+                api_requests_today: user.api_requests_today,
             };
         }
         await this.database.users.update({
             where: {
-                api_token: userAPIKey
+                api_token: userAPIKey,
             },
-            data: { api_requests_today: { increment: 1 } }
+            data: { api_requests_today: { increment: 1 } },
         });
         return {
             success: true,
-            api_requests_today: user.api_requests_today
+            api_requests_today: user.api_requests_today,
         };
     }
 };

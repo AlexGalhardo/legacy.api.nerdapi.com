@@ -44,12 +44,17 @@
 
     cp .env-example .env
 
-* If you want to use JSON Database
-  * Set USE\_DATABASE\_JSON=true
+* Start Docker, PrismaORM, Migrations and Seeds
 
 <!---->
 
-    cp .env-example .env
+    sh setup.sh
+
+* To Start Prisma Studio:
+
+<!---->
+
+    npm run prisma:studio
 
 * Start local server
 
@@ -57,7 +62,7 @@
 
     npm run dev
 
-* Go to: <http://localhost:3000/>
+* Go to: <http://localhost:4000/>
 
 ## Build for deploy
 

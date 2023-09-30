@@ -11,7 +11,7 @@ class GameGetRandomUseCase {
     async execute(apiKey) {
         if (!apiKey)
             throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.INVALID_API_KEY);
-        if (apiKey === 'nerdapiadmin') {
+        if (apiKey === "nerdapiadmin") {
             const randomGame = await this.gamesRepository.getRandom();
             if (randomGame)
                 return { success: true, data: randomGame };
@@ -26,7 +26,7 @@ class GameGetRandomUseCase {
                 throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.GET_RANDOM_GAME_ERROR);
             }
             else {
-                return { success: false, message: 'Your API Requests reached limit for today', api_requests_today };
+                return { success: false, message: "Your API Requests reached limit for today", api_requests_today };
             }
         }
     }
