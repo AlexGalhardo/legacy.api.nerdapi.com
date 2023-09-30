@@ -11,8 +11,6 @@ class GameGetRandomUseCase {
     async execute(apiKey) {
         if (!apiKey)
             throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.INVALID_API_KEY);
-        console.log("\n\napiKey => ", apiKey);
-        console.log("\n\n process.env.API_KEY_ADMIN => ", process.env.API_KEY_ADMIN);
         if (apiKey === process.env.API_KEY_ADMIN) {
             const randomGame = await this.gamesRepository.getRandom();
             if (randomGame)

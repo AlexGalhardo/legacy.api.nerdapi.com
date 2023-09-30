@@ -579,7 +579,9 @@ export default class UsersRepository implements UsersRepositoryPort {
         }
 
         if (stripeSubscriptionInfo.amount) {
-            subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
+            console.log("\n\n stripeSubscriptionInfo.amount => ", stripeSubscriptionInfo.amount);
+            subscriptionName = stripeSubscriptionInfo.amount == 499 ? "PRO" : "CASUAL";
+            console.log("\n\n NOVO subscriptionName => ", subscriptionName);
         }
 
         const userUpdated = await this.database.users.update({

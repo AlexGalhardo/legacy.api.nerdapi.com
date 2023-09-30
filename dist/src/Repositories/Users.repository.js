@@ -452,7 +452,9 @@ let UsersRepository = class UsersRepository {
             throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
         }
         if (stripeSubscriptionInfo.amount) {
-            subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
+            console.log("\n\n stripeSubscriptionInfo.amount => ", stripeSubscriptionInfo.amount);
+            subscriptionName = stripeSubscriptionInfo.amount == 499 ? "PRO" : "CASUAL";
+            console.log("\n\n NOVO subscriptionName => ", subscriptionName);
         }
         const userUpdated = await this.database.users.update({
             where: {

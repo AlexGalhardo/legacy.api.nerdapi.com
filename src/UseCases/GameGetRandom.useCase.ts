@@ -24,9 +24,6 @@ export default class GameGetRandomUseCase implements GameGetRandomUseCasePort {
     async execute(apiKey: string): Promise<GameGetRandomUseCaseResponse> {
         if (!apiKey) throw new ClientException(ErrorsMessages.INVALID_API_KEY);
 
-        console.log("\n\napiKey => ", apiKey);
-        console.log("\n\n process.env.API_KEY_ADMIN => ", process.env.API_KEY_ADMIN);
-
         if (apiKey === process.env.API_KEY_ADMIN) {
             const randomGame = await this.gamesRepository.getRandom();
 
