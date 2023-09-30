@@ -97,7 +97,6 @@ export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePor
                 };
             }
         } catch (error) {
-            console.log("error => ", error);
             throw new ClientException(error);
         }
     }

@@ -540,13 +540,13 @@ export default class UsersRepository implements UsersRepositoryPort {
     ): Promise<User> {
         let subscriptionName = "NOOB";
 
+        if (stripeSubscriptionInfo.amount) {
+            subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
+        }
+
         if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === user.id) {
-                    if (stripeSubscriptionInfo.amount) {
-                        subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
-                    }
-
                     this.users[i].api_token = stripeSubscriptionInfo.apiToken ?? this.users[i].api_token;
                     this.users[i].stripe.customer_id =
                         stripeSubscriptionInfo.customerId ?? this.users[i].stripe.customer_id;
@@ -576,12 +576,6 @@ export default class UsersRepository implements UsersRepositoryPort {
             }
 
             throw new Error(ErrorsMessages.USER_NOT_FOUND);
-        }
-
-        if (stripeSubscriptionInfo.amount) {
-            console.log("\n\n stripeSubscriptionInfo.amount => ", stripeSubscriptionInfo.amount);
-            subscriptionName = stripeSubscriptionInfo.amount == 499 ? "PRO" : "CASUAL";
-            console.log("\n\n NOVO subscriptionName => ", subscriptionName);
         }
 
         const userUpdated = await this.database.users.update({

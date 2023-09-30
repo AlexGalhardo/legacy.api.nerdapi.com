@@ -132,12 +132,12 @@ class TelegramBOTLogger {
                         data += chunk;
                     });
                     res.on("end", () => {
-                        console.log(data);
+                        console.log(data); // TODO: save log while in production
                     });
                 }
             })
             .on("error", (e) => {
-                console.log(e);
+                console.log(e); // TODO: save log while in production
             });
     }
 }
