@@ -8,10 +8,12 @@
   * [NestJS](https://nestjs.com/)
   * Typescript
   * Clean/Hexagonal Architecture Principles (ports, useCases, repositories, etc)
-  * Stateless Authentication using JWT
+  * Stateless Authentication & Authorization using JWT
   * API (REST) development and documentation
   * Tests (Unit, e2e, TDD, etc)
   * Web Scrapping
+  * API Requests Handling & Limit & Quota
+  * SaaS (Software as a Service) Backend Development
   * And so on
 * This project use 2 databases:
   * JSONs files for simplicity and fast development.
@@ -21,9 +23,6 @@
 
 * [Linux Mint XFCE 21.04](https://linuxmint.com/)
 * [Git for control version](https://git-scm.com/)
-* [Vite v4](https://vitejs.dev/)
-* [Boostrap v5](https://getbootstrap.com/)
-* [ReacJS](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
 * [NodeJS v20](https://nodejs.org/en)
 * Code Editor: [VSCode](https://code.visualstudio.com/)
 * Google & Github Social Login
