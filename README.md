@@ -2,6 +2,8 @@
  <h1 align="center"><a href="https://api.nerdapi.com/" target="_blank">api.nerdapi.com</a></h1>
 </div>
 
+<https://github.com/AlexGalhardo/api.nerdapi.com/assets/19540357/2603e21b-57d6-4246-a44b-88444dc68f7a>
+
 ## Introduction
 
 * A personal project I created to learn and improve my skills in:
