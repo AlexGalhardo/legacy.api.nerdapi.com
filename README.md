@@ -24,43 +24,57 @@
 
 <!---->
 
-    git clone git@github.com:AlexGalhardo/api.nerdapi.com.git
+```
+git clone git@github.com:AlexGalhardo/api.nerdapi.com.git
+```
 
 * Enter repository
 
 <!---->
 
-    cd api.nerdapi.com/
+```
+cd api.nerdapi.com/
+```
 
 * Install dependencies
 
 <!---->
 
-    npm install
+```
+npm install
+```
 
 * Setup your enviroment variables
 
 <!---->
 
-    cp .env-example .env
+```
+cp .env-example .env
+```
 
 * Start Docker, PrismaORM, Migrations and Seeds
 
 <!---->
 
-    sh setup.sh
+```
+sh setup.sh
+```
 
 * To Start Prisma Studio:
 
 <!---->
 
-    npm run prisma:studio
+```
+npm run prisma:studio
+```
 
 * Start local server
 
 <!---->
 
-    npm run dev
+```
+npm run dev
+```
 
 * Go to: <http://localhost:4000/>
 
@@ -70,13 +84,17 @@
 
 <!---->
 
-    npm run build
+```
+npm run build
+```
 
 * To test build production locally run:
 
 <!---->
 
-    npm run start
+```
+npm run start
+```
 
 ## Tests
 
@@ -84,13 +102,17 @@
 
 <!---->
 
-    npm run test
+```
+npm run test
+```
 
 * Verify End to End tests:
 
 <!---->
 
-    npm run test:e2e
+```
+npm run test:e2e
+```
 
 ![print-tests-api-nerdapi](https://github.com/AlexGalhardo/api.nerdapi.com/assets/19540357/c9fe9b9a-2a17-4612-bb85-3ab06d1467bc)
 
@@ -100,7 +122,9 @@
 
 <!---->
 
-    npm run format
+```
+npm run format
+```
 
 <!---->
 
