@@ -2,7 +2,7 @@
  <h1 align="center"><a href="https://api.nerdapi.com/" target="_blank">api.nerdapi.com</a></h1>
 </div>
 
-https://github.com/AlexGalhardo/api.nerdapi.com/assets/19540357/a2d8b8a2-d170-4a28-8f53-fdde6236b425
+<https://github.com/AlexGalhardo/api.nerdapi.com/assets/19540357/a2d8b8a2-d170-4a28-8f53-fdde6236b425>
 
 ## Introduction
 
