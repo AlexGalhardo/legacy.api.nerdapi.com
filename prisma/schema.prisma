@@ -8,24 +8,25 @@ datasource db {
 }
 
 model Users {
-  id                                     String  @id @default(uuid())
+  id                                     String    @id @default(uuid())
   username                               String
-  email                                  String  @unique
-  telegram_number                        String? @unique
-  jwt_token                              String? @unique
-  api_token                              String? @unique
-  api_requests_today                     Int     @default(0)
+  email                                  String    @unique
+  telegram_number                        String?   @unique
+  jwt_token                              String?   @unique
+  api_token                              String?   @unique
+  api_requests_today                     Int       @default(0)
+  date_last_api_request                  DateTime?
   password                               String
-  reset_password_token                   String? @unique
+  reset_password_token                   String?   @unique
   reset_password_token_expires_at        String?
-  stripe_customer_id                     String? @unique
-  stripe_subscription_active             Boolean @default(false)
-  stripe_subscription_name               String? @default("NOOB")
+  stripe_customer_id                     String?   @unique
+  stripe_subscription_active             Boolean   @default(false)
+  stripe_subscription_name               String?   @default("NOOB")
   stripe_subscription_starts_at          String?
   stripe_subscription_ends_at            String?
-  stripe_subscription_charge_id          String? @unique
-  stripe_subscription_receipt_url        String? @unique
-  stripe_subscription_hosted_invoice_url String? @unique
+  stripe_subscription_charge_id          String?   @unique
+  stripe_subscription_receipt_url        String?   @unique
+  stripe_subscription_hosted_invoice_url String?   @unique
   stripe_updated_at                      String?
   stripe_updated_at_pt_br                String?
   created_at                             String

@@ -615,56 +615,41 @@ export default class UsersRepository implements UsersRepositoryPort {
             };
         }
 
-        if (
-            user &&
-            user.stripe_subscription_name === "NOOB" &&
-            user.api_requests_today >= Number(process.env.NOOB_API_REQUESTS_PER_DAY) &&
-            !DateTime.isNewDay()
-        ) {
-            return {
-                success: false,
-                found_api_key: true,
-                api_requests_today: user.api_requests_today,
-            };
-        }
+        if (user.date_last_api_request && DateTime.isToday(user.date_last_api_request)) {
+            const subscriptionTypes = ["NOOB", "CASUAL", "PRO"];
+            const userSubscription = user.stripe_subscription_name;
 
-        if (
-            user &&
-            user.stripe_subscription_name === "CASUAL" &&
-            user.api_requests_today >= Number(process.env.CASUAL_API_REQUESTS_PER_DAY) &&
-            !DateTime.isNewDay()
-        ) {
-            return {
-                success: false,
-                found_api_key: true,
-                api_requests_today: user.api_requests_today,
-            };
-        }
+            if (subscriptionTypes.includes(userSubscription)) {
+                const requiredRequests = Number(process.env[`${userSubscription}_API_REQUESTS_PER_DAY`]);
 
-        if (
-            user &&
-            user.stripe_subscription_name === "PRO" &&
-            user.api_requests_today >= Number(process.env.PRO_API_REQUESTS_PER_DAY) &&
-            !DateTime.isNewDay()
-        ) {
-            return {
-                success: false,
-                found_api_key: true,
-                api_requests_today: user.api_requests_today,
-            };
+                if (user.api_requests_today >= requiredRequests) {
+                    return {
+                        success: false,
+                        found_api_key: true,
+                        api_requests_today: user.api_requests_today,
+                    };
+                }
+            }
+        } else {
+            await this.database.users.update({
+                where: {
+                    api_token: userAPIKey,
+                },
+                data: { api_requests_today: 0, date_last_api_request: new Date() },
+            });
         }
 
         await this.database.users.update({
             where: {
                 api_token: userAPIKey,
             },
-            data: { api_requests_today: { increment: 1 } },
+            data: { api_requests_today: { increment: 1 }, date_last_api_request: new Date() },
         });
 
         return {
             success: true,
             found_api_key: true,
-            api_requests_today: user.api_requests_today,
+            api_requests_today: user.api_requests_today + 1,
         };
     }
 }

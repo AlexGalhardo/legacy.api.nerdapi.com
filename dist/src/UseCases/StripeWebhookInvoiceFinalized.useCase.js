@@ -17,6 +17,7 @@ class StripeWebhookInvoiceFinalizedUseCase {
                 customerId: (_a = event.data.object.customer) !== null && _a !== void 0 ? _a : null,
                 invoiceId: (_b = event.data.object.id) !== null && _b !== void 0 ? _b : null,
                 hostedInvoiceUrl: (_c = event.data.object.hosted_invoice_url) !== null && _c !== void 0 ? _c : null,
+                amount: event.data.object.amount_due,
                 startAt: (_d = DateTime_1.default.timestampToGetNow(event.data.object.lines.data[0].period.start)) !== null && _d !== void 0 ? _d : null,
                 endsAt: (_e = DateTime_1.default.timestampToGetNow(event.data.object.lines.data[0].period.end)) !== null && _e !== void 0 ? _e : null,
                 createdAt: String(new Date(event.created)),

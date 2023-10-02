@@ -419,12 +419,12 @@ let UsersRepository = class UsersRepository {
     async updateStripeSubscriptionInfo(user, stripeSubscriptionInfo) {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
         let subscriptionName = "NOOB";
+        if (stripeSubscriptionInfo.amount) {
+            subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
+        }
         if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === user.id) {
-                    if (stripeSubscriptionInfo.amount) {
-                        subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
-                    }
                     this.users[i].api_token = (_a = stripeSubscriptionInfo.apiToken) !== null && _a !== void 0 ? _a : this.users[i].api_token;
                     this.users[i].stripe.customer_id =
                         (_b = stripeSubscriptionInfo.customerId) !== null && _b !== void 0 ? _b : this.users[i].stripe.customer_id;
@@ -450,11 +450,6 @@ let UsersRepository = class UsersRepository {
                 }
             }
             throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
-        }
-        if (stripeSubscriptionInfo.amount) {
-            console.log("\n\n stripeSubscriptionInfo.amount => ", stripeSubscriptionInfo.amount);
-            subscriptionName = stripeSubscriptionInfo.amount == 499 ? "PRO" : "CASUAL";
-            console.log("\n\n NOVO subscriptionName => ", subscriptionName);
         }
         const userUpdated = await this.database.users.update({
             where: {
@@ -489,46 +484,38 @@ let UsersRepository = class UsersRepository {
                 api_requests_today: 0,
             };
         }
-        if (user &&
-            user.stripe_subscription_name === "NOOB" &&
-            user.api_requests_today >= Number(process.env.NOOB_API_REQUESTS_PER_DAY) &&
-            !DateTime_1.default.isNewDay()) {
-            return {
-                success: false,
-                found_api_key: true,
-                api_requests_today: user.api_requests_today,
-            };
+        if (user.date_last_api_request && DateTime_1.default.isToday(user.date_last_api_request)) {
+            const subscriptionTypes = ["NOOB", "CASUAL", "PRO"];
+            const userSubscription = user.stripe_subscription_name;
+            if (subscriptionTypes.includes(userSubscription)) {
+                const requiredRequests = Number(process.env[`${userSubscription}_API_REQUESTS_PER_DAY`]);
+                if (user.api_requests_today >= requiredRequests) {
+                    return {
+                        success: false,
+                        found_api_key: true,
+                        api_requests_today: user.api_requests_today,
+                    };
+                }
+            }
         }
-        if (user &&
-            user.stripe_subscription_name === "CASUAL" &&
-            user.api_requests_today >= Number(process.env.CASUAL_API_REQUESTS_PER_DAY) &&
-            !DateTime_1.default.isNewDay()) {
-            return {
-                success: false,
-                found_api_key: true,
-                api_requests_today: user.api_requests_today,
-            };
-        }
-        if (user &&
-            user.stripe_subscription_name === "PRO" &&
-            user.api_requests_today >= Number(process.env.PRO_API_REQUESTS_PER_DAY) &&
-            !DateTime_1.default.isNewDay()) {
-            return {
-                success: false,
-                found_api_key: true,
-                api_requests_today: user.api_requests_today,
-            };
+        else {
+            await this.database.users.update({
+                where: {
+                    api_token: userAPIKey,
+                },
+                data: { api_requests_today: 0, date_last_api_request: new Date() },
+            });
         }
         await this.database.users.update({
             where: {
                 api_token: userAPIKey,
             },
-            data: { api_requests_today: { increment: 1 } },
+            data: { api_requests_today: { increment: 1 }, date_last_api_request: new Date() },
         });
         return {
             success: true,
             found_api_key: true,
-            api_requests_today: user.api_requests_today,
+            api_requests_today: user.api_requests_today + 1,
         };
     }
 };

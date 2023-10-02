@@ -77,7 +77,6 @@ class AuthLoginGoogleUseCase {
             }
         }
         catch (error) {
-            console.log("error => ", error);
             throw new Exception_1.ClientException(error);
         }
     }

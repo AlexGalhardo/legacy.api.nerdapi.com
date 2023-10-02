@@ -11,13 +11,8 @@ export default class DateTime {
         return `${date} ${time}`;
     }
 
-    static isNewDay() {
-        const now = new Date();
-        const midnight = new Date();
-        midnight.setHours(0, 0, 0, 0);
-
-        if (now < midnight) return true;
-        return false;
+    static isToday(dateLastAPIRequest: Date) {
+        return new Date().getDate() === dateLastAPIRequest.getDate();
     }
 
     static isExpired(dateToCheck: Date): boolean {

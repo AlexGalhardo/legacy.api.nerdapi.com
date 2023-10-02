@@ -13,8 +13,6 @@ class StripeWebhookChargeSucceededUseCase {
         var _a, _b, _c, _d, _e;
         const { user } = await this.usersRepository.getByEmail(event.data.object.billing_details.email);
         if (user) {
-            console.log("\n\n amount: event.data.object.amount => ", event.data.object.amount);
-            console.log("\n\n event.data.object => ", event.data.object);
             await this.usersRepository.updateStripeSubscriptionInfo(user, {
                 apiToken: event.data.object.paid ? (0, GenerateRandomToken_1.default)() : null,
                 customerId: (_a = event.data.object.customer) !== null && _a !== void 0 ? _a : null,
