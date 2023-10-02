@@ -9,6 +9,7 @@ interface GameUseCaseResponse {
     success: boolean;
     message?: string;
     data?: Game | Game[];
+    api_requests_today?: number;
 }
 
 interface GamesControllerPort {
@@ -28,12 +29,9 @@ export class GamesController implements GamesControllerPort {
     @Get("/random")
     async getRandom(@Res() response: Response): Promise<Response<GameUseCaseResponse>> {
         try {
-            const { success, data, message, api_requests_today } = await this.gameGetRandomUseCase.execute(
-                response.locals.jwt_token,
-            );
-
+            const userAPIKey = response.locals.token;
+            const { success, data, message, api_requests_today } = await this.gameGetRandomUseCase.execute(userAPIKey);
             if (success) return response.status(HttpStatus.OK).json({ success: true, data });
-
             return response.status(HttpStatus.OK).json({ success: false, message, api_requests_today });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
@@ -44,8 +42,13 @@ export class GamesController implements GamesControllerPort {
     async getById(@Req() request: Request, @Res() response: Response): Promise<Response<GameUseCaseResponse>> {
         try {
             const { game_id } = request.params;
-            const { success, data } = await this.gameGetByIdUseCase.execute(game_id);
+            const userAPIKey = response.locals.token;
+            const { success, data, message, api_requests_today } = await this.gameGetByIdUseCase.execute(
+                game_id,
+                userAPIKey,
+            );
             if (success) return response.status(HttpStatus.OK).json({ success: true, data });
+            return response.status(HttpStatus.OK).json({ success: false, message, api_requests_today });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
@@ -55,8 +58,13 @@ export class GamesController implements GamesControllerPort {
     async getByTitle(@Req() request: Request, @Res() response: Response): Promise<Response<GameUseCaseResponse>> {
         try {
             const { game_title } = request.params;
-            const { success, data } = await this.gameGetByTitleUseCase.execute(game_title);
+            const userAPIKey = response.locals.token;
+            const { success, data, message, api_requests_today } = await this.gameGetByTitleUseCase.execute(
+                game_title,
+                userAPIKey,
+            );
             if (success) return response.status(HttpStatus.OK).json({ success: true, data });
+            return response.status(HttpStatus.OK).json({ success: false, message, api_requests_today });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }

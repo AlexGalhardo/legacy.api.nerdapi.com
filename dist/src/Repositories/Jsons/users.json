@@ -6,7 +6,7 @@
         "telegram_number": "5518999999999",
         "password": "$2b$12$pblOZPSJpwcTVKtA8gQY4uhpWzVW6r0zSa2aXkwmt47j3Tsa4O71i",
         "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJmOTFjMDcyYy1lZWM0LTQzOTYtOWExNC04Zjg3NDQ3YTUxOTUiLCJpYXQiOjE2OTQ4NzkwODF9.Zkj3I54swLEeLqWxtKy3GsAG78Ta8HtBxuyXyWKiqNs",
-        "api_token": null,
+        "api_key": null,
         "reset_password_token": null,
         "reset_password_token_expires_at": null,
         "stripe": {
@@ -35,7 +35,7 @@
         "telegram_number": null,
         "password": "$2b$12$naadYysU9HaCorUjDKPaKeTsHj1aHOfUjTCloc6Mf0aZDW3nd2SLq",
         "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI3ZDVlZWQ0YS1mZjIwLTRiMjktODIxYi0yMzMzNDY3NjNkMmUiLCJpYXQiOjE2OTQ5NjEzNjR9.yXpZdNDNlcFYZpVzZpek28qBv8fqsob-mJA4joPoaVU",
-        "api_token": null,
+        "api_key": null,
         "reset_password_token": null,
         "reset_password_token_expires_at": null,
         "stripe": {
@@ -64,7 +64,7 @@
         "telegram_number": null,
         "password": "$2b$12$tWah7SKgWQAPBTClQ7oGSu3iPfZUagFIoQmaA18ylnH0QKmNd40Ne",
         "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIxNzZlZjIzMy00ZWE1LTQyYzItOGNjZS04Y2M5NTBmZmI0YmQiLCJpYXQiOjE2OTQ5NjE3NDl9.-axFVG1xFWqBGF3Ag6d7cllvr5p0L-PHhq_jcpOqQR8",
-        "api_token": null,
+        "api_key": null,
         "reset_password_token": null,
         "reset_password_token_expires_at": null,
         "stripe": {

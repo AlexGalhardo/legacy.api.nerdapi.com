@@ -15,7 +15,7 @@ export interface User {
     telegram_number: string | null;
     password: string;
     jwt_token: string;
-    api_token: string | null;
+    api_key: string | null;
     reset_password_token: string | null;
     reset_password_token_expires_at: string | null;
     stripe: {
@@ -124,7 +124,7 @@ export default class UsersRepository implements UsersRepositoryPort {
                 telegram_number: user.telegram_number,
                 password: user.password,
                 jwt_token: user.jwt_token,
-                api_token: user.api_token,
+                api_key: user.api_key,
                 reset_password_token: user.reset_password_token,
                 reset_password_token_expires_at: user.reset_password_token_expires_at,
                 stripe_customer_id: user.stripe.customer_id,
@@ -154,7 +154,7 @@ export default class UsersRepository implements UsersRepositoryPort {
                 telegram_number: user.telegram_number,
                 password: user.password,
                 jwt_token: user.jwt_token,
-                api_token: user.api_token,
+                api_key: user.api_key,
                 reset_password_token: user.reset_password_token,
                 reset_password_token_expires_at: user.reset_password_token_expires_at,
                 stripe: {
@@ -188,7 +188,7 @@ export default class UsersRepository implements UsersRepositoryPort {
             telegram_number: user.telegram_number,
             password: user.password,
             jwt_token: user.jwt_token,
-            api_token: user.api_token,
+            api_key: user.api_key,
             reset_password_token: user.reset_password_token,
             reset_password_token_expires_at: user.reset_password_token_expires_at,
             stripe: {
@@ -323,7 +323,7 @@ export default class UsersRepository implements UsersRepositoryPort {
                 telegram_number: user.telegram_number,
                 password: user.password,
                 jwt_token: user.jwt_token,
-                api_token: user.api_token,
+                api_key: user.api_key,
                 reset_password_token: user.reset_password_token,
                 reset_password_token_expires_at: user.reset_password_token_expires_at,
                 stripe_customer_id: user.stripe.customer_id,
@@ -547,7 +547,7 @@ export default class UsersRepository implements UsersRepositoryPort {
         if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === user.id) {
-                    this.users[i].api_token = stripeSubscriptionInfo.apiToken ?? this.users[i].api_token;
+                    this.users[i].api_key = stripeSubscriptionInfo.apiToken ?? this.users[i].api_key;
                     this.users[i].stripe.customer_id =
                         stripeSubscriptionInfo.customerId ?? this.users[i].stripe.customer_id;
                     this.users[i].stripe.subscription.active =
@@ -583,7 +583,7 @@ export default class UsersRepository implements UsersRepositoryPort {
                 id: user.id,
             },
             data: {
-                api_token: stripeSubscriptionInfo.apiToken,
+                api_key: stripeSubscriptionInfo.apiToken,
                 stripe_customer_id: stripeSubscriptionInfo.customerId,
                 stripe_subscription_active: stripeSubscriptionInfo.paid,
                 stripe_subscription_charge_id: stripeSubscriptionInfo.chargeId,
@@ -603,7 +603,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     public async incrementAPIRequest(userAPIKey: string): Promise<IncrementAPIRequestResponse> {
         const user = await this.database.users.findUnique({
             where: {
-                api_token: userAPIKey,
+                api_key: userAPIKey,
             },
         });
 
@@ -633,7 +633,7 @@ export default class UsersRepository implements UsersRepositoryPort {
         } else {
             await this.database.users.update({
                 where: {
-                    api_token: userAPIKey,
+                    api_key: userAPIKey,
                 },
                 data: { api_requests_today: 0, date_last_api_request: new Date() },
             });
@@ -641,7 +641,7 @@ export default class UsersRepository implements UsersRepositoryPort {
 
         await this.database.users.update({
             where: {
-                api_token: userAPIKey,
+                api_key: userAPIKey,
             },
             data: { api_requests_today: { increment: 1 }, date_last_api_request: new Date() },
         });

@@ -5,7 +5,7 @@ CREATE TABLE "users" (
     "email" TEXT NOT NULL,
     "telegram_number" TEXT,
     "jwt_token" TEXT,
-    "api_token" TEXT,
+    "api_key" TEXT,
     "api_requests_today" INTEGER NOT NULL DEFAULT 0,
     "password" TEXT NOT NULL,
     "reset_password_token" TEXT,
@@ -126,7 +126,7 @@ CREATE UNIQUE INDEX "users_telegram_number_key" ON "users"("telegram_number");
 CREATE UNIQUE INDEX "users_jwt_token_key" ON "users"("jwt_token");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "users_api_token_key" ON "users"("api_token");
+CREATE UNIQUE INDEX "users_api_token_key" ON "users"("api_key");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_reset_password_token_key" ON "users"("reset_password_token");

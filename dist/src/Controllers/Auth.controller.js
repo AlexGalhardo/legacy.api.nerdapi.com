@@ -49,7 +49,8 @@ let AuthController = class AuthController {
     }
     async logout(response) {
         try {
-            const { success } = await this.authLogoutUseCase.execute(response.locals.jwt_token);
+            const userJWTToken = response.locals.token;
+            const { success } = await this.authLogoutUseCase.execute(userJWTToken);
             if (success)
                 return response.status(common_1.HttpStatus.OK).json({ success: true });
         }
@@ -59,7 +60,8 @@ let AuthController = class AuthController {
     }
     async tokenUser(response) {
         try {
-            const { success, data } = await this.authCheckUserJWTTokenUseCase.execute(response.locals.jwt_token);
+            const userJWTToken = response.locals.token;
+            const { success, data } = await this.authCheckUserJWTTokenUseCase.execute(userJWTToken);
             if (success)
                 return response.status(common_1.HttpStatus.OK).json({ success: true, data });
         }

@@ -47,7 +47,7 @@ class AuthLoginGoogleUseCase {
                     telegram_number: null,
                     password: await Bcrypt_1.Bcrypt.hash(email),
                     jwt_token,
-                    api_token: (0, GenerateRandomToken_1.default)(),
+                    api_key: (0, GenerateRandomToken_1.default)(),
                     reset_password_token: null,
                     reset_password_token_expires_at: null,
                     stripe: {

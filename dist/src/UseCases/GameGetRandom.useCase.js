@@ -8,22 +8,22 @@ class GameGetRandomUseCase {
         this.gamesRepository = gamesRepository;
         this.usersRepository = usersRepository;
     }
-    async execute(apiKey) {
-        if (!apiKey)
+    async returnRandomGame() {
+        const randomGame = await this.gamesRepository.getRandom();
+        if (randomGame)
+            return { success: true, data: randomGame };
+        throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.GET_RANDOM_GAME_ERROR);
+    }
+    async execute(userAPIKey) {
+        if (!userAPIKey)
             throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.INVALID_API_KEY);
-        if (apiKey === process.env.API_KEY_ADMIN) {
-            const randomGame = await this.gamesRepository.getRandom();
-            if (randomGame)
-                return { success: true, data: randomGame };
-            throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.GET_RANDOM_GAME_ERROR);
+        if (userAPIKey === process.env.API_KEY_ADMIN) {
+            return this.returnRandomGame();
         }
         else {
-            const { success, found_api_key, api_requests_today } = await this.usersRepository.incrementAPIRequest(apiKey);
+            const { success, found_api_key, api_requests_today } = await this.usersRepository.incrementAPIRequest(userAPIKey);
             if (success && found_api_key) {
-                const randomGame = await this.gamesRepository.getRandom();
-                if (randomGame)
-                    return { success, data: randomGame, api_requests_today };
-                throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.GET_RANDOM_GAME_ERROR);
+                return this.returnRandomGame();
             }
             else if (!success && found_api_key) {
                 return { success, message: "Your API Requests reached limit for today", api_requests_today };

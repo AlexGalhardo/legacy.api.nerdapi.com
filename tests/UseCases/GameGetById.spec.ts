@@ -2,6 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { Database } from "src/Utils/Database";
 import GamesRepository, { GamesRepositoryPort } from "src/Repositories/Games.repository";
 import GameGetByIdUseCase, { GameGetByIdUseCasePort } from "src/UseCases/GameGetById.useCase";
+import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 
 describe("Test GameGetByIdUseCase", () => {
     let getGameByIdUseCase: GameGetByIdUseCasePort;
@@ -21,8 +22,8 @@ describe("Test GameGetByIdUseCase", () => {
                 {
                     provide: "GameGetByIdUseCasePort",
                     inject: ["GamesRepositoryPort"],
-                    useFactory: (gamesRepository: GamesRepositoryPort) => {
-                        return new GameGetByIdUseCase(gamesRepository);
+                    useFactory: (gamesRepository: GamesRepositoryPort, usersRepository: UsersRepositoryPort) => {
+                        return new GameGetByIdUseCase(gamesRepository, usersRepository);
                     },
                 },
             ],
@@ -33,7 +34,7 @@ describe("Test GameGetByIdUseCase", () => {
     it("should return a game by id with correct data", async () => {
         const randomGame = await new GamesRepository(undefined, new Database()).getRandom();
 
-        const { success, data } = await getGameByIdUseCase.execute(randomGame.id);
+        const { success, data } = await getGameByIdUseCase.execute(randomGame.id, process.env.API_KEY_ADMIN);
 
         expect(success).toBeTruthy();
         expect(data).toBeDefined();

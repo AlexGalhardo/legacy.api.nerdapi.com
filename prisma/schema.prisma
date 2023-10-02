@@ -13,7 +13,7 @@ model Users {
   email                                  String    @unique
   telegram_number                        String?   @unique
   jwt_token                              String?   @unique
-  api_token                              String?   @unique
+  api_key                                String?   @unique
   api_requests_today                     Int       @default(0)
   date_last_api_request                  DateTime?
   password                               String

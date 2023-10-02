@@ -48,7 +48,7 @@ const seedDatabase = async () => {
                 email: "test@gmail.com",
                 telegram_number: Validator.phone.generate(),
                 jwt_token: null,
-                api_token: GenerateRandomToken(),
+                api_key: GenerateRandomToken(),
                 password: await Bcrypt.hash("testUSER!123"),
                 reset_password_token: null,
                 reset_password_token_expires_at: null,

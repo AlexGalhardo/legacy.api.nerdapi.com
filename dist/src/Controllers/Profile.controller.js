@@ -20,7 +20,8 @@ let ProfileController = class ProfileController {
     }
     async login(profileUpdateDTO, response) {
         try {
-            const { success, data } = await this.profileUpdateUseCase.execute(response.locals.jwt_token, profileUpdateDTO);
+            const userJWTToken = response.locals.token;
+            const { success, data } = await this.profileUpdateUseCase.execute(userJWTToken, profileUpdateDTO);
             if (success)
                 return response.status(common_1.HttpStatus.OK).json({ success: true, data });
         }

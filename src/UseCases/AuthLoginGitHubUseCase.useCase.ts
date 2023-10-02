@@ -82,7 +82,7 @@ export default class AuthLoginGitHubUseCase implements AuthLoginGitHubUseCasePor
                     telegram_number: null,
                     password: await Bcrypt.hash(responseGithubProfileJSON.email),
                     jwt_token,
-                    api_token: GenerateRandomToken(),
+                    api_key: GenerateRandomToken(),
                     reset_password_token: null,
                     reset_password_token_expires_at: null,
                     stripe: {

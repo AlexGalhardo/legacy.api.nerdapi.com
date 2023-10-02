@@ -8,7 +8,7 @@ export interface User {
     telegram_number: string | null;
     password: string;
     jwt_token: string;
-    api_token: string | null;
+    api_key: string | null;
     reset_password_token: string | null;
     reset_password_token_expires_at: string | null;
     stripe: {

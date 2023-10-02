@@ -33,7 +33,7 @@ export class AppModule implements NestModule {
                 { path: "/stripe/create-portal-session", method: RequestMethod.POST },
                 { path: "/games/random", method: RequestMethod.GET },
                 { path: "/games/id/:game_id", method: RequestMethod.GET },
-                { path: "/games/id/:game_title", method: RequestMethod.GET },
+                { path: "/games/title/:game_title", method: RequestMethod.GET },
             );
     }
 }

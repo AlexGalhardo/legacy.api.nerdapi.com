@@ -2,6 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { Database } from "src/Utils/Database";
 import GamesRepository, { GamesRepositoryPort } from "src/Repositories/Games.repository";
 import GameGetByTitleUseCase, { GameGetByTitleUseCasePort } from "src/UseCases/GameGetByTitle.useCase";
+import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 
 describe("Test GameGetByTitleUseCase", () => {
     let getGameByTitleUseCase: GameGetByTitleUseCasePort;
@@ -21,8 +22,8 @@ describe("Test GameGetByTitleUseCase", () => {
                 {
                     provide: "GameGetByTitleUseCasePort",
                     inject: ["GamesRepositoryPort"],
-                    useFactory: (gamesRepository: GamesRepositoryPort) => {
-                        return new GameGetByTitleUseCase(gamesRepository);
+                    useFactory: (gamesRepository: GamesRepositoryPort, usersRepository: UsersRepositoryPort) => {
+                        return new GameGetByTitleUseCase(gamesRepository, usersRepository);
                     },
                 },
             ],
@@ -33,7 +34,7 @@ describe("Test GameGetByTitleUseCase", () => {
     it("should return a game by id with correct data", async () => {
         const searchGameTitle = "God Of";
 
-        const { success, data } = await getGameByTitleUseCase.execute(searchGameTitle);
+        const { success, data } = await getGameByTitleUseCase.execute(searchGameTitle, process.env.API_KEY_ADMIN);
 
         expect(success).toBeTruthy();
         expect(data).toBeDefined();

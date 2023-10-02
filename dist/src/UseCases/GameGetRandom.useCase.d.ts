@@ -2,7 +2,7 @@ import "dotenv/config";
 import { Game, GamesRepositoryPort } from "src/Repositories/Games.repository";
 import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 export interface GameGetRandomUseCasePort {
-    execute(apiToken: string): Promise<GameGetRandomUseCaseResponse>;
+    execute(userAPIKey: string): Promise<GameGetRandomUseCaseResponse>;
 }
 interface GameGetRandomUseCaseResponse {
     success: boolean;
@@ -14,6 +14,7 @@ export default class GameGetRandomUseCase implements GameGetRandomUseCasePort {
     private readonly gamesRepository;
     private readonly usersRepository;
     constructor(gamesRepository: GamesRepositoryPort, usersRepository: UsersRepositoryPort);
-    execute(apiKey: string): Promise<GameGetRandomUseCaseResponse>;
+    private returnRandomGame;
+    execute(userAPIKey: string): Promise<GameGetRandomUseCaseResponse>;
 }
 export {};

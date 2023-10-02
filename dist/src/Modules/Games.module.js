@@ -46,16 +46,16 @@ exports.GamesModule = GamesModule = __decorate([
             },
             {
                 provide: "GameGetByIdUseCasePort",
-                inject: ["GamesRepositoryPort"],
-                useFactory: (gamesRepository) => {
-                    return new GameGetById_useCase_1.default(gamesRepository);
+                inject: ["GamesRepositoryPort", "UsersRepositoryPort"],
+                useFactory: (gamesRepository, usersRepository) => {
+                    return new GameGetById_useCase_1.default(gamesRepository, usersRepository);
                 },
             },
             {
                 provide: "GameGetByTitleUseCasePort",
-                inject: ["GamesRepositoryPort"],
-                useFactory: (gamesRepository) => {
-                    return new GameGetByTitle_useCase_1.default(gamesRepository);
+                inject: ["GamesRepositoryPort", "UsersRepositoryPort"],
+                useFactory: (gamesRepository, usersRepository) => {
+                    return new GameGetByTitle_useCase_1.default(gamesRepository, usersRepository);
                 },
             },
         ],

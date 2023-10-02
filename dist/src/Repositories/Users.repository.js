@@ -46,7 +46,7 @@ let UsersRepository = class UsersRepository {
                 telegram_number: user.telegram_number,
                 password: user.password,
                 jwt_token: user.jwt_token,
-                api_token: user.api_token,
+                api_key: user.api_key,
                 reset_password_token: user.reset_password_token,
                 reset_password_token_expires_at: user.reset_password_token_expires_at,
                 stripe_customer_id: user.stripe.customer_id,
@@ -75,7 +75,7 @@ let UsersRepository = class UsersRepository {
                 telegram_number: user.telegram_number,
                 password: user.password,
                 jwt_token: user.jwt_token,
-                api_token: user.api_token,
+                api_key: user.api_key,
                 reset_password_token: user.reset_password_token,
                 reset_password_token_expires_at: user.reset_password_token_expires_at,
                 stripe: {
@@ -108,7 +108,7 @@ let UsersRepository = class UsersRepository {
             telegram_number: user.telegram_number,
             password: user.password,
             jwt_token: user.jwt_token,
-            api_token: user.api_token,
+            api_key: user.api_key,
             reset_password_token: user.reset_password_token,
             reset_password_token_expires_at: user.reset_password_token_expires_at,
             stripe: {
@@ -227,7 +227,7 @@ let UsersRepository = class UsersRepository {
                 telegram_number: user.telegram_number,
                 password: user.password,
                 jwt_token: user.jwt_token,
-                api_token: user.api_token,
+                api_key: user.api_key,
                 reset_password_token: user.reset_password_token,
                 reset_password_token_expires_at: user.reset_password_token_expires_at,
                 stripe_customer_id: user.stripe.customer_id,
@@ -425,7 +425,7 @@ let UsersRepository = class UsersRepository {
         if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === user.id) {
-                    this.users[i].api_token = (_a = stripeSubscriptionInfo.apiToken) !== null && _a !== void 0 ? _a : this.users[i].api_token;
+                    this.users[i].api_key = (_a = stripeSubscriptionInfo.apiToken) !== null && _a !== void 0 ? _a : this.users[i].api_key;
                     this.users[i].stripe.customer_id =
                         (_b = stripeSubscriptionInfo.customerId) !== null && _b !== void 0 ? _b : this.users[i].stripe.customer_id;
                     this.users[i].stripe.subscription.active =
@@ -456,7 +456,7 @@ let UsersRepository = class UsersRepository {
                 id: user.id,
             },
             data: {
-                api_token: stripeSubscriptionInfo.apiToken,
+                api_key: stripeSubscriptionInfo.apiToken,
                 stripe_customer_id: stripeSubscriptionInfo.customerId,
                 stripe_subscription_active: stripeSubscriptionInfo.paid,
                 stripe_subscription_charge_id: stripeSubscriptionInfo.chargeId,
@@ -474,7 +474,7 @@ let UsersRepository = class UsersRepository {
     async incrementAPIRequest(userAPIKey) {
         const user = await this.database.users.findUnique({
             where: {
-                api_token: userAPIKey,
+                api_key: userAPIKey,
             },
         });
         if (!user) {
@@ -501,14 +501,14 @@ let UsersRepository = class UsersRepository {
         else {
             await this.database.users.update({
                 where: {
-                    api_token: userAPIKey,
+                    api_key: userAPIKey,
                 },
                 data: { api_requests_today: 0, date_last_api_request: new Date() },
             });
         }
         await this.database.users.update({
             where: {
-                api_token: userAPIKey,
+                api_key: userAPIKey,
             },
             data: { api_requests_today: { increment: 1 }, date_last_api_request: new Date() },
         });

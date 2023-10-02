@@ -52,7 +52,7 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
                 telegram_number: telegramNumber,
                 password: hashedPassword,
                 jwt_token,
-                api_token: GenerateRandomToken(),
+                api_key: GenerateRandomToken(),
                 reset_password_token: null,
                 reset_password_token_expires_at: null,
                 stripe: {

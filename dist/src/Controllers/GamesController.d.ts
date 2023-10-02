@@ -7,6 +7,7 @@ interface GameUseCaseResponse {
     success: boolean;
     message?: string;
     data?: Game | Game[];
+    api_requests_today?: number;
 }
 interface GamesControllerPort {
     getRandom(response: Response): Promise<Response<GameUseCaseResponse>>;

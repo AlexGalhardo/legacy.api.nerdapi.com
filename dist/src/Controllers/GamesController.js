@@ -22,7 +22,8 @@ let GamesController = class GamesController {
     }
     async getRandom(response) {
         try {
-            const { success, data, message, api_requests_today } = await this.gameGetRandomUseCase.execute(response.locals.jwt_token);
+            const userAPIKey = response.locals.token;
+            const { success, data, message, api_requests_today } = await this.gameGetRandomUseCase.execute(userAPIKey);
             if (success)
                 return response.status(common_1.HttpStatus.OK).json({ success: true, data });
             return response.status(common_1.HttpStatus.OK).json({ success: false, message, api_requests_today });
@@ -34,9 +35,11 @@ let GamesController = class GamesController {
     async getById(request, response) {
         try {
             const { game_id } = request.params;
-            const { success, data } = await this.gameGetByIdUseCase.execute(game_id);
+            const userAPIKey = response.locals.token;
+            const { success, data, message, api_requests_today } = await this.gameGetByIdUseCase.execute(game_id, userAPIKey);
             if (success)
                 return response.status(common_1.HttpStatus.OK).json({ success: true, data });
+            return response.status(common_1.HttpStatus.OK).json({ success: false, message, api_requests_today });
         }
         catch (error) {
             return response.status(common_1.HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
@@ -45,9 +48,11 @@ let GamesController = class GamesController {
     async getByTitle(request, response) {
         try {
             const { game_title } = request.params;
-            const { success, data } = await this.gameGetByTitleUseCase.execute(game_title);
+            const userAPIKey = response.locals.token;
+            const { success, data, message, api_requests_today } = await this.gameGetByTitleUseCase.execute(game_title, userAPIKey);
             if (success)
                 return response.status(common_1.HttpStatus.OK).json({ success: true, data });
+            return response.status(common_1.HttpStatus.OK).json({ success: false, message, api_requests_today });
         }
         catch (error) {
             return response.status(common_1.HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });

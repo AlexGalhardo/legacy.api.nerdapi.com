@@ -5,7 +5,7 @@ import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
 
 export interface GameGetRandomUseCasePort {
-    execute(apiToken: string): Promise<GameGetRandomUseCaseResponse>;
+    execute(userAPIKey: string): Promise<GameGetRandomUseCaseResponse>;
 }
 
 interface GameGetRandomUseCaseResponse {
@@ -21,23 +21,23 @@ export default class GameGetRandomUseCase implements GameGetRandomUseCasePort {
         private readonly usersRepository: UsersRepositoryPort,
     ) {}
 
-    async execute(apiKey: string): Promise<GameGetRandomUseCaseResponse> {
-        if (!apiKey) throw new ClientException(ErrorsMessages.INVALID_API_KEY);
+    private async returnRandomGame() {
+        const randomGame = await this.gamesRepository.getRandom();
+        if (randomGame) return { success: true, data: randomGame };
+        throw new ClientException(ErrorsMessages.GET_RANDOM_GAME_ERROR);
+    }
 
-        if (apiKey === process.env.API_KEY_ADMIN) {
-            const randomGame = await this.gamesRepository.getRandom();
+    async execute(userAPIKey: string): Promise<GameGetRandomUseCaseResponse> {
+        if (!userAPIKey) throw new ClientException(ErrorsMessages.INVALID_API_KEY);
 
-            if (randomGame) return { success: true, data: randomGame };
-
-            throw new ClientException(ErrorsMessages.GET_RANDOM_GAME_ERROR);
+        if (userAPIKey === process.env.API_KEY_ADMIN) {
+            return this.returnRandomGame();
         } else {
             const { success, found_api_key, api_requests_today } =
-                await this.usersRepository.incrementAPIRequest(apiKey);
+                await this.usersRepository.incrementAPIRequest(userAPIKey);
 
             if (success && found_api_key) {
-                const randomGame = await this.gamesRepository.getRandom();
-                if (randomGame) return { success, data: randomGame, api_requests_today };
-                throw new ClientException(ErrorsMessages.GET_RANDOM_GAME_ERROR);
+                return this.returnRandomGame();
             } else if (!success && found_api_key) {
                 return { success, message: "Your API Requests reached limit for today", api_requests_today };
             } else {

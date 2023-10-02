@@ -1,15 +1,20 @@
 import "dotenv/config";
 import { Game, GamesRepositoryPort } from "src/Repositories/Games.repository";
+import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 export interface GameGetByIdUseCasePort {
-    execute(gameId: string): Promise<GameGetByIdUseCaseResponse>;
+    execute(gameId: string, userAPIKey: string): Promise<GameGetByIdUseCaseResponse>;
 }
 interface GameGetByIdUseCaseResponse {
     success: boolean;
-    data: Game;
+    data?: Game;
+    message?: string;
+    api_requests_today?: number;
 }
 export default class GameGetByIdUseCase implements GameGetByIdUseCasePort {
     private readonly gamesRepository;
-    constructor(gamesRepository: GamesRepositoryPort);
-    execute(gameId: string): Promise<GameGetByIdUseCaseResponse>;
+    private readonly usersRepository;
+    constructor(gamesRepository: GamesRepositoryPort, usersRepository: UsersRepositoryPort);
+    private returnGameById;
+    execute(gameId: string, userAPIKey: string): Promise<GameGetByIdUseCaseResponse>;
 }
 export {};

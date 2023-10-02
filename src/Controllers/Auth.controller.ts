@@ -1,4 +1,4 @@
-import { Controller, Post, Res, Body, Inject, HttpStatus, Req, Get, Query } from "@nestjs/common";
+import { Controller, Post, Res, Body, Inject, HttpStatus, Req, Get } from "@nestjs/common";
 import { Request, Response } from "express";
 import {
     AuthCheckResetPasswordTokenUseCasePort,
@@ -82,7 +82,8 @@ export class AuthController implements AuthControllerPort {
     @Post("/logout")
     async logout(@Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
-            const { success } = await this.authLogoutUseCase.execute(response.locals.jwt_token);
+            const userJWTToken = response.locals.token;
+            const { success } = await this.authLogoutUseCase.execute(userJWTToken);
             if (success) return response.status(HttpStatus.OK).json({ success: true });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
@@ -92,7 +93,8 @@ export class AuthController implements AuthControllerPort {
     @Post("/check-user-jwt-token")
     async tokenUser(@Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
-            const { success, data } = await this.authCheckUserJWTTokenUseCase.execute(response.locals.jwt_token);
+            const userJWTToken = response.locals.token;
+            const { success, data } = await this.authCheckUserJWTTokenUseCase.execute(userJWTToken);
             if (success) return response.status(HttpStatus.OK).json({ success: true, data });
         } catch (error) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });

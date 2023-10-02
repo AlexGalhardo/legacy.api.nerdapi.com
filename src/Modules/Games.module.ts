@@ -34,16 +34,16 @@ import { Database } from "src/Utils/Database";
         },
         {
             provide: "GameGetByIdUseCasePort",
-            inject: ["GamesRepositoryPort"],
-            useFactory: (gamesRepository: GamesRepositoryPort) => {
-                return new GameGetByIdUseCase(gamesRepository);
+            inject: ["GamesRepositoryPort", "UsersRepositoryPort"],
+            useFactory: (gamesRepository: GamesRepositoryPort, usersRepository: UsersRepositoryPort) => {
+                return new GameGetByIdUseCase(gamesRepository, usersRepository);
             },
         },
         {
             provide: "GameGetByTitleUseCasePort",
-            inject: ["GamesRepositoryPort"],
-            useFactory: (gamesRepository: GamesRepositoryPort) => {
-                return new GameGetByTitleUseCase(gamesRepository);
+            inject: ["GamesRepositoryPort", "UsersRepositoryPort"],
+            useFactory: (gamesRepository: GamesRepositoryPort, usersRepository: UsersRepositoryPort) => {
+                return new GameGetByTitleUseCase(gamesRepository, usersRepository);
             },
         },
     ],

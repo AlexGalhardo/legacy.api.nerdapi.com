@@ -19,8 +19,8 @@ let ValidateToken = class ValidateToken {
                 .status(common_1.HttpStatus.BAD_REQUEST)
                 .json({ success: false, message: ErrorsMessages_1.ErrorsMessages.TOKEN_EXPIRED_OR_INVALID });
         }
-        const jwt_token = request.headers.authorization.split(" ")[1];
-        response.locals.jwt_token = jwt_token;
+        const token = request.headers.authorization.split(" ")[1];
+        response.locals.token = token;
         next();
     }
 };

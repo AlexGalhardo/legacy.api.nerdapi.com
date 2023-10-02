@@ -25,7 +25,8 @@ let StripeController = class StripeController {
     }
     async createCheckoutSession(stripeCreateCheckoutSessionDTO, response) {
         try {
-            const { success, redirect } = await this.stripeCreateCheckoutSessionUseCase.execute(response.locals.jwt_token, stripeCreateCheckoutSessionDTO);
+            const userJWTToken = response.locals.token;
+            const { success, redirect } = await this.stripeCreateCheckoutSessionUseCase.execute(userJWTToken, stripeCreateCheckoutSessionDTO);
             if (success)
                 return response.status(common_1.HttpStatus.OK).json({ success: true, redirect });
         }
@@ -35,7 +36,8 @@ let StripeController = class StripeController {
     }
     async createPortalSession(stripeCreatePortalSessionDTO, response) {
         try {
-            const { success, redirect } = await this.stripeCreatePortalSessionUseCase.execute(response.locals.jwt_token, stripeCreatePortalSessionDTO);
+            const userJWTToken = response.locals.token;
+            const { success, redirect } = await this.stripeCreatePortalSessionUseCase.execute(userJWTToken, stripeCreatePortalSessionDTO);
             if (success)
                 return response.status(common_1.HttpStatus.OK).json({ success: true, redirect });
         }
