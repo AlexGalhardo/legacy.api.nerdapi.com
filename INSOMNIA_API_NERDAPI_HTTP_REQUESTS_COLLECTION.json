@@ -1,1 +1,1390 @@
-{"_type":"export","__export_format":4,"__export_date":"2023-09-30T18:10:41.208Z","__export_source":"insomnia.desktop.app:v2022.4.2","resources":[{"_id":"req_9a4e25e999e04d4e8e0ec1ba96a448f1","parentId":"fld_9b621c426ef84fca8a9404e6f91c8f04","modified":1696096997563,"created":1694813608061,"url":"https://api.github.com/user","name":"api.github.com/user","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"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","disabled":false},"metaSortKey":-1694813608061,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_9b621c426ef84fca8a9404e6f91c8f04","parentId":"wrk_209a09753ed2433387aeacea086eec07","modified":1696096990474,"created":1696096990474,"name":"GITHUB","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1696096990475,"_type":"request_group"},{"_id":"wrk_209a09753ed2433387aeacea086eec07","parentId":null,"modified":1694374359165,"created":1693661002596,"name":"API.NERDAPI.COM","description":"","scope":"collection","_type":"workspace"},{"_id":"req_5dbc79892cb24333be48ea196624e157","parentId":"fld_4050a006d0d74488a03fce9c56cd38e3","modified":1696097366342,"created":1694292336619,"url":"https://nerdapi.com/stripe/create-portal-session","name":"PROD -> /create-portal-session","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"session_id\": \"cs_test_a1slUosmQb971BlMckYGCDVPMhejaEAaeFmHeyU0oH2zHTvBEx35JPObYd\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_336d60bb6b0241b994419cbdad426a80"}],"authentication":{"type":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI4YjgxZTNjZS0wYzFhLTQyM2UtOTlhNi05ZjRlNzUyMGQ1MjAiLCJpYXQiOjE2OTQwMjExODh9.L_2VaQjpFi1f0TCMI5UqL-PoxnOdZs2Kvdn4BjCsQXE"},"metaSortKey":-1694021676942,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_4050a006d0d74488a03fce9c56cd38e3","parentId":"fld_67eba8ef002a4663957e55949927068f","modified":1694368778596,"created":1694292336590,"name":"PROD","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1694368741595,"_type":"request_group"},{"_id":"fld_67eba8ef002a4663957e55949927068f","parentId":"wrk_209a09753ed2433387aeacea086eec07","modified":1694368730777,"created":1694008569114,"name":"STRIPE","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1693712479582,"_type":"request_group"},{"_id":"req_cd921c8e7e044570874955a0d733827d","parentId":"fld_4050a006d0d74488a03fce9c56cd38e3","modified":1696097368362,"created":1694292336617,"url":"https://nerdapi.com/stripe/create-checkout-session","name":"PROD -> /create-checkout-session","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"lookup_key\": \"plan_pro\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_f992c250a3e444738033415b7c0edd5a"}],"authentication":{"type":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIyMmE3MTMxNS0yZGEwLTQ2NzYtYmNkNC1jMzRmMjRlMWM4OTUiLCJpYXQiOjE2OTQyMTQxOTh9.n3hiu645O1K1rVDbleJjZePL-FS5jX_6b29IqlSckgs"},"metaSortKey":-1694021070671,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_a70b68a7437744889f1f60cb71c32080","parentId":"fld_4050a006d0d74488a03fce9c56cd38e3","modified":1696097368717,"created":1694292336615,"url":"https://api.nerdapi.com/stripe/webhook","name":"PROD -> checkout.session.completed","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n  \"id\": \"evt_1NmhoqAo7yQpmqlhg4TnHgRH\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-08-16\",\n  \"created\": 1693853296,\n  \"data\": {\n    \"object\": {\n      \"id\": \"cs_test_a1WNhgdDmTEVUGVebL7qgsfFHYeGjJ4WmApLtzRAoHHTTBBbjLpiYGFzWn\",\n      \"object\": \"checkout.session\",\n      \"after_expiration\": null,\n      \"allow_promotion_codes\": null,\n      \"amount_subtotal\": 499,\n      \"amount_total\": 499,\n      \"automatic_tax\": {\n        \"enabled\": false,\n        \"status\": null\n      },\n      \"billing_address_collection\": \"auto\",\n      \"cancel_url\": \"http://localhost:5173/pricing\",\n      \"client_reference_id\": null,\n      \"consent\": null,\n      \"consent_collection\": null,\n      \"created\": 1693853281,\n      \"currency\": \"usd\",\n      \"currency_conversion\": null,\n      \"custom_fields\": [\n      ],\n      \"custom_text\": {\n        \"shipping_address\": null,\n        \"submit\": null\n      },\n      \"customer\": \"cus_OZrXWOVtDiSJlB\",\n      \"customer_creation\": \"always\",\n      \"customer_details\": {\n        \"address\": {\n          \"city\": \"Araçatuba\",\n          \"country\": \"BR\",\n          \"line1\": \"Rua Anselmo Manarelli\",\n          \"line2\": null,\n          \"postal_code\": \"13560-290\",\n          \"state\": \"SP\"\n        },\n        \"email\": \"aleexgvieira@gmail.com\",\n        \"name\": \"ALEX GALHARDO VIEIRA\",\n        \"phone\": null,\n        \"tax_exempt\": \"none\",\n        \"tax_ids\": [\n        ]\n      },\n      \"customer_email\": null,\n      \"expires_at\": 1693939681,\n      \"invoice\": \"in_1NmhooAo7yQpmqlhatjDLodW\",\n      \"invoice_creation\": null,\n      \"livemode\": false,\n      \"locale\": null,\n      \"metadata\": {\n      },\n      \"mode\": \"subscription\",\n      \"payment_intent\": null,\n      \"payment_link\": null,\n      \"payment_method_collection\": \"always\",\n      \"payment_method_options\": null,\n      \"payment_method_types\": [\n        \"card\"\n      ],\n      \"payment_status\": \"paid\",\n      \"phone_number_collection\": {\n        \"enabled\": false\n      },\n      \"recovered_from\": null,\n      \"setup_intent\": null,\n      \"shipping_address_collection\": null,\n      \"shipping_cost\": null,\n      \"shipping_details\": null,\n      \"shipping_options\": [\n      ],\n      \"status\": \"complete\",\n      \"submit_type\": null,\n      \"subscription\": \"sub_1NmhooAo7yQpmqlhss4xAptq\",\n      \"success_url\": \"http://localhost:5173/checkout/success?session_id={CHECKOUT_SESSION_ID}&plan=pro\",\n      \"total_details\": {\n        \"amount_discount\": 0,\n        \"amount_shipping\": 0,\n        \"amount_tax\": 0\n      },\n      \"url\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": null,\n    \"idempotency_key\": null\n  },\n  \"type\": \"checkout.session.completed\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_29549b45c820407cb1f774c7f334a223"}],"authentication":{},"metaSortKey":-1694013262322,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_efb1d08e67f944c68ae2cacad25c00d2","parentId":"fld_4050a006d0d74488a03fce9c56cd38e3","modified":1696097369828,"created":1694292336612,"url":"https://api.nerdapi.com/stripe/webhook","name":"PROD -> payment_intent.succeeded","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n  \"id\": \"evt_3NmhooAo7yQpmqlh0wxdzeVe\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-08-16\",\n  \"created\": 1693853295,\n  \"data\": {\n    \"object\": {\n      \"id\": \"pi_3NmhooAo7yQpmqlh09wd7m9y\",\n      \"object\": \"payment_intent\",\n      \"amount\": 499,\n      \"amount_capturable\": 0,\n      \"amount_details\": {\n        \"tip\": {\n        }\n      },\n      \"amount_received\": 499,\n      \"application\": null,\n      \"application_fee_amount\": null,\n      \"automatic_payment_methods\": null,\n      \"canceled_at\": null,\n      \"cancellation_reason\": null,\n      \"capture_method\": \"automatic\",\n      \"client_secret\": \"pi_3NmhooAo7yQpmqlh09wd7m9y_secret_b6F3TyqS27GXOEo6Zo5VEBkze\",\n      \"confirmation_method\": \"automatic\",\n      \"created\": 1693853294,\n      \"currency\": \"usd\",\n      \"customer\": \"cus_OZrXWOVtDiSJlB\",\n      \"description\": \"Subscription creation\",\n      \"invoice\": \"in_1NmhooAo7yQpmqlhatjDLodW\",\n      \"last_payment_error\": null,\n      \"latest_charge\": \"ch_3NmhooAo7yQpmqlh0ycuX1dU\",\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"next_action\": null,\n      \"on_behalf_of\": null,\n      \"payment_method\": \"pm_1NmhonAo7yQpmqlhfqQfGtGG\",\n      \"payment_method_options\": {\n        \"card\": {\n          \"installments\": null,\n          \"mandate_options\": null,\n          \"network\": null,\n          \"request_three_d_secure\": \"automatic\",\n          \"setup_future_usage\": \"off_session\"\n        }\n      },\n      \"payment_method_types\": [\n        \"card\"\n      ],\n      \"processing\": null,\n      \"receipt_email\": null,\n      \"review\": null,\n      \"setup_future_usage\": \"off_session\",\n      \"shipping\": null,\n      \"source\": null,\n      \"statement_descriptor\": null,\n      \"statement_descriptor_suffix\": null,\n      \"status\": \"succeeded\",\n      \"transfer_data\": null,\n      \"transfer_group\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_Jbb170Xmu9aDgG\",\n    \"idempotency_key\": \"2e819bc9-a3e9-44c4-9d54-3e338c40cc18\"\n  },\n  \"type\": \"payment_intent.succeeded\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_9a89aad0c3864749ba61df0af8b3df20"}],"authentication":{},"metaSortKey":-1694013210234,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_fd35c56ccb844a5a987d21cb56eae34a","parentId":"fld_4050a006d0d74488a03fce9c56cd38e3","modified":1696097370176,"created":1694292336609,"url":"https://api.nerdapi.com/stripe/webhook","name":"PROD -> billing_portal.session.created","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n  \"id\": \"evt_1NmiTYAo7yQpmqlhjinnlLzZ\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-08-16\",\n  \"created\": 1693855820,\n  \"data\": {\n    \"object\": {\n      \"id\": \"bps_1NmiTYAo7yQpmqlhTBMQmqb2\",\n      \"object\": \"billing_portal.session\",\n      \"configuration\": \"bpc_1NmfFuAo7yQpmqlheIlNMZBM\",\n      \"created\": 1693855820,\n      \"customer\": \"cus_OZsD9Mfc3sZu4C\",\n      \"flow\": null,\n      \"livemode\": false,\n      \"locale\": null,\n      \"on_behalf_of\": null,\n      \"return_url\": \"https://microsaas.alexgalhardo.com/profile\",\n      \"url\": \"https://billing.stripe.com/p/session/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PWnNFd2t6VnQ3YzVGeGk5UmVUejRSOTlZVXdvT28w0100INz9Hub8\"\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_0Jm4LZaoGhbCUR\",\n    \"idempotency_key\": \"stripe-node-retry-fd03ed63-938b-4057-af29-3d106c292397\"\n  },\n  \"type\": \"billing_portal.session.created\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_6707b8063268474c9ccda71593149897"}],"authentication":{},"metaSortKey":-1694013155953,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_63b83a864efb41999e210885f8bcca7f","parentId":"fld_4050a006d0d74488a03fce9c56cd38e3","modified":1696097370603,"created":1694292336606,"url":"https://api.nerdapi.com/stripe/webhook","name":"PROD -> customer.created","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n  \"id\": \"evt_1NoY0hAo7yQpmqlhjfF4Ni1p\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-08-16\",\n  \"created\": 1694292244,\n  \"data\": {\n    \"object\": {\n      \"id\": \"cus_OblXq4uW4OXIuk\",\n      \"object\": \"customer\",\n      \"address\": {\n        \"city\": \"Araçatuba\",\n        \"country\": \"BR\",\n        \"line1\": \"Rua Anselmo Manarelli\",\n        \"line2\": null,\n        \"postal_code\": \"13560-290\",\n        \"state\": \"SP\"\n      },\n      \"balance\": 0,\n      \"created\": 1694292244,\n      \"currency\": null,\n      \"default_source\": null,\n      \"delinquent\": false,\n      \"description\": null,\n      \"discount\": null,\n      \"email\": \"aleexgvieira@gmail.com\",\n      \"invoice_prefix\": \"572F2985\",\n      \"invoice_settings\": {\n        \"custom_fields\": null,\n        \"default_payment_method\": null,\n        \"footer\": null,\n        \"rendering_options\": null\n      },\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"name\": \"ALEX GALHARDO VIEIRA\",\n      \"next_invoice_sequence\": 2,\n      \"phone\": null,\n      \"preferred_locales\": [\n        \"en-US\"\n      ],\n      \"shipping\": null,\n      \"tax_exempt\": \"none\",\n      \"test_clock\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_Tiqd9BvW58QWiD\",\n    \"idempotency_key\": \"48ae403d-21d9-4792-805b-1a30480ba66a\"\n  },\n  \"type\": \"customer.created\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_41825f5d0a47443aacf8d3eaea7bdf33"}],"authentication":{},"metaSortKey":-1694012776449,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_608ddbc187f0478fad72c6a45b047a52","parentId":"fld_4050a006d0d74488a03fce9c56cd38e3","modified":1696097371437,"created":1694292336603,"url":"https://api.nerdapi.com/stripe/webhook","name":"PROD -> invoice.finalized","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n  \"id\": \"evt_1Nr4AAAo7yQpmqlhgOIu5YGs\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-08-16\",\n  \"created\": 1694892495,\n  \"data\": {\n    \"object\": {\n      \"id\": \"in_1Nr4A7Ao7yQpmqlhjv73t9ry\",\n      \"object\": \"invoice\",\n      \"account_country\": \"BR\",\n      \"account_name\": \"NERD API\",\n      \"account_tax_ids\": null,\n      \"amount_due\": 199,\n      \"amount_paid\": 0,\n      \"amount_remaining\": 199,\n      \"amount_shipping\": 0,\n      \"application\": null,\n      \"application_fee_amount\": null,\n      \"attempt_count\": 0,\n      \"attempted\": false,\n      \"auto_advance\": false,\n      \"automatic_tax\": {\n        \"enabled\": false,\n        \"status\": null\n      },\n      \"billing_reason\": \"subscription_create\",\n      \"charge\": null,\n      \"collection_method\": \"charge_automatically\",\n      \"created\": 1694892495,\n      \"currency\": \"usd\",\n      \"custom_fields\": null,\n      \"customer\": \"cus_OeMt3nzKrSmHwr\",\n      \"customer_address\": {\n        \"city\": \"Araçatuba\",\n        \"country\": \"BR\",\n        \"line1\": \"Rua Anselmo Manarelli\",\n        \"line2\": null,\n        \"postal_code\": \"13560-290\",\n        \"state\": \"SP\"\n      },\n      \"customer_email\": \"aleexgvieira@gmail.com\",\n      \"customer_name\": \"ALEX GALHARDO VIEIRA\",\n      \"customer_phone\": null,\n      \"customer_shipping\": null,\n      \"customer_tax_exempt\": \"none\",\n      \"customer_tax_ids\": [\n      ],\n      \"default_payment_method\": null,\n      \"default_source\": null,\n      \"default_tax_rates\": [\n      ],\n      \"description\": null,\n      \"discount\": null,\n      \"discounts\": [\n      ],\n      \"due_date\": null,\n      \"effective_at\": 1694892495,\n      \"ending_balance\": 0,\n      \"footer\": null,\n      \"from_invoice\": null,\n      \"hosted_invoice_url\": \"https://invoice.stripe.com/i/acct_1Nmds7Ao7yQpmqlh/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PZU10QWlQaDNsVTNWSjBXWkpOMWxsckg4OHhXc1Z5LDg1NDMzMjk40200PwyXbuuu?s=ap\",\n      \"invoice_pdf\": \"https://pay.stripe.com/invoice/acct_1Nmds7Ao7yQpmqlh/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PZU10QWlQaDNsVTNWSjBXWkpOMWxsckg4OHhXc1Z5LDg1NDMzMjk40200PwyXbuuu/pdf?s=ap\",\n      \"last_finalization_error\": null,\n      \"latest_revision\": null,\n      \"lines\": {\n        \"object\": \"list\",\n        \"data\": [\n          {\n            \"id\": \"il_1Nr4A7Ao7yQpmqlh1V24Ft47\",\n            \"object\": \"line_item\",\n            \"amount\": 199,\n            \"amount_excluding_tax\": 199,\n            \"currency\": \"usd\",\n            \"description\": \"1 × NerdAPI Casual Player (at $1.99 / month)\",\n            \"discount_amounts\": [\n            ],\n            \"discountable\": true,\n            \"discounts\": [\n            ],\n            \"livemode\": false,\n            \"metadata\": {\n            },\n            \"period\": {\n              \"end\": 1697484494,\n              \"start\": 1694892494\n            },\n            \"plan\": {\n              \"id\": \"price_1NmdsxAo7yQpmqlh8t2eoXof\",\n              \"object\": \"plan\",\n              \"active\": true,\n              \"aggregate_usage\": null,\n              \"amount\": 199,\n              \"amount_decimal\": \"199\",\n              \"billing_scheme\": \"per_unit\",\n              \"created\": 1693838175,\n              \"currency\": \"usd\",\n              \"interval\": \"month\",\n              \"interval_count\": 1,\n              \"livemode\": false,\n              \"metadata\": {\n              },\n              \"nickname\": null,\n              \"product\": \"prod_OZnTiXFlfnFkdi\",\n              \"tiers_mode\": null,\n              \"transform_usage\": null,\n              \"trial_period_days\": null,\n              \"usage_type\": \"licensed\"\n            },\n            \"price\": {\n              \"id\": \"price_1NmdsxAo7yQpmqlh8t2eoXof\",\n              \"object\": \"price\",\n              \"active\": true,\n              \"billing_scheme\": \"per_unit\",\n              \"created\": 1693838175,\n              \"currency\": \"usd\",\n              \"custom_unit_amount\": null,\n              \"livemode\": false,\n              \"lookup_key\": \"plan_casual\",\n              \"metadata\": {\n              },\n              \"nickname\": null,\n              \"product\": \"prod_OZnTiXFlfnFkdi\",\n              \"recurring\": {\n                \"aggregate_usage\": null,\n                \"interval\": \"month\",\n                \"interval_count\": 1,\n                \"trial_period_days\": null,\n                \"usage_type\": \"licensed\"\n              },\n              \"tax_behavior\": \"unspecified\",\n              \"tiers_mode\": null,\n              \"transform_quantity\": null,\n              \"type\": \"recurring\",\n              \"unit_amount\": 199,\n              \"unit_amount_decimal\": \"199\"\n            },\n            \"proration\": false,\n            \"proration_details\": {\n              \"credited_items\": null\n            },\n            \"quantity\": 1,\n            \"subscription\": \"sub_1Nr4A6Ao7yQpmqlh9vPX4Pox\",\n            \"subscription_item\": \"si_OeMtmtWCPghrnR\",\n            \"tax_amounts\": [\n            ],\n            \"tax_rates\": [\n            ],\n            \"type\": \"subscription\",\n            \"unit_amount_excluding_tax\": \"199\"\n          }\n        ],\n        \"has_more\": false,\n        \"total_count\": 1,\n        \"url\": \"/v1/invoices/in_1Nr4A7Ao7yQpmqlhjv73t9ry/lines\"\n      },\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"next_payment_attempt\": null,\n      \"number\": \"C53B90E7-0001\",\n      \"on_behalf_of\": null,\n      \"paid\": false,\n      \"paid_out_of_band\": false,\n      \"payment_intent\": \"pi_3Nr4A7Ao7yQpmqlh0WpB4J2h\",\n      \"payment_settings\": {\n        \"default_mandate\": null,\n        \"payment_method_options\": null,\n        \"payment_method_types\": null\n      },\n      \"period_end\": 1694892494,\n      \"period_start\": 1694892494,\n      \"post_payment_credit_notes_amount\": 0,\n      \"pre_payment_credit_notes_amount\": 0,\n      \"quote\": null,\n      \"receipt_number\": null,\n      \"rendering_options\": null,\n      \"shipping_cost\": null,\n      \"shipping_details\": null,\n      \"starting_balance\": 0,\n      \"statement_descriptor\": null,\n      \"status\": \"open\",\n      \"status_transitions\": {\n        \"finalized_at\": 1694892495,\n        \"marked_uncollectible_at\": null,\n        \"paid_at\": null,\n        \"voided_at\": null\n      },\n      \"subscription\": \"sub_1Nr4A6Ao7yQpmqlh9vPX4Pox\",\n      \"subscription_details\": {\n        \"metadata\": {\n        }\n      },\n      \"subtotal\": 199,\n      \"subtotal_excluding_tax\": 199,\n      \"tax\": null,\n      \"test_clock\": null,\n      \"total\": 199,\n      \"total_discount_amounts\": [\n      ],\n      \"total_excluding_tax\": 199,\n      \"total_tax_amounts\": [\n      ],\n      \"transfer_data\": null,\n      \"webhooks_delivered_at\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 2,\n  \"request\": {\n    \"id\": \"req_5RAxC5CjRRcusn\",\n    \"idempotency_key\": \"34f3b1b3-aac2-4563-b208-3f676400ea89\"\n  },\n  \"type\": \"invoice.finalized\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_d65a02e1fd064407bbb3d2b284d19943"}],"authentication":{},"metaSortKey":-1694010108535,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_6d09a82f55d04096b23e87aaea13445a","parentId":"fld_4050a006d0d74488a03fce9c56cd38e3","modified":1696097371692,"created":1694292336597,"url":"https://api.nerdapi.com/stripe/webhook","name":"PROD -> charge.succeeded","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n  \"id\": \"evt_3NmhooAo7yQpmqlh0ocSH9jJ\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-08-16\",\n  \"created\": 1693853295,\n  \"data\": {\n    \"object\": {\n      \"id\": \"ch_3NmhooAo7yQpmqlh0ycuX1dU\",\n      \"object\": \"charge\",\n      \"amount\": 499,\n      \"amount_captured\": 499,\n      \"amount_refunded\": 0,\n      \"application\": null,\n      \"application_fee\": null,\n      \"application_fee_amount\": null,\n      \"balance_transaction\": \"txn_3NmhooAo7yQpmqlh0PQ1JR8s\",\n      \"billing_details\": {\n        \"address\": {\n          \"city\": \"Araçatuba\",\n          \"country\": \"BR\",\n          \"line1\": \"Rua Anselmo Manarelli\",\n          \"line2\": null,\n          \"postal_code\": \"13560-290\",\n          \"state\": \"SP\"\n        },\n        \"email\": \"aleexgvieira@gmail.com\",\n        \"name\": \"ALEX GALHARDO VIEIRA\",\n        \"phone\": null\n      },\n      \"calculated_statement_descriptor\": \"Stripe\",\n      \"captured\": true,\n      \"created\": 1693853295,\n      \"currency\": \"usd\",\n      \"customer\": \"cus_OZrXWOVtDiSJlB\",\n      \"description\": \"Subscription creation\",\n      \"destination\": null,\n      \"dispute\": null,\n      \"disputed\": false,\n      \"failure_balance_transaction\": null,\n      \"failure_code\": null,\n      \"failure_message\": null,\n      \"fraud_details\": {\n      },\n      \"invoice\": \"in_1NmhooAo7yQpmqlhatjDLodW\",\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"on_behalf_of\": null,\n      \"order\": null,\n      \"outcome\": {\n        \"network_status\": \"approved_by_network\",\n        \"reason\": null,\n        \"risk_level\": \"normal\",\n        \"risk_score\": 48,\n        \"seller_message\": \"Payment complete.\",\n        \"type\": \"authorized\"\n      },\n      \"paid\": true,\n      \"payment_intent\": \"pi_3NmhooAo7yQpmqlh09wd7m9y\",\n      \"payment_method\": \"pm_1NmhonAo7yQpmqlhfqQfGtGG\",\n      \"payment_method_details\": {\n        \"card\": {\n          \"brand\": \"mastercard\",\n          \"checks\": {\n            \"address_line1_check\": \"pass\",\n            \"address_postal_code_check\": \"pass\",\n            \"cvc_check\": null\n          },\n          \"country\": \"US\",\n          \"exp_month\": 12,\n          \"exp_year\": 2030,\n          \"fingerprint\": \"WlRvMcVDE4jlJUPi\",\n          \"funding\": \"credit\",\n          \"installments\": null,\n          \"last4\": \"4320\",\n          \"mandate\": null,\n          \"network\": \"mastercard\",\n          \"network_token\": {\n            \"used\": false\n          },\n          \"three_d_secure\": null,\n          \"wallet\": {\n            \"dynamic_last4\": \"4444\",\n            \"google_pay\": {\n            },\n            \"type\": \"google_pay\"\n          }\n        },\n        \"type\": \"card\"\n      },\n      \"receipt_email\": null,\n      \"receipt_number\": null,\n      \"receipt_url\": \"https://pay.stripe.com/receipts/invoices/CAcaFwoVYWNjdF8xTm1kczdBbzd5UXBtcWxoKPDM2KcGMgY2p6jFFf86LBYdBMsKey3GnyTq8Sv2gGYXWMA1qpzd1GNvoVih23hUB2O-9TOsjRviIB7u?s=ap\",\n      \"refunded\": false,\n      \"review\": null,\n      \"shipping\": null,\n      \"source\": null,\n      \"source_transfer\": null,\n      \"statement_descriptor\": null,\n      \"statement_descriptor_suffix\": null,\n      \"status\": \"succeeded\",\n      \"transfer_data\": null,\n      \"transfer_group\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_Jbb170Xmu9aDgG\",\n    \"idempotency_key\": \"2e819bc9-a3e9-44c4-9d54-3e338c40cc18\"\n  },\n  \"type\": \"charge.succeeded\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_0b5752b6b39442a4981efce20cd4c663"}],"authentication":{},"metaSortKey":-1694008677230,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_6936a99d7cae44078a58472becffe691","parentId":"fld_3f22b5f2cf3649eb952673cfed20e92a","modified":1696097397994,"created":1694021676942,"url":"http://localhost:3000/stripe/create-portal-session","name":"LOCAL -> /create-portal-session","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"session_id\": \"cs_test_a1slUosmQb971BlMckYGCDVPMhejaEAaeFmHeyU0oH2zHTvBEx35JPObYd\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_336d60bb6b0241b994419cbdad426a80"}],"authentication":{"type":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI4YjgxZTNjZS0wYzFhLTQyM2UtOTlhNi05ZjRlNzUyMGQ1MjAiLCJpYXQiOjE2OTQwMjExODh9.L_2VaQjpFi1f0TCMI5UqL-PoxnOdZs2Kvdn4BjCsQXE"},"metaSortKey":-1694021676942,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_3f22b5f2cf3649eb952673cfed20e92a","parentId":"fld_67eba8ef002a4663957e55949927068f","modified":1694368741545,"created":1694368741545,"name":"LOCAL","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1694368741545,"_type":"request_group"},{"_id":"req_7260df5bdaea46658ff27abd7ac4403e","parentId":"fld_3f22b5f2cf3649eb952673cfed20e92a","modified":1696097398490,"created":1694021070671,"url":"http://localhost:3000/stripe/create-checkout-session","name":"LOCAL -> /create-checkout-session","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"lookup_key\": \"plan_pro\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_f992c250a3e444738033415b7c0edd5a"}],"authentication":{"type":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIyMmE3MTMxNS0yZGEwLTQ2NzYtYmNkNC1jMzRmMjRlMWM4OTUiLCJpYXQiOjE2OTQyMTQxOTh9.n3hiu645O1K1rVDbleJjZePL-FS5jX_6b29IqlSckgs"},"metaSortKey":-1694021676929.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_3ca84db472d847ebaf46307ab1ba028a","parentId":"fld_3f22b5f2cf3649eb952673cfed20e92a","modified":1696097382291,"created":1694013262322,"url":"http://localhost:4000/stripe/webhook","name":"LOCAL -> checkout.session.completed","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n  \"id\": \"evt_1NmhoqAo7yQpmqlhg4TnHgRH\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-08-16\",\n  \"created\": 1693853296,\n  \"data\": {\n    \"object\": {\n      \"id\": \"cs_test_a1WNhgdDmTEVUGVebL7qgsfFHYeGjJ4WmApLtzRAoHHTTBBbjLpiYGFzWn\",\n      \"object\": \"checkout.session\",\n      \"after_expiration\": null,\n      \"allow_promotion_codes\": null,\n      \"amount_subtotal\": 499,\n      \"amount_total\": 499,\n      \"automatic_tax\": {\n        \"enabled\": false,\n        \"status\": null\n      },\n      \"billing_address_collection\": \"auto\",\n      \"cancel_url\": \"http://localhost:5173/pricing\",\n      \"client_reference_id\": null,\n      \"consent\": null,\n      \"consent_collection\": null,\n      \"created\": 1693853281,\n      \"currency\": \"usd\",\n      \"currency_conversion\": null,\n      \"custom_fields\": [\n      ],\n      \"custom_text\": {\n        \"shipping_address\": null,\n        \"submit\": null\n      },\n      \"customer\": \"cus_OZrXWOVtDiSJlB\",\n      \"customer_creation\": \"always\",\n      \"customer_details\": {\n        \"address\": {\n          \"city\": \"Araçatuba\",\n          \"country\": \"BR\",\n          \"line1\": \"Rua Anselmo Manarelli\",\n          \"line2\": null,\n          \"postal_code\": \"13560-290\",\n          \"state\": \"SP\"\n        },\n        \"email\": \"aleexgvieira@gmail.com\",\n        \"name\": \"ALEX GALHARDO VIEIRA\",\n        \"phone\": null,\n        \"tax_exempt\": \"none\",\n        \"tax_ids\": [\n        ]\n      },\n      \"customer_email\": null,\n      \"expires_at\": 1693939681,\n      \"invoice\": \"in_1NmhooAo7yQpmqlhatjDLodW\",\n      \"invoice_creation\": null,\n      \"livemode\": false,\n      \"locale\": null,\n      \"metadata\": {\n      },\n      \"mode\": \"subscription\",\n      \"payment_intent\": null,\n      \"payment_link\": null,\n      \"payment_method_collection\": \"always\",\n      \"payment_method_options\": null,\n      \"payment_method_types\": [\n        \"card\"\n      ],\n      \"payment_status\": \"paid\",\n      \"phone_number_collection\": {\n        \"enabled\": false\n      },\n      \"recovered_from\": null,\n      \"setup_intent\": null,\n      \"shipping_address_collection\": null,\n      \"shipping_cost\": null,\n      \"shipping_details\": null,\n      \"shipping_options\": [\n      ],\n      \"status\": \"complete\",\n      \"submit_type\": null,\n      \"subscription\": \"sub_1NmhooAo7yQpmqlhss4xAptq\",\n      \"success_url\": \"http://localhost:5173/checkout/success?session_id={CHECKOUT_SESSION_ID}&plan=pro\",\n      \"total_details\": {\n        \"amount_discount\": 0,\n        \"amount_shipping\": 0,\n        \"amount_tax\": 0\n      },\n      \"url\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": null,\n    \"idempotency_key\": null\n  },\n  \"type\": \"checkout.session.completed\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_29549b45c820407cb1f774c7f334a223"}],"authentication":{},"metaSortKey":-1694021676917,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_b2f03d5644214dc19c0d65efccd7dc40","parentId":"fld_3f22b5f2cf3649eb952673cfed20e92a","modified":1696097395419,"created":1694013210234,"url":"http://localhost:4000/stripe/webhook","name":"LOCAL -> payment_intent.succeeded","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n  \"id\": \"evt_3NmhooAo7yQpmqlh0wxdzeVe\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-08-16\",\n  \"created\": 1693853295,\n  \"data\": {\n    \"object\": {\n      \"id\": \"pi_3NmhooAo7yQpmqlh09wd7m9y\",\n      \"object\": \"payment_intent\",\n      \"amount\": 499,\n      \"amount_capturable\": 0,\n      \"amount_details\": {\n        \"tip\": {\n        }\n      },\n      \"amount_received\": 499,\n      \"application\": null,\n      \"application_fee_amount\": null,\n      \"automatic_payment_methods\": null,\n      \"canceled_at\": null,\n      \"cancellation_reason\": null,\n      \"capture_method\": \"automatic\",\n      \"client_secret\": \"pi_3NmhooAo7yQpmqlh09wd7m9y_secret_b6F3TyqS27GXOEo6Zo5VEBkze\",\n      \"confirmation_method\": \"automatic\",\n      \"created\": 1693853294,\n      \"currency\": \"usd\",\n      \"customer\": \"cus_OZrXWOVtDiSJlB\",\n      \"description\": \"Subscription creation\",\n      \"invoice\": \"in_1NmhooAo7yQpmqlhatjDLodW\",\n      \"last_payment_error\": null,\n      \"latest_charge\": \"ch_3NmhooAo7yQpmqlh0ycuX1dU\",\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"next_action\": null,\n      \"on_behalf_of\": null,\n      \"payment_method\": \"pm_1NmhonAo7yQpmqlhfqQfGtGG\",\n      \"payment_method_options\": {\n        \"card\": {\n          \"installments\": null,\n          \"mandate_options\": null,\n          \"network\": null,\n          \"request_three_d_secure\": \"automatic\",\n          \"setup_future_usage\": \"off_session\"\n        }\n      },\n      \"payment_method_types\": [\n        \"card\"\n      ],\n      \"processing\": null,\n      \"receipt_email\": null,\n      \"review\": null,\n      \"setup_future_usage\": \"off_session\",\n      \"shipping\": null,\n      \"source\": null,\n      \"statement_descriptor\": null,\n      \"statement_descriptor_suffix\": null,\n      \"status\": \"succeeded\",\n      \"transfer_data\": null,\n      \"transfer_group\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_Jbb170Xmu9aDgG\",\n    \"idempotency_key\": \"2e819bc9-a3e9-44c4-9d54-3e338c40cc18\"\n  },\n  \"type\": \"payment_intent.succeeded\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_9a89aad0c3864749ba61df0af8b3df20"}],"authentication":{},"metaSortKey":-1694021676904.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_fe3be10c744545d39755af3a4b4cdf38","parentId":"fld_3f22b5f2cf3649eb952673cfed20e92a","modified":1696097387021,"created":1694013155953,"url":"http://localhost:4000/stripe/webhook","name":"LOCAL -> billing_portal.session.created","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n  \"id\": \"evt_1NmiTYAo7yQpmqlhjinnlLzZ\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-08-16\",\n  \"created\": 1693855820,\n  \"data\": {\n    \"object\": {\n      \"id\": \"bps_1NmiTYAo7yQpmqlhTBMQmqb2\",\n      \"object\": \"billing_portal.session\",\n      \"configuration\": \"bpc_1NmfFuAo7yQpmqlheIlNMZBM\",\n      \"created\": 1693855820,\n      \"customer\": \"cus_OZsD9Mfc3sZu4C\",\n      \"flow\": null,\n      \"livemode\": false,\n      \"locale\": null,\n      \"on_behalf_of\": null,\n      \"return_url\": \"https://microsaas.alexgalhardo.com/profile\",\n      \"url\": \"https://billing.stripe.com/p/session/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PWnNFd2t6VnQ3YzVGeGk5UmVUejRSOTlZVXdvT28w0100INz9Hub8\"\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_0Jm4LZaoGhbCUR\",\n    \"idempotency_key\": \"stripe-node-retry-fd03ed63-938b-4057-af29-3d106c292397\"\n  },\n  \"type\": \"billing_portal.session.created\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_6707b8063268474c9ccda71593149897"}],"authentication":{},"metaSortKey":-1694021676898.25,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_589baea526b145ef81995c664cb56a23","parentId":"fld_3f22b5f2cf3649eb952673cfed20e92a","modified":1696097387857,"created":1694012776449,"url":"http://localhost:4000/stripe/webhook","name":"LOCAL -> customer.created","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n  \"id\": \"evt_1NoY0hAo7yQpmqlhjfF4Ni1p\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-08-16\",\n  \"created\": 1694292244,\n  \"data\": {\n    \"object\": {\n      \"id\": \"cus_OblXq4uW4OXIuk\",\n      \"object\": \"customer\",\n      \"address\": {\n        \"city\": \"Araçatuba\",\n        \"country\": \"BR\",\n        \"line1\": \"Rua Anselmo Manarelli\",\n        \"line2\": null,\n        \"postal_code\": \"13560-290\",\n        \"state\": \"SP\"\n      },\n      \"balance\": 0,\n      \"created\": 1694292244,\n      \"currency\": null,\n      \"default_source\": null,\n      \"delinquent\": false,\n      \"description\": null,\n      \"discount\": null,\n      \"email\": \"alexnerdapi@gmail.com\",\n      \"invoice_prefix\": \"572F2985\",\n      \"invoice_settings\": {\n        \"custom_fields\": null,\n        \"default_payment_method\": null,\n        \"footer\": null,\n        \"rendering_options\": null\n      },\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"name\": \"ALEX GALHARDO VIEIRA\",\n      \"next_invoice_sequence\": 2,\n      \"phone\": null,\n      \"preferred_locales\": [\n        \"en-US\"\n      ],\n      \"shipping\": null,\n      \"tax_exempt\": \"none\",\n      \"test_clock\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_Tiqd9BvW58QWiD\",\n    \"idempotency_key\": \"48ae403d-21d9-4792-805b-1a30480ba66a\"\n  },\n  \"type\": \"customer.created\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_41825f5d0a47443aacf8d3eaea7bdf33"}],"authentication":{},"metaSortKey":-1694021676895.125,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_4a355e8ea6644f10bbb23e823cb2f19b","parentId":"fld_3f22b5f2cf3649eb952673cfed20e92a","modified":1696097388263,"created":1694010108535,"url":"http://localhost:4000/stripe/webhook","name":"LOCAL -> invoice.finalized","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n  \"id\": \"evt_1NoY0hAo7yQpmqlhTm46C31u\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-08-16\",\n  \"created\": 1694292245,\n  \"data\": {\n    \"object\": {\n      \"id\": \"in_1NoY0eAo7yQpmqlhFwgmjKpa\",\n      \"object\": \"invoice\",\n      \"account_country\": \"BR\",\n      \"account_name\": \"Galhardo MicroSaaS\",\n      \"account_tax_ids\": null,\n      \"amount_due\": 499,\n      \"amount_paid\": 0,\n      \"amount_remaining\": 499,\n      \"amount_shipping\": 0,\n      \"application\": null,\n      \"application_fee_amount\": null,\n      \"attempt_count\": 0,\n      \"attempted\": false,\n      \"auto_advance\": false,\n      \"automatic_tax\": {\n        \"enabled\": false,\n        \"status\": null\n      },\n      \"billing_reason\": \"subscription_create\",\n      \"charge\": null,\n      \"collection_method\": \"charge_automatically\",\n      \"created\": 1694292244,\n      \"currency\": \"usd\",\n      \"custom_fields\": null,\n      \"customer\": \"cus_OblXq4uW4OXIuk\",\n      \"customer_address\": {\n        \"city\": \"Araçatuba\",\n        \"country\": \"BR\",\n        \"line1\": \"Rua Anselmo Manarelli\",\n        \"line2\": null,\n        \"postal_code\": \"13560-290\",\n        \"state\": \"SP\"\n      },\n      \"customer_email\": \"alexnerdapi@gmail.com\",\n      \"customer_name\": \"ALEX GALHARDO VIEIRA\",\n      \"customer_phone\": null,\n      \"customer_shipping\": null,\n      \"customer_tax_exempt\": \"none\",\n      \"customer_tax_ids\": [\n      ],\n      \"default_payment_method\": null,\n      \"default_source\": null,\n      \"default_tax_rates\": [\n      ],\n      \"description\": null,\n      \"discount\": null,\n      \"discounts\": [\n      ],\n      \"due_date\": null,\n      \"effective_at\": 1694292244,\n      \"ending_balance\": 0,\n      \"footer\": null,\n      \"from_invoice\": null,\n      \"hosted_invoice_url\": \"https://invoice.stripe.com/i/acct_1Nmds7Ao7yQpmqlh/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PYmxYcklJYXMwVTNiaTVNVTM3VHlsUmllaWxFYzk2LDg0ODMzMDQ30200Q7Et8r3X?s=ap\",\n      \"invoice_pdf\": \"https://pay.stripe.com/invoice/acct_1Nmds7Ao7yQpmqlh/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PYmxYcklJYXMwVTNiaTVNVTM3VHlsUmllaWxFYzk2LDg0ODMzMDQ30200Q7Et8r3X/pdf?s=ap\",\n      \"last_finalization_error\": null,\n      \"latest_revision\": null,\n      \"lines\": {\n        \"object\": \"list\",\n        \"data\": [\n          {\n            \"id\": \"il_1NoY0eAo7yQpmqlhs0TRF9qA\",\n            \"object\": \"line_item\",\n            \"amount\": 499,\n            \"amount_excluding_tax\": 499,\n            \"currency\": \"usd\",\n            \"description\": \"1 × NerdAPI PRO Player (at $4.99 / month)\",\n            \"discount_amounts\": [\n            ],\n            \"discountable\": true,\n            \"discounts\": [\n            ],\n            \"livemode\": false,\n            \"metadata\": {\n            },\n            \"period\": {\n              \"end\": 1696884244,\n              \"start\": 1694292244\n            },\n            \"plan\": {\n              \"id\": \"price_1NmdsYAo7yQpmqlhxWQxMFfW\",\n              \"object\": \"plan\",\n              \"active\": true,\n              \"aggregate_usage\": null,\n              \"amount\": 499,\n              \"amount_decimal\": \"499\",\n              \"billing_scheme\": \"per_unit\",\n              \"created\": 1693838150,\n              \"currency\": \"usd\",\n              \"interval\": \"month\",\n              \"interval_count\": 1,\n              \"livemode\": false,\n              \"metadata\": {\n              },\n              \"nickname\": null,\n              \"product\": \"prod_OZnTmkILXs6xJy\",\n              \"tiers_mode\": null,\n              \"transform_usage\": null,\n              \"trial_period_days\": null,\n              \"usage_type\": \"licensed\"\n            },\n            \"price\": {\n              \"id\": \"price_1NmdsYAo7yQpmqlhxWQxMFfW\",\n              \"object\": \"price\",\n              \"active\": true,\n              \"billing_scheme\": \"per_unit\",\n              \"created\": 1693838150,\n              \"currency\": \"usd\",\n              \"custom_unit_amount\": null,\n              \"livemode\": false,\n              \"lookup_key\": \"plan_pro\",\n              \"metadata\": {\n              },\n              \"nickname\": null,\n              \"product\": \"prod_OZnTmkILXs6xJy\",\n              \"recurring\": {\n                \"aggregate_usage\": null,\n                \"interval\": \"month\",\n                \"interval_count\": 1,\n                \"trial_period_days\": null,\n                \"usage_type\": \"licensed\"\n              },\n              \"tax_behavior\": \"unspecified\",\n              \"tiers_mode\": null,\n              \"transform_quantity\": null,\n              \"type\": \"recurring\",\n              \"unit_amount\": 499,\n              \"unit_amount_decimal\": \"499\"\n            },\n            \"proration\": false,\n            \"proration_details\": {\n              \"credited_items\": null\n            },\n            \"quantity\": 1,\n            \"subscription\": \"sub_1NoY0eAo7yQpmqlhnH6RJjco\",\n            \"subscription_item\": \"si_OblXz6aLY1RWz6\",\n            \"tax_amounts\": [\n            ],\n            \"tax_rates\": [\n            ],\n            \"type\": \"subscription\",\n            \"unit_amount_excluding_tax\": \"499\"\n          }\n        ],\n        \"has_more\": false,\n        \"total_count\": 1,\n        \"url\": \"/v1/invoices/in_1NoY0eAo7yQpmqlhFwgmjKpa/lines\"\n      },\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"next_payment_attempt\": null,\n      \"number\": \"572F2985-0001\",\n      \"on_behalf_of\": null,\n      \"paid\": false,\n      \"paid_out_of_band\": false,\n      \"payment_intent\": \"pi_3NoY0fAo7yQpmqlh1ugMqTAM\",\n      \"payment_settings\": {\n        \"default_mandate\": null,\n        \"payment_method_options\": null,\n        \"payment_method_types\": null\n      },\n      \"period_end\": 1694292244,\n      \"period_start\": 1694292244,\n      \"post_payment_credit_notes_amount\": 0,\n      \"pre_payment_credit_notes_amount\": 0,\n      \"quote\": null,\n      \"receipt_number\": null,\n      \"rendering_options\": null,\n      \"shipping_cost\": null,\n      \"shipping_details\": null,\n      \"starting_balance\": 0,\n      \"statement_descriptor\": null,\n      \"status\": \"open\",\n      \"status_transitions\": {\n        \"finalized_at\": 1694292244,\n        \"marked_uncollectible_at\": null,\n        \"paid_at\": null,\n        \"voided_at\": null\n      },\n      \"subscription\": \"sub_1NoY0eAo7yQpmqlhnH6RJjco\",\n      \"subscription_details\": {\n        \"metadata\": {\n        }\n      },\n      \"subtotal\": 499,\n      \"subtotal_excluding_tax\": 499,\n      \"tax\": null,\n      \"test_clock\": null,\n      \"total\": 499,\n      \"total_discount_amounts\": [\n      ],\n      \"total_excluding_tax\": 499,\n      \"total_tax_amounts\": [\n      ],\n      \"transfer_data\": null,\n      \"webhooks_delivered_at\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_Tiqd9BvW58QWiD\",\n    \"idempotency_key\": \"48ae403d-21d9-4792-805b-1a30480ba66a\"\n  },\n  \"type\": \"invoice.finalized\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_d65a02e1fd064407bbb3d2b284d19943"}],"authentication":{},"metaSortKey":-1694021676893.5625,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_cc629e028e48422ca1597315e7e52d44","parentId":"fld_3f22b5f2cf3649eb952673cfed20e92a","modified":1696097388626,"created":1694008677230,"url":"http://localhost:4000/stripe/webhook","name":"LOCAL -> charge.succeeded","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n  \"id\": \"evt_3NoY0fAo7yQpmqlh144CLvFG\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-08-16\",\n  \"created\": 1694292246,\n  \"data\": {\n    \"object\": {\n      \"id\": \"ch_3NoY0fAo7yQpmqlh1pzhzwUN\",\n      \"object\": \"charge\",\n      \"amount\": 499,\n      \"amount_captured\": 499,\n      \"amount_refunded\": 0,\n      \"application\": null,\n      \"application_fee\": null,\n      \"application_fee_amount\": null,\n      \"balance_transaction\": \"txn_3NoY0fAo7yQpmqlh1se720EW\",\n      \"billing_details\": {\n        \"address\": {\n          \"city\": \"Araçatuba\",\n          \"country\": \"BR\",\n          \"line1\": \"Rua Anselmo Manarelli\",\n          \"line2\": null,\n          \"postal_code\": \"13560-290\",\n          \"state\": \"SP\"\n        },\n        \"email\": \"alexnerdapi@gmail.com\",\n        \"name\": \"ALEX GALHARDO VIEIRA\",\n        \"phone\": null\n      },\n      \"calculated_statement_descriptor\": \"Stripe\",\n      \"captured\": true,\n      \"created\": 1694292245,\n      \"currency\": \"usd\",\n      \"customer\": \"cus_OblXq4uW4OXIuk\",\n      \"description\": \"Subscription creation\",\n      \"destination\": null,\n      \"dispute\": null,\n      \"disputed\": false,\n      \"failure_balance_transaction\": null,\n      \"failure_code\": null,\n      \"failure_message\": null,\n      \"fraud_details\": {\n      },\n      \"invoice\": \"in_1NoY0eAo7yQpmqlhFwgmjKpa\",\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"on_behalf_of\": null,\n      \"order\": null,\n      \"outcome\": {\n        \"network_status\": \"approved_by_network\",\n        \"reason\": null,\n        \"risk_level\": \"normal\",\n        \"risk_score\": 41,\n        \"seller_message\": \"Payment complete.\",\n        \"type\": \"authorized\"\n      },\n      \"paid\": true,\n      \"payment_intent\": \"pi_3NoY0fAo7yQpmqlh1ugMqTAM\",\n      \"payment_method\": \"pm_1NoY0dAo7yQpmqlhAF8KqAfk\",\n      \"payment_method_details\": {\n        \"card\": {\n          \"brand\": \"mastercard\",\n          \"checks\": {\n            \"address_line1_check\": \"pass\",\n            \"address_postal_code_check\": \"pass\",\n            \"cvc_check\": null\n          },\n          \"country\": \"US\",\n          \"exp_month\": 12,\n          \"exp_year\": 2030,\n          \"fingerprint\": \"WlRvMcVDE4jlJUPi\",\n          \"funding\": \"credit\",\n          \"installments\": null,\n          \"last4\": \"4320\",\n          \"mandate\": null,\n          \"network\": \"mastercard\",\n          \"network_token\": {\n            \"used\": false\n          },\n          \"three_d_secure\": null,\n          \"wallet\": {\n            \"dynamic_last4\": \"4444\",\n            \"google_pay\": {\n            },\n            \"type\": \"google_pay\"\n          }\n        },\n        \"type\": \"card\"\n      },\n      \"receipt_email\": null,\n      \"receipt_number\": null,\n      \"receipt_url\": \"https://pay.stripe.com/receipts/invoices/CAcaFwoVYWNjdF8xTm1kczdBbzd5UXBtcWxoKJey86cGMgazX87WMgA6LBbVFRTO3UWewLQcubojsm0idQxQ3uIxB_Tzex45RdN3CIBGAs8qBdvxuQ0t?s=ap\",\n      \"refunded\": false,\n      \"review\": null,\n      \"shipping\": null,\n      \"source\": null,\n      \"source_transfer\": null,\n      \"statement_descriptor\": null,\n      \"statement_descriptor_suffix\": null,\n      \"status\": \"succeeded\",\n      \"transfer_data\": null,\n      \"transfer_group\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 2,\n  \"request\": {\n    \"id\": \"req_Tiqd9BvW58QWiD\",\n    \"idempotency_key\": \"48ae403d-21d9-4792-805b-1a30480ba66a\"\n  },\n  \"type\": \"charge.succeeded\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_0b5752b6b39442a4981efce20cd4c663"}],"authentication":{},"metaSortKey":-1694021676892.7812,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_65713f6c95dd4b33a82995ed4f11993d","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1696097404732,"created":1694885540858,"url":"http://localhost:4000/reset-password/9ab89f70d5d9d2ef62f4983d07e3ce9f","name":"LOCAL -> /reset-password/:reset_password_token","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"newPassword\": \"newPASSWORD!123\",\n\t\"confirmNewPassword\": \"newPASSWORD!123\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_bf2e439315174a8c99097d5ff97a490f"}],"authentication":{},"metaSortKey":-1694885540858,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_613fdb9bb84740ef8046341947b23101","parentId":"wrk_209a09753ed2433387aeacea086eec07","modified":1693712479532,"created":1693712479532,"name":"LOCAL","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1693712479532,"_type":"request_group"},{"_id":"req_83a8ebfe25cf4300a83d02e69ca35dfb","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1696097065937,"created":1694811058724,"url":"http://localhost:4000/login/github/callback?code=522c5c82d43966d84d5b","name":"POST -> /login/github/callback?code=","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1694811058724,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_d77832a78f9d499c8a492e08b21676d9","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1696097068369,"created":1694371601845,"url":"http://localhost:4000/check-reset-password-token","name":"LOCAL -> /check-reset-password-token","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"resetPasswordToken\": \"dcd284f3c216e9a27597e4ba0e983a5a\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_c8f9563764dc4896a4753d97da6704b1"}],"authentication":{},"metaSortKey":-1694371601845,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_81165682e7e2469e97418c4e62be87ed","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1696097124449,"created":1694369358730,"url":"http://localhost:4000/reset-password/4be7b4a450d28863ba07dde43a4d6620","name":"LOCAL -> /reset-password","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"newPassword\": \"testeqweBR!123\",\n\t\"confirmNewPassword\": \"testeqweBR!123\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_d23bab2aee924d6eae7f5da6776f48f7"}],"authentication":{},"metaSortKey":-1694369358730,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_b57be7ec2e7f4301aa9ff13b63166416","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1694378978440,"created":1694116040098,"url":"http://localhost:4000/games/title/godofwar","name":"LOCAL -> /games/title/:game_title","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1694116040098,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_98a4d73bc37141d4a0920fcd63c9d34c","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1694884359723,"created":1694115982370,"url":"http://localhost:4000/games/id/8b82c2ce-28f8-45e5-b066-950e6873aefb","name":"LOCAL -> /games/id/:game_id","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1694115982370,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_955295c3fbb34d37bdce2422b8d7a3f7","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1696097106977,"created":1694115472341,"url":"http://localhost:4000/games/random","name":"LOCAL -> /games/random","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"api_key_admin"},"metaSortKey":-1694115472341,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_cf88e9877ad44aad8eeca6e4992753ac","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1696097152702,"created":1694015731993,"url":"http://localhost:4000/profile","name":"LOCAL -> /profile","description":"","method":"PUT","body":{"mimeType":"application/json","text":"{\n\t\"username\": \"Alexx\",\n\t\"telegramNumber\": \"5518996971458\",\n\t\"newPassword\": \"galhardoBR@159\",\n\t\"confirmNewPassword\": \"galhardoBR@159\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_5cadc67fff92462d8e30b1ee6b8b27c5"}],"authentication":{"type":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIyMmE3MTMxNS0yZGEwLTQ2NzYtYmNkNC1jMzRmMjRlMWM4OTUiLCJpYXQiOjE2OTQyMTQxOTh9.n3hiu645O1K1rVDbleJjZePL-FS5jX_6b29IqlSckgs","disabled":false},"metaSortKey":-1693806952082.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_825d8e66a8e646ac911955b82697a790","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1696097153005,"created":1693775247425,"url":"http://localhost:4000/forget-password","name":"LOCAL -> /forget-password","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"email\": \"test@gmail.com\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_a88c32c691bc4a45a43b5df95281e314"}],"authentication":{},"metaSortKey":-1693775247425,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_b650fbf569bb476dab34d23388a23883","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1696097154532,"created":1693765961909,"url":"http://localhost:4000/contact","name":"LOCAL -> /contact","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"name\": \"Teste Telegram Bot Logger\",\n\t\"email\": \"testing_telegram_bot_logger@gmail.com\",\n\t\"subject\": \"FEEDBACK\",\n\t\"message\": \"testing telegram bot logger contact send message\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_1eeb7238fb104c09b8e80e17004e935e"}],"authentication":{},"metaSortKey":-1693765961909,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_1e1ee37264c7443f98d98a7730ea8aee","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1696097157719,"created":1693664497769,"url":"http://localhost:4000","name":"LOCAL -> /","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1693662430619,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_55a7bcac636b4e00ab22c78550631122","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1696097165630,"created":1693661005188,"url":"http://localhost:4000/login","name":"LOCAL -> /login","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"email\": \"admin@gmail.com\",\n\t\"password\": \"adminUSER!123\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_75fe73ca6d7d462f81fe90fc5df4dd00"}],"authentication":{"type":"bearer","token":"","disabled":true},"metaSortKey":-1693662430594,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_8c5caa52a5e24ebfa26d9127332a4c51","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1696097170974,"created":1693712473537,"url":"http://localhost:4000/check-user-jwt-token","name":"LOCAL -> /check-user-jwt-token","description":"","method":"POST","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiNTVmOTA5ZC00MDZhLTQwZjUtYjk1Ny1lZmY2MmQ4MDk0OWIiLCJpYXQiOjE2OTQ4ODUyNjJ9.enEJTl_uT_0Ra1sExNcHCmkiLUU9Wk3qKcrCLTZNAKM"},"metaSortKey":-1693662430569,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_d582f26d1fad4740a648ea8c9215af28","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1696097178452,"created":1693661205567,"url":"http://localhost:4000/register","name":"LOCAL -> /register","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"username\": \"pedro\",\n\t\"email\": \"pedro@gmail.com\",\n\t\"password\": \"adminUSER!123\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_7c718436ae6c4c51848c71ca089b3bb9"}],"authentication":{},"metaSortKey":-1693662430544,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_de54e032793f436cbc28f71b11a4e340","parentId":"fld_613fdb9bb84740ef8046341947b23101","modified":1696097184348,"created":1693662430519,"url":"http://localhost:4000/logout","name":"LOCAL -> /logout","description":"","method":"POST","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiNDJlNWViYy03M2EyLTRlODUtOWY0Yy1kZjEwNDY4MjY5MmQiLCJpYXQiOjE2OTYwOTcxNzR9.ebolz_mt406ZxjUlqt-n7ZNb3cNywzvv8udN42POKmE"},"metaSortKey":-1693662430519,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_817eaebd7b904ff4b06113220bae7eeb","parentId":"fld_146ad5f2acf54a38a617e3f63382c528","modified":1696096121862,"created":1694200695012,"url":"https://api.nerdapi.com/games/random","name":"PROD -> /games/random","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"api_key_admin","disabled":false},"metaSortKey":-1694200695012,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"fld_146ad5f2acf54a38a617e3f63382c528","parentId":"wrk_209a09753ed2433387aeacea086eec07","modified":1693667224170,"created":1693667224170,"name":"PROD","description":"","environment":{},"environmentPropertyOrder":null,"metaSortKey":-1693667224170,"_type":"request_group"},{"_id":"req_b91d80df2120449389d6d36d81c11235","parentId":"fld_146ad5f2acf54a38a617e3f63382c528","modified":1696096826755,"created":1693857172558,"url":"https://api.nerdapi.com/stripe/webhook","name":"PROD -> /stripe/webhook","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n  \"id\": \"evt_3NminMAo7yQpmqlh1hBgX6xV\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-08-16\",\n  \"created\": 1693857048,\n  \"data\": {\n    \"object\": {\n      \"id\": \"pi_3NminMAo7yQpmqlh1LoA3JrU\",\n      \"object\": \"payment_intent\",\n      \"amount\": 199,\n      \"amount_capturable\": 0,\n      \"amount_details\": {\n        \"tip\": {\n        }\n      },\n      \"amount_received\": 0,\n      \"application\": null,\n      \"application_fee_amount\": null,\n      \"automatic_payment_methods\": null,\n      \"canceled_at\": null,\n      \"cancellation_reason\": null,\n      \"capture_method\": \"automatic\",\n      \"client_secret\": \"pi_3NminMAo7yQpmqlh1LoA3JrU_secret_5Up1VHYZNAIQln8gdSPDLqHoY\",\n      \"confirmation_method\": \"automatic\",\n      \"created\": 1693857048,\n      \"currency\": \"usd\",\n      \"customer\": \"cus_OZsY4KMiMWw4A0\",\n      \"description\": \"Subscription creation\",\n      \"invoice\": \"in_1NminMAo7yQpmqlhEam6Dun1\",\n      \"last_payment_error\": null,\n      \"latest_charge\": null,\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"next_action\": null,\n      \"on_behalf_of\": null,\n      \"payment_method\": null,\n      \"payment_method_options\": {\n        \"card\": {\n          \"installments\": null,\n          \"mandate_options\": null,\n          \"network\": null,\n          \"request_three_d_secure\": \"automatic\"\n        }\n      },\n      \"payment_method_types\": [\n        \"card\"\n      ],\n      \"processing\": null,\n      \"receipt_email\": null,\n      \"review\": null,\n      \"setup_future_usage\": \"off_session\",\n      \"shipping\": null,\n      \"source\": null,\n      \"statement_descriptor\": null,\n      \"statement_descriptor_suffix\": null,\n      \"status\": \"requires_payment_method\",\n      \"transfer_data\": null,\n      \"transfer_group\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 3,\n  \"request\": {\n    \"id\": \"req_5emr94Ypxg6ZSK\",\n    \"idempotency_key\": \"9fb44f78-b733-4e01-bb6c-7d9b8cfe4a67\"\n  },\n  \"type\": \"payment_intent.created\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_51deb3110c7641559a12aa8d9377699b"}],"authentication":{},"metaSortKey":-1693857172558,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_000f1603ad884809ac87bd2f75fb0b2f","parentId":"fld_146ad5f2acf54a38a617e3f63382c528","modified":1696096827394,"created":1693776372694,"url":"https://api.nerdapi.com/recover-password","name":"PROD -> /recover-password","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"email\": \"caralho@gmail.com\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_a88c32c691bc4a45a43b5df95281e314"}],"authentication":{},"metaSortKey":-1693712341237.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_dff1472e94404d0998425d07953adbc0","parentId":"fld_146ad5f2acf54a38a617e3f63382c528","modified":1696096854173,"created":1693768664389,"url":"https://api.nerdapi.com/contact","name":"PROD -> /contact","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"name\": \"Test Name\",\n\t\"email\": \"test.email.insomnia@gmail.com\",\n\t\"subject\": \"SUPPORT\",\n\t\"message\": \"Testing send message with insomnia\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_1eeb7238fb104c09b8e80e17004e935e"}],"authentication":{},"metaSortKey":-1693712341225,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_b0eeee791fae4802b6e38f5877993eb4","parentId":"fld_146ad5f2acf54a38a617e3f63382c528","modified":1696096896470,"created":1693712341199,"url":"https://api.nerdapi.com/check-user-jwt-token","name":"PROD -> /check-user-jwt-token","description":"","method":"POST","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhOGMzYmM3LTU5OWUtNDI0OS1hZTk0LWZkOGI5Y2U3N2FjZSIsImlhdCI6MTY5MzcxMjYxMn0.XZtNoW2ix09LaZMfhd0UN8KXrhooo0wGuRI3KAbnjNI"},"metaSortKey":-1693712341200,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_7f6e99e0496144ccabebffc3a70e4ec9","parentId":"fld_146ad5f2acf54a38a617e3f63382c528","modified":1696096907163,"created":1693667248869,"url":"https://api.nerdapi.com/logout","name":"PROD -> /logout","description":"","method":"POST","body":{},"parameters":[],"headers":[],"authentication":{"type":"bearer","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzMmQ1NDVhLTAzOGEtNDY0Mi04ZjZhLTUzMTI5OTdiYTVlMSIsImlhdCI6MTY5MzY2ODE4OH0.QLo5i8heDW7Mtu3Gc3PBj13teDGzomyvcHDENDOKBCU"},"metaSortKey":-1693667225218,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_d8962ed902c24007a02c3540ee336647","parentId":"fld_146ad5f2acf54a38a617e3f63382c528","modified":1696096954473,"created":1693667262593,"url":"https://api.nerdapi.com/register","name":"PROD -> /register","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"username\": \"Teste User\",\n\t\"email\": \"teste.user.email@gmail.com\",\n\t\"password\": \"testeBR@!123\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_7c718436ae6c4c51848c71ca089b3bb9"}],"authentication":{},"metaSortKey":-1693667225193,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_1a67bd013ab2410f8fa8236e9b5c375c","parentId":"fld_146ad5f2acf54a38a617e3f63382c528","modified":1696096959023,"created":1693667273865,"url":"https://api.nerdapi.com/login","name":"PROD -> /login","description":"","method":"POST","body":{"mimeType":"application/json","text":"{\n\t\"email\": \"teste.user.email@gmail.com\",\n\t\"password\": \"testeBR@!123\"\n}"},"parameters":[],"headers":[{"name":"Content-Type","value":"application/json","id":"pair_75fe73ca6d7d462f81fe90fc5df4dd00"}],"authentication":{"type":"bearer","token":"","disabled":true},"metaSortKey":-1693667225180.5,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"req_7484091a320c43d086656451ce22ec53","parentId":"fld_146ad5f2acf54a38a617e3f63382c528","modified":1694060421977,"created":1693667225168,"url":"https://api.nerdapi.com","name":"PROD -> /","description":"","method":"GET","body":{},"parameters":[],"headers":[],"authentication":{},"metaSortKey":-1693667225168,"isPrivate":false,"settingStoreCookies":true,"settingSendCookies":true,"settingDisableRenderRequestBody":false,"settingEncodeUrl":true,"settingRebuildPath":true,"settingFollowRedirects":"global","_type":"request"},{"_id":"env_67f0bec602aefa89953b5523f4313cc67c67f269","parentId":"wrk_209a09753ed2433387aeacea086eec07","modified":1693661002602,"created":1693661002602,"name":"Base Environment","data":{},"dataPropertyOrder":null,"color":null,"isPrivate":false,"metaSortKey":1693661002602,"_type":"environment"},{"_id":"jar_67f0bec602aefa89953b5523f4313cc67c67f269","parentId":"wrk_209a09753ed2433387aeacea086eec07","modified":1694031740413,"created":1693661002603,"name":"Default Jar","cookies":[{"key":"__Host-GAPS","value":"1:iD50a2d0eZIWrlu2StnNYnuNYA_Kdg:bejarbv_z_YHeXUh","expires":"2025-09-05T20:22:19.000Z","domain":"accounts.google.com","path":"/","secure":true,"httpOnly":true,"extensions":["Priority=HIGH"],"hostOnly":true,"creation":"2023-09-06T20:22:20.407Z","lastAccessed":"2023-09-06T20:22:20.407Z","id":"9988122094791487"}],"_type":"cookie_jar"},{"_id":"spc_ffde10ee847544938fe1938516276b83","parentId":"wrk_209a09753ed2433387aeacea086eec07","modified":1693661002598,"created":1693661002598,"fileName":"GALHARDO MICROSAAS","contents":"","contentType":"yaml","_type":"api_spec"}]}
+{
+	"_type": "export",
+	"__export_format": 4,
+	"__export_date": "2023-09-30T18:10:41.208Z",
+	"__export_source": "insomnia.desktop.app:v2022.4.2",
+	"resources": [
+		{
+			"_id": "req_9a4e25e999e04d4e8e0ec1ba96a448f1",
+			"parentId": "fld_9b621c426ef84fca8a9404e6f91c8f04",
+			"modified": 1696096997563,
+			"created": 1694813608061,
+			"url": "https://api.github.com/user",
+			"name": "api.github.com/user",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {
+				"type": "bearer",
+				"token": "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",
+				"disabled": false
+			},
+			"metaSortKey": -1694813608061,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "fld_9b621c426ef84fca8a9404e6f91c8f04",
+			"parentId": "wrk_209a09753ed2433387aeacea086eec07",
+			"modified": 1696096990474,
+			"created": 1696096990474,
+			"name": "GITHUB",
+			"description": "",
+			"environment": {},
+			"environmentPropertyOrder": null,
+			"metaSortKey": -1696096990475,
+			"_type": "request_group"
+		},
+		{
+			"_id": "wrk_209a09753ed2433387aeacea086eec07",
+			"parentId": null,
+			"modified": 1694374359165,
+			"created": 1693661002596,
+			"name": "API.NERDAPI.COM",
+			"description": "",
+			"scope": "collection",
+			"_type": "workspace"
+		},
+		{
+			"_id": "req_5dbc79892cb24333be48ea196624e157",
+			"parentId": "fld_4050a006d0d74488a03fce9c56cd38e3",
+			"modified": 1696097366342,
+			"created": 1694292336619,
+			"url": "https://nerdapi.com/stripe/create-portal-session",
+			"name": "PROD -> /create-portal-session",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"session_id\": \"cs_test_a1slUosmQb971BlMckYGCDVPMhejaEAaeFmHeyU0oH2zHTvBEx35JPObYd\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_336d60bb6b0241b994419cbdad426a80"
+				}
+			],
+			"authentication": {
+				"type": "bearer",
+				"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI4YjgxZTNjZS0wYzFhLTQyM2UtOTlhNi05ZjRlNzUyMGQ1MjAiLCJpYXQiOjE2OTQwMjExODh9.L_2VaQjpFi1f0TCMI5UqL-PoxnOdZs2Kvdn4BjCsQXE"
+			},
+			"metaSortKey": -1694021676942,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "fld_4050a006d0d74488a03fce9c56cd38e3",
+			"parentId": "fld_67eba8ef002a4663957e55949927068f",
+			"modified": 1694368778596,
+			"created": 1694292336590,
+			"name": "PROD",
+			"description": "",
+			"environment": {},
+			"environmentPropertyOrder": null,
+			"metaSortKey": -1694368741595,
+			"_type": "request_group"
+		},
+		{
+			"_id": "fld_67eba8ef002a4663957e55949927068f",
+			"parentId": "wrk_209a09753ed2433387aeacea086eec07",
+			"modified": 1694368730777,
+			"created": 1694008569114,
+			"name": "STRIPE",
+			"description": "",
+			"environment": {},
+			"environmentPropertyOrder": null,
+			"metaSortKey": -1693712479582,
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_cd921c8e7e044570874955a0d733827d",
+			"parentId": "fld_4050a006d0d74488a03fce9c56cd38e3",
+			"modified": 1696097368362,
+			"created": 1694292336617,
+			"url": "https://nerdapi.com/stripe/create-checkout-session",
+			"name": "PROD -> /create-checkout-session",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"lookup_key\": \"plan_pro\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_f992c250a3e444738033415b7c0edd5a"
+				}
+			],
+			"authentication": {
+				"type": "bearer",
+				"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIyMmE3MTMxNS0yZGEwLTQ2NzYtYmNkNC1jMzRmMjRlMWM4OTUiLCJpYXQiOjE2OTQyMTQxOTh9.n3hiu645O1K1rVDbleJjZePL-FS5jX_6b29IqlSckgs"
+			},
+			"metaSortKey": -1694021070671,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_a70b68a7437744889f1f60cb71c32080",
+			"parentId": "fld_4050a006d0d74488a03fce9c56cd38e3",
+			"modified": 1696097368717,
+			"created": 1694292336615,
+			"url": "https://api.nerdapi.com/stripe/webhook",
+			"name": "PROD -> checkout.session.completed",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"id\": \"evt_1NmhoqAo7yQpmqlhg4TnHgRH\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-10-16\",\n  \"created\": 1693853296,\n  \"data\": {\n    \"object\": {\n      \"id\": \"cs_test_a1WNhgdDmTEVUGVebL7qgsfFHYeGjJ4WmApLtzRAoHHTTBBbjLpiYGFzWn\",\n      \"object\": \"checkout.session\",\n      \"after_expiration\": null,\n      \"allow_promotion_codes\": null,\n      \"amount_subtotal\": 499,\n      \"amount_total\": 499,\n      \"automatic_tax\": {\n        \"enabled\": false,\n        \"status\": null\n      },\n      \"billing_address_collection\": \"auto\",\n      \"cancel_url\": \"http://localhost:5173/pricing\",\n      \"client_reference_id\": null,\n      \"consent\": null,\n      \"consent_collection\": null,\n      \"created\": 1693853281,\n      \"currency\": \"usd\",\n      \"currency_conversion\": null,\n      \"custom_fields\": [\n      ],\n      \"custom_text\": {\n        \"shipping_address\": null,\n        \"submit\": null\n      },\n      \"customer\": \"cus_OZrXWOVtDiSJlB\",\n      \"customer_creation\": \"always\",\n      \"customer_details\": {\n        \"address\": {\n          \"city\": \"Araçatuba\",\n          \"country\": \"BR\",\n          \"line1\": \"Rua Anselmo Manarelli\",\n          \"line2\": null,\n          \"postal_code\": \"13560-290\",\n          \"state\": \"SP\"\n        },\n        \"email\": \"aleexgvieira@gmail.com\",\n        \"name\": \"ALEX GALHARDO VIEIRA\",\n        \"phone\": null,\n        \"tax_exempt\": \"none\",\n        \"tax_ids\": [\n        ]\n      },\n      \"customer_email\": null,\n      \"expires_at\": 1693939681,\n      \"invoice\": \"in_1NmhooAo7yQpmqlhatjDLodW\",\n      \"invoice_creation\": null,\n      \"livemode\": false,\n      \"locale\": null,\n      \"metadata\": {\n      },\n      \"mode\": \"subscription\",\n      \"payment_intent\": null,\n      \"payment_link\": null,\n      \"payment_method_collection\": \"always\",\n      \"payment_method_options\": null,\n      \"payment_method_types\": [\n        \"card\"\n      ],\n      \"payment_status\": \"paid\",\n      \"phone_number_collection\": {\n        \"enabled\": false\n      },\n      \"recovered_from\": null,\n      \"setup_intent\": null,\n      \"shipping_address_collection\": null,\n      \"shipping_cost\": null,\n      \"shipping_details\": null,\n      \"shipping_options\": [\n      ],\n      \"status\": \"complete\",\n      \"submit_type\": null,\n      \"subscription\": \"sub_1NmhooAo7yQpmqlhss4xAptq\",\n      \"success_url\": \"http://localhost:5173/checkout/success?session_id={CHECKOUT_SESSION_ID}&plan=pro\",\n      \"total_details\": {\n        \"amount_discount\": 0,\n        \"amount_shipping\": 0,\n        \"amount_tax\": 0\n      },\n      \"url\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": null,\n    \"idempotency_key\": null\n  },\n  \"type\": \"checkout.session.completed\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_29549b45c820407cb1f774c7f334a223"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694013262322,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_efb1d08e67f944c68ae2cacad25c00d2",
+			"parentId": "fld_4050a006d0d74488a03fce9c56cd38e3",
+			"modified": 1696097369828,
+			"created": 1694292336612,
+			"url": "https://api.nerdapi.com/stripe/webhook",
+			"name": "PROD -> payment_intent.succeeded",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"id\": \"evt_3NmhooAo7yQpmqlh0wxdzeVe\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-10-16\",\n  \"created\": 1693853295,\n  \"data\": {\n    \"object\": {\n      \"id\": \"pi_3NmhooAo7yQpmqlh09wd7m9y\",\n      \"object\": \"payment_intent\",\n      \"amount\": 499,\n      \"amount_capturable\": 0,\n      \"amount_details\": {\n        \"tip\": {\n        }\n      },\n      \"amount_received\": 499,\n      \"application\": null,\n      \"application_fee_amount\": null,\n      \"automatic_payment_methods\": null,\n      \"canceled_at\": null,\n      \"cancellation_reason\": null,\n      \"capture_method\": \"automatic\",\n      \"client_secret\": \"pi_3NmhooAo7yQpmqlh09wd7m9y_secret_b6F3TyqS27GXOEo6Zo5VEBkze\",\n      \"confirmation_method\": \"automatic\",\n      \"created\": 1693853294,\n      \"currency\": \"usd\",\n      \"customer\": \"cus_OZrXWOVtDiSJlB\",\n      \"description\": \"Subscription creation\",\n      \"invoice\": \"in_1NmhooAo7yQpmqlhatjDLodW\",\n      \"last_payment_error\": null,\n      \"latest_charge\": \"ch_3NmhooAo7yQpmqlh0ycuX1dU\",\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"next_action\": null,\n      \"on_behalf_of\": null,\n      \"payment_method\": \"pm_1NmhonAo7yQpmqlhfqQfGtGG\",\n      \"payment_method_options\": {\n        \"card\": {\n          \"installments\": null,\n          \"mandate_options\": null,\n          \"network\": null,\n          \"request_three_d_secure\": \"automatic\",\n          \"setup_future_usage\": \"off_session\"\n        }\n      },\n      \"payment_method_types\": [\n        \"card\"\n      ],\n      \"processing\": null,\n      \"receipt_email\": null,\n      \"review\": null,\n      \"setup_future_usage\": \"off_session\",\n      \"shipping\": null,\n      \"source\": null,\n      \"statement_descriptor\": null,\n      \"statement_descriptor_suffix\": null,\n      \"status\": \"succeeded\",\n      \"transfer_data\": null,\n      \"transfer_group\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_Jbb170Xmu9aDgG\",\n    \"idempotency_key\": \"2e819bc9-a3e9-44c4-9d54-3e338c40cc18\"\n  },\n  \"type\": \"payment_intent.succeeded\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_9a89aad0c3864749ba61df0af8b3df20"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694013210234,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_fd35c56ccb844a5a987d21cb56eae34a",
+			"parentId": "fld_4050a006d0d74488a03fce9c56cd38e3",
+			"modified": 1696097370176,
+			"created": 1694292336609,
+			"url": "https://api.nerdapi.com/stripe/webhook",
+			"name": "PROD -> billing_portal.session.created",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"id\": \"evt_1NmiTYAo7yQpmqlhjinnlLzZ\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-10-16\",\n  \"created\": 1693855820,\n  \"data\": {\n    \"object\": {\n      \"id\": \"bps_1NmiTYAo7yQpmqlhTBMQmqb2\",\n      \"object\": \"billing_portal.session\",\n      \"configuration\": \"bpc_1NmfFuAo7yQpmqlheIlNMZBM\",\n      \"created\": 1693855820,\n      \"customer\": \"cus_OZsD9Mfc3sZu4C\",\n      \"flow\": null,\n      \"livemode\": false,\n      \"locale\": null,\n      \"on_behalf_of\": null,\n      \"return_url\": \"https://microsaas.alexgalhardo.com/profile\",\n      \"url\": \"https://billing.stripe.com/p/session/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PWnNFd2t6VnQ3YzVGeGk5UmVUejRSOTlZVXdvT28w0100INz9Hub8\"\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_0Jm4LZaoGhbCUR\",\n    \"idempotency_key\": \"stripe-node-retry-fd03ed63-938b-4057-af29-3d106c292397\"\n  },\n  \"type\": \"billing_portal.session.created\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_6707b8063268474c9ccda71593149897"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694013155953,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_63b83a864efb41999e210885f8bcca7f",
+			"parentId": "fld_4050a006d0d74488a03fce9c56cd38e3",
+			"modified": 1696097370603,
+			"created": 1694292336606,
+			"url": "https://api.nerdapi.com/stripe/webhook",
+			"name": "PROD -> customer.created",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"id\": \"evt_1NoY0hAo7yQpmqlhjfF4Ni1p\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-10-16\",\n  \"created\": 1694292244,\n  \"data\": {\n    \"object\": {\n      \"id\": \"cus_OblXq4uW4OXIuk\",\n      \"object\": \"customer\",\n      \"address\": {\n        \"city\": \"Araçatuba\",\n        \"country\": \"BR\",\n        \"line1\": \"Rua Anselmo Manarelli\",\n        \"line2\": null,\n        \"postal_code\": \"13560-290\",\n        \"state\": \"SP\"\n      },\n      \"balance\": 0,\n      \"created\": 1694292244,\n      \"currency\": null,\n      \"default_source\": null,\n      \"delinquent\": false,\n      \"description\": null,\n      \"discount\": null,\n      \"email\": \"aleexgvieira@gmail.com\",\n      \"invoice_prefix\": \"572F2985\",\n      \"invoice_settings\": {\n        \"custom_fields\": null,\n        \"default_payment_method\": null,\n        \"footer\": null,\n        \"rendering_options\": null\n      },\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"name\": \"ALEX GALHARDO VIEIRA\",\n      \"next_invoice_sequence\": 2,\n      \"phone\": null,\n      \"preferred_locales\": [\n        \"en-US\"\n      ],\n      \"shipping\": null,\n      \"tax_exempt\": \"none\",\n      \"test_clock\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_Tiqd9BvW58QWiD\",\n    \"idempotency_key\": \"48ae403d-21d9-4792-805b-1a30480ba66a\"\n  },\n  \"type\": \"customer.created\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_41825f5d0a47443aacf8d3eaea7bdf33"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694012776449,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_608ddbc187f0478fad72c6a45b047a52",
+			"parentId": "fld_4050a006d0d74488a03fce9c56cd38e3",
+			"modified": 1696097371437,
+			"created": 1694292336603,
+			"url": "https://api.nerdapi.com/stripe/webhook",
+			"name": "PROD -> invoice.finalized",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"id\": \"evt_1Nr4AAAo7yQpmqlhgOIu5YGs\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-10-16\",\n  \"created\": 1694892495,\n  \"data\": {\n    \"object\": {\n      \"id\": \"in_1Nr4A7Ao7yQpmqlhjv73t9ry\",\n      \"object\": \"invoice\",\n      \"account_country\": \"BR\",\n      \"account_name\": \"NERD API\",\n      \"account_tax_ids\": null,\n      \"amount_due\": 199,\n      \"amount_paid\": 0,\n      \"amount_remaining\": 199,\n      \"amount_shipping\": 0,\n      \"application\": null,\n      \"application_fee_amount\": null,\n      \"attempt_count\": 0,\n      \"attempted\": false,\n      \"auto_advance\": false,\n      \"automatic_tax\": {\n        \"enabled\": false,\n        \"status\": null\n      },\n      \"billing_reason\": \"subscription_create\",\n      \"charge\": null,\n      \"collection_method\": \"charge_automatically\",\n      \"created\": 1694892495,\n      \"currency\": \"usd\",\n      \"custom_fields\": null,\n      \"customer\": \"cus_OeMt3nzKrSmHwr\",\n      \"customer_address\": {\n        \"city\": \"Araçatuba\",\n        \"country\": \"BR\",\n        \"line1\": \"Rua Anselmo Manarelli\",\n        \"line2\": null,\n        \"postal_code\": \"13560-290\",\n        \"state\": \"SP\"\n      },\n      \"customer_email\": \"aleexgvieira@gmail.com\",\n      \"customer_name\": \"ALEX GALHARDO VIEIRA\",\n      \"customer_phone\": null,\n      \"customer_shipping\": null,\n      \"customer_tax_exempt\": \"none\",\n      \"customer_tax_ids\": [\n      ],\n      \"default_payment_method\": null,\n      \"default_source\": null,\n      \"default_tax_rates\": [\n      ],\n      \"description\": null,\n      \"discount\": null,\n      \"discounts\": [\n      ],\n      \"due_date\": null,\n      \"effective_at\": 1694892495,\n      \"ending_balance\": 0,\n      \"footer\": null,\n      \"from_invoice\": null,\n      \"hosted_invoice_url\": \"https://invoice.stripe.com/i/acct_1Nmds7Ao7yQpmqlh/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PZU10QWlQaDNsVTNWSjBXWkpOMWxsckg4OHhXc1Z5LDg1NDMzMjk40200PwyXbuuu?s=ap\",\n      \"invoice_pdf\": \"https://pay.stripe.com/invoice/acct_1Nmds7Ao7yQpmqlh/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PZU10QWlQaDNsVTNWSjBXWkpOMWxsckg4OHhXc1Z5LDg1NDMzMjk40200PwyXbuuu/pdf?s=ap\",\n      \"last_finalization_error\": null,\n      \"latest_revision\": null,\n      \"lines\": {\n        \"object\": \"list\",\n        \"data\": [\n          {\n            \"id\": \"il_1Nr4A7Ao7yQpmqlh1V24Ft47\",\n            \"object\": \"line_item\",\n            \"amount\": 199,\n            \"amount_excluding_tax\": 199,\n            \"currency\": \"usd\",\n            \"description\": \"1 × NerdAPI Casual Player (at $1.99 / month)\",\n            \"discount_amounts\": [\n            ],\n            \"discountable\": true,\n            \"discounts\": [\n            ],\n            \"livemode\": false,\n            \"metadata\": {\n            },\n            \"period\": {\n              \"end\": 1697484494,\n              \"start\": 1694892494\n            },\n            \"plan\": {\n              \"id\": \"price_1NmdsxAo7yQpmqlh8t2eoXof\",\n              \"object\": \"plan\",\n              \"active\": true,\n              \"aggregate_usage\": null,\n              \"amount\": 199,\n              \"amount_decimal\": \"199\",\n              \"billing_scheme\": \"per_unit\",\n              \"created\": 1693838175,\n              \"currency\": \"usd\",\n              \"interval\": \"month\",\n              \"interval_count\": 1,\n              \"livemode\": false,\n              \"metadata\": {\n              },\n              \"nickname\": null,\n              \"product\": \"prod_OZnTiXFlfnFkdi\",\n              \"tiers_mode\": null,\n              \"transform_usage\": null,\n              \"trial_period_days\": null,\n              \"usage_type\": \"licensed\"\n            },\n            \"price\": {\n              \"id\": \"price_1NmdsxAo7yQpmqlh8t2eoXof\",\n              \"object\": \"price\",\n              \"active\": true,\n              \"billing_scheme\": \"per_unit\",\n              \"created\": 1693838175,\n              \"currency\": \"usd\",\n              \"custom_unit_amount\": null,\n              \"livemode\": false,\n              \"lookup_key\": \"plan_casual\",\n              \"metadata\": {\n              },\n              \"nickname\": null,\n              \"product\": \"prod_OZnTiXFlfnFkdi\",\n              \"recurring\": {\n                \"aggregate_usage\": null,\n                \"interval\": \"month\",\n                \"interval_count\": 1,\n                \"trial_period_days\": null,\n                \"usage_type\": \"licensed\"\n              },\n              \"tax_behavior\": \"unspecified\",\n              \"tiers_mode\": null,\n              \"transform_quantity\": null,\n              \"type\": \"recurring\",\n              \"unit_amount\": 199,\n              \"unit_amount_decimal\": \"199\"\n            },\n            \"proration\": false,\n            \"proration_details\": {\n              \"credited_items\": null\n            },\n            \"quantity\": 1,\n            \"subscription\": \"sub_1Nr4A6Ao7yQpmqlh9vPX4Pox\",\n            \"subscription_item\": \"si_OeMtmtWCPghrnR\",\n            \"tax_amounts\": [\n            ],\n            \"tax_rates\": [\n            ],\n            \"type\": \"subscription\",\n            \"unit_amount_excluding_tax\": \"199\"\n          }\n        ],\n        \"has_more\": false,\n        \"total_count\": 1,\n        \"url\": \"/v1/invoices/in_1Nr4A7Ao7yQpmqlhjv73t9ry/lines\"\n      },\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"next_payment_attempt\": null,\n      \"number\": \"C53B90E7-0001\",\n      \"on_behalf_of\": null,\n      \"paid\": false,\n      \"paid_out_of_band\": false,\n      \"payment_intent\": \"pi_3Nr4A7Ao7yQpmqlh0WpB4J2h\",\n      \"payment_settings\": {\n        \"default_mandate\": null,\n        \"payment_method_options\": null,\n        \"payment_method_types\": null\n      },\n      \"period_end\": 1694892494,\n      \"period_start\": 1694892494,\n      \"post_payment_credit_notes_amount\": 0,\n      \"pre_payment_credit_notes_amount\": 0,\n      \"quote\": null,\n      \"receipt_number\": null,\n      \"rendering_options\": null,\n      \"shipping_cost\": null,\n      \"shipping_details\": null,\n      \"starting_balance\": 0,\n      \"statement_descriptor\": null,\n      \"status\": \"open\",\n      \"status_transitions\": {\n        \"finalized_at\": 1694892495,\n        \"marked_uncollectible_at\": null,\n        \"paid_at\": null,\n        \"voided_at\": null\n      },\n      \"subscription\": \"sub_1Nr4A6Ao7yQpmqlh9vPX4Pox\",\n      \"subscription_details\": {\n        \"metadata\": {\n        }\n      },\n      \"subtotal\": 199,\n      \"subtotal_excluding_tax\": 199,\n      \"tax\": null,\n      \"test_clock\": null,\n      \"total\": 199,\n      \"total_discount_amounts\": [\n      ],\n      \"total_excluding_tax\": 199,\n      \"total_tax_amounts\": [\n      ],\n      \"transfer_data\": null,\n      \"webhooks_delivered_at\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 2,\n  \"request\": {\n    \"id\": \"req_5RAxC5CjRRcusn\",\n    \"idempotency_key\": \"34f3b1b3-aac2-4563-b208-3f676400ea89\"\n  },\n  \"type\": \"invoice.finalized\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_d65a02e1fd064407bbb3d2b284d19943"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694010108535,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_6d09a82f55d04096b23e87aaea13445a",
+			"parentId": "fld_4050a006d0d74488a03fce9c56cd38e3",
+			"modified": 1696097371692,
+			"created": 1694292336597,
+			"url": "https://api.nerdapi.com/stripe/webhook",
+			"name": "PROD -> charge.succeeded",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"id\": \"evt_3NmhooAo7yQpmqlh0ocSH9jJ\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-10-16\",\n  \"created\": 1693853295,\n  \"data\": {\n    \"object\": {\n      \"id\": \"ch_3NmhooAo7yQpmqlh0ycuX1dU\",\n      \"object\": \"charge\",\n      \"amount\": 499,\n      \"amount_captured\": 499,\n      \"amount_refunded\": 0,\n      \"application\": null,\n      \"application_fee\": null,\n      \"application_fee_amount\": null,\n      \"balance_transaction\": \"txn_3NmhooAo7yQpmqlh0PQ1JR8s\",\n      \"billing_details\": {\n        \"address\": {\n          \"city\": \"Araçatuba\",\n          \"country\": \"BR\",\n          \"line1\": \"Rua Anselmo Manarelli\",\n          \"line2\": null,\n          \"postal_code\": \"13560-290\",\n          \"state\": \"SP\"\n        },\n        \"email\": \"aleexgvieira@gmail.com\",\n        \"name\": \"ALEX GALHARDO VIEIRA\",\n        \"phone\": null\n      },\n      \"calculated_statement_descriptor\": \"Stripe\",\n      \"captured\": true,\n      \"created\": 1693853295,\n      \"currency\": \"usd\",\n      \"customer\": \"cus_OZrXWOVtDiSJlB\",\n      \"description\": \"Subscription creation\",\n      \"destination\": null,\n      \"dispute\": null,\n      \"disputed\": false,\n      \"failure_balance_transaction\": null,\n      \"failure_code\": null,\n      \"failure_message\": null,\n      \"fraud_details\": {\n      },\n      \"invoice\": \"in_1NmhooAo7yQpmqlhatjDLodW\",\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"on_behalf_of\": null,\n      \"order\": null,\n      \"outcome\": {\n        \"network_status\": \"approved_by_network\",\n        \"reason\": null,\n        \"risk_level\": \"normal\",\n        \"risk_score\": 48,\n        \"seller_message\": \"Payment complete.\",\n        \"type\": \"authorized\"\n      },\n      \"paid\": true,\n      \"payment_intent\": \"pi_3NmhooAo7yQpmqlh09wd7m9y\",\n      \"payment_method\": \"pm_1NmhonAo7yQpmqlhfqQfGtGG\",\n      \"payment_method_details\": {\n        \"card\": {\n          \"brand\": \"mastercard\",\n          \"checks\": {\n            \"address_line1_check\": \"pass\",\n            \"address_postal_code_check\": \"pass\",\n            \"cvc_check\": null\n          },\n          \"country\": \"US\",\n          \"exp_month\": 12,\n          \"exp_year\": 2030,\n          \"fingerprint\": \"WlRvMcVDE4jlJUPi\",\n          \"funding\": \"credit\",\n          \"installments\": null,\n          \"last4\": \"4320\",\n          \"mandate\": null,\n          \"network\": \"mastercard\",\n          \"network_token\": {\n            \"used\": false\n          },\n          \"three_d_secure\": null,\n          \"wallet\": {\n            \"dynamic_last4\": \"4444\",\n            \"google_pay\": {\n            },\n            \"type\": \"google_pay\"\n          }\n        },\n        \"type\": \"card\"\n      },\n      \"receipt_email\": null,\n      \"receipt_number\": null,\n      \"receipt_url\": \"https://pay.stripe.com/receipts/invoices/CAcaFwoVYWNjdF8xTm1kczdBbzd5UXBtcWxoKPDM2KcGMgY2p6jFFf86LBYdBMsKey3GnyTq8Sv2gGYXWMA1qpzd1GNvoVih23hUB2O-9TOsjRviIB7u?s=ap\",\n      \"refunded\": false,\n      \"review\": null,\n      \"shipping\": null,\n      \"source\": null,\n      \"source_transfer\": null,\n      \"statement_descriptor\": null,\n      \"statement_descriptor_suffix\": null,\n      \"status\": \"succeeded\",\n      \"transfer_data\": null,\n      \"transfer_group\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_Jbb170Xmu9aDgG\",\n    \"idempotency_key\": \"2e819bc9-a3e9-44c4-9d54-3e338c40cc18\"\n  },\n  \"type\": \"charge.succeeded\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_0b5752b6b39442a4981efce20cd4c663"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694008677230,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_6936a99d7cae44078a58472becffe691",
+			"parentId": "fld_3f22b5f2cf3649eb952673cfed20e92a",
+			"modified": 1696097397994,
+			"created": 1694021676942,
+			"url": "http://localhost:3000/stripe/create-portal-session",
+			"name": "LOCAL -> /create-portal-session",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"session_id\": \"cs_test_a1slUosmQb971BlMckYGCDVPMhejaEAaeFmHeyU0oH2zHTvBEx35JPObYd\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_336d60bb6b0241b994419cbdad426a80"
+				}
+			],
+			"authentication": {
+				"type": "bearer",
+				"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI4YjgxZTNjZS0wYzFhLTQyM2UtOTlhNi05ZjRlNzUyMGQ1MjAiLCJpYXQiOjE2OTQwMjExODh9.L_2VaQjpFi1f0TCMI5UqL-PoxnOdZs2Kvdn4BjCsQXE"
+			},
+			"metaSortKey": -1694021676942,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "fld_3f22b5f2cf3649eb952673cfed20e92a",
+			"parentId": "fld_67eba8ef002a4663957e55949927068f",
+			"modified": 1694368741545,
+			"created": 1694368741545,
+			"name": "LOCAL",
+			"description": "",
+			"environment": {},
+			"environmentPropertyOrder": null,
+			"metaSortKey": -1694368741545,
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_7260df5bdaea46658ff27abd7ac4403e",
+			"parentId": "fld_3f22b5f2cf3649eb952673cfed20e92a",
+			"modified": 1696097398490,
+			"created": 1694021070671,
+			"url": "http://localhost:3000/stripe/create-checkout-session",
+			"name": "LOCAL -> /create-checkout-session",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"lookup_key\": \"plan_pro\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_f992c250a3e444738033415b7c0edd5a"
+				}
+			],
+			"authentication": {
+				"type": "bearer",
+				"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIyMmE3MTMxNS0yZGEwLTQ2NzYtYmNkNC1jMzRmMjRlMWM4OTUiLCJpYXQiOjE2OTQyMTQxOTh9.n3hiu645O1K1rVDbleJjZePL-FS5jX_6b29IqlSckgs"
+			},
+			"metaSortKey": -1694021676929.5,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_3ca84db472d847ebaf46307ab1ba028a",
+			"parentId": "fld_3f22b5f2cf3649eb952673cfed20e92a",
+			"modified": 1696097382291,
+			"created": 1694013262322,
+			"url": "http://localhost:4000/stripe/webhook",
+			"name": "LOCAL -> checkout.session.completed",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"id\": \"evt_1NmhoqAo7yQpmqlhg4TnHgRH\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-10-16\",\n  \"created\": 1693853296,\n  \"data\": {\n    \"object\": {\n      \"id\": \"cs_test_a1WNhgdDmTEVUGVebL7qgsfFHYeGjJ4WmApLtzRAoHHTTBBbjLpiYGFzWn\",\n      \"object\": \"checkout.session\",\n      \"after_expiration\": null,\n      \"allow_promotion_codes\": null,\n      \"amount_subtotal\": 499,\n      \"amount_total\": 499,\n      \"automatic_tax\": {\n        \"enabled\": false,\n        \"status\": null\n      },\n      \"billing_address_collection\": \"auto\",\n      \"cancel_url\": \"http://localhost:5173/pricing\",\n      \"client_reference_id\": null,\n      \"consent\": null,\n      \"consent_collection\": null,\n      \"created\": 1693853281,\n      \"currency\": \"usd\",\n      \"currency_conversion\": null,\n      \"custom_fields\": [\n      ],\n      \"custom_text\": {\n        \"shipping_address\": null,\n        \"submit\": null\n      },\n      \"customer\": \"cus_OZrXWOVtDiSJlB\",\n      \"customer_creation\": \"always\",\n      \"customer_details\": {\n        \"address\": {\n          \"city\": \"Araçatuba\",\n          \"country\": \"BR\",\n          \"line1\": \"Rua Anselmo Manarelli\",\n          \"line2\": null,\n          \"postal_code\": \"13560-290\",\n          \"state\": \"SP\"\n        },\n        \"email\": \"aleexgvieira@gmail.com\",\n        \"name\": \"ALEX GALHARDO VIEIRA\",\n        \"phone\": null,\n        \"tax_exempt\": \"none\",\n        \"tax_ids\": [\n        ]\n      },\n      \"customer_email\": null,\n      \"expires_at\": 1693939681,\n      \"invoice\": \"in_1NmhooAo7yQpmqlhatjDLodW\",\n      \"invoice_creation\": null,\n      \"livemode\": false,\n      \"locale\": null,\n      \"metadata\": {\n      },\n      \"mode\": \"subscription\",\n      \"payment_intent\": null,\n      \"payment_link\": null,\n      \"payment_method_collection\": \"always\",\n      \"payment_method_options\": null,\n      \"payment_method_types\": [\n        \"card\"\n      ],\n      \"payment_status\": \"paid\",\n      \"phone_number_collection\": {\n        \"enabled\": false\n      },\n      \"recovered_from\": null,\n      \"setup_intent\": null,\n      \"shipping_address_collection\": null,\n      \"shipping_cost\": null,\n      \"shipping_details\": null,\n      \"shipping_options\": [\n      ],\n      \"status\": \"complete\",\n      \"submit_type\": null,\n      \"subscription\": \"sub_1NmhooAo7yQpmqlhss4xAptq\",\n      \"success_url\": \"http://localhost:5173/checkout/success?session_id={CHECKOUT_SESSION_ID}&plan=pro\",\n      \"total_details\": {\n        \"amount_discount\": 0,\n        \"amount_shipping\": 0,\n        \"amount_tax\": 0\n      },\n      \"url\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": null,\n    \"idempotency_key\": null\n  },\n  \"type\": \"checkout.session.completed\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_29549b45c820407cb1f774c7f334a223"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694021676917,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b2f03d5644214dc19c0d65efccd7dc40",
+			"parentId": "fld_3f22b5f2cf3649eb952673cfed20e92a",
+			"modified": 1696097395419,
+			"created": 1694013210234,
+			"url": "http://localhost:4000/stripe/webhook",
+			"name": "LOCAL -> payment_intent.succeeded",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"id\": \"evt_3NmhooAo7yQpmqlh0wxdzeVe\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-10-16\",\n  \"created\": 1693853295,\n  \"data\": {\n    \"object\": {\n      \"id\": \"pi_3NmhooAo7yQpmqlh09wd7m9y\",\n      \"object\": \"payment_intent\",\n      \"amount\": 499,\n      \"amount_capturable\": 0,\n      \"amount_details\": {\n        \"tip\": {\n        }\n      },\n      \"amount_received\": 499,\n      \"application\": null,\n      \"application_fee_amount\": null,\n      \"automatic_payment_methods\": null,\n      \"canceled_at\": null,\n      \"cancellation_reason\": null,\n      \"capture_method\": \"automatic\",\n      \"client_secret\": \"pi_3NmhooAo7yQpmqlh09wd7m9y_secret_b6F3TyqS27GXOEo6Zo5VEBkze\",\n      \"confirmation_method\": \"automatic\",\n      \"created\": 1693853294,\n      \"currency\": \"usd\",\n      \"customer\": \"cus_OZrXWOVtDiSJlB\",\n      \"description\": \"Subscription creation\",\n      \"invoice\": \"in_1NmhooAo7yQpmqlhatjDLodW\",\n      \"last_payment_error\": null,\n      \"latest_charge\": \"ch_3NmhooAo7yQpmqlh0ycuX1dU\",\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"next_action\": null,\n      \"on_behalf_of\": null,\n      \"payment_method\": \"pm_1NmhonAo7yQpmqlhfqQfGtGG\",\n      \"payment_method_options\": {\n        \"card\": {\n          \"installments\": null,\n          \"mandate_options\": null,\n          \"network\": null,\n          \"request_three_d_secure\": \"automatic\",\n          \"setup_future_usage\": \"off_session\"\n        }\n      },\n      \"payment_method_types\": [\n        \"card\"\n      ],\n      \"processing\": null,\n      \"receipt_email\": null,\n      \"review\": null,\n      \"setup_future_usage\": \"off_session\",\n      \"shipping\": null,\n      \"source\": null,\n      \"statement_descriptor\": null,\n      \"statement_descriptor_suffix\": null,\n      \"status\": \"succeeded\",\n      \"transfer_data\": null,\n      \"transfer_group\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_Jbb170Xmu9aDgG\",\n    \"idempotency_key\": \"2e819bc9-a3e9-44c4-9d54-3e338c40cc18\"\n  },\n  \"type\": \"payment_intent.succeeded\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_9a89aad0c3864749ba61df0af8b3df20"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694021676904.5,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_fe3be10c744545d39755af3a4b4cdf38",
+			"parentId": "fld_3f22b5f2cf3649eb952673cfed20e92a",
+			"modified": 1696097387021,
+			"created": 1694013155953,
+			"url": "http://localhost:4000/stripe/webhook",
+			"name": "LOCAL -> billing_portal.session.created",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"id\": \"evt_1NmiTYAo7yQpmqlhjinnlLzZ\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-10-16\",\n  \"created\": 1693855820,\n  \"data\": {\n    \"object\": {\n      \"id\": \"bps_1NmiTYAo7yQpmqlhTBMQmqb2\",\n      \"object\": \"billing_portal.session\",\n      \"configuration\": \"bpc_1NmfFuAo7yQpmqlheIlNMZBM\",\n      \"created\": 1693855820,\n      \"customer\": \"cus_OZsD9Mfc3sZu4C\",\n      \"flow\": null,\n      \"livemode\": false,\n      \"locale\": null,\n      \"on_behalf_of\": null,\n      \"return_url\": \"https://microsaas.alexgalhardo.com/profile\",\n      \"url\": \"https://billing.stripe.com/p/session/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PWnNFd2t6VnQ3YzVGeGk5UmVUejRSOTlZVXdvT28w0100INz9Hub8\"\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_0Jm4LZaoGhbCUR\",\n    \"idempotency_key\": \"stripe-node-retry-fd03ed63-938b-4057-af29-3d106c292397\"\n  },\n  \"type\": \"billing_portal.session.created\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_6707b8063268474c9ccda71593149897"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694021676898.25,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_589baea526b145ef81995c664cb56a23",
+			"parentId": "fld_3f22b5f2cf3649eb952673cfed20e92a",
+			"modified": 1696097387857,
+			"created": 1694012776449,
+			"url": "http://localhost:4000/stripe/webhook",
+			"name": "LOCAL -> customer.created",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"id\": \"evt_1NoY0hAo7yQpmqlhjfF4Ni1p\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-10-16\",\n  \"created\": 1694292244,\n  \"data\": {\n    \"object\": {\n      \"id\": \"cus_OblXq4uW4OXIuk\",\n      \"object\": \"customer\",\n      \"address\": {\n        \"city\": \"Araçatuba\",\n        \"country\": \"BR\",\n        \"line1\": \"Rua Anselmo Manarelli\",\n        \"line2\": null,\n        \"postal_code\": \"13560-290\",\n        \"state\": \"SP\"\n      },\n      \"balance\": 0,\n      \"created\": 1694292244,\n      \"currency\": null,\n      \"default_source\": null,\n      \"delinquent\": false,\n      \"description\": null,\n      \"discount\": null,\n      \"email\": \"alexnerdapi@gmail.com\",\n      \"invoice_prefix\": \"572F2985\",\n      \"invoice_settings\": {\n        \"custom_fields\": null,\n        \"default_payment_method\": null,\n        \"footer\": null,\n        \"rendering_options\": null\n      },\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"name\": \"ALEX GALHARDO VIEIRA\",\n      \"next_invoice_sequence\": 2,\n      \"phone\": null,\n      \"preferred_locales\": [\n        \"en-US\"\n      ],\n      \"shipping\": null,\n      \"tax_exempt\": \"none\",\n      \"test_clock\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_Tiqd9BvW58QWiD\",\n    \"idempotency_key\": \"48ae403d-21d9-4792-805b-1a30480ba66a\"\n  },\n  \"type\": \"customer.created\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_41825f5d0a47443aacf8d3eaea7bdf33"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694021676895.125,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_4a355e8ea6644f10bbb23e823cb2f19b",
+			"parentId": "fld_3f22b5f2cf3649eb952673cfed20e92a",
+			"modified": 1696097388263,
+			"created": 1694010108535,
+			"url": "http://localhost:4000/stripe/webhook",
+			"name": "LOCAL -> invoice.finalized",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"id\": \"evt_1NoY0hAo7yQpmqlhTm46C31u\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-10-16\",\n  \"created\": 1694292245,\n  \"data\": {\n    \"object\": {\n      \"id\": \"in_1NoY0eAo7yQpmqlhFwgmjKpa\",\n      \"object\": \"invoice\",\n      \"account_country\": \"BR\",\n      \"account_name\": \"Galhardo MicroSaaS\",\n      \"account_tax_ids\": null,\n      \"amount_due\": 499,\n      \"amount_paid\": 0,\n      \"amount_remaining\": 499,\n      \"amount_shipping\": 0,\n      \"application\": null,\n      \"application_fee_amount\": null,\n      \"attempt_count\": 0,\n      \"attempted\": false,\n      \"auto_advance\": false,\n      \"automatic_tax\": {\n        \"enabled\": false,\n        \"status\": null\n      },\n      \"billing_reason\": \"subscription_create\",\n      \"charge\": null,\n      \"collection_method\": \"charge_automatically\",\n      \"created\": 1694292244,\n      \"currency\": \"usd\",\n      \"custom_fields\": null,\n      \"customer\": \"cus_OblXq4uW4OXIuk\",\n      \"customer_address\": {\n        \"city\": \"Araçatuba\",\n        \"country\": \"BR\",\n        \"line1\": \"Rua Anselmo Manarelli\",\n        \"line2\": null,\n        \"postal_code\": \"13560-290\",\n        \"state\": \"SP\"\n      },\n      \"customer_email\": \"alexnerdapi@gmail.com\",\n      \"customer_name\": \"ALEX GALHARDO VIEIRA\",\n      \"customer_phone\": null,\n      \"customer_shipping\": null,\n      \"customer_tax_exempt\": \"none\",\n      \"customer_tax_ids\": [\n      ],\n      \"default_payment_method\": null,\n      \"default_source\": null,\n      \"default_tax_rates\": [\n      ],\n      \"description\": null,\n      \"discount\": null,\n      \"discounts\": [\n      ],\n      \"due_date\": null,\n      \"effective_at\": 1694292244,\n      \"ending_balance\": 0,\n      \"footer\": null,\n      \"from_invoice\": null,\n      \"hosted_invoice_url\": \"https://invoice.stripe.com/i/acct_1Nmds7Ao7yQpmqlh/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PYmxYcklJYXMwVTNiaTVNVTM3VHlsUmllaWxFYzk2LDg0ODMzMDQ30200Q7Et8r3X?s=ap\",\n      \"invoice_pdf\": \"https://pay.stripe.com/invoice/acct_1Nmds7Ao7yQpmqlh/test_YWNjdF8xTm1kczdBbzd5UXBtcWxoLF9PYmxYcklJYXMwVTNiaTVNVTM3VHlsUmllaWxFYzk2LDg0ODMzMDQ30200Q7Et8r3X/pdf?s=ap\",\n      \"last_finalization_error\": null,\n      \"latest_revision\": null,\n      \"lines\": {\n        \"object\": \"list\",\n        \"data\": [\n          {\n            \"id\": \"il_1NoY0eAo7yQpmqlhs0TRF9qA\",\n            \"object\": \"line_item\",\n            \"amount\": 499,\n            \"amount_excluding_tax\": 499,\n            \"currency\": \"usd\",\n            \"description\": \"1 × NerdAPI PRO Player (at $4.99 / month)\",\n            \"discount_amounts\": [\n            ],\n            \"discountable\": true,\n            \"discounts\": [\n            ],\n            \"livemode\": false,\n            \"metadata\": {\n            },\n            \"period\": {\n              \"end\": 1696884244,\n              \"start\": 1694292244\n            },\n            \"plan\": {\n              \"id\": \"price_1NmdsYAo7yQpmqlhxWQxMFfW\",\n              \"object\": \"plan\",\n              \"active\": true,\n              \"aggregate_usage\": null,\n              \"amount\": 499,\n              \"amount_decimal\": \"499\",\n              \"billing_scheme\": \"per_unit\",\n              \"created\": 1693838150,\n              \"currency\": \"usd\",\n              \"interval\": \"month\",\n              \"interval_count\": 1,\n              \"livemode\": false,\n              \"metadata\": {\n              },\n              \"nickname\": null,\n              \"product\": \"prod_OZnTmkILXs6xJy\",\n              \"tiers_mode\": null,\n              \"transform_usage\": null,\n              \"trial_period_days\": null,\n              \"usage_type\": \"licensed\"\n            },\n            \"price\": {\n              \"id\": \"price_1NmdsYAo7yQpmqlhxWQxMFfW\",\n              \"object\": \"price\",\n              \"active\": true,\n              \"billing_scheme\": \"per_unit\",\n              \"created\": 1693838150,\n              \"currency\": \"usd\",\n              \"custom_unit_amount\": null,\n              \"livemode\": false,\n              \"lookup_key\": \"plan_pro\",\n              \"metadata\": {\n              },\n              \"nickname\": null,\n              \"product\": \"prod_OZnTmkILXs6xJy\",\n              \"recurring\": {\n                \"aggregate_usage\": null,\n                \"interval\": \"month\",\n                \"interval_count\": 1,\n                \"trial_period_days\": null,\n                \"usage_type\": \"licensed\"\n              },\n              \"tax_behavior\": \"unspecified\",\n              \"tiers_mode\": null,\n              \"transform_quantity\": null,\n              \"type\": \"recurring\",\n              \"unit_amount\": 499,\n              \"unit_amount_decimal\": \"499\"\n            },\n            \"proration\": false,\n            \"proration_details\": {\n              \"credited_items\": null\n            },\n            \"quantity\": 1,\n            \"subscription\": \"sub_1NoY0eAo7yQpmqlhnH6RJjco\",\n            \"subscription_item\": \"si_OblXz6aLY1RWz6\",\n            \"tax_amounts\": [\n            ],\n            \"tax_rates\": [\n            ],\n            \"type\": \"subscription\",\n            \"unit_amount_excluding_tax\": \"499\"\n          }\n        ],\n        \"has_more\": false,\n        \"total_count\": 1,\n        \"url\": \"/v1/invoices/in_1NoY0eAo7yQpmqlhFwgmjKpa/lines\"\n      },\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"next_payment_attempt\": null,\n      \"number\": \"572F2985-0001\",\n      \"on_behalf_of\": null,\n      \"paid\": false,\n      \"paid_out_of_band\": false,\n      \"payment_intent\": \"pi_3NoY0fAo7yQpmqlh1ugMqTAM\",\n      \"payment_settings\": {\n        \"default_mandate\": null,\n        \"payment_method_options\": null,\n        \"payment_method_types\": null\n      },\n      \"period_end\": 1694292244,\n      \"period_start\": 1694292244,\n      \"post_payment_credit_notes_amount\": 0,\n      \"pre_payment_credit_notes_amount\": 0,\n      \"quote\": null,\n      \"receipt_number\": null,\n      \"rendering_options\": null,\n      \"shipping_cost\": null,\n      \"shipping_details\": null,\n      \"starting_balance\": 0,\n      \"statement_descriptor\": null,\n      \"status\": \"open\",\n      \"status_transitions\": {\n        \"finalized_at\": 1694292244,\n        \"marked_uncollectible_at\": null,\n        \"paid_at\": null,\n        \"voided_at\": null\n      },\n      \"subscription\": \"sub_1NoY0eAo7yQpmqlhnH6RJjco\",\n      \"subscription_details\": {\n        \"metadata\": {\n        }\n      },\n      \"subtotal\": 499,\n      \"subtotal_excluding_tax\": 499,\n      \"tax\": null,\n      \"test_clock\": null,\n      \"total\": 499,\n      \"total_discount_amounts\": [\n      ],\n      \"total_excluding_tax\": 499,\n      \"total_tax_amounts\": [\n      ],\n      \"transfer_data\": null,\n      \"webhooks_delivered_at\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 1,\n  \"request\": {\n    \"id\": \"req_Tiqd9BvW58QWiD\",\n    \"idempotency_key\": \"48ae403d-21d9-4792-805b-1a30480ba66a\"\n  },\n  \"type\": \"invoice.finalized\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_d65a02e1fd064407bbb3d2b284d19943"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694021676893.5625,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_cc629e028e48422ca1597315e7e52d44",
+			"parentId": "fld_3f22b5f2cf3649eb952673cfed20e92a",
+			"modified": 1696097388626,
+			"created": 1694008677230,
+			"url": "http://localhost:4000/stripe/webhook",
+			"name": "LOCAL -> charge.succeeded",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"id\": \"evt_3NoY0fAo7yQpmqlh144CLvFG\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-10-16\",\n  \"created\": 1694292246,\n  \"data\": {\n    \"object\": {\n      \"id\": \"ch_3NoY0fAo7yQpmqlh1pzhzwUN\",\n      \"object\": \"charge\",\n      \"amount\": 499,\n      \"amount_captured\": 499,\n      \"amount_refunded\": 0,\n      \"application\": null,\n      \"application_fee\": null,\n      \"application_fee_amount\": null,\n      \"balance_transaction\": \"txn_3NoY0fAo7yQpmqlh1se720EW\",\n      \"billing_details\": {\n        \"address\": {\n          \"city\": \"Araçatuba\",\n          \"country\": \"BR\",\n          \"line1\": \"Rua Anselmo Manarelli\",\n          \"line2\": null,\n          \"postal_code\": \"13560-290\",\n          \"state\": \"SP\"\n        },\n        \"email\": \"alexnerdapi@gmail.com\",\n        \"name\": \"ALEX GALHARDO VIEIRA\",\n        \"phone\": null\n      },\n      \"calculated_statement_descriptor\": \"Stripe\",\n      \"captured\": true,\n      \"created\": 1694292245,\n      \"currency\": \"usd\",\n      \"customer\": \"cus_OblXq4uW4OXIuk\",\n      \"description\": \"Subscription creation\",\n      \"destination\": null,\n      \"dispute\": null,\n      \"disputed\": false,\n      \"failure_balance_transaction\": null,\n      \"failure_code\": null,\n      \"failure_message\": null,\n      \"fraud_details\": {\n      },\n      \"invoice\": \"in_1NoY0eAo7yQpmqlhFwgmjKpa\",\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"on_behalf_of\": null,\n      \"order\": null,\n      \"outcome\": {\n        \"network_status\": \"approved_by_network\",\n        \"reason\": null,\n        \"risk_level\": \"normal\",\n        \"risk_score\": 41,\n        \"seller_message\": \"Payment complete.\",\n        \"type\": \"authorized\"\n      },\n      \"paid\": true,\n      \"payment_intent\": \"pi_3NoY0fAo7yQpmqlh1ugMqTAM\",\n      \"payment_method\": \"pm_1NoY0dAo7yQpmqlhAF8KqAfk\",\n      \"payment_method_details\": {\n        \"card\": {\n          \"brand\": \"mastercard\",\n          \"checks\": {\n            \"address_line1_check\": \"pass\",\n            \"address_postal_code_check\": \"pass\",\n            \"cvc_check\": null\n          },\n          \"country\": \"US\",\n          \"exp_month\": 12,\n          \"exp_year\": 2030,\n          \"fingerprint\": \"WlRvMcVDE4jlJUPi\",\n          \"funding\": \"credit\",\n          \"installments\": null,\n          \"last4\": \"4320\",\n          \"mandate\": null,\n          \"network\": \"mastercard\",\n          \"network_token\": {\n            \"used\": false\n          },\n          \"three_d_secure\": null,\n          \"wallet\": {\n            \"dynamic_last4\": \"4444\",\n            \"google_pay\": {\n            },\n            \"type\": \"google_pay\"\n          }\n        },\n        \"type\": \"card\"\n      },\n      \"receipt_email\": null,\n      \"receipt_number\": null,\n      \"receipt_url\": \"https://pay.stripe.com/receipts/invoices/CAcaFwoVYWNjdF8xTm1kczdBbzd5UXBtcWxoKJey86cGMgazX87WMgA6LBbVFRTO3UWewLQcubojsm0idQxQ3uIxB_Tzex45RdN3CIBGAs8qBdvxuQ0t?s=ap\",\n      \"refunded\": false,\n      \"review\": null,\n      \"shipping\": null,\n      \"source\": null,\n      \"source_transfer\": null,\n      \"statement_descriptor\": null,\n      \"statement_descriptor_suffix\": null,\n      \"status\": \"succeeded\",\n      \"transfer_data\": null,\n      \"transfer_group\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 2,\n  \"request\": {\n    \"id\": \"req_Tiqd9BvW58QWiD\",\n    \"idempotency_key\": \"48ae403d-21d9-4792-805b-1a30480ba66a\"\n  },\n  \"type\": \"charge.succeeded\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_0b5752b6b39442a4981efce20cd4c663"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694021676892.7812,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_65713f6c95dd4b33a82995ed4f11993d",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1696097404732,
+			"created": 1694885540858,
+			"url": "http://localhost:4000/reset-password/9ab89f70d5d9d2ef62f4983d07e3ce9f",
+			"name": "LOCAL -> /reset-password/:reset_password_token",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"newPassword\": \"newPASSWORD!123\",\n\t\"confirmNewPassword\": \"newPASSWORD!123\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_bf2e439315174a8c99097d5ff97a490f"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694885540858,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "fld_613fdb9bb84740ef8046341947b23101",
+			"parentId": "wrk_209a09753ed2433387aeacea086eec07",
+			"modified": 1693712479532,
+			"created": 1693712479532,
+			"name": "LOCAL",
+			"description": "",
+			"environment": {},
+			"environmentPropertyOrder": null,
+			"metaSortKey": -1693712479532,
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_83a8ebfe25cf4300a83d02e69ca35dfb",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1696097065937,
+			"created": 1694811058724,
+			"url": "http://localhost:4000/login/github/callback?code=522c5c82d43966d84d5b",
+			"name": "POST -> /login/github/callback?code=",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1694811058724,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d77832a78f9d499c8a492e08b21676d9",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1696097068369,
+			"created": 1694371601845,
+			"url": "http://localhost:4000/check-reset-password-token",
+			"name": "LOCAL -> /check-reset-password-token",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"resetPasswordToken\": \"dcd284f3c216e9a27597e4ba0e983a5a\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_c8f9563764dc4896a4753d97da6704b1"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694371601845,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_81165682e7e2469e97418c4e62be87ed",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1696097124449,
+			"created": 1694369358730,
+			"url": "http://localhost:4000/reset-password/4be7b4a450d28863ba07dde43a4d6620",
+			"name": "LOCAL -> /reset-password",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"newPassword\": \"testeqweBR!123\",\n\t\"confirmNewPassword\": \"testeqweBR!123\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_d23bab2aee924d6eae7f5da6776f48f7"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1694369358730,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b57be7ec2e7f4301aa9ff13b63166416",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1694378978440,
+			"created": 1694116040098,
+			"url": "http://localhost:4000/games/title/godofwar",
+			"name": "LOCAL -> /games/title/:game_title",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1694116040098,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_98a4d73bc37141d4a0920fcd63c9d34c",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1694884359723,
+			"created": 1694115982370,
+			"url": "http://localhost:4000/games/id/8b82c2ce-28f8-45e5-b066-950e6873aefb",
+			"name": "LOCAL -> /games/id/:game_id",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1694115982370,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_955295c3fbb34d37bdce2422b8d7a3f7",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1696097106977,
+			"created": 1694115472341,
+			"url": "http://localhost:4000/games/random",
+			"name": "LOCAL -> /games/random",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {
+				"type": "bearer",
+				"token": "api_key_admin"
+			},
+			"metaSortKey": -1694115472341,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_cf88e9877ad44aad8eeca6e4992753ac",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1696097152702,
+			"created": 1694015731993,
+			"url": "http://localhost:4000/profile",
+			"name": "LOCAL -> /profile",
+			"description": "",
+			"method": "PUT",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"username\": \"Alexx\",\n\t\"telegramNumber\": \"5518996971458\",\n\t\"newPassword\": \"galhardoBR@159\",\n\t\"confirmNewPassword\": \"galhardoBR@159\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_5cadc67fff92462d8e30b1ee6b8b27c5"
+				}
+			],
+			"authentication": {
+				"type": "bearer",
+				"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiIyMmE3MTMxNS0yZGEwLTQ2NzYtYmNkNC1jMzRmMjRlMWM4OTUiLCJpYXQiOjE2OTQyMTQxOTh9.n3hiu645O1K1rVDbleJjZePL-FS5jX_6b29IqlSckgs",
+				"disabled": false
+			},
+			"metaSortKey": -1693806952082.5,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_825d8e66a8e646ac911955b82697a790",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1696097153005,
+			"created": 1693775247425,
+			"url": "http://localhost:4000/forget-password",
+			"name": "LOCAL -> /forget-password",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"email\": \"test@gmail.com\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_a88c32c691bc4a45a43b5df95281e314"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1693775247425,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b650fbf569bb476dab34d23388a23883",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1696097154532,
+			"created": 1693765961909,
+			"url": "http://localhost:4000/contact",
+			"name": "LOCAL -> /contact",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"name\": \"Teste Telegram Bot Logger\",\n\t\"email\": \"testing_telegram_bot_logger@gmail.com\",\n\t\"subject\": \"FEEDBACK\",\n\t\"message\": \"testing telegram bot logger contact send message\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_1eeb7238fb104c09b8e80e17004e935e"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1693765961909,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_1e1ee37264c7443f98d98a7730ea8aee",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1696097157719,
+			"created": 1693664497769,
+			"url": "http://localhost:4000",
+			"name": "LOCAL -> /",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1693662430619,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_55a7bcac636b4e00ab22c78550631122",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1696097165630,
+			"created": 1693661005188,
+			"url": "http://localhost:4000/login",
+			"name": "LOCAL -> /login",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"email\": \"admin@gmail.com\",\n\t\"password\": \"adminUSER!123\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_75fe73ca6d7d462f81fe90fc5df4dd00"
+				}
+			],
+			"authentication": {
+				"type": "bearer",
+				"token": "",
+				"disabled": true
+			},
+			"metaSortKey": -1693662430594,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_8c5caa52a5e24ebfa26d9127332a4c51",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1696097170974,
+			"created": 1693712473537,
+			"url": "http://localhost:4000/check-user-jwt-token",
+			"name": "LOCAL -> /check-user-jwt-token",
+			"description": "",
+			"method": "POST",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {
+				"type": "bearer",
+				"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiNTVmOTA5ZC00MDZhLTQwZjUtYjk1Ny1lZmY2MmQ4MDk0OWIiLCJpYXQiOjE2OTQ4ODUyNjJ9.enEJTl_uT_0Ra1sExNcHCmkiLUU9Wk3qKcrCLTZNAKM"
+			},
+			"metaSortKey": -1693662430569,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d582f26d1fad4740a648ea8c9215af28",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1696097178452,
+			"created": 1693661205567,
+			"url": "http://localhost:4000/register",
+			"name": "LOCAL -> /register",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"username\": \"pedro\",\n\t\"email\": \"pedro@gmail.com\",\n\t\"password\": \"adminUSER!123\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_7c718436ae6c4c51848c71ca089b3bb9"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1693662430544,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_de54e032793f436cbc28f71b11a4e340",
+			"parentId": "fld_613fdb9bb84740ef8046341947b23101",
+			"modified": 1696097184348,
+			"created": 1693662430519,
+			"url": "http://localhost:4000/logout",
+			"name": "LOCAL -> /logout",
+			"description": "",
+			"method": "POST",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {
+				"type": "bearer",
+				"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiNDJlNWViYy03M2EyLTRlODUtOWY0Yy1kZjEwNDY4MjY5MmQiLCJpYXQiOjE2OTYwOTcxNzR9.ebolz_mt406ZxjUlqt-n7ZNb3cNywzvv8udN42POKmE"
+			},
+			"metaSortKey": -1693662430519,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_817eaebd7b904ff4b06113220bae7eeb",
+			"parentId": "fld_146ad5f2acf54a38a617e3f63382c528",
+			"modified": 1696096121862,
+			"created": 1694200695012,
+			"url": "https://api.nerdapi.com/games/random",
+			"name": "PROD -> /games/random",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {
+				"type": "bearer",
+				"token": "api_key_admin",
+				"disabled": false
+			},
+			"metaSortKey": -1694200695012,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "fld_146ad5f2acf54a38a617e3f63382c528",
+			"parentId": "wrk_209a09753ed2433387aeacea086eec07",
+			"modified": 1693667224170,
+			"created": 1693667224170,
+			"name": "PROD",
+			"description": "",
+			"environment": {},
+			"environmentPropertyOrder": null,
+			"metaSortKey": -1693667224170,
+			"_type": "request_group"
+		},
+		{
+			"_id": "req_b91d80df2120449389d6d36d81c11235",
+			"parentId": "fld_146ad5f2acf54a38a617e3f63382c528",
+			"modified": 1696096826755,
+			"created": 1693857172558,
+			"url": "https://api.nerdapi.com/stripe/webhook",
+			"name": "PROD -> /stripe/webhook",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n  \"id\": \"evt_3NminMAo7yQpmqlh1hBgX6xV\",\n  \"object\": \"event\",\n  \"api_version\": \"2023-10-16\",\n  \"created\": 1693857048,\n  \"data\": {\n    \"object\": {\n      \"id\": \"pi_3NminMAo7yQpmqlh1LoA3JrU\",\n      \"object\": \"payment_intent\",\n      \"amount\": 199,\n      \"amount_capturable\": 0,\n      \"amount_details\": {\n        \"tip\": {\n        }\n      },\n      \"amount_received\": 0,\n      \"application\": null,\n      \"application_fee_amount\": null,\n      \"automatic_payment_methods\": null,\n      \"canceled_at\": null,\n      \"cancellation_reason\": null,\n      \"capture_method\": \"automatic\",\n      \"client_secret\": \"pi_3NminMAo7yQpmqlh1LoA3JrU_secret_5Up1VHYZNAIQln8gdSPDLqHoY\",\n      \"confirmation_method\": \"automatic\",\n      \"created\": 1693857048,\n      \"currency\": \"usd\",\n      \"customer\": \"cus_OZsY4KMiMWw4A0\",\n      \"description\": \"Subscription creation\",\n      \"invoice\": \"in_1NminMAo7yQpmqlhEam6Dun1\",\n      \"last_payment_error\": null,\n      \"latest_charge\": null,\n      \"livemode\": false,\n      \"metadata\": {\n      },\n      \"next_action\": null,\n      \"on_behalf_of\": null,\n      \"payment_method\": null,\n      \"payment_method_options\": {\n        \"card\": {\n          \"installments\": null,\n          \"mandate_options\": null,\n          \"network\": null,\n          \"request_three_d_secure\": \"automatic\"\n        }\n      },\n      \"payment_method_types\": [\n        \"card\"\n      ],\n      \"processing\": null,\n      \"receipt_email\": null,\n      \"review\": null,\n      \"setup_future_usage\": \"off_session\",\n      \"shipping\": null,\n      \"source\": null,\n      \"statement_descriptor\": null,\n      \"statement_descriptor_suffix\": null,\n      \"status\": \"requires_payment_method\",\n      \"transfer_data\": null,\n      \"transfer_group\": null\n    }\n  },\n  \"livemode\": false,\n  \"pending_webhooks\": 3,\n  \"request\": {\n    \"id\": \"req_5emr94Ypxg6ZSK\",\n    \"idempotency_key\": \"9fb44f78-b733-4e01-bb6c-7d9b8cfe4a67\"\n  },\n  \"type\": \"payment_intent.created\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_51deb3110c7641559a12aa8d9377699b"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1693857172558,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_000f1603ad884809ac87bd2f75fb0b2f",
+			"parentId": "fld_146ad5f2acf54a38a617e3f63382c528",
+			"modified": 1696096827394,
+			"created": 1693776372694,
+			"url": "https://api.nerdapi.com/recover-password",
+			"name": "PROD -> /recover-password",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"email\": \"caralho@gmail.com\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_a88c32c691bc4a45a43b5df95281e314"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1693712341237.5,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_dff1472e94404d0998425d07953adbc0",
+			"parentId": "fld_146ad5f2acf54a38a617e3f63382c528",
+			"modified": 1696096854173,
+			"created": 1693768664389,
+			"url": "https://api.nerdapi.com/contact",
+			"name": "PROD -> /contact",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"name\": \"Test Name\",\n\t\"email\": \"test.email.insomnia@gmail.com\",\n\t\"subject\": \"SUPPORT\",\n\t\"message\": \"Testing send message with insomnia\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_1eeb7238fb104c09b8e80e17004e935e"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1693712341225,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_b0eeee791fae4802b6e38f5877993eb4",
+			"parentId": "fld_146ad5f2acf54a38a617e3f63382c528",
+			"modified": 1696096896470,
+			"created": 1693712341199,
+			"url": "https://api.nerdapi.com/check-user-jwt-token",
+			"name": "PROD -> /check-user-jwt-token",
+			"description": "",
+			"method": "POST",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {
+				"type": "bearer",
+				"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNhOGMzYmM3LTU5OWUtNDI0OS1hZTk0LWZkOGI5Y2U3N2FjZSIsImlhdCI6MTY5MzcxMjYxMn0.XZtNoW2ix09LaZMfhd0UN8KXrhooo0wGuRI3KAbnjNI"
+			},
+			"metaSortKey": -1693712341200,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7f6e99e0496144ccabebffc3a70e4ec9",
+			"parentId": "fld_146ad5f2acf54a38a617e3f63382c528",
+			"modified": 1696096907163,
+			"created": 1693667248869,
+			"url": "https://api.nerdapi.com/logout",
+			"name": "PROD -> /logout",
+			"description": "",
+			"method": "POST",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {
+				"type": "bearer",
+				"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImYzMmQ1NDVhLTAzOGEtNDY0Mi04ZjZhLTUzMTI5OTdiYTVlMSIsImlhdCI6MTY5MzY2ODE4OH0.QLo5i8heDW7Mtu3Gc3PBj13teDGzomyvcHDENDOKBCU"
+			},
+			"metaSortKey": -1693667225218,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_d8962ed902c24007a02c3540ee336647",
+			"parentId": "fld_146ad5f2acf54a38a617e3f63382c528",
+			"modified": 1696096954473,
+			"created": 1693667262593,
+			"url": "https://api.nerdapi.com/register",
+			"name": "PROD -> /register",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"username\": \"Teste User\",\n\t\"email\": \"teste.user.email@gmail.com\",\n\t\"password\": \"testeBR@!123\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_7c718436ae6c4c51848c71ca089b3bb9"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1693667225193,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_1a67bd013ab2410f8fa8236e9b5c375c",
+			"parentId": "fld_146ad5f2acf54a38a617e3f63382c528",
+			"modified": 1696096959023,
+			"created": 1693667273865,
+			"url": "https://api.nerdapi.com/login",
+			"name": "PROD -> /login",
+			"description": "",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\n\t\"email\": \"teste.user.email@gmail.com\",\n\t\"password\": \"testeBR@!123\"\n}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_75fe73ca6d7d462f81fe90fc5df4dd00"
+				}
+			],
+			"authentication": {
+				"type": "bearer",
+				"token": "",
+				"disabled": true
+			},
+			"metaSortKey": -1693667225180.5,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "req_7484091a320c43d086656451ce22ec53",
+			"parentId": "fld_146ad5f2acf54a38a617e3f63382c528",
+			"modified": 1694060421977,
+			"created": 1693667225168,
+			"url": "https://api.nerdapi.com",
+			"name": "PROD -> /",
+			"description": "",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1693667225168,
+			"isPrivate": false,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"settingRebuildPath": true,
+			"settingFollowRedirects": "global",
+			"_type": "request"
+		},
+		{
+			"_id": "env_67f0bec602aefa89953b5523f4313cc67c67f269",
+			"parentId": "wrk_209a09753ed2433387aeacea086eec07",
+			"modified": 1693661002602,
+			"created": 1693661002602,
+			"name": "Base Environment",
+			"data": {},
+			"dataPropertyOrder": null,
+			"color": null,
+			"isPrivate": false,
+			"metaSortKey": 1693661002602,
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_67f0bec602aefa89953b5523f4313cc67c67f269",
+			"parentId": "wrk_209a09753ed2433387aeacea086eec07",
+			"modified": 1694031740413,
+			"created": 1693661002603,
+			"name": "Default Jar",
+			"cookies": [
+				{
+					"key": "__Host-GAPS",
+					"value": "1:iD50a2d0eZIWrlu2StnNYnuNYA_Kdg:bejarbv_z_YHeXUh",
+					"expires": "2025-09-05T20:22:19.000Z",
+					"domain": "accounts.google.com",
+					"path": "/",
+					"secure": true,
+					"httpOnly": true,
+					"extensions": [
+						"Priority=HIGH"
+					],
+					"hostOnly": true,
+					"creation": "2023-09-06T20:22:20.407Z",
+					"lastAccessed": "2023-09-06T20:22:20.407Z",
+					"id": "9988122094791487"
+				}
+			],
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "spc_ffde10ee847544938fe1938516276b83",
+			"parentId": "wrk_209a09753ed2433387aeacea086eec07",
+			"modified": 1693661002598,
+			"created": 1693661002598,
+			"fileName": "GALHARDO MICROSAAS",
+			"contents": "",
+			"contentType": "yaml",
+			"_type": "api_spec"
+		}
+	]
+}

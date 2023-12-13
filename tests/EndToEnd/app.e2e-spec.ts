@@ -13,7 +13,7 @@ import AuthTokenUserUseCase from "src/UseCases/AuthCheckUserJWTToken.useCase";
 import AuthLoginGoogleUseCase from "src/UseCases/AuthLoginGoogle.useCase";
 import AuthCheckResetPasswordTokenUseCase from "src/UseCases/AuthCheckResetPasswordToken.useCase";
 import { Database } from "src/Utils/Database";
-import AuthLoginGitHubUseCase from "src/UseCases/AuthLoginGitHubUseCase.useCase";
+import AuthLoginGitHubUseCase from "src/UseCases/AuthLoginGitHub.useCase";
 import AuthCheckUserJWTTokenUseCase from "src/UseCases/AuthCheckUserJWTToken.useCase";
 
 describe("AppController (e2e)", () => {

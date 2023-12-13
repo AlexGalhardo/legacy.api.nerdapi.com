@@ -45,11 +45,11 @@ class TelegramBOTLogger {
     }
 
     isThereToken(token: string) {
-        if (!token) throw new Error("There is no Telegram Token in TelegramLogger Class Constructor");
+        if (!token && process.env.ENV === 'production') throw new Error("There is no Telegram Token in TelegramLogger Class Constructor");
     }
 
     isThereChannel(channel: string) {
-        if (!channel) throw new Error("There is no Telegram Channel name in TelegramLogger Class Constructor");
+        if (!channel && process.env.ENV === 'production') throw new Error("There is no Telegram Channel name in TelegramLogger Class Constructor");
     }
 
     emojiMap() {

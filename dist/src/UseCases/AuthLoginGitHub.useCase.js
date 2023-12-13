@@ -90,4 +90,4 @@ class AuthLoginGitHubUseCase {
     }
 }
 exports.default = AuthLoginGitHubUseCase;
-//# sourceMappingURL=AuthLoginGitHubUseCase.useCase.js.map
+//# sourceMappingURL=AuthLoginGitHub.useCase.js.map

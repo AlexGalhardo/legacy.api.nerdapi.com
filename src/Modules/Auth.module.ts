@@ -4,7 +4,7 @@ import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.rep
 import AuthCheckResetPasswordTokenUseCase from "src/UseCases/AuthCheckResetPasswordToken.useCase";
 import AuthForgetPasswordUseCase from "src/UseCases/AuthForgetPassword.useCase";
 import AuthLoginUseCase from "src/UseCases/AuthLogin.useCase";
-import AuthLoginGitHubUseCase from "src/UseCases/AuthLoginGitHubUseCase.useCase";
+import AuthLoginGitHubUseCase from "src/UseCases/AuthLoginGitHub.useCase";
 import AuthLoginGoogleUseCase from "src/UseCases/AuthLoginGoogle.useCase";
 import AuthLogoutUseCase from "src/UseCases/AuthLogout.useCase";
 import AuthRegisterUseCase from "src/UseCases/AuthRegister.useCase";

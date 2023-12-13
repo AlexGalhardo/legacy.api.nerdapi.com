@@ -11,11 +11,11 @@ class TelegramBOTLogger {
         this.baseUrl = `https://api.telegram.org/bot${token}`;
     }
     isThereToken(token) {
-        if (!token)
+        if (!token && process.env.ENV === 'production')
             throw new Error("There is no Telegram Token in TelegramLogger Class Constructor");
     }
     isThereChannel(channel) {
-        if (!channel)
+        if (!channel && process.env.ENV === 'production')
             throw new Error("There is no Telegram Channel name in TelegramLogger Class Constructor");
     }
     emojiMap() {

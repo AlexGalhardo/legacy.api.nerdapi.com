@@ -13,7 +13,7 @@ const Users_repository_1 = require("../Repositories/Users.repository");
 const AuthCheckResetPasswordToken_useCase_1 = require("../UseCases/AuthCheckResetPasswordToken.useCase");
 const AuthForgetPassword_useCase_1 = require("../UseCases/AuthForgetPassword.useCase");
 const AuthLogin_useCase_1 = require("../UseCases/AuthLogin.useCase");
-const AuthLoginGitHubUseCase_useCase_1 = require("../UseCases/AuthLoginGitHubUseCase.useCase");
+const AuthLoginGitHub_useCase_1 = require("../UseCases/AuthLoginGitHub.useCase");
 const AuthLoginGoogle_useCase_1 = require("../UseCases/AuthLoginGoogle.useCase");
 const AuthLogout_useCase_1 = require("../UseCases/AuthLogout.useCase");
 const AuthRegister_useCase_1 = require("../UseCases/AuthRegister.useCase");
@@ -53,7 +53,7 @@ exports.AuthModule = AuthModule = __decorate([
                 provide: "AuthLoginGitHubUseCasePort",
                 inject: ["UsersRepositoryPort"],
                 useFactory: (usersRepository) => {
-                    return new AuthLoginGitHubUseCase_useCase_1.default(usersRepository);
+                    return new AuthLoginGitHub_useCase_1.default(usersRepository);
                 },
             },
             {

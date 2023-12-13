@@ -15,4 +15,4 @@ class UserDeleteUseCase {
     }
 }
 exports.default = UserDeleteUseCase;
-//# sourceMappingURL=UserDeleteUseCase.useCase.js.map
+//# sourceMappingURL=UserDelete.useCase.js.map

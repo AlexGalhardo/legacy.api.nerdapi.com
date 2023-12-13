@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { AuthCheckResetPasswordTokenUseCasePort, CheckResetPasswordTokenDTO } from "src/UseCases/AuthCheckResetPasswordToken.useCase";
 import { AuthForgetPasswordDTO, AuthForgetPasswordUseCasePort } from "src/UseCases/AuthForgetPassword.useCase";
 import { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCases/AuthLogin.useCase";
-import { AuthLoginGitHubUseCasePort } from "src/UseCases/AuthLoginGitHubUseCase.useCase";
+import { AuthLoginGitHubUseCasePort } from "src/UseCases/AuthLoginGitHub.useCase";
 import { AuthLoginGoogleUseCasePort } from "src/UseCases/AuthLoginGoogle.useCase";
 import { AuthLogoutUseCasePort } from "src/UseCases/AuthLogout.useCase";
 import { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
