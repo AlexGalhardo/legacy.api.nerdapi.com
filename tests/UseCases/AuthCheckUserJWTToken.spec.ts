@@ -2,7 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import Validator from "src/Utils/Validator";
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
-import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDeleteUseCase.useCase";
+import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDelete.useCase";
 import AuthTokenUserUseCase, { AuthCheckUserJWTTokenUseCasePort } from "src/UseCases/AuthCheckUserJWTToken.useCase";
 import { Database } from "src/Utils/Database";
 
