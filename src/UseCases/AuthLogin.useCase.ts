@@ -23,8 +23,8 @@ interface UserLoginUseCaseResponse {
 export default class AuthLoginUseCase implements AuthLoginUseCasePort {
     constructor(private readonly usersRepository: UsersRepositoryPort) {}
 
-    async execute(authLoginDTO: AuthLoginDTO): Promise<UserLoginUseCaseResponse> {
-        const { email, password } = authLoginDTO;
+    async execute(authLoginPayload: AuthLoginDTO): Promise<UserLoginUseCaseResponse> {
+        const { email, password } = authLoginPayload;
 
         if (!Validator.email.isValid(email)) throw new ClientException(ErrorsMessages.EMAIL_IS_INVALID);
 

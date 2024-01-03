@@ -21,6 +21,12 @@ export interface AuthRegisterDTO {
     password: string;
 }
 
+export enum SubscriptionName {
+    NOOB = "NOOB",
+    CASUAL = "CASUAL",
+    PRO = "PRO",
+}
+
 export interface AuthRegisterUseCasePort {
     execute(authRegisterDTO: AuthRegisterDTO): Promise<AuthRegisterUseCaseResponse>;
 }
@@ -59,7 +65,7 @@ export default class AuthRegisterUseCase implements AuthRegisterUseCasePort {
                     customer_id: null,
                     subscription: {
                         active: false,
-                        name: "NOOB",
+                        name: SubscriptionName.NOOB,
                         starts_at: null,
                         ends_at: null,
                         charge_id: null,

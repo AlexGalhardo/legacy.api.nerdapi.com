@@ -138,17 +138,6 @@ npm run test:e2e
 
 ![tests](https://github.com/AlexGalhardo/api.nerdapi.com/assets/19540357/f427f0ae-521c-4400-adc9-985a15621c9b)
 
-## Before Submit Commits & PRs
-
-* Run command:
-
-<!---->
-
-```
-npm run format
-```
-
-<!---->
 
 ## HTTP Requests
 

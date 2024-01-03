@@ -7,6 +7,7 @@ import { Bcrypt } from "src/Utils/Bcrypt";
 import { Injectable } from "@nestjs/common";
 import { Database } from "src/Utils/Database";
 import "dotenv/config";
+import { SubscriptionName } from "src/UseCases/AuthRegister.useCase";
 
 export interface User {
     id: string;
@@ -71,6 +72,7 @@ export interface IncrementAPIRequestResponse {
     found_api_key: boolean;
     api_requests_today: number;
 }
+
 export interface UsersRepositoryPort {
     save(user?: any, index?: number): Promise<void>;
     transformToUserResponse(user): UserResponse;
@@ -81,7 +83,7 @@ export interface UsersRepositoryPort {
     getById(userId: string): Promise<UserResponse>;
     getByResetPasswordToken(resetPasswordToken: string): Promise<UserResponse>;
     create(user: User): Promise<void>;
-    update(userId: string, profileUpdateDTO: ProfileUpdateDTO): Promise<UserUpdated>;
+    update(userId: string, profileUpdatePayload: ProfileUpdateDTO): Promise<UserUpdated>;
     deleteByEmail(email: string): Promise<void>;
     logout(userId: string): Promise<void>;
     saveResetPasswordToken(userId: string, resetPasswordToken: string): Promise<void>;
@@ -241,49 +243,57 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async getByEmail(email: string): Promise<UserResponse> {
-        if (process.env.USE_DATABASE_JSON === "true") {
-            for (let i = 0; i < this.users.length; i++) {
-                if (this.users[i].email === email) {
-                    return { user: this.users[i], index: i };
+        try {
+            if (process.env.USE_DATABASE_JSON === "true") {
+                for (let i = 0; i < this.users.length; i++) {
+                    if (this.users[i].email === email) {
+                        return { user: this.users[i], index: i };
+                    }
                 }
+
+                throw new Error(ErrorsMessages.USER_NOT_FOUND);
             }
 
-            throw new Error(ErrorsMessages.USER_NOT_FOUND);
-        }
-
-        try {
             const user = await this.database.users.findUnique({
                 where: {
                     email,
                 },
             });
 
-            if (user) return this.transformToUserResponse(user);
+            if (user) {
+                await this.verifyIfSubscriptionIsActiveAndNotExpired(this.transformToUser(user));
+                return this.transformToUserResponse(user);
+            }
         } catch (error) {
             throw new Error(error);
         }
     }
 
     public async getById(userId: string): Promise<UserResponse> {
-        if (process.env.USE_DATABASE_JSON === "true") {
-            for (let i = 0; i < this.users.length; i++) {
-                if (this.users[i].id === userId) {
-                    return { user: this.users[i], index: i };
+        try {
+            if (process.env.USE_DATABASE_JSON === "true") {
+                for (let i = 0; i < this.users.length; i++) {
+                    if (this.users[i].id === userId) {
+                        return { user: this.users[i], index: i };
+                    }
                 }
+
+                throw new Error(ErrorsMessages.USER_NOT_FOUND);
             }
 
-            throw new Error(ErrorsMessages.USER_NOT_FOUND);
+            const user = await this.database.users.findUnique({
+                where: {
+                    id: userId,
+                },
+            });
+
+            if (user) {
+                await this.verifyIfSubscriptionIsActiveAndNotExpired(this.transformToUser(user));
+                return this.transformToUserResponse(user);
+            }
+        } catch (error) {
+            throw new Error(error);
         }
-
-        const user = await this.database.users.findUnique({
-            where: {
-                id: userId,
-            },
-        });
-
-        if (user) return this.transformToUserResponse(user);
-
-        throw new Error(ErrorsMessages.USER_NOT_FOUND);
     }
 
     public async getByResetPasswordToken(resetPasswordToken: string): Promise<UserResponse> {
@@ -344,16 +354,17 @@ export default class UsersRepository implements UsersRepositoryPort {
         });
     }
 
-    public async update(userId: string, profileUpdateDTO: ProfileUpdateDTO): Promise<UserUpdated> {
+    public async update(userId: string, profileUpdatePayload: ProfileUpdateDTO): Promise<UserUpdated> {
         if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === userId) {
-                    this.users[i].username = profileUpdateDTO.username ?? this.users[i].username;
+                    this.users[i].username = profileUpdatePayload.username ?? this.users[i].username;
 
-                    this.users[i].telegram_number = profileUpdateDTO.telegramNumber ?? this.users[i].telegram_number;
+                    this.users[i].telegram_number =
+                        profileUpdatePayload.telegramNumber ?? this.users[i].telegram_number;
 
-                    if (profileUpdateDTO.newPassword)
-                        this.users[i].password = await Bcrypt.hash(profileUpdateDTO.newPassword);
+                    if (profileUpdatePayload.newPassword)
+                        this.users[i].password = await Bcrypt.hash(profileUpdatePayload.newPassword);
 
                     this.save();
 
@@ -362,7 +373,7 @@ export default class UsersRepository implements UsersRepositoryPort {
                         email: this.users[i].email,
                         telegramNumber: this.users[i].telegram_number,
                         password: this.users[i].password,
-                        plain_password: profileUpdateDTO.newPassword ?? null,
+                        plain_password: profileUpdatePayload.newPassword ?? null,
                     };
                 }
             }
@@ -373,9 +384,11 @@ export default class UsersRepository implements UsersRepositoryPort {
                 id: userId,
             },
             data: {
-                username: profileUpdateDTO.username ? profileUpdateDTO.username : undefined,
-                telegram_number: profileUpdateDTO.telegramNumber ? profileUpdateDTO.telegramNumber : undefined,
-                password: profileUpdateDTO.newPassword ? await Bcrypt.hash(profileUpdateDTO.newPassword) : undefined,
+                username: profileUpdatePayload.username ? profileUpdatePayload.username : undefined,
+                telegram_number: profileUpdatePayload.telegramNumber ? profileUpdatePayload.telegramNumber : undefined,
+                password: profileUpdatePayload.newPassword
+                    ? await Bcrypt.hash(profileUpdatePayload.newPassword)
+                    : undefined,
             },
         });
 
@@ -384,7 +397,7 @@ export default class UsersRepository implements UsersRepositoryPort {
             email: userUpdated.email,
             telegramNumber: userUpdated.telegram_number,
             password: userUpdated.password,
-            plain_password: profileUpdateDTO.newPassword ?? null,
+            plain_password: profileUpdatePayload.newPassword ?? null,
         };
     }
 
@@ -540,9 +553,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     ): Promise<User> {
         let subscriptionName = "NOOB";
 
-        if (stripeSubscriptionInfo.amount) {
-            subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
-        }
+        if (stripeSubscriptionInfo.amount) subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
 
         if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
@@ -598,6 +609,54 @@ export default class UsersRepository implements UsersRepositoryPort {
         });
 
         return this.transformToUser(userUpdated);
+    }
+
+    public async verifyIfSubscriptionIsActiveAndNotExpired(user: User): Promise<void> {
+        if (user.stripe.subscription.active) {
+            const endsAtDate = new Date(
+                user.stripe.subscription.ends_at.replace(
+                    /(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2}):(\d{2})/,
+                    "$3-$2-$1T$4:$5:$6",
+                ),
+            );
+
+            if (endsAtDate <= new Date()) {
+                if (process.env.USE_DATABASE_JSON === "true") {
+                    for (let i = 0; i < this.users.length; i++) {
+                        if (this.users[i].id === user.id) {
+                            this.users[i].stripe.subscription.active = false;
+                            this.users[i].stripe.subscription.charge_id = null;
+                            this.users[i].stripe.subscription.name = SubscriptionName.NOOB;
+                            this.users[i].stripe.subscription.receipt_url = null;
+                            this.users[i].stripe.subscription.hosted_invoice_url = null;
+                            this.users[i].stripe.subscription.starts_at = null;
+                            this.users[i].stripe.subscription.ends_at = null;
+                            this.users[i].stripe.updated_at = String(new Date());
+                            this.users[i].stripe.updated_at_pt_br = DateTime.getNow();
+                            this.save();
+                            return;
+                        }
+                    }
+                }
+
+                await this.database.users.update({
+                    where: {
+                        id: user.id,
+                    },
+                    data: {
+                        stripe_subscription_active: false,
+                        stripe_subscription_charge_id: null,
+                        stripe_subscription_name: SubscriptionName.NOOB,
+                        stripe_subscription_receipt_url: null,
+                        stripe_subscription_hosted_invoice_url: null,
+                        stripe_subscription_starts_at: null,
+                        stripe_subscription_ends_at: null,
+                        stripe_updated_at: String(new Date()),
+                        stripe_updated_at_pt_br: DateTime.getNow(),
+                    },
+                });
+            }
+        }
     }
 
     public async incrementAPIRequest(userAPIKey: string): Promise<IncrementAPIRequestResponse> {

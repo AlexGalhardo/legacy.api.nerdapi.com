@@ -10,6 +10,7 @@ import { randomUUID } from "node:crypto";
 import DateTime from "src/Utils/DataTypes/DateTime";
 import { APP_URL } from "src/Utils/Constants";
 import GenerateRandomToken from "src/Utils/GenerateRandomToken";
+import { SubscriptionName } from "./AuthRegister.useCase";
 
 export interface AuthLoginGoogleUseCasePort {
     execute(request: Request): Promise<AuthLoginGoogleUseCaseResponse>;
@@ -74,7 +75,7 @@ export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePor
                         customer_id: null,
                         subscription: {
                             active: false,
-                            name: "NOOB",
+                            name: SubscriptionName.NOOB,
                             starts_at: null,
                             ends_at: null,
                             charge_id: null,

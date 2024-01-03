@@ -10,6 +10,7 @@ import DateTime from "src/Utils/DataTypes/DateTime";
 import { APP_URL } from "src/Utils/Constants";
 import "dotenv/config";
 import GenerateRandomToken from "src/Utils/GenerateRandomToken";
+import { SubscriptionName } from "./AuthRegister.useCase";
 
 export interface AuthLoginGitHubUseCasePort {
     execute(request: Request): Promise<AuthLoginGitHubUseCaseResponse>;
@@ -89,7 +90,7 @@ export default class AuthLoginGitHubUseCase implements AuthLoginGitHubUseCasePor
                         customer_id: null,
                         subscription: {
                             active: false,
-                            name: "NOOB",
+                            name: SubscriptionName.NOOB,
                             starts_at: null,
                             ends_at: null,
                             charge_id: null,
