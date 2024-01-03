@@ -70,7 +70,7 @@ export interface UsersRepositoryPort {
     getById(userId: string): Promise<UserResponse>;
     getByResetPasswordToken(resetPasswordToken: string): Promise<UserResponse>;
     create(user: User): Promise<void>;
-    update(userId: string, profileUpdateDTO: ProfileUpdateDTO): Promise<UserUpdated>;
+    update(userId: string, profileUpdatePayload: ProfileUpdateDTO): Promise<UserUpdated>;
     deleteByEmail(email: string): Promise<void>;
     logout(userId: string): Promise<void>;
     saveResetPasswordToken(userId: string, resetPasswordToken: string): Promise<void>;
@@ -93,7 +93,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     getById(userId: string): Promise<UserResponse>;
     getByResetPasswordToken(resetPasswordToken: string): Promise<UserResponse>;
     create(user: User): Promise<void>;
-    update(userId: string, profileUpdateDTO: ProfileUpdateDTO): Promise<UserUpdated>;
+    update(userId: string, profileUpdatePayload: ProfileUpdateDTO): Promise<UserUpdated>;
     deleteByEmail(email: string): Promise<void>;
     logout(userId: string): Promise<void>;
     phoneAlreadyRegistred(userId: string, phoneNumber: string): Promise<boolean>;
@@ -101,5 +101,6 @@ export default class UsersRepository implements UsersRepositoryPort {
     resetPassword(userId: string, newPassword: string): Promise<void>;
     findResetPasswordToken(resetPasswordToken: string): Promise<boolean>;
     updateStripeSubscriptionInfo(user: User, stripeSubscriptionInfo: StripeSubscriptionInfo): Promise<User>;
+    verifyIfSubscriptionIsActiveAndNotExpired(user: User): Promise<void>;
     incrementAPIRequest(userAPIKey: string): Promise<IncrementAPIRequestResponse>;
 }

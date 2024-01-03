@@ -10,6 +10,11 @@ export interface AuthRegisterDTO {
     telegramNumber: string | null;
     password: string;
 }
+export declare enum SubscriptionName {
+    NOOB = "NOOB",
+    CASUAL = "CASUAL",
+    PRO = "PRO"
+}
 export interface AuthRegisterUseCasePort {
     execute(authRegisterDTO: AuthRegisterDTO): Promise<AuthRegisterUseCaseResponse>;
 }

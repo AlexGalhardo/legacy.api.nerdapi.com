@@ -17,6 +17,7 @@ const Bcrypt_1 = require("../Utils/Bcrypt");
 const common_1 = require("@nestjs/common");
 const Database_1 = require("../Utils/Database");
 require("dotenv/config");
+const AuthRegister_useCase_1 = require("../UseCases/AuthRegister.useCase");
 let UsersRepository = class UsersRepository {
     constructor(users = usersDatabase, database) {
         this.users = users;
@@ -156,44 +157,52 @@ let UsersRepository = class UsersRepository {
         return false;
     }
     async getByEmail(email) {
-        if (process.env.USE_DATABASE_JSON === "true") {
-            for (let i = 0; i < this.users.length; i++) {
-                if (this.users[i].email === email) {
-                    return { user: this.users[i], index: i };
-                }
-            }
-            throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
-        }
         try {
+            if (process.env.USE_DATABASE_JSON === "true") {
+                for (let i = 0; i < this.users.length; i++) {
+                    if (this.users[i].email === email) {
+                        return { user: this.users[i], index: i };
+                    }
+                }
+                throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
+            }
             const user = await this.database.users.findUnique({
                 where: {
                     email,
                 },
             });
-            if (user)
+            if (user) {
+                await this.verifyIfSubscriptionIsActiveAndNotExpired(this.transformToUser(user));
                 return this.transformToUserResponse(user);
+            }
         }
         catch (error) {
             throw new Error(error);
         }
     }
     async getById(userId) {
-        if (process.env.USE_DATABASE_JSON === "true") {
-            for (let i = 0; i < this.users.length; i++) {
-                if (this.users[i].id === userId) {
-                    return { user: this.users[i], index: i };
+        try {
+            if (process.env.USE_DATABASE_JSON === "true") {
+                for (let i = 0; i < this.users.length; i++) {
+                    if (this.users[i].id === userId) {
+                        return { user: this.users[i], index: i };
+                    }
                 }
+                throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
             }
-            throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
+            const user = await this.database.users.findUnique({
+                where: {
+                    id: userId,
+                },
+            });
+            if (user) {
+                await this.verifyIfSubscriptionIsActiveAndNotExpired(this.transformToUser(user));
+                return this.transformToUserResponse(user);
+            }
         }
-        const user = await this.database.users.findUnique({
-            where: {
-                id: userId,
-            },
-        });
-        if (user)
-            return this.transformToUserResponse(user);
-        throw new Error(ErrorsMessages_1.ErrorsMessages.USER_NOT_FOUND);
+        catch (error) {
+            throw new Error(error);
+        }
     }
     async getByResetPasswordToken(resetPasswordToken) {
         if (process.env.USE_DATABASE_JSON === "true") {
@@ -247,22 +256,23 @@ let UsersRepository = class UsersRepository {
             },
         });
     }
-    async update(userId, profileUpdateDTO) {
+    async update(userId, profileUpdatePayload) {
         var _a, _b, _c, _d;
         if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === userId) {
-                    this.users[i].username = (_a = profileUpdateDTO.username) !== null && _a !== void 0 ? _a : this.users[i].username;
-                    this.users[i].telegram_number = (_b = profileUpdateDTO.telegramNumber) !== null && _b !== void 0 ? _b : this.users[i].telegram_number;
-                    if (profileUpdateDTO.newPassword)
-                        this.users[i].password = await Bcrypt_1.Bcrypt.hash(profileUpdateDTO.newPassword);
+                    this.users[i].username = (_a = profileUpdatePayload.username) !== null && _a !== void 0 ? _a : this.users[i].username;
+                    this.users[i].telegram_number =
+                        (_b = profileUpdatePayload.telegramNumber) !== null && _b !== void 0 ? _b : this.users[i].telegram_number;
+                    if (profileUpdatePayload.newPassword)
+                        this.users[i].password = await Bcrypt_1.Bcrypt.hash(profileUpdatePayload.newPassword);
                     this.save();
                     return {
                         username: this.users[i].username,
                         email: this.users[i].email,
                         telegramNumber: this.users[i].telegram_number,
                         password: this.users[i].password,
-                        plain_password: (_c = profileUpdateDTO.newPassword) !== null && _c !== void 0 ? _c : null,
+                        plain_password: (_c = profileUpdatePayload.newPassword) !== null && _c !== void 0 ? _c : null,
                     };
                 }
             }
@@ -272,9 +282,11 @@ let UsersRepository = class UsersRepository {
                 id: userId,
             },
             data: {
-                username: profileUpdateDTO.username ? profileUpdateDTO.username : undefined,
-                telegram_number: profileUpdateDTO.telegramNumber ? profileUpdateDTO.telegramNumber : undefined,
-                password: profileUpdateDTO.newPassword ? await Bcrypt_1.Bcrypt.hash(profileUpdateDTO.newPassword) : undefined,
+                username: profileUpdatePayload.username ? profileUpdatePayload.username : undefined,
+                telegram_number: profileUpdatePayload.telegramNumber ? profileUpdatePayload.telegramNumber : undefined,
+                password: profileUpdatePayload.newPassword
+                    ? await Bcrypt_1.Bcrypt.hash(profileUpdatePayload.newPassword)
+                    : undefined,
             },
         });
         return {
@@ -282,7 +294,7 @@ let UsersRepository = class UsersRepository {
             email: userUpdated.email,
             telegramNumber: userUpdated.telegram_number,
             password: userUpdated.password,
-            plain_password: (_d = profileUpdateDTO.newPassword) !== null && _d !== void 0 ? _d : null,
+            plain_password: (_d = profileUpdatePayload.newPassword) !== null && _d !== void 0 ? _d : null,
         };
     }
     async deleteByEmail(email) {
@@ -419,9 +431,8 @@ let UsersRepository = class UsersRepository {
     async updateStripeSubscriptionInfo(user, stripeSubscriptionInfo) {
         var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
         let subscriptionName = "NOOB";
-        if (stripeSubscriptionInfo.amount) {
+        if (stripeSubscriptionInfo.amount)
             subscriptionName = stripeSubscriptionInfo.amount === 499 ? "PRO" : "CASUAL";
-        }
         if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === user.id) {
@@ -470,6 +481,46 @@ let UsersRepository = class UsersRepository {
             },
         });
         return this.transformToUser(userUpdated);
+    }
+    async verifyIfSubscriptionIsActiveAndNotExpired(user) {
+        if (user.stripe.subscription.active) {
+            const endsAtDate = new Date(user.stripe.subscription.ends_at.replace(/(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2}):(\d{2})/, "$3-$2-$1T$4:$5:$6"));
+            if (endsAtDate <= new Date()) {
+                if (process.env.USE_DATABASE_JSON === "true") {
+                    for (let i = 0; i < this.users.length; i++) {
+                        if (this.users[i].id === user.id) {
+                            this.users[i].stripe.subscription.active = false;
+                            this.users[i].stripe.subscription.charge_id = null;
+                            this.users[i].stripe.subscription.name = AuthRegister_useCase_1.SubscriptionName.NOOB;
+                            this.users[i].stripe.subscription.receipt_url = null;
+                            this.users[i].stripe.subscription.hosted_invoice_url = null;
+                            this.users[i].stripe.subscription.starts_at = null;
+                            this.users[i].stripe.subscription.ends_at = null;
+                            this.users[i].stripe.updated_at = String(new Date());
+                            this.users[i].stripe.updated_at_pt_br = DateTime_1.default.getNow();
+                            this.save();
+                            return;
+                        }
+                    }
+                }
+                await this.database.users.update({
+                    where: {
+                        id: user.id,
+                    },
+                    data: {
+                        stripe_subscription_active: false,
+                        stripe_subscription_charge_id: null,
+                        stripe_subscription_name: AuthRegister_useCase_1.SubscriptionName.NOOB,
+                        stripe_subscription_receipt_url: null,
+                        stripe_subscription_hosted_invoice_url: null,
+                        stripe_subscription_starts_at: null,
+                        stripe_subscription_ends_at: null,
+                        stripe_updated_at: String(new Date()),
+                        stripe_updated_at_pt_br: DateTime_1.default.getNow(),
+                    },
+                });
+            }
+        }
     }
     async incrementAPIRequest(userAPIKey) {
         const user = await this.database.users.findUnique({

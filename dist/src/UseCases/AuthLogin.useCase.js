@@ -9,8 +9,8 @@ class AuthLoginUseCase {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
     }
-    async execute(authLoginDTO) {
-        const { email, password } = authLoginDTO;
+    async execute(authLoginPayload) {
+        const { email, password } = authLoginPayload;
         if (!Validator_1.default.email.isValid(email))
             throw new Exception_1.ClientException(ErrorsMessages_1.ErrorsMessages.EMAIL_IS_INVALID);
         if (email && password) {

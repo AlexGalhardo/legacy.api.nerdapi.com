@@ -26,9 +26,9 @@ let AuthController = class AuthController {
         this.authResetPasswordUseCase = authResetPasswordUseCase;
         this.authCheckResetPasswordTokenUseCase = authCheckResetPasswordTokenUseCase;
     }
-    async login(authLoginDTO, response) {
+    async login(authLoginPayload, response) {
         try {
-            const { success, jwt_token, message } = await this.authLoginUseCase.execute(authLoginDTO);
+            const { success, jwt_token, message } = await this.authLoginUseCase.execute(authLoginPayload);
             if (success === true)
                 return response.status(common_1.HttpStatus.OK).json({ success: true, jwt_token });
             return response.status(common_1.HttpStatus.BAD_REQUEST).json({ success: false, message });
@@ -37,9 +37,9 @@ let AuthController = class AuthController {
             return response.status(common_1.HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
-    async register(authRegisterDTO, response) {
+    async register(authRegisterPayload, response) {
         try {
-            const { success, jwt_token } = await this.authRegisterUseCase.execute(authRegisterDTO);
+            const { success, jwt_token } = await this.authRegisterUseCase.execute(authRegisterPayload);
             if (success === true)
                 return response.status(common_1.HttpStatus.OK).json({ success: true, jwt_token });
         }
@@ -69,9 +69,9 @@ let AuthController = class AuthController {
             return response.status(common_1.HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
-    async forgetPassword(authForgetPasswordDTO, response) {
+    async forgetPassword(authForgetPasswordPayload, response) {
         try {
-            const { success } = await this.authForgetPasswordUseCase.execute(authForgetPasswordDTO);
+            const { success } = await this.authForgetPasswordUseCase.execute(authForgetPasswordPayload);
             if (success)
                 return response.status(common_1.HttpStatus.OK).json({ success: true });
         }
@@ -79,10 +79,10 @@ let AuthController = class AuthController {
             return response.status(common_1.HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
-    async resetPassword(authResetPasswordDTO, request, response) {
+    async resetPassword(authResetPasswordPayload, request, response) {
         try {
             const { reset_password_token } = request.params;
-            const { success } = await this.authResetPasswordUseCase.execute(reset_password_token, authResetPasswordDTO);
+            const { success } = await this.authResetPasswordUseCase.execute(reset_password_token, authResetPasswordPayload);
             if (success)
                 return response.status(common_1.HttpStatus.OK).json({ success: true });
         }

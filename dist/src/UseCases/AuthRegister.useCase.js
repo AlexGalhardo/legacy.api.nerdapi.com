@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.SubscriptionName = void 0;
 require("dotenv/config");
 const crypto_1 = require("crypto");
 const Bcrypt_1 = require("../Utils/Bcrypt");
@@ -9,6 +10,12 @@ const Validator_1 = require("../Utils/Validator");
 const jwt = require("jsonwebtoken");
 const DateTime_1 = require("../Utils/DataTypes/DateTime");
 const GenerateRandomToken_1 = require("../Utils/GenerateRandomToken");
+var SubscriptionName;
+(function (SubscriptionName) {
+    SubscriptionName["NOOB"] = "NOOB";
+    SubscriptionName["CASUAL"] = "CASUAL";
+    SubscriptionName["PRO"] = "PRO";
+})(SubscriptionName || (exports.SubscriptionName = SubscriptionName = {}));
 class AuthRegisterUseCase {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
@@ -39,7 +46,7 @@ class AuthRegisterUseCase {
                     customer_id: null,
                     subscription: {
                         active: false,
-                        name: "NOOB",
+                        name: SubscriptionName.NOOB,
                         starts_at: null,
                         ends_at: null,
                         charge_id: null,

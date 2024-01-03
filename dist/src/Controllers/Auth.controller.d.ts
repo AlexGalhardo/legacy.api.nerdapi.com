@@ -35,12 +35,12 @@ export declare class AuthController implements AuthControllerPort {
     private readonly authResetPasswordUseCase;
     private readonly authCheckResetPasswordTokenUseCase;
     constructor(authLoginUseCase: AuthLoginUseCasePort, authLoginGoogleUseCase: AuthLoginGoogleUseCasePort, authLoginGitHubUseCase: AuthLoginGitHubUseCasePort, authRegisterUseCase: AuthRegisterUseCasePort, authLogoutUseCase: AuthLogoutUseCasePort, authCheckUserJWTTokenUseCase: AuthCheckUserJWTTokenUseCasePort, authForgetPasswordUseCase: AuthForgetPasswordUseCasePort, authResetPasswordUseCase: AuthResetPasswordUseCasePort, authCheckResetPasswordTokenUseCase: AuthCheckResetPasswordTokenUseCasePort);
-    login(authLoginDTO: AuthLoginDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
-    register(authRegisterDTO: AuthRegisterDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
+    login(authLoginPayload: AuthLoginDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
+    register(authRegisterPayload: AuthRegisterDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
     logout(response: Response): Promise<Response<AuthUseCaseResponse>>;
     tokenUser(response: Response): Promise<Response<AuthUseCaseResponse>>;
-    forgetPassword(authForgetPasswordDTO: AuthForgetPasswordDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
-    resetPassword(authResetPasswordDTO: AuthResetPasswordDTO, request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
+    forgetPassword(authForgetPasswordPayload: AuthForgetPasswordDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
+    resetPassword(authResetPasswordPayload: AuthResetPasswordDTO, request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
     checkResetPasswordToken({ resetPasswordToken }: CheckResetPasswordTokenDTO, response: Response): Promise<Response<AuthUseCaseResponse>>;
     loginGoogle(request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
     loginGithub(request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;

@@ -10,6 +10,7 @@ const node_crypto_1 = require("node:crypto");
 const DateTime_1 = require("../Utils/DataTypes/DateTime");
 const Constants_1 = require("../Utils/Constants");
 const GenerateRandomToken_1 = require("../Utils/GenerateRandomToken");
+const AuthRegister_useCase_1 = require("./AuthRegister.useCase");
 class AuthLoginGoogleUseCase {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
@@ -54,7 +55,7 @@ class AuthLoginGoogleUseCase {
                         customer_id: null,
                         subscription: {
                             active: false,
-                            name: "NOOB",
+                            name: AuthRegister_useCase_1.SubscriptionName.NOOB,
                             starts_at: null,
                             ends_at: null,
                             charge_id: null,

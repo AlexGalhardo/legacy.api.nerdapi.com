@@ -14,6 +14,6 @@ interface UserLoginUseCaseResponse {
 export default class AuthLoginUseCase implements AuthLoginUseCasePort {
     private readonly usersRepository;
     constructor(usersRepository: UsersRepositoryPort);
-    execute(authLoginDTO: AuthLoginDTO): Promise<UserLoginUseCaseResponse>;
+    execute(authLoginPayload: AuthLoginDTO): Promise<UserLoginUseCaseResponse>;
 }
 export {};

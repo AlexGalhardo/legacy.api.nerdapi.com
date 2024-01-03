@@ -10,6 +10,7 @@ const DateTime_1 = require("../Utils/DataTypes/DateTime");
 const Constants_1 = require("../Utils/Constants");
 require("dotenv/config");
 const GenerateRandomToken_1 = require("../Utils/GenerateRandomToken");
+const AuthRegister_useCase_1 = require("./AuthRegister.useCase");
 class AuthLoginGitHubUseCase {
     constructor(usersRepository) {
         this.usersRepository = usersRepository;
@@ -62,7 +63,7 @@ class AuthLoginGitHubUseCase {
                         customer_id: null,
                         subscription: {
                             active: false,
-                            name: "NOOB",
+                            name: AuthRegister_useCase_1.SubscriptionName.NOOB,
                             starts_at: null,
                             ends_at: null,
                             charge_id: null,
