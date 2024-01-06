@@ -99,7 +99,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     constructor(
         private users: User[] = usersDatabase,
         private readonly database: Database,
-    ) {}
+    ) { }
 
     public async save(user?: User, index?: number): Promise<void> {
         if (process.env.USE_DATABASE_JSON === "true") {
@@ -612,7 +612,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     }
 
     public async verifyIfSubscriptionIsActiveAndNotExpired(user: User): Promise<void> {
-        if (user.stripe.subscription.active) {
+        if (user.stripe.subscription.active === true && user.stripe.subscription.ends_at !== null) {
             const endsAtDate = new Date(
                 user.stripe.subscription.ends_at.replace(
                     /(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2}):(\d{2})/,
