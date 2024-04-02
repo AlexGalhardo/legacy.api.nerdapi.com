@@ -3,6 +3,7 @@ import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import { ClientException } from "src/Utils/Exception";
 import * as jwt from "jsonwebtoken";
 import Validator from "src/Utils/Validator";
+import { ProfileUpdateDTO } from "src/DTOs/profile-update.dto";
 
 interface ProfileUpdateUseCaseResponse {
     success: boolean;
@@ -11,13 +12,6 @@ interface ProfileUpdateUseCaseResponse {
 
 export interface ProfileUpdateUseCasePort {
     execute(jwtToken: string, profileUpdateDTO: ProfileUpdateDTO): Promise<ProfileUpdateUseCaseResponse>;
-}
-
-export interface ProfileUpdateDTO {
-    username?: string | null;
-    telegramNumber?: string | null;
-    newPassword?: string | null;
-    confirmNewPassword?: string | null;
 }
 
 export default class ProfileUpdateUseCase implements ProfileUpdateUseCasePort {

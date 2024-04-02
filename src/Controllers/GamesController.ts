@@ -1,5 +1,7 @@
 import { Controller, Res, HttpStatus, Get, Inject, Req } from "@nestjs/common";
+import { ApiBearerAuth, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { Request, Response } from "express";
+import { GameEntity } from "src/Entities/game.entity";
 import { Game } from "src/Repositories/Games.repository";
 import { GameGetByIdUseCasePort } from "src/UseCases/GameGetById.useCase";
 import { GameGetByTitleUseCasePort } from "src/UseCases/GameGetByTitle.useCase";
@@ -19,6 +21,7 @@ interface GamesControllerPort {
 }
 
 @Controller("games")
+@ApiTags("games")
 export class GamesController implements GamesControllerPort {
     constructor(
         @Inject("GameGetRandomUseCasePort") private readonly gameGetRandomUseCase: GameGetRandomUseCasePort,
@@ -27,6 +30,8 @@ export class GamesController implements GamesControllerPort {
     ) {}
 
     @Get("/random")
+    @ApiBearerAuth()
+    @ApiResponse({ status: 200, description: "Use api_key_admin in Authorize", type: GameEntity })
     async getRandom(@Res() response: Response): Promise<Response<GameUseCaseResponse>> {
         try {
             const userAPIKey = response.locals.token;

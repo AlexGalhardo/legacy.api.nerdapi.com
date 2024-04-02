@@ -2,12 +2,12 @@ import * as fs from "fs";
 import * as usersDatabase from "./Jsons/users.json";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";
 import DateTime from "src/Utils/DataTypes/DateTime";
-import { ProfileUpdateDTO } from "src/UseCases/ProfileUpdate.useCase";
 import { Bcrypt } from "src/Utils/Bcrypt";
 import { Injectable } from "@nestjs/common";
 import { Database } from "src/Utils/Database";
 import "dotenv/config";
 import { SubscriptionName } from "src/UseCases/AuthRegister.useCase";
+import { ProfileUpdateDTO } from "src/DTOs/profile-update.dto";
 
 export interface User {
     id: string;
@@ -41,10 +41,8 @@ export interface User {
 
 export interface UserUpdated {
     username: string;
-    email: string;
+    email?: string;
     telegramNumber: string;
-    password: string;
-    plain_password: string | null;
 }
 
 export interface UserResponse {
@@ -99,7 +97,7 @@ export default class UsersRepository implements UsersRepositoryPort {
     constructor(
         private users: User[] = usersDatabase,
         private readonly database: Database,
-    ) { }
+    ) {}
 
     public async save(user?: User, index?: number): Promise<void> {
         if (process.env.USE_DATABASE_JSON === "true") {
@@ -372,8 +370,6 @@ export default class UsersRepository implements UsersRepositoryPort {
                         username: this.users[i].username,
                         email: this.users[i].email,
                         telegramNumber: this.users[i].telegram_number,
-                        password: this.users[i].password,
-                        plain_password: profileUpdatePayload.newPassword ?? null,
                     };
                 }
             }
@@ -396,8 +392,6 @@ export default class UsersRepository implements UsersRepositoryPort {
             username: userUpdated.username,
             email: userUpdated.email,
             telegramNumber: userUpdated.telegram_number,
-            password: userUpdated.password,
-            plain_password: profileUpdatePayload.newPassword ?? null,
         };
     }
 

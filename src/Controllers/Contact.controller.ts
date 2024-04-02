@@ -1,5 +1,7 @@
 import { Controller, Post, Res, Body, Inject, HttpStatus } from "@nestjs/common";
+import { ApiResponse, ApiTags } from "@nestjs/swagger";
 import { Response } from "express";
+import { Contact } from "src/Entities/contact.entity";
 import { ContactSendMessageDTO, ContactSendMessageUseCasePort } from "src/UseCases/ContactSendMessage.useCase";
 
 interface ContactUseCaseResponse {
@@ -14,6 +16,7 @@ interface ContactControllerPort {
 }
 
 @Controller()
+@ApiTags("contact")
 export class ContactController implements ContactControllerPort {
     constructor(
         @Inject("ContactSendMessageUseCasePort")
@@ -21,6 +24,7 @@ export class ContactController implements ContactControllerPort {
     ) {}
 
     @Post("/contact")
+    @ApiResponse({ status: 200, type: Contact })
     async contactSendMessage(
         @Body() contactSendMessageDTO: ContactSendMessageDTO,
         @Res() response: Response,
