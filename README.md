@@ -35,12 +35,13 @@
 * Emails API: <https://resend.com/>
 
 ## Features
-- [x] GitHub Actions for CI/CD
-- [x] Linter and Prettier to format code
-- [x] Unit Tests using mocks
-- [x] Integration Tests
-- [x] Swagger API Documentation
-- [x] Authentication, Authorization and Google & Github Social Login
+
+* \[x] GitHub Actions for CI/CD
+* \[x] Linter and Prettier to format code
+* \[x] Unit Tests using mocks
+* \[x] Integration Tests
+* \[x] Swagger API Documentation
+* \[x] Authentication, Authorization and Google & Github Social Login
 
 ## FrontEnd & Docs
 

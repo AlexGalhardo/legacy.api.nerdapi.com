@@ -7,7 +7,7 @@ import { HealthCheck } from "src/Entities/health-check";
 @ApiTags("health-check")
 export class HealthCheckController {
     @Get("/")
-	@ApiResponse({ status: 200, type: HealthCheck })
+    @ApiResponse({ status: 200, type: HealthCheck })
     async login(@Res() response: Response) {
         return response.status(HttpStatus.OK).json({
             success: true,

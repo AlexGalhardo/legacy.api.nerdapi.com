@@ -57,7 +57,7 @@ export class StripeController implements StripeControllerPort {
     ) {}
 
     @Post("/create-checkout-session")
-	@ApiBearerAuth()
+    @ApiBearerAuth()
     async createCheckoutSession(
         @Body() stripeCreateCheckoutSessionDTO: StripeCreateCheckoutSessionDTO,
         @Res() response: Response,
@@ -75,7 +75,7 @@ export class StripeController implements StripeControllerPort {
     }
 
     @Post("/create-portal-session")
-	@ApiBearerAuth()
+    @ApiBearerAuth()
     async createPortalSession(
         @Body() stripeCreatePortalSessionDTO: StripeCreatePortalSessionDTO,
         @Res() response: Response,
@@ -94,7 +94,7 @@ export class StripeController implements StripeControllerPort {
 
     // https://github.com/stripe/stripe-cli
     @Post("/webhook")
-	@ApiResponse({ status: 200 })
+    @ApiResponse({ status: 200 })
     async webhook(
         @Body() event: StripeWebhookEventDTO,
         @Res() response: Response,

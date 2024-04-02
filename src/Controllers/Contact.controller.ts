@@ -24,7 +24,7 @@ export class ContactController implements ContactControllerPort {
     ) {}
 
     @Post("/contact")
-	@ApiResponse({ status: 200, type: Contact })
+    @ApiResponse({ status: 200, type: Contact })
     async contactSendMessage(
         @Body() contactSendMessageDTO: ContactSendMessageDTO,
         @Res() response: Response,

@@ -30,8 +30,8 @@ export class GamesController implements GamesControllerPort {
     ) {}
 
     @Get("/random")
-	@ApiBearerAuth()
-	@ApiResponse({ status: 200, description: 'Use api_key_admin in Authorize', type: GameEntity })
+    @ApiBearerAuth()
+    @ApiResponse({ status: 200, description: "Use api_key_admin in Authorize", type: GameEntity })
     async getRandom(@Res() response: Response): Promise<Response<GameUseCaseResponse>> {
         try {
             const userAPIKey = response.locals.token;
