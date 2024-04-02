@@ -369,7 +369,7 @@ export default class UsersRepository implements UsersRepositoryPort {
                     return {
                         username: this.users[i].username,
                         email: this.users[i].email,
-                        telegramNumber: this.users[i].telegram_number
+                        telegramNumber: this.users[i].telegram_number,
                     };
                 }
             }
@@ -391,7 +391,7 @@ export default class UsersRepository implements UsersRepositoryPort {
         return {
             username: userUpdated.username,
             email: userUpdated.email,
-            telegramNumber: userUpdated.telegram_number
+            telegramNumber: userUpdated.telegram_number,
         };
     }
 

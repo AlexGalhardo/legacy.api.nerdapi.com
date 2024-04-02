@@ -1,18 +1,15 @@
-import { IsString } from 'class-validator';
+import { IsString } from "class-validator";
 
 export class ProfileUpdateDTO {
-	@IsString()
-	readonly username: string;
+    @IsString()
+    readonly username: string;
 
-	@IsString()
-	readonly email: string;
+    @IsString()
+    readonly telegramNumber: string;
 
-	@IsString()
-	readonly telegramNumber: string;
+    @IsString()
+    readonly newPassword: string;
 
-	@IsString()
-	readonly newPassword: string;
-
-	@IsString()
-	readonly confirmNewPassword: string;
+    @IsString()
+    readonly confirmNewPassword: string;
 }

@@ -270,7 +270,7 @@ let UsersRepository = class UsersRepository {
                     return {
                         username: this.users[i].username,
                         email: this.users[i].email,
-                        telegramNumber: this.users[i].telegram_number
+                        telegramNumber: this.users[i].telegram_number,
                     };
                 }
             }
@@ -290,7 +290,7 @@ let UsersRepository = class UsersRepository {
         return {
             username: userUpdated.username,
             email: userUpdated.email,
-            telegramNumber: userUpdated.telegram_number
+            telegramNumber: userUpdated.telegram_number,
         };
     }
     async deleteByEmail(email) {

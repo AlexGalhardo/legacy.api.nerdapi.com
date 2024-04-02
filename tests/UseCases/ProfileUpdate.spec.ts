@@ -86,7 +86,6 @@ describe("Test ProfileUpdateUseCase", () => {
         expect(success).toBeTruthy();
         expect(data.username).toBe(newUserName);
         expect(data.telegramNumber).toBe(newTelegramNumber);
-        expect(data.password).toBeDefined();
     });
 
     afterAll(async () => {

@@ -12,7 +12,7 @@ async function bootstrap() {
         .setDescription("The Nerd API Documentation")
         .setVersion("1.0")
         .addTag("example")
-		.addBearerAuth()
+        .addBearerAuth()
         .build();
     const document = SwaggerModule.createDocument(app, config);
     SwaggerModule.setup("api", app, document);
