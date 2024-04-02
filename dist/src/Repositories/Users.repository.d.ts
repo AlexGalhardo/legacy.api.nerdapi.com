@@ -32,7 +32,7 @@ export interface User {
 }
 export interface UserUpdated {
     username: string;
-    email: string;
+    email?: string;
     telegramNumber: string;
 }
 export interface UserResponse {

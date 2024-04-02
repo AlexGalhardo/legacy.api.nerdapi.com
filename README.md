@@ -136,15 +136,13 @@ npm run test
 npm run test:e2e
 ```
 
-![tests](https://github.com/AlexGalhardo/api.nerdapi.com/assets/19540357/f427f0ae-521c-4400-adc9-985a15621c9b)
 
-## HTTP Requests
+## API
 
 * You can see the HTTP Requests references inside folder **rest-client/**
 
-* You can also import file `INSOMNIA_API_NERDAPI_HTTP_REQUESTS_COLLECTION.json` to your Insomnia HTTP Client
+* You can also import file `docs/INSOMNIA_API_NERDAPI_HTTP_REQUESTS_COLLECTION.json` to your Insomnia HTTP Client
 
-![print-insomnia](https://github.com/AlexGalhardo/api.nerdapi.com/assets/19540357/286e1688-bae2-431f-83fb-bcfa6db045fd)
 
 ## License
 
