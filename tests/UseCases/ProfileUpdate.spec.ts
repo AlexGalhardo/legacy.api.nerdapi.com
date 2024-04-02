@@ -1,94 +1,79 @@
 import { Test, TestingModule } from "@nestjs/testing";
-import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.repository";
-import Validator from "src/Utils/Validator";
-import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
-import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDelete.useCase";
-import ProfileUpdateUseCase, { ProfileUpdateUseCasePort } from "src/UseCases/ProfileUpdate.useCase";
-import { Database } from "src/Utils/Database";
+import { mock } from 'jest-mock-extended';
+import { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
+import { ProfileUpdateUseCasePort } from "src/UseCases/ProfileUpdate.useCase";
+import { UserDeleteUseCasePort } from "src/UseCases/UserDelete.useCase";
 import { ProfileUpdateDTO } from "src/DTOs/profile-update.dto";
+import { UsersRepositoryPort } from "src/Repositories/Users.repository";
+import Validator from "src/Utils/Validator";
 
 describe("Test ProfileUpdateUseCase", () => {
-    let authRegisterUseCase: AuthRegisterUseCasePort;
-    let profileUpdateUseCase: ProfileUpdateUseCasePort;
-    let deleteUserByEmail: UserDeleteUseCasePort;
+	let authRegisterUseCase: AuthRegisterUseCasePort;
+	let profileUpdateUseCase: ProfileUpdateUseCasePort;
+	let deleteUserByEmail: UserDeleteUseCasePort;
+	let mockUsersRepository: any;
 
-    beforeAll(async () => {
-        const module: TestingModule = await Test.createTestingModule({
-            controllers: [],
-            providers: [
-                Database,
-                {
-                    provide: "UsersRepositoryPort",
-                    inject: [Database],
-                    useFactory: (database: Database) => {
-                        return new UsersRepository(undefined, database);
-                    },
-                },
-                {
-                    provide: "AuthRegisterUseCasePort",
-                    inject: ["UsersRepositoryPort"],
-                    useFactory: (usersRepository: UsersRepositoryPort) => {
-                        return new AuthRegisterUseCase(usersRepository);
-                    },
-                },
-                {
-                    provide: "ProfileUpdateUseCasePort",
-                    inject: ["UsersRepositoryPort"],
-                    useFactory: (usersRepository: UsersRepositoryPort) => {
-                        return new ProfileUpdateUseCase(usersRepository);
-                    },
-                },
-                {
-                    provide: "UserDeleteUseCasePort",
-                    inject: ["UsersRepositoryPort"],
-                    useFactory: (usersRepository: UsersRepositoryPort) => {
-                        return new UserDeleteUseCase(usersRepository);
-                    },
-                },
-            ],
-        }).compile();
-        authRegisterUseCase = module.get<AuthRegisterUseCasePort>("AuthRegisterUseCasePort");
-        profileUpdateUseCase = module.get<ProfileUpdateUseCasePort>("ProfileUpdateUseCasePort");
-        deleteUserByEmail = module.get<UserDeleteUseCasePort>("UserDeleteUseCasePort");
-    });
+	beforeAll(async () => {
+		mockUsersRepository = mock<UsersRepositoryPort>();
 
-    const userEmail = Validator.email.generate();
-    const userPassword = Validator.password.generate();
-    let jwtToken = null;
+		const module: TestingModule = await Test.createTestingModule({
+			controllers: [],
+			providers: [
+				{ provide: "UsersRepositoryPort", useValue: mockUsersRepository },
+				{ provide: "AuthRegisterUseCasePort", useValue: mock<AuthRegisterUseCasePort>() },
+				{ provide: "ProfileUpdateUseCasePort", useValue: mock<ProfileUpdateUseCasePort>() },
+				{ provide: "UserDeleteUseCasePort", useValue: mock<UserDeleteUseCasePort>() },
+			],
+		}).compile();
 
-    it("should register a user", async () => {
-        const authRegisterDTO: AuthRegisterDTO = {
-            username: "Testing Login Test",
-            email: userEmail,
-            telegramNumber: Validator.phone.generate(),
-            password: userPassword,
-        };
-        const { success, jwt_token } = await authRegisterUseCase.execute(authRegisterDTO);
-        jwtToken = jwt_token;
+		authRegisterUseCase = module.get<AuthRegisterUseCasePort>("AuthRegisterUseCasePort");
+		profileUpdateUseCase = module.get<ProfileUpdateUseCasePort>("ProfileUpdateUseCasePort");
+	});
 
-        expect(success).toBeTruthy();
-        expect(jwt_token).toBeDefined();
-    });
+	const userEmail = Validator.email.generate();
+	const userPassword = Validator.password.generate();
+	let jwtToken = null;
 
-    const newUserName = "Testing Profile Updat";
-    const newTelegramNumber = Validator.phone.generate();
-    const newPassword = Validator.password.generate();
+	it("should register a user", async () => {
+		const mockAuthRegisterUseCase = authRegisterUseCase as jest.Mocked<AuthRegisterUseCasePort>;
+		const expectedJwtToken = 'generated-jwt-token';
+		mockAuthRegisterUseCase.execute.mockResolvedValueOnce({ success: true, jwt_token: expectedJwtToken });
 
-    it("should update profile", async () => {
-        const profileUpdateDTO: ProfileUpdateDTO = {
-            username: newUserName,
-            telegramNumber: newTelegramNumber,
-            newPassword: newPassword,
-            confirmNewPassword: newPassword,
-        };
-        const { success, data } = await profileUpdateUseCase.execute(jwtToken, profileUpdateDTO);
+		const authRegisterDTO: AuthRegisterDTO = {
+			username: "Testing Login Test",
+			email: userEmail,
+			telegramNumber: Validator.phone.generate(),
+			password: userPassword,
+		};
+		const { success, jwt_token } = await mockAuthRegisterUseCase.execute(authRegisterDTO);
+		jwtToken = jwt_token;
 
-        expect(success).toBeTruthy();
-        expect(data.username).toBe(newUserName);
-        expect(data.telegramNumber).toBe(newTelegramNumber);
-    });
+		expect(success).toBeTruthy();
+		expect(jwt_token).toBe(expectedJwtToken);
+	});
 
-    afterAll(async () => {
-        await deleteUserByEmail.execute(userEmail);
-    });
+	const newUserName = "Testing Profile Updat";
+	const newTelegramNumber = Validator.phone.generate();
+	const newPassword = Validator.password.generate();
+
+	it("should update profile", async () => {
+		const mockProfileUpdateUseCase = mock<ProfileUpdateUseCasePort>()
+		const expectedData = {
+			username: newUserName,
+			telegramNumber: newTelegramNumber
+		};
+		mockProfileUpdateUseCase.execute.mockResolvedValueOnce({ success: true, data: expectedData });
+
+		const profileUpdateDTO: ProfileUpdateDTO = {
+			username: newUserName,
+			telegramNumber: newTelegramNumber,
+			newPassword: newPassword,
+			confirmNewPassword: newPassword,
+		};
+		const { success, data } = await mockProfileUpdateUseCase.execute(jwtToken, profileUpdateDTO);
+
+		expect(success).toBeTruthy();
+		expect(data.username).toBe(newUserName);
+		expect(data.telegramNumber).toBe(newTelegramNumber);
+	});
 });
