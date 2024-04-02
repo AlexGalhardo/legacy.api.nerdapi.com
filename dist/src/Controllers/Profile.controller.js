@@ -36,8 +36,7 @@ let ProfileController = class ProfileController {
 exports.ProfileController = ProfileController;
 __decorate([
     (0, common_1.Put)("/"),
-    (0, swagger_1.ApiOperation)({ summary: "UPDATE PROFILE" }),
-    (0, swagger_1.ApiResponse)({ status: 200, description: "Profile updated!", type: profile_entity_1.Profile }),
+    (0, swagger_1.ApiResponse)({ status: 200, type: profile_entity_1.Profile }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),

@@ -12,6 +12,8 @@ import { AuthLogoutUseCasePort } from "src/UseCases/AuthLogout.useCase";
 import { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import { AuthResetPasswordDTO, AuthResetPasswordUseCasePort } from "src/UseCases/AuthResetPassword.useCase";
 import { AuthCheckUserJWTTokenUseCasePort } from "src/UseCases/AuthCheckUserJWTToken.useCase";
+import { ApiBearerAuth, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { Auth } from "src/Entities/auth.entity";
 
 interface AuthUseCaseResponse {
     success: boolean;
@@ -38,6 +40,7 @@ interface AuthControllerPort {
     loginGithub(request: Request, response: Response): Promise<Response<AuthUseCaseResponse>>;
 }
 
+@ApiTags("auth")
 @Controller()
 export class AuthController implements AuthControllerPort {
     constructor(
@@ -55,7 +58,9 @@ export class AuthController implements AuthControllerPort {
         private readonly authCheckResetPasswordTokenUseCase: AuthCheckResetPasswordTokenUseCasePort,
     ) {}
 
+
     @Post("/login")
+	@ApiResponse({ status: 200, type: Auth })
     async login(
         @Body() authLoginPayload: AuthLoginDTO,
         @Res() response: Response,
@@ -70,6 +75,7 @@ export class AuthController implements AuthControllerPort {
     }
 
     @Post("/register")
+	@ApiResponse({ status: 201, type: Auth })
     async register(
         @Body() authRegisterPayload: AuthRegisterDTO,
         @Res() response: Response,
@@ -83,6 +89,8 @@ export class AuthController implements AuthControllerPort {
     }
 
     @Post("/logout")
+	@ApiBearerAuth()
+	@ApiResponse({ status: 200, type: Auth })
     async logout(@Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
             const userJWTToken = response.locals.token;
@@ -94,6 +102,8 @@ export class AuthController implements AuthControllerPort {
     }
 
     @Post("/check-user-jwt-token")
+	@ApiBearerAuth()
+	@ApiResponse({ status: 200, type: Auth })
     async tokenUser(@Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
             const userJWTToken = response.locals.token;
@@ -105,6 +115,7 @@ export class AuthController implements AuthControllerPort {
     }
 
     @Post("/forget-password")
+	@ApiResponse({ status: 200, type: Auth })
     async forgetPassword(
         @Body() authForgetPasswordPayload: AuthForgetPasswordDTO,
         @Res() response: Response,
@@ -118,6 +129,7 @@ export class AuthController implements AuthControllerPort {
     }
 
     @Post("/reset-password/:reset_password_token")
+	@ApiResponse({ status: 200, type: Auth })
     async resetPassword(
         @Body() authResetPasswordPayload: AuthResetPasswordDTO,
         @Req() request: Request,
@@ -136,6 +148,7 @@ export class AuthController implements AuthControllerPort {
     }
 
     @Post("/check-reset-password-token")
+	@ApiResponse({ status: 200, type: Auth })
     async checkResetPasswordToken(
         @Body() { resetPasswordToken }: CheckResetPasswordTokenDTO,
         @Res() response: Response,
@@ -149,6 +162,7 @@ export class AuthController implements AuthControllerPort {
     }
 
     @Post("/login/google/callback")
+	@ApiResponse({ status: 200, type: Auth })
     async loginGoogle(@Req() request: Request, @Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
             const { success, redirect } = await this.authLoginGoogleUseCase.execute(request);
@@ -161,6 +175,7 @@ export class AuthController implements AuthControllerPort {
     }
 
     @Get("/login/github/callback")
+	@ApiResponse({ status: 200, type: Auth })
     async loginGithub(@Req() request: Request, @Res() response: Response): Promise<Response<AuthUseCaseResponse>> {
         try {
             const { success, redirect } = await this.authLoginGitHubUseCase.execute(request);

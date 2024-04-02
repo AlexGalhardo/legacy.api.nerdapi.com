@@ -13,7 +13,7 @@
 		"test:watch": "jest --watch",
 		"test:cov": "jest --coverage",
 		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-		"test:e2e": "jest --runInBand --detectOpenHandles --forceExit --config ./tests/jest-e2e.json",
+		"test:integration": "jest --runInBand --detectOpenHandles --forceExit --config ./tests/integration/jest-integrations-test.json",
 		"lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
 		"format:markdown": "remark . --output",
 		"format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\" && npm run format:markdown",

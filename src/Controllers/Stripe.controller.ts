@@ -1,4 +1,5 @@
 import { Controller, Post, Res, Body, Inject, HttpStatus } from "@nestjs/common";
+import { ApiBearerAuth, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { Response } from "express";
 import { StripeRepositoryPort } from "src/Repositories/Stripe.repository";
 import {
@@ -41,6 +42,7 @@ interface StripeControllerPort {
 }
 
 @Controller("stripe")
+@ApiTags("stripe")
 export class StripeController implements StripeControllerPort {
     constructor(
         @Inject("StripeRepositoryPort") private readonly stripeRepository: StripeRepositoryPort,
@@ -55,6 +57,7 @@ export class StripeController implements StripeControllerPort {
     ) {}
 
     @Post("/create-checkout-session")
+	@ApiBearerAuth()
     async createCheckoutSession(
         @Body() stripeCreateCheckoutSessionDTO: StripeCreateCheckoutSessionDTO,
         @Res() response: Response,
@@ -72,6 +75,7 @@ export class StripeController implements StripeControllerPort {
     }
 
     @Post("/create-portal-session")
+	@ApiBearerAuth()
     async createPortalSession(
         @Body() stripeCreatePortalSessionDTO: StripeCreatePortalSessionDTO,
         @Res() response: Response,
@@ -90,6 +94,7 @@ export class StripeController implements StripeControllerPort {
 
     // https://github.com/stripe/stripe-cli
     @Post("/webhook")
+	@ApiResponse({ status: 200 })
     async webhook(
         @Body() event: StripeWebhookEventDTO,
         @Res() response: Response,

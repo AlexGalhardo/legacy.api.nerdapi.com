@@ -14,6 +14,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HealthCheckController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
+const health_check_1 = require("../Entities/health-check");
 let HealthCheckController = class HealthCheckController {
     async login(response) {
         return response.status(common_1.HttpStatus.OK).json({
@@ -25,12 +27,14 @@ let HealthCheckController = class HealthCheckController {
 exports.HealthCheckController = HealthCheckController;
 __decorate([
     (0, common_1.Get)("/"),
+    (0, swagger_1.ApiResponse)({ status: 200, type: health_check_1.HealthCheck }),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], HealthCheckController.prototype, "login", null);
 exports.HealthCheckController = HealthCheckController = __decorate([
-    (0, common_1.Controller)()
+    (0, common_1.Controller)(),
+    (0, swagger_1.ApiTags)("health-check")
 ], HealthCheckController);
 //# sourceMappingURL=HealthCheckController.js.map

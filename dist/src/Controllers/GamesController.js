@@ -14,6 +14,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GamesController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
+const game_entity_1 = require("../Entities/game.entity");
 let GamesController = class GamesController {
     constructor(gameGetRandomUseCase, gameGetByIdUseCase, gameGetByTitleUseCase) {
         this.gameGetRandomUseCase = gameGetRandomUseCase;
@@ -62,6 +64,8 @@ let GamesController = class GamesController {
 exports.GamesController = GamesController;
 __decorate([
     (0, common_1.Get)("/random"),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Use api_key_admin in Authorize', type: game_entity_1.GameEntity }),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -85,6 +89,7 @@ __decorate([
 ], GamesController.prototype, "getByTitle", null);
 exports.GamesController = GamesController = __decorate([
     (0, common_1.Controller)("games"),
+    (0, swagger_1.ApiTags)("games"),
     __param(0, (0, common_1.Inject)("GameGetRandomUseCasePort")),
     __param(1, (0, common_1.Inject)("GameGetByIdUseCasePort")),
     __param(2, (0, common_1.Inject)("GameGetByTitleUseCasePort")),

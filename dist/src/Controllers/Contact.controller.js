@@ -14,6 +14,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ContactController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
+const contact_entity_1 = require("../Entities/contact.entity");
 let ContactController = class ContactController {
     constructor(contactSendMessageUseCase) {
         this.contactSendMessageUseCase = contactSendMessageUseCase;
@@ -32,6 +34,7 @@ let ContactController = class ContactController {
 exports.ContactController = ContactController;
 __decorate([
     (0, common_1.Post)("/contact"),
+    (0, swagger_1.ApiResponse)({ status: 200, type: contact_entity_1.Contact }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -40,6 +43,7 @@ __decorate([
 ], ContactController.prototype, "contactSendMessage", null);
 exports.ContactController = ContactController = __decorate([
     (0, common_1.Controller)(),
+    (0, swagger_1.ApiTags)("contact"),
     __param(0, (0, common_1.Inject)("ContactSendMessageUseCasePort")),
     __metadata("design:paramtypes", [Object])
 ], ContactController);

@@ -14,6 +14,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
+const auth_entity_1 = require("../Entities/auth.entity");
 let AuthController = class AuthController {
     constructor(authLoginUseCase, authLoginGoogleUseCase, authLoginGitHubUseCase, authRegisterUseCase, authLogoutUseCase, authCheckUserJWTTokenUseCase, authForgetPasswordUseCase, authResetPasswordUseCase, authCheckResetPasswordTokenUseCase) {
         this.authLoginUseCase = authLoginUseCase;
@@ -126,6 +128,7 @@ let AuthController = class AuthController {
 exports.AuthController = AuthController;
 __decorate([
     (0, common_1.Post)("/login"),
+    (0, swagger_1.ApiResponse)({ status: 200, type: auth_entity_1.Auth }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -134,6 +137,7 @@ __decorate([
 ], AuthController.prototype, "login", null);
 __decorate([
     (0, common_1.Post)("/register"),
+    (0, swagger_1.ApiResponse)({ status: 201, type: auth_entity_1.Auth }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -142,6 +146,8 @@ __decorate([
 ], AuthController.prototype, "register", null);
 __decorate([
     (0, common_1.Post)("/logout"),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, swagger_1.ApiResponse)({ status: 200, type: auth_entity_1.Auth }),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -149,6 +155,8 @@ __decorate([
 ], AuthController.prototype, "logout", null);
 __decorate([
     (0, common_1.Post)("/check-user-jwt-token"),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, swagger_1.ApiResponse)({ status: 200, type: auth_entity_1.Auth }),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
@@ -156,6 +164,7 @@ __decorate([
 ], AuthController.prototype, "tokenUser", null);
 __decorate([
     (0, common_1.Post)("/forget-password"),
+    (0, swagger_1.ApiResponse)({ status: 200, type: auth_entity_1.Auth }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -164,6 +173,7 @@ __decorate([
 ], AuthController.prototype, "forgetPassword", null);
 __decorate([
     (0, common_1.Post)("/reset-password/:reset_password_token"),
+    (0, swagger_1.ApiResponse)({ status: 200, type: auth_entity_1.Auth }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Req)()),
     __param(2, (0, common_1.Res)()),
@@ -173,6 +183,7 @@ __decorate([
 ], AuthController.prototype, "resetPassword", null);
 __decorate([
     (0, common_1.Post)("/check-reset-password-token"),
+    (0, swagger_1.ApiResponse)({ status: 200, type: auth_entity_1.Auth }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -181,6 +192,7 @@ __decorate([
 ], AuthController.prototype, "checkResetPasswordToken", null);
 __decorate([
     (0, common_1.Post)("/login/google/callback"),
+    (0, swagger_1.ApiResponse)({ status: 200, type: auth_entity_1.Auth }),
     __param(0, (0, common_1.Req)()),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -189,6 +201,7 @@ __decorate([
 ], AuthController.prototype, "loginGoogle", null);
 __decorate([
     (0, common_1.Get)("/login/github/callback"),
+    (0, swagger_1.ApiResponse)({ status: 200, type: auth_entity_1.Auth }),
     __param(0, (0, common_1.Req)()),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -196,6 +209,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "loginGithub", null);
 exports.AuthController = AuthController = __decorate([
+    (0, swagger_1.ApiTags)("auth"),
     (0, common_1.Controller)(),
     __param(0, (0, common_1.Inject)("AuthLoginUseCasePort")),
     __param(1, (0, common_1.Inject)("AuthLoginGoogleUseCasePort")),

@@ -1,7 +1,7 @@
 import { Body, Controller, HttpStatus, Inject, Put, Res } from "@nestjs/common";
 import { Response } from "express";
 import { ProfileUpdateUseCasePort } from "src/UseCases/ProfileUpdate.useCase";
-import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { ProfileUpdateDTO } from "src/DTOs/profile-update.dto";
 import { Profile } from "src/Entities/profile.entity";
 
@@ -21,8 +21,7 @@ export class ProfileController implements ProfileControllerPort {
     constructor(@Inject("ProfileUpdateUseCasePort") private readonly profileUpdateUseCase: ProfileUpdateUseCasePort) {}
 
     @Put("/")
-    @ApiOperation({ summary: "UPDATE PROFILE" })
-    @ApiResponse({ status: 200, description: "Profile updated!", type: Profile })
+    @ApiResponse({ status: 200, type: Profile })
     async update(
         @Body() profileUpdateDTO: ProfileUpdateDTO,
         @Res() response: Response,

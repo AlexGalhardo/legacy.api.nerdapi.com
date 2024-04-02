@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StripeController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
 const TelegramBOTLogger_1 = require("../Utils/TelegramBOTLogger");
 let StripeController = class StripeController {
     constructor(stripeRepository, stripeCreateCheckoutSessionUseCase, stripeCreatePortalSessionUseCase, stripeWebhookChargeSucceededUseCase, stripeWebhookInvoiceFinalizedUseCase) {
@@ -112,6 +113,7 @@ let StripeController = class StripeController {
 exports.StripeController = StripeController;
 __decorate([
     (0, common_1.Post)("/create-checkout-session"),
+    (0, swagger_1.ApiBearerAuth)(),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -120,6 +122,7 @@ __decorate([
 ], StripeController.prototype, "createCheckoutSession", null);
 __decorate([
     (0, common_1.Post)("/create-portal-session"),
+    (0, swagger_1.ApiBearerAuth)(),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -128,6 +131,7 @@ __decorate([
 ], StripeController.prototype, "createPortalSession", null);
 __decorate([
     (0, common_1.Post)("/webhook"),
+    (0, swagger_1.ApiResponse)({ status: 200 }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
@@ -136,6 +140,7 @@ __decorate([
 ], StripeController.prototype, "webhook", null);
 exports.StripeController = StripeController = __decorate([
     (0, common_1.Controller)("stripe"),
+    (0, swagger_1.ApiTags)("stripe"),
     __param(0, (0, common_1.Inject)("StripeRepositoryPort")),
     __param(1, (0, common_1.Inject)("StripeCreateCheckoutSessionUseCasePort")),
     __param(2, (0, common_1.Inject)("StripeCreatePortalSessionUseCasePort")),
