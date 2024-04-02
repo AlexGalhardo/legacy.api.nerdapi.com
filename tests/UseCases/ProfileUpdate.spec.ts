@@ -3,8 +3,9 @@ import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.rep
 import Validator from "src/Utils/Validator";
 import AuthRegisterUseCase, { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
 import UserDeleteUseCase, { UserDeleteUseCasePort } from "src/UseCases/UserDelete.useCase";
-import ProfileUpdateUseCase, { ProfileUpdateDTO, ProfileUpdateUseCasePort } from "src/UseCases/ProfileUpdate.useCase";
+import ProfileUpdateUseCase, { ProfileUpdateUseCasePort } from "src/UseCases/ProfileUpdate.useCase";
 import { Database } from "src/Utils/Database";
+import { ProfileUpdateDTO } from "src/DTOs/profile-update.dto";
 
 describe("Test ProfileUpdateUseCase", () => {
     let authRegisterUseCase: AuthRegisterUseCasePort;

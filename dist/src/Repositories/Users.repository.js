@@ -257,7 +257,7 @@ let UsersRepository = class UsersRepository {
         });
     }
     async update(userId, profileUpdatePayload) {
-        var _a, _b, _c, _d;
+        var _a, _b;
         if (process.env.USE_DATABASE_JSON === "true") {
             for (let i = 0; i < this.users.length; i++) {
                 if (this.users[i].id === userId) {
@@ -270,9 +270,7 @@ let UsersRepository = class UsersRepository {
                     return {
                         username: this.users[i].username,
                         email: this.users[i].email,
-                        telegramNumber: this.users[i].telegram_number,
-                        password: this.users[i].password,
-                        plain_password: (_c = profileUpdatePayload.newPassword) !== null && _c !== void 0 ? _c : null,
+                        telegramNumber: this.users[i].telegram_number
                     };
                 }
             }
@@ -292,9 +290,7 @@ let UsersRepository = class UsersRepository {
         return {
             username: userUpdated.username,
             email: userUpdated.email,
-            telegramNumber: userUpdated.telegram_number,
-            password: userUpdated.password,
-            plain_password: (_d = profileUpdatePayload.newPassword) !== null && _d !== void 0 ? _d : null,
+            telegramNumber: userUpdated.telegram_number
         };
     }
     async deleteByEmail(email) {
@@ -483,7 +479,7 @@ let UsersRepository = class UsersRepository {
         return this.transformToUser(userUpdated);
     }
     async verifyIfSubscriptionIsActiveAndNotExpired(user) {
-        if (user.stripe.subscription.active) {
+        if (user.stripe.subscription.active === true && user.stripe.subscription.ends_at !== null) {
             const endsAtDate = new Date(user.stripe.subscription.ends_at.replace(/(\d{2})\/(\d{2})\/(\d{4}) (\d{2}):(\d{2}):(\d{2})/, "$3-$2-$1T$4:$5:$6"));
             if (endsAtDate <= new Date()) {
                 if (process.env.USE_DATABASE_JSON === "true") {

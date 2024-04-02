@@ -14,11 +14,14 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ProfileController = void 0;
 const common_1 = require("@nestjs/common");
+const swagger_1 = require("@nestjs/swagger");
+const profile_update_dto_1 = require("../DTOs/profile-update.dto");
+const profile_entity_1 = require("../Entities/profile.entity");
 let ProfileController = class ProfileController {
     constructor(profileUpdateUseCase) {
         this.profileUpdateUseCase = profileUpdateUseCase;
     }
-    async login(profileUpdateDTO, response) {
+    async update(profileUpdateDTO, response) {
         try {
             const userJWTToken = response.locals.token;
             const { success, data } = await this.profileUpdateUseCase.execute(userJWTToken, profileUpdateDTO);
@@ -32,15 +35,19 @@ let ProfileController = class ProfileController {
 };
 exports.ProfileController = ProfileController;
 __decorate([
-    (0, common_1.Put)("/profile"),
+    (0, common_1.Put)("/"),
+    (0, swagger_1.ApiOperation)({ summary: 'UPDATE PROFILE' }),
+    (0, swagger_1.ApiResponse)({ status: 200, description: 'Profile updated!', type: profile_entity_1.Profile }),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:paramtypes", [profile_update_dto_1.ProfileUpdateDTO, Object]),
     __metadata("design:returntype", Promise)
-], ProfileController.prototype, "login", null);
+], ProfileController.prototype, "update", null);
 exports.ProfileController = ProfileController = __decorate([
-    (0, common_1.Controller)(),
+    (0, swagger_1.ApiBearerAuth)(),
+    (0, swagger_1.ApiTags)('profile'),
+    (0, common_1.Controller)('profile'),
     __param(0, (0, common_1.Inject)("ProfileUpdateUseCasePort")),
     __metadata("design:paramtypes", [Object])
 ], ProfileController);

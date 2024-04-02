@@ -1,16 +1,11 @@
 import { UsersRepositoryPort, UserUpdated } from "src/Repositories/Users.repository";
+import { ProfileUpdateDTO } from "src/DTOs/profile-update.dto";
 interface ProfileUpdateUseCaseResponse {
     success: boolean;
     data?: UserUpdated;
 }
 export interface ProfileUpdateUseCasePort {
     execute(jwtToken: string, profileUpdateDTO: ProfileUpdateDTO): Promise<ProfileUpdateUseCaseResponse>;
-}
-export interface ProfileUpdateDTO {
-    username?: string | null;
-    telegramNumber?: string | null;
-    newPassword?: string | null;
-    confirmNewPassword?: string | null;
 }
 export default class ProfileUpdateUseCase implements ProfileUpdateUseCasePort {
     private readonly usersRepository;

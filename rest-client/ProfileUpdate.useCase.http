@@ -1,6 +1,6 @@
 PUT http://localhost:4000/profile HTTP/1.1
 content-type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiJiNTVmOTA5ZC00MDZhLTQwZjUtYjk1Ny1lZmY2MmQ4MDk0OWIiLCJpYXQiOjE2OTQ4ODUyNjJ9.enEJTl_uT_0Ra1sExNcHCmkiLUU9Wk3qKcrCLTZNAKM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI3MjBiZjhlZi0zZWNmLTRhY2EtYWEyNi1lMDk2NzY2NDExYjIiLCJpYXQiOjE3MTIwNjA3NTl9.4i3r_3Prn-atg6kBGfRc3ntKFZNxvI6uUFTLjbxGr7w
 
 {
 	"username": "Updated Test User",

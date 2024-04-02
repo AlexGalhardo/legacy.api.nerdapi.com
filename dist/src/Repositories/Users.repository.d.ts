@@ -1,6 +1,6 @@
-import { ProfileUpdateDTO } from "src/UseCases/ProfileUpdate.useCase";
 import { Database } from "src/Utils/Database";
 import "dotenv/config";
+import { ProfileUpdateDTO } from "src/DTOs/profile-update.dto";
 export interface User {
     id: string;
     username: string;
@@ -34,8 +34,6 @@ export interface UserUpdated {
     username: string;
     email: string;
     telegramNumber: string;
-    password: string;
-    plain_password: string | null;
 }
 export interface UserResponse {
     user: User;

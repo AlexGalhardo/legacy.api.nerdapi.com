@@ -1,15 +1,16 @@
 import { Response } from "express";
-import { ProfileUpdateDTO, ProfileUpdateUseCasePort } from "src/UseCases/ProfileUpdate.useCase";
+import { ProfileUpdateUseCasePort } from "src/UseCases/ProfileUpdate.useCase";
+import { ProfileUpdateDTO } from "src/DTOs/profile-update.dto";
 interface ProfileUseCaseResponse {
     success: boolean;
     data?: any;
 }
 interface ProfileControllerPort {
-    login(profileUpdateDTO: ProfileUpdateDTO, response: Response): Promise<Response<ProfileUseCaseResponse>>;
+    update(profileUpdateDTO: ProfileUpdateDTO, response: Response): Promise<Response<ProfileUseCaseResponse>>;
 }
 export declare class ProfileController implements ProfileControllerPort {
     private readonly profileUpdateUseCase;
     constructor(profileUpdateUseCase: ProfileUpdateUseCasePort);
-    login(profileUpdateDTO: ProfileUpdateDTO, response: Response): Promise<Response<ProfileUseCaseResponse>>;
+    update(profileUpdateDTO: ProfileUpdateDTO, response: Response): Promise<Response<ProfileUseCaseResponse>>;
 }
 export {};
