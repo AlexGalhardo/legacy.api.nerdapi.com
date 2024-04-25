@@ -23,6 +23,8 @@
 
 ## Technologies and Tools Used
 
+new
+
 * [Git](https://git-scm.com/)
 * [NodeJS v20](https://nodejs.org/en)
 * [VSCode](https://code.visualstudio.com/)
