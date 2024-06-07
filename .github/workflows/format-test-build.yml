@@ -16,11 +16,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          # node-version: '20'
-          cache: 'bun'
-          cache-dependency-path: '**/bun.lockb'
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
 
-      - run: bun install
-      - run: bun run format
-      # - run: bun run test
-      - run: bun run build
+      - run: npm install
+      - run: npm run format
+      # - run: npm run test
+      - run: npm run build
