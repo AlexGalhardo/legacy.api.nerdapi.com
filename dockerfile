@@ -1,7 +1,7 @@
-FROM oven/bun:latest
+FROM node:latest
 WORKDIR /app
 COPY package.json ./
-COPY bun.lockb ./
+COPY package-lock.json ./
 COPY . .
 RUN npm install
 EXPOSE 3000
