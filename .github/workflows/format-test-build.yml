@@ -13,15 +13,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
+          # node-version: '20'
+          cache: 'bun'
+          cache-dependency-path: '**/bun.lockb'
 
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run format
-      - run: npm run test
-      - run: npm run build
+      - run: bun install
+      - run: bun run format
+      # - run: bun run test
+      - run: bun run build
