@@ -1,15 +1,8 @@
-FROM node:20-alpine as build
-
-RUN apk update && apk add bash
-RUN apk add --no-cache libc6-compat
-
+FROM oven/bun:latest
 WORKDIR /app
-COPY package.json package-lock.json ./
-RUN npm ci --force
-
+COPY package.json ./
+COPY bun.lockb ./
 COPY . .
-
-RUN npm run build 
-
+RUN bun install
 EXPOSE 3000
-ENTRYPOINT ["npm", "run", "start:prod"]
+ENTRYPOINT ["bun", "run", "dev"]

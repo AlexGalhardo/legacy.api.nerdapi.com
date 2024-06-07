@@ -1,4 +1,3 @@
-import "dotenv/config";
 import { Game, GamesRepositoryPort } from "src/Repositories/Games.repository";
 import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";

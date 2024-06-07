@@ -1,9 +1,8 @@
 #!/bin/bash
+docker stop $(docker ps -q) && docker rm $(docker ps -aq)
 docker-compose down
-docker-compose rm -rf postgres_nerdapi
-docker volume rm postgres_nerdapi
 docker-compose up -d
-npm run prisma:generate
-npm run prisma:migrate
-npm run prisma:push
-npm run prisma:seed
+bun run prisma:generate
+bun run prisma:migrate
+bun run prisma:push
+bun run prisma:seed

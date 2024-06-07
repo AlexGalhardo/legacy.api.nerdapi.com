@@ -5,7 +5,6 @@ import DateTime from "src/Utils/DataTypes/DateTime";
 import { Bcrypt } from "src/Utils/Bcrypt";
 import { Injectable } from "@nestjs/common";
 import { Database } from "src/Utils/Database";
-import "dotenv/config";
 import { SubscriptionName } from "src/UseCases/AuthRegister.useCase";
 import { ProfileUpdateDTO } from "src/DTOs/profile-update.dto";
 

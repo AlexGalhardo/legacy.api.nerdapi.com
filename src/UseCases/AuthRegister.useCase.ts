@@ -1,4 +1,3 @@
-import "dotenv/config";
 import { randomUUID } from "crypto";
 import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import { Bcrypt } from "src/Utils/Bcrypt";

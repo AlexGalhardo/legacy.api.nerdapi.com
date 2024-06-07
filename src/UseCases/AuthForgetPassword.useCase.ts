@@ -1,4 +1,3 @@
-import "dotenv/config";
 import { UsersRepositoryPort } from "src/Repositories/Users.repository";
 import { APP_URL } from "src/Utils/Constants";
 import { ErrorsMessages } from "src/Utils/ErrorsMessages";

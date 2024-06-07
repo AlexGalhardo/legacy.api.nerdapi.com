@@ -8,7 +8,7 @@ import { Request } from "express";
 import { randomUUID } from "node:crypto";
 import DateTime from "src/Utils/DataTypes/DateTime";
 import { APP_URL } from "src/Utils/Constants";
-import "dotenv/config";
+
 import GenerateRandomToken from "src/Utils/GenerateRandomToken";
 import { SubscriptionName } from "./AuthRegister.useCase";
 
