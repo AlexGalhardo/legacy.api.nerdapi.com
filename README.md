@@ -20,7 +20,7 @@
    - PostgresSQL using PrismaORM (migrations, seeds, prisma studio) and Docker
 
 ## Tools & Features
-- [Bun](https://bun.sh/docs/installation)
+- [NodeJS v22](https://nodejs.org/en)
 - [TypeScript](https://www.typescriptlang.org/)
 - [NestJS](https://nodejs.org/en)
 - [VSCode](https://code.visualstudio.com/)
@@ -59,7 +59,7 @@ cd api.nerdapi.com/
 
 3. Install dependencies
 ```bash
-bun install
+npm install
 ```
 
 4. Setup your environment variables
@@ -74,35 +74,35 @@ chmod +x setup.sh && ./setup.sh
 
 6. To Start Prisma Studio:
 ```bash
-bun run prisma:studio
+npm run prisma:studio
 ```
 
 7. Start local server
 ```bash
-bun run dev
+npm run dev
 ```
 
 ## Build
 a. Creating build
 ```bash
-bun run build
+npm run build
 ```
 
 b. Testing build server locally
 ```bash
-bun run start
+npm run start
 ```
 
 ## Tests
 
 a. Run all tests
 ```bash
-bun run test
+npm run test
 ```
 
 b. Run integrations tests
 ```bash
-bun run test:integration
+npm run test:integration
 ```
 
 ## API Requests

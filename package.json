@@ -1,11 +1,14 @@
 {
 	"name": "api.nerdapi.com",
+	"engines": {
+		"node": ">=22"
+	},
 	"scripts": {
-		"build": "bunx @nestjs/cli build",
-		"start": "bunx nest start",
+		"build": "npx @nestjs/cli build",
+		"start": "npx nest start",
 		"dev": "nest start --watch",
-		"start:debug": "bunx nest start --debug --watch",
-		"start:prod": "bun dist/src/main",
+		"start:debug": "npx nest start --debug --watch",
+		"start:prod": "npm dist/src/main",
 		"format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
 		"prepare": "husky install",
 		"test": "jest",
@@ -13,12 +16,12 @@
 		"test:cov": "jest --coverage",
 		"test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
 		"test:integration": "jest --runInBand --detectOpenHandles --forceExit --config ./tests/integration/jest-integrations-test.json",
-		"prisma:migrate": "bunx prisma migrate dev",
-		"prisma:generate": "bunx prisma generate",
-		"prisma:push": "bunx prisma db push",
-		"prisma:studio": "bunx prisma studio",
-		"prisma:seed": "bunx prisma db seed",
-		"prisma:format": "bunx prisma format"
+		"prisma:migrate": "npx prisma migrate dev",
+		"prisma:generate": "npx prisma generate",
+		"prisma:push": "npx prisma db push",
+		"prisma:studio": "npx prisma studio",
+		"prisma:seed": "npx prisma db seed",
+		"prisma:format": "npx prisma format"
 	},
 	"prisma": {
 		"seed": "ts-node --transpile-only --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
