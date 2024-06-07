@@ -5,4 +5,4 @@ COPY bun.lockb ./
 COPY . .
 RUN npm install
 EXPOSE 3000
-ENTRYPOINT ["bun", "run", "dev"]
+ENTRYPOINT ["npm", "run", "dev"]
