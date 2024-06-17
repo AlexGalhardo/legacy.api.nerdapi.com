@@ -6,7 +6,7 @@
 	"scripts": {
 		"build": "npx @nestjs/cli build",
 		"start": "npx nest start",
-		"dev": "nest start --watch",
+		"dev": "npx nest start --watch",
 		"start:debug": "npx nest start --debug --watch",
 		"start:prod": "npx dist/src/main",
 		"format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
