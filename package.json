@@ -10,7 +10,6 @@
 		"start:debug": "npx nest start --debug --watch",
 		"start:prod": "npx dist/src/main",
 		"format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
-		"prepare": "husky",
 		"test": "jest",
 		"test:watch": "jest --watch",
 		"test:cov": "jest --coverage",
