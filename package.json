@@ -20,7 +20,8 @@
 		"prisma:push": "npx prisma db push",
 		"prisma:studio": "npx prisma studio",
 		"prisma:seed": "npx prisma db seed",
-		"prisma:format": "npx prisma format"
+		"prisma:format": "npx prisma format",
+		"prepare": "husky install"
 	},
 	"prisma": {
 		"seed": "ts-node --transpile-only --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
@@ -58,7 +59,7 @@
 		"@types/nodemailer": "^6.4.15",
 		"@types/string-similarity": "^4.0.2",
 		"@types/supertest": "^6.0.2",
-		"husky": "^9.0.11",
+		"husky": "^8.0.0",
 		"jest": "^29.7.0",
 		"prettier": "^3.3.2",
 		"prisma": "^5.15.0",

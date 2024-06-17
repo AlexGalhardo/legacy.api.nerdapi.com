@@ -3,6 +3,4 @@
 
 npm run format
 
-# npm t
-
 npm run build
