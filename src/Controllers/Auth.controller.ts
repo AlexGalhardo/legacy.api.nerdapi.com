@@ -3,17 +3,17 @@ import { Request, Response } from "express";
 import {
     AuthCheckResetPasswordTokenUseCasePort,
     CheckResetPasswordTokenDTO,
-} from "src/UseCases/AuthCheckResetPasswordToken.useCase";
-import { AuthForgetPasswordDTO, AuthForgetPasswordUseCasePort } from "src/UseCases/AuthForgetPassword.useCase";
-import { AuthLoginDTO, AuthLoginUseCasePort } from "src/UseCases/AuthLogin.useCase";
-import { AuthLoginGitHubUseCasePort } from "src/UseCases/AuthLoginGitHub.useCase";
-import { AuthLoginGoogleUseCasePort } from "src/UseCases/AuthLoginGoogle.useCase";
-import { AuthLogoutUseCasePort } from "src/UseCases/AuthLogout.useCase";
-import { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/UseCases/AuthRegister.useCase";
-import { AuthResetPasswordDTO, AuthResetPasswordUseCasePort } from "src/UseCases/AuthResetPassword.useCase";
-import { AuthCheckUserJWTTokenUseCasePort } from "src/UseCases/AuthCheckUserJWTToken.useCase";
+} from "src/use-cases/auth-check-reset-password-token.use-case";
+import { AuthForgetPasswordDTO, AuthForgetPasswordUseCasePort } from "src/use-cases/auth-forget-password.use-case";
+import { AuthLoginDTO, AuthLoginUseCasePort } from "src/use-cases/auth-login.use-case";
+import { AuthLoginGitHubUseCasePort } from "src/use-cases/auth-login-github.use-case";
+import { AuthLoginGoogleUseCasePort } from "src/use-cases/auth-login-google.use-case";
+import { AuthLogoutUseCasePort } from "src/use-cases/auth-logout.use-case";
+import { AuthRegisterDTO, AuthRegisterUseCasePort } from "src/use-cases/auth-register.use-case";
+import { AuthResetPasswordDTO, AuthResetPasswordUseCasePort } from "src/use-cases/auth-reset-password.use-case";
+import { AuthCheckUserJWTTokenUseCasePort } from "src/use-cases/auth-check-user-jwt-token.use-case";
 import { ApiBearerAuth, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { Auth } from "src/Entities/auth.entity";
+import { Auth } from "src/entities/auth.entity";
 
 interface AuthUseCaseResponse {
     success: boolean;

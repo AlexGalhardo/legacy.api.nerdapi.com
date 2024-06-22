@@ -1,16 +1,16 @@
 import { Module } from "@nestjs/common";
-import { AuthController } from "src/Controllers/Auth.controller";
-import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.repository";
-import AuthCheckResetPasswordTokenUseCase from "src/UseCases/AuthCheckResetPasswordToken.useCase";
-import AuthForgetPasswordUseCase from "src/UseCases/AuthForgetPassword.useCase";
-import AuthLoginUseCase from "src/UseCases/AuthLogin.useCase";
-import AuthLoginGitHubUseCase from "src/UseCases/AuthLoginGitHub.useCase";
-import AuthLoginGoogleUseCase from "src/UseCases/AuthLoginGoogle.useCase";
-import AuthLogoutUseCase from "src/UseCases/AuthLogout.useCase";
-import AuthRegisterUseCase from "src/UseCases/AuthRegister.useCase";
-import AuthResetPasswordUseCase from "src/UseCases/AuthResetPassword.useCase";
-import { Database } from "src/Utils/Database";
-import AuthCheckUserJWTTokenUseCase from "src/UseCases/AuthCheckUserJWTToken.useCase";
+import { AuthController } from "src/controllers/auth.controller";
+import UsersRepository, { UsersRepositoryPort } from "src/repositories/users.repository";
+import AuthCheckResetPasswordTokenUseCase from "src/use-cases/auth-check-reset-password-token.use-case";
+import AuthForgetPasswordUseCase from "src/use-cases/auth-forget-password.use-case";
+import AuthLoginUseCase from "src/use-cases/auth-login.use-case";
+import AuthLoginGitHubUseCase from "src/use-cases/auth-login-github.use-case";
+import AuthLoginGoogleUseCase from "src/use-cases/auth-login-google.use-case";
+import AuthLogoutUseCase from "src/use-cases/auth-logout.use-case";
+import AuthRegisterUseCase from "src/use-cases/auth-register.use-case";
+import AuthResetPasswordUseCase from "src/use-cases/auth-reset-password.use-case";
+import { Database } from "src/config/database.config";
+import AuthCheckUserJWTTokenUseCase from "src/use-cases/auth-check-user-jwt-token.use-case";
 
 @Module({
     controllers: [AuthController],

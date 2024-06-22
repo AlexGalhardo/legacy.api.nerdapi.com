@@ -1,9 +1,9 @@
 import { Body, Controller, HttpStatus, Inject, Put, Res } from "@nestjs/common";
 import { Response } from "express";
-import { ProfileUpdateUseCasePort } from "src/UseCases/ProfileUpdate.useCase";
+import { ProfileUpdateUseCasePort } from "src/use-cases/profile-update.use-case";
 import { ApiBearerAuth, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { ProfileUpdateDTO } from "src/DTOs/profile-update.dto";
-import { Profile } from "src/Entities/profile.entity";
+import { ProfileUpdateDTO } from "src/dtos/profile-update.dto";
+import { Profile } from "src/entities/profile.entity";
 
 interface ProfileUseCaseResponse {
     success: boolean;

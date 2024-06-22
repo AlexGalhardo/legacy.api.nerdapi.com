@@ -1,11 +1,11 @@
 import { Module } from "@nestjs/common";
-import { GamesController } from "src/Controllers/GamesController";
-import GamesRepository, { GamesRepositoryPort } from "src/Repositories/Games.repository";
-import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.repository";
-import GameGetByIdUseCase from "src/UseCases/GameGetById.useCase";
-import GameGetByTitleUseCase from "src/UseCases/GameGetByTitle.useCase";
-import GameGetRandomUseCase from "src/UseCases/GameGetRandom.useCase";
-import { Database } from "src/Utils/Database";
+import { GamesController } from "src/controllers/games.controller";
+import GamesRepository, { GamesRepositoryPort } from "src/repositories/games.repository";
+import UsersRepository, { UsersRepositoryPort } from "src/repositories/users.repository";
+import GameGetByIdUseCase from "src/use-cases/game-get-by-id.use-case";
+import GameGetByTitleUseCase from "src/use-cases/game-get-by-title.use-case";
+import GameGetRandomUseCase from "src/use-cases/game-get-random.use-case";
+import { Database } from "src/config/database.config";
 
 @Module({
     controllers: [GamesController],

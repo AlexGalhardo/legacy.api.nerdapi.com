@@ -5,7 +5,7 @@ import * as StripeInvoices from "./Jsons/Stripe/invoices.json";
 import * as StripeCheckouts from "./Jsons/Stripe/checkouts.json";
 import * as StripeBillingPortals from "./Jsons/Stripe/billingPortals.json";
 import * as StripePayments from "./Jsons/Stripe/payments.json";
-import { Database } from "src/Utils/Database";
+import { Database } from "src/config/database.config";
 import { Injectable } from "@nestjs/common";
 
 export interface StripeRepositoryPort {
@@ -30,7 +30,7 @@ export default class StripeRepository implements StripeRepositoryPort {
     ) {}
 
     public async saveChargeWebhookEventLog(event: any) {
-        if (process.env.USE_DATABASE_JSON === "true") {
+        if (process.env.USE_JSON_DATABASE === "true") {
             try {
                 this.charges.push(event);
                 fs.writeFileSync(
@@ -55,7 +55,7 @@ export default class StripeRepository implements StripeRepositoryPort {
     }
 
     public async saveCustomerWebhookEventLog(event: any) {
-        if (process.env.USE_DATABASE_JSON === "true") {
+        if (process.env.USE_JSON_DATABASE === "true") {
             try {
                 this.customers.push(event);
                 fs.writeFileSync(
@@ -80,7 +80,7 @@ export default class StripeRepository implements StripeRepositoryPort {
     }
 
     public async saveInvoiceWebhookEventLog(event: any) {
-        if (process.env.USE_DATABASE_JSON === "true") {
+        if (process.env.USE_JSON_DATABASE === "true") {
             try {
                 this.invoices.push(event);
                 fs.writeFileSync(
@@ -105,7 +105,7 @@ export default class StripeRepository implements StripeRepositoryPort {
     }
 
     public async savePaymentWebhookEventLog(event: any) {
-        if (process.env.USE_DATABASE_JSON === "true") {
+        if (process.env.USE_JSON_DATABASE === "true") {
             try {
                 this.payments.push(event);
                 fs.writeFileSync(
@@ -130,7 +130,7 @@ export default class StripeRepository implements StripeRepositoryPort {
     }
 
     public async saveCheckoutSessionWebhookEventLog(event: any) {
-        if (process.env.USE_DATABASE_JSON === "true") {
+        if (process.env.USE_JSON_DATABASE === "true") {
             try {
                 this.checkouts.push(event);
                 fs.writeFileSync(
@@ -155,7 +155,7 @@ export default class StripeRepository implements StripeRepositoryPort {
     }
 
     public async saveBillingPortalSessionWebhookEventLog(event: any) {
-        if (process.env.USE_DATABASE_JSON === "true") {
+        if (process.env.USE_JSON_DATABASE === "true") {
             try {
                 this.billingPortals.push(event);
                 fs.writeFileSync(

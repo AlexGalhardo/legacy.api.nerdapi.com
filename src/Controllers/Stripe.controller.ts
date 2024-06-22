@@ -1,15 +1,15 @@
 import { Controller, Post, Res, Body, Inject, HttpStatus } from "@nestjs/common";
 import { ApiBearerAuth, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { Response } from "express";
-import { StripeRepositoryPort } from "src/Repositories/Stripe.repository";
+import { StripeRepositoryPort } from "src/repositories/stripe.repository";
 import {
     StripeCreateCheckoutSessionDTO,
     StripeCreateCheckoutSessionUseCasePort,
-} from "src/UseCases/StripeCreateCheckoutSession.useCase";
-import { StripeCreatePortalSessionUseCasePort } from "src/UseCases/StripeCreatePortalSession.useCase";
-import { StripeWebhookChargeSucceededUseCasePort } from "src/UseCases/StripeWebhookChargeSucceeded.useCase";
-import { StripeWebhookInvoiceFinalizedUseCasePort } from "src/UseCases/StripeWebhookInvoiceFinalized.useCase";
-import TelegramBOTLogger from "src/Utils/TelegramBOTLogger";
+} from "src/use-cases/stripe-create-checkout-session.use-case";
+import { StripeCreatePortalSessionUseCasePort } from "src/use-cases/stripe-create-portal-session.use-case";
+import { StripeWebhookChargeSucceededUseCasePort } from "src/use-cases/stripe-webhook-charge-succeeded.use-case";
+import { StripeWebhookInvoiceFinalizedUseCasePort } from "src/use-cases/stripe-webhook-invoice-finalized.use-case";
+import TelegramLog from "src/config/telegram-logger.config";
 
 interface StripeUseCaseResponse {
     success: boolean;
@@ -69,7 +69,7 @@ export class StripeController implements StripeControllerPort {
                 stripeCreateCheckoutSessionDTO,
             );
             if (success) return response.status(HttpStatus.OK).json({ success: true, redirect });
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
@@ -87,7 +87,7 @@ export class StripeController implements StripeControllerPort {
                 stripeCreatePortalSessionDTO,
             );
             if (success) return response.status(HttpStatus.OK).json({ success: true, redirect });
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
@@ -175,7 +175,7 @@ export class StripeController implements StripeControllerPort {
                     break;
 
                 default:
-                    TelegramBOTLogger.logError(event.type);
+                    TelegramLog.error(event.type);
             }
 
             return response.json({ received: true });

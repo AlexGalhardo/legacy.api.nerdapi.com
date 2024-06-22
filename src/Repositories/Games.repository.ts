@@ -1,8 +1,8 @@
 import * as stringSimilarity from "string-similarity";
 import * as gamesDatabase from "./Jsons/games.json";
 import { Injectable } from "@nestjs/common";
-import { Database } from "src/Utils/Database";
-import { ErrorsMessages } from "src/Utils/ErrorsMessages";
+import { Database } from "src/config/database.config";
+import { ErrorsMessages } from "src/utils/errors-messages.util";
 
 export interface PlatformAvailable {
     id: string;
@@ -159,7 +159,7 @@ export default class GamesRepository implements GamesRepositoryPort {
     }
 
     public async getById(gameId: string): Promise<Game> {
-        if (process.env.USE_DATABASE_JSON === "true") {
+        if (process.env.USE_JSON_DATABASE === "true") {
             return this.games.filter((game: Game) => game.id === gameId)[0];
         }
 
@@ -175,7 +175,7 @@ export default class GamesRepository implements GamesRepositoryPort {
     }
 
     public async getByTitle(gameTitle: string): Promise<Game[]> {
-        if (process.env.USE_DATABASE_JSON === "true") {
+        if (process.env.USE_JSON_DATABASE === "true") {
             const gamesFound = this.games.filter((game: Game) =>
                 game.title.toLowerCase().includes(gameTitle.toLowerCase()),
             );
@@ -224,7 +224,7 @@ export default class GamesRepository implements GamesRepositoryPort {
     }
 
     public async getRandom(): Promise<Game> {
-        if (process.env.USE_DATABASE_JSON === "true") {
+        if (process.env.USE_JSON_DATABASE === "true") {
             return this.games[Math.floor(Math.random() * this.games.length)];
         }
 

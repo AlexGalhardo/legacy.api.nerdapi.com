@@ -1,12 +1,12 @@
 import { Module } from "@nestjs/common";
-import { StripeController } from "src/Controllers/Stripe.controller";
-import StripeRepository, { StripeRepositoryPort } from "src/Repositories/Stripe.repository";
-import UsersRepository, { UsersRepositoryPort } from "src/Repositories/Users.repository";
-import StripeCreateCheckoutSessionUseCase from "src/UseCases/StripeCreateCheckoutSession.useCase";
-import StripeCreatePortalSessionUseCase from "src/UseCases/StripeCreatePortalSession.useCase";
-import StripeWebhookChargeSucceededUseCase from "src/UseCases/StripeWebhookChargeSucceeded.useCase";
-import StripeWebhookInvoiceFinalizedUseCase from "src/UseCases/StripeWebhookInvoiceFinalized.useCase";
-import { Database } from "src/Utils/Database";
+import { StripeController } from "src/controllers/stripe.controller";
+import StripeRepository, { StripeRepositoryPort } from "src/repositories/stripe.repository";
+import UsersRepository, { UsersRepositoryPort } from "src/repositories/users.repository";
+import StripeCreateCheckoutSessionUseCase from "src/use-cases/stripe-create-checkout-session.use-case";
+import StripeCreatePortalSessionUseCase from "src/use-cases/stripe-create-portal-session.use-case";
+import StripeWebhookChargeSucceededUseCase from "src/use-cases/stripe-webhook-charge-succeeded.use-case";
+import StripeWebhookInvoiceFinalizedUseCase from "src/use-cases/stripe-webhook-invoice-finalized.use-case";
+import { Database } from "src/config/database.config";
 
 @Module({
     controllers: [StripeController],
