@@ -1,7 +1,7 @@
 import * as fs from "fs";
 import * as usersDatabase from "./Jsons/users.json";
 import { ErrorsMessages } from "src/utils/errors-messages.util";
-import DateTime from "src/utils/DateTime";
+import DateTime from "src/utils/date-time.util";
 import { Bcrypt } from "src/utils/bcrypt.util";
 import { Injectable } from "@nestjs/common";
 import { Database } from "src/config/database.config";
@@ -107,7 +107,7 @@ export default class UsersRepository implements UsersRepositoryPort {
 
                 fs.writeFileSync("./src/Repositories/Jsons/users.json", JSON.stringify(this.users, null, 4), "utf-8");
                 this.users = JSON.parse(fs.readFileSync("./src/Repositories/Jsons/users.json", "utf-8"));
-            } catch (error) {
+            } catch (error: any) {
                 throw new Error(error);
             }
         }
@@ -261,7 +261,7 @@ export default class UsersRepository implements UsersRepositoryPort {
                 await this.verifyIfSubscriptionIsActiveAndNotExpired(this.transformToUser(user));
                 return this.transformToUserResponse(user);
             }
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(error);
         }
     }
@@ -288,7 +288,7 @@ export default class UsersRepository implements UsersRepositoryPort {
                 await this.verifyIfSubscriptionIsActiveAndNotExpired(this.transformToUser(user));
                 return this.transformToUserResponse(user);
             }
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(error);
         }
     }

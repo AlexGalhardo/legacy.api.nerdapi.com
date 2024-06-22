@@ -112,7 +112,7 @@ export default class AuthLoginGitHubUseCase implements AuthLoginGitHubUseCasePor
                     redirect: `${APP_URL}/profile?token=${jwt_token}&registred=${true}`,
                 };
             }
-        } catch (error) {
+        } catch (error: any) {
             throw new ClientException(error);
         }
     }

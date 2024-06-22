@@ -68,7 +68,7 @@ export class AuthController implements AuthControllerPort {
             const { success, jwt_token, message } = await this.authLoginUseCase.execute(authLoginPayload);
             if (success === true) return response.status(HttpStatus.OK).json({ success: true, jwt_token });
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message });
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
@@ -82,7 +82,7 @@ export class AuthController implements AuthControllerPort {
         try {
             const { success, jwt_token } = await this.authRegisterUseCase.execute(authRegisterPayload);
             if (success === true) return response.status(HttpStatus.OK).json({ success: true, jwt_token });
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
@@ -95,7 +95,7 @@ export class AuthController implements AuthControllerPort {
             const userJWTToken = response.locals.token;
             const { success } = await this.authLogoutUseCase.execute(userJWTToken);
             if (success) return response.status(HttpStatus.OK).json({ success: true });
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
@@ -108,7 +108,7 @@ export class AuthController implements AuthControllerPort {
             const userJWTToken = response.locals.token;
             const { success, data } = await this.authCheckUserJWTTokenUseCase.execute(userJWTToken);
             if (success) return response.status(HttpStatus.OK).json({ success: true, data });
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
@@ -122,7 +122,7 @@ export class AuthController implements AuthControllerPort {
         try {
             const { success } = await this.authForgetPasswordUseCase.execute(authForgetPasswordPayload);
             if (success) return response.status(HttpStatus.OK).json({ success: true });
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
@@ -141,7 +141,7 @@ export class AuthController implements AuthControllerPort {
                 authResetPasswordPayload,
             );
             if (success) return response.status(HttpStatus.OK).json({ success: true });
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
@@ -155,7 +155,7 @@ export class AuthController implements AuthControllerPort {
         try {
             const { success } = await this.authCheckResetPasswordTokenUseCase.execute(resetPasswordToken);
             if (success) return response.status(HttpStatus.OK).json({ success: true });
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
@@ -168,7 +168,7 @@ export class AuthController implements AuthControllerPort {
             if (success) {
                 response.redirect(redirect);
             }
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
@@ -181,7 +181,7 @@ export class AuthController implements AuthControllerPort {
             if (success) {
                 response.redirect(redirect);
             }
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }

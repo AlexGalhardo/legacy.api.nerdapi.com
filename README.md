@@ -41,9 +41,9 @@
 
 ## FrontEnd & Docs
 
-* FrontEnd Source Code: <https://github.com/AlexGalhardo/nerdapi.com>
-* Documentation Source code: <https://github.com/AlexGalhardo/docs.nerdapi.com>
-* Docs Live: <https://docs.nerdapi.com>
+= FrontEnd Source Code: <https://github.com/AlexGalhardo/nerdapi.com>
+= Documentation Source code: <https://github.com/AlexGalhardo/docs.nerdapi.com>
+= Docs Live: <https://docs.nerdapi.com>
 
 ## Development Setup Local
 

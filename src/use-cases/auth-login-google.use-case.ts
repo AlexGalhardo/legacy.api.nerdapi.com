@@ -97,7 +97,7 @@ export default class AuthLoginGoogleUseCase implements AuthLoginGoogleUseCasePor
                     redirect: `${APP_URL}/profile?token=${jwt_token}&registred=${true}`,
                 };
             }
-        } catch (error) {
+        } catch (error: any) {
             throw new ClientException(error);
         }
     }

@@ -3,7 +3,7 @@ import * as StripeCharges from "./Jsons/Stripe/charges.json";
 import * as StripeCustomers from "./Jsons/Stripe/customers.json";
 import * as StripeInvoices from "./Jsons/Stripe/invoices.json";
 import * as StripeCheckouts from "./Jsons/Stripe/checkouts.json";
-import * as StripeBillingPortals from "./Jsons/Stripe/billingPortals.json";
+import * as StripeBillingPortals from "./jsons/stripe/billing-portals.json";
 import * as StripePayments from "./Jsons/Stripe/payments.json";
 import { Database } from "src/config/database.config";
 import { Injectable } from "@nestjs/common";
@@ -38,7 +38,7 @@ export default class StripeRepository implements StripeRepositoryPort {
                     JSON.stringify(this.charges, null, 4),
                     "utf-8",
                 );
-            } catch (error) {
+            } catch (error: any) {
                 throw new Error(error);
             }
         }
@@ -49,7 +49,7 @@ export default class StripeRepository implements StripeRepositoryPort {
                     event_log: JSON.stringify(event),
                 },
             });
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(error);
         }
     }
@@ -63,7 +63,7 @@ export default class StripeRepository implements StripeRepositoryPort {
                     JSON.stringify(this.customers, null, 4),
                     "utf-8",
                 );
-            } catch (error) {
+            } catch (error: any) {
                 throw new Error(error);
             }
         }
@@ -74,7 +74,7 @@ export default class StripeRepository implements StripeRepositoryPort {
                     event_log: JSON.stringify(event),
                 },
             });
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(error);
         }
     }
@@ -88,7 +88,7 @@ export default class StripeRepository implements StripeRepositoryPort {
                     JSON.stringify(this.invoices, null, 4),
                     "utf-8",
                 );
-            } catch (error) {
+            } catch (error: any) {
                 throw new Error(error);
             }
         }
@@ -99,7 +99,7 @@ export default class StripeRepository implements StripeRepositoryPort {
                     event_log: JSON.stringify(event),
                 },
             });
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(error);
         }
     }
@@ -113,7 +113,7 @@ export default class StripeRepository implements StripeRepositoryPort {
                     JSON.stringify(this.payments, null, 4),
                     "utf-8",
                 );
-            } catch (error) {
+            } catch (error: any) {
                 throw new Error(error);
             }
         }
@@ -124,7 +124,7 @@ export default class StripeRepository implements StripeRepositoryPort {
                     event_log: JSON.stringify(event),
                 },
             });
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(error);
         }
     }
@@ -138,7 +138,7 @@ export default class StripeRepository implements StripeRepositoryPort {
                     JSON.stringify(this.checkouts, null, 4),
                     "utf-8",
                 );
-            } catch (error) {
+            } catch (error: any) {
                 throw new Error(error);
             }
         }
@@ -149,7 +149,7 @@ export default class StripeRepository implements StripeRepositoryPort {
                     event_log: JSON.stringify(event),
                 },
             });
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(error);
         }
     }
@@ -163,7 +163,7 @@ export default class StripeRepository implements StripeRepositoryPort {
                     JSON.stringify(this.billingPortals, null, 4),
                     "utf-8",
                 );
-            } catch (error) {
+            } catch (error: any) {
                 throw new Error(error);
             }
         }
@@ -174,7 +174,7 @@ export default class StripeRepository implements StripeRepositoryPort {
                     event_log: JSON.stringify(event),
                 },
             });
-        } catch (error) {
+        } catch (error: any) {
             throw new Error(error);
         }
     }

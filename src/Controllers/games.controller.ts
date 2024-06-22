@@ -38,7 +38,7 @@ export class GamesController implements GamesControllerPort {
             const { success, data, message, api_requests_today } = await this.gameGetRandomUseCase.execute(userAPIKey);
             if (success) return response.status(HttpStatus.OK).json({ success: true, data });
             return response.status(HttpStatus.OK).json({ success: false, message, api_requests_today });
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
@@ -54,7 +54,7 @@ export class GamesController implements GamesControllerPort {
             );
             if (success) return response.status(HttpStatus.OK).json({ success: true, data });
             return response.status(HttpStatus.OK).json({ success: false, message, api_requests_today });
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }
@@ -70,7 +70,7 @@ export class GamesController implements GamesControllerPort {
             );
             if (success) return response.status(HttpStatus.OK).json({ success: true, data });
             return response.status(HttpStatus.OK).json({ success: false, message, api_requests_today });
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }

@@ -32,7 +32,7 @@ export class ContactController implements ContactControllerPort {
         try {
             const { success } = await this.contactSendMessageUseCase.execute(contactSendMessageDTO);
             if (success) return response.status(HttpStatus.OK).json({ success: true });
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }

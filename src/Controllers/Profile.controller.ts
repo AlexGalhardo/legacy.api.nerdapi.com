@@ -30,7 +30,7 @@ export class ProfileController implements ProfileControllerPort {
             const userJWTToken = response.locals.token;
             const { success, data } = await this.profileUpdateUseCase.execute(userJWTToken, profileUpdateDTO);
             if (success) return response.status(HttpStatus.OK).json({ success: true, data });
-        } catch (error) {
+        } catch (error: any) {
             return response.status(HttpStatus.BAD_REQUEST).json({ success: false, message: error.message });
         }
     }

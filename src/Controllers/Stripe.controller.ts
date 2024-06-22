@@ -179,7 +179,7 @@ export class StripeController implements StripeControllerPort {
             }
 
             return response.json({ received: true });
-        } catch (error) {
+        } catch (error: any) {
             return response.json({ received: false });
         }
     }
